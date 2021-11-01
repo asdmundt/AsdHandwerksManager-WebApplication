@@ -19,6 +19,8 @@ Internal Representation and Key Implementation Points.
 Class {
 	#name : #ASDHMRoot,
 	#superclass : #ASDHMComponent,
+	#traits : 'TRootDialogRenderer',
+	#classTraits : 'TRootDialogRenderer classTrait',
 	#instVars : [
 		'header',
 		'componentToDisplay',
@@ -33,12 +35,18 @@ ASDHMRoot class >> canBeRoot [
 	^ true
 ]
 
+{ #category : #testing }
+ASDHMRoot class >> development [
+	^ true
+]
+
 { #category : #initialization }
 ASDHMRoot class >> initialize [
 		self environment at: #WADevelopmentConfiguration ifPresent: [ :class | WAAdmin applicationDefaults removeParent: class instance ]. "Remove development tools."
 	^ (WAAdmin register: self asApplicationAt: 'HandwerksManager')
 		preferenceAt: #sessionClass put: ASDHMSession;
 		addLibrary: JQDeploymentLibrary;
+		addLibrary: JQUiDevelopmentLibrary;
 		addLibrary: MDLLibrary;
 		addLibrary: ASDHMLibrary;
 		yourself
@@ -68,6 +76,11 @@ ASDHMRoot class >> open [
 				ifFound: [ :anAdaptor | port := anAdaptor server port ]
 				ifNone: [ (ZnZincServerAdaptor port: (port := 8085)) start ] ].
 	WebBrowser openOn: 'http://localhost:' , port asString , '/HandwerksManager'
+]
+
+{ #category : #version }
+ASDHMRoot class >> version [
+	^ '0.0.12'
 ]
 
 { #category : #hooks }
@@ -177,7 +190,8 @@ ASDHMRoot >> renderContentOn: html [
 								class: 'rootComponent';
 								size: 12;
 								with: [ html render: self componentToDisplay ] ].
-					html render: self footer ] ]
+					html render: self footer ] ].
+			self renderEmptyGenericDialogOn: html
 ]
 
 { #category : #updating }

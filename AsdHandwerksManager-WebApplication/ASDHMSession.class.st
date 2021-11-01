@@ -8,9 +8,7 @@ Class {
 		'model',
 		'loginError',
 		'adminView',
-		'userId',
-		'modelErp',
-		'shop'
+		'userId'
 	],
 	#category : #'AsdHandwerksManager-WebApplication-Utils'
 }
@@ -38,8 +36,8 @@ ASDHMSession >> currentUser: anObject [
 { #category : #initialization }
 ASDHMSession >> initialize [
 	super initialize.
-	self model: ASDEDbModelPortal current.
-	self modelErp: ASDEDbModelPortalErp current.
+	self model: ASDHMDbModelBase current.
+	
 	self adminView: false
 ]
 
@@ -68,16 +66,6 @@ ASDHMSession >> model: anObject [
 	model := anObject
 ]
 
-{ #category : #accessing }
-ASDHMSession >> modelErp [
-	^ modelErp
-]
-
-{ #category : #accessing }
-ASDHMSession >> modelErp: anObject [
-	modelErp := anObject
-]
-
 { #category : #actions }
 ASDHMSession >> reset [
 		currentUser := nil.
@@ -98,16 +86,6 @@ ASDHMSession >> rootComponent [
 { #category : #accessing }
 ASDHMSession >> rootComponent: aRootComponent [
 	rootComponent := aRootComponent
-]
-
-{ #category : #accessing }
-ASDHMSession >> shop [
-	^ shop
-]
-
-{ #category : #accessing }
-ASDHMSession >> shop: anObject [
-	shop := anObject
 ]
 
 { #category : #accessing }

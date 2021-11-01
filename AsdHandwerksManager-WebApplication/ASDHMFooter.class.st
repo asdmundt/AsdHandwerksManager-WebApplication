@@ -7,7 +7,7 @@ A footer for the application with all the useful links.
 Class {
 	#name : #ASDHMFooter,
 	#superclass : #ASDHMComponent,
-	#category : #'AsdHandwerksManager-WebApplication-Core'
+	#category : #'AsdHandwerksManager-WebApplication-Components'
 }
 
 { #category : #accessing }
@@ -20,9 +20,15 @@ ASDHMFooter >> links [
 
 { #category : #rendering }
 ASDHMFooter >> renderContentOn: html [
-	html
-		mdlMiniFooter: [ html
-				mdlMiniFooterLeftSection: [ html mdlLogo: 'HandwerksManager'.
+	html mdlMiniFooter
+		style: 'position:absolute;left: 0px;bottom: 0px;width: 100%;';
+		with: [ html
+				mdlMiniFooterLeftSection: [ self rootComponent class development
+						ifTrue: [ html
+								mdlLogo:
+									'HandwerksManager' , '      Version   '
+										, self rootComponent class version ]
+						ifFalse: [ html mdlLogo: 'HandwerksManager'].
 					html
 						mdlMiniFooterLinkList: [ self links
 								keysAndValuesDo: [ :label :url | 
@@ -30,5 +36,7 @@ ASDHMFooter >> renderContentOn: html [
 										listItem: [ html anchor
 												url: url;
 												with: label ] ] ] ].
-			html mdlMiniFooterRightSection: [ html mdlMiniFooterLinkList: [ html listItem: [ html text: 'Contact: TODO' ] ] ] ]
+			html
+				mdlMiniFooterRightSection: [ html
+						mdlMiniFooterLinkList: [ html listItem: [ html text: 'Contact: TODO' ] ] ] ]
 ]

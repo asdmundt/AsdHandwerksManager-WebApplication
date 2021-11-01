@@ -7,7 +7,7 @@ I am the reader of the application.
 Class {
 	#name : #ASDHMHeader,
 	#superclass : #ASDHMComponent,
-	#category : #'AsdHandwerksManager-WebApplication-Core'
+	#category : #'AsdHandwerksManager-WebApplication-Components'
 }
 
 { #category : #accessing }
@@ -25,7 +25,7 @@ ASDHMHeader >> renderContentOn: html [
 						with: [ html
 								mdlLayoutTitle: 'Application example for MDL.' ].
 					html mdlLayoutSpacer.
-					html text: 'Version 0.0.0'. ].
+					html text: self rootComponent class version. ].
 			html
 				mdlLayoutTabBar: [ self possiblePages
 						do: [ :aClass | 

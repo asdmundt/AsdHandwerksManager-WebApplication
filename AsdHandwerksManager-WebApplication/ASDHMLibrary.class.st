@@ -21,9 +21,210 @@ ASDHMLibrary >> materialbluegreydeeporangeminCss [
 
 { #category : #css }
 ASDHMLibrary >> projectCss [
-	^ '.mdl-pagination__current{
-        box-shadow: inset 0px -4px 0px 0px rgba(255,87,34,1) !important;
-    }'
+	^ '
+	.mdl-layout.is-small-screen .mdl-layout__header {
+    display: flex;
+    min-height: 48px;
+}
+body{
+	background-color: #121212;
+	color: #ffffff;
+	
+}
+
+.mdl-layout__container {
+  
+  background-size: cover;
+ 
+}
+
+.avatar {
+  vertical-align: middle;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+}
+
+.vertical-toolbar {
+    /* display: -webkit-flex; */
+    /* display: flex; */
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    -o-user-select: none;
+    user-select: none;
+    -webkit-flex-direction: column;
+    flex-direction: column;
+    position: absolute;
+    margin-top: 25px;
+    z-index: 2;
+	top: 0px;
+	right: 0px;
+}
+
+.right-panel {
+    width: 200px;
+    height: 100%;
+    -webkit-transition: all .75s;
+    transition: all .75s;
+    background-color: #ffffff14;
+    overflow: auto;
+    position: absolute;
+	right: 0px;
+	z-index: 1;
+	border: 1px solid #343434 !important;
+	
+}
+
+
+.mdl-textfield__input {
+    background-color: #121212;
+    border-radius: 2px;
+    border: 1px solid #343434 !important;
+    -webkit-box-shadow: none;
+    box-shadow: none;
+    height: 38px;
+    color: #3c5b7f !important;
+    font-size: 14px;
+    display: block;
+    font-size: 16px;
+    font-family: "Helvetica","Arial",sans-serif;
+    margin: 0;
+    padding: 4px 0;
+    width: 100%;
+    text-align: left;
+}
+
+.mdl-textfield {
+    position: relative;
+    font-size: 12px;
+    display: inline-block;
+    box-sizing: border-box;
+    width: 300px;
+    max-width: 100%;
+    margin: 0;
+    padding: 10px 0 !important;
+}
+
+
+
+.mdl-layout__drawer {
+   background: #1f1f1f !important;
+}
+
+.mdl-layout__drawer .mdl-navigation .mdl-navigation__link--current {
+    background-color: #1f1f1f;
+    color: #0f0f0f;
+}
+
+.mdl-card {
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-flex-direction: column;
+    -ms-flex-direction: column;
+    flex-direction: column;
+    font-size: 16px;
+    font-weight: 400;
+    min-height: 200px;
+    overflow: hidden;
+    width: 330px;
+    z-index: 1;
+    position: relative;
+    border: 1px solid #343434 !important;
+    border-radius: 2px;
+    background-color: #1f1f1f !important;
+ }  
+
+.div-form {
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-flex-direction: column;
+    -ms-flex-direction: column;
+    flex-direction: column;
+    font-size: 16px;
+    font-weight: 400;
+    min-height: 200px;
+    overflow: hidden;
+    width: 330px;
+    z-index: 1;
+    position: relative;
+    
+ }  
+
+.mdl-layout__drawer {
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-flex-direction: column;
+    -ms-flex-direction: column;
+    flex-direction: column;
+    -webkit-flex-wrap: nowrap;
+    -ms-flex-wrap: nowrap;
+    flex-wrap: nowrap;
+    width: 240px;
+    height: 100%;
+    max-height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    box-shadow: 0 2px 2px 0 rgba(0,0,0,.14), 0 3px 1px -2px rgba(0,0,0,.2), 0 1px 5px 0 rgba(0,0,0,.12);
+    box-sizing: border-box;
+    /* border-right: 1px solid #e0e0e0; */
+    background: #fafafa;
+    -webkit-transform: translateX(-250px);
+    transform: translateX(-250px);
+    -webkit-transform-style: preserve-3d;
+    transform-style: preserve-3d;
+    will-change: transform;
+    transition-duration: .2s;
+    transition-timing-function: cubic-bezier(.4,0,.2,1);
+    transition-property: transform;
+    transition-property: transform,-webkit-transform;
+    color: #424242;
+    overflow: visible;
+    overflow-y: auto;
+    z-index: 5;
+}
+
+.mdl-card__title {
+
+    color: #3c5b7f; !important;
+
+}
+.mdl-grid {
+    padding: 1px; !important;
+}
+
+.mdl-expansion-panel {
+    border: 1px solid #343434 !important;
+    border-radius: 2px;
+    background-color: #1f1f1f !important;
+}
+.ui-dialog {
+border: 1px solid #343434 !important;
+    border-radius: 2px;
+    background-color: #1f1f1f !important;
+}
+
+.bar {
+    box-sizing: border-box;
+    background: #1f1f1f;
+    color: white;
+    width: 100%;
+    padding: 16px;
+position: relative;
+    height: 64px;
+}
+
+.wrapper {
+    box-sizing: border-box;
+    position: absolute;
+    right: 16px;
+}
+
+'
 ]
 
 { #category : #accessing }

@@ -48,5 +48,5 @@ ASDHMKategorie >> type: anObject [
 { #category : #accessing }
 ASDHMKategorie >> types [
 	^ OrderedCollection
-		newFrom: {'shop' . 'artikelArtKategorie' . 'artikelOberKategorie' . 'artikelKategorie'}.
+		newFrom: {'ArbeitsartenOberKategorie' . 'Arbeitsarten' . 'MaterialOberKategorie' . 'MaterialKategorie'.'TelefonNrArten'.'AdressBezeichnungen'}.
 ]
