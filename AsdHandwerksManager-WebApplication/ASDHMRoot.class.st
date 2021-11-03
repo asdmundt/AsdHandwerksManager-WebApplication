@@ -194,7 +194,11 @@ ASDHMRoot >> renderContentOn: html [
 						with: [ html mdlCell
 								class: 'rootComponent';
 								size: 12;
-								with: [ html render: self componentToDisplay ] ].
+								with: [ html div 
+									class:'container';
+									with:[ html div 
+									class:'center';
+									with:[ html render: self componentToDisplay] ]] ].
 					html render: self footer ] ].
 			self renderEmptyGenericDialogOn: html
 ]

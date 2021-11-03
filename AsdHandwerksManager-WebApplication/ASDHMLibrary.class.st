@@ -79,12 +79,11 @@ body{
 
 .mdl-textfield__input {
     background-color: #121212;
-    border-radius: 2px;
-    border: 1px solid #343434 !important;
+    
     -webkit-box-shadow: none;
     box-shadow: none;
     height: 38px;
-    color: #3c5b7f !important;
+    color: #ffffffb3 !important;
     font-size: 14px;
     display: block;
     font-size: 16px;

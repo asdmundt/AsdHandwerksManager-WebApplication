@@ -23,14 +23,21 @@ ASDHMHeader >> renderContentOn: html [
 				mdlLayoutHeaderRow: [ html mdlNavigationLink
 						callback: [ "Just refresh" ];
 						with: [ html
-								mdlLayoutTitle: 'Application example for MDL.' ].
+								mdlLayoutTitle: [ 
+									html text: '    Material Design Lite for Seaside' ] ].
 					html mdlLayoutSpacer.
-					html text: self rootComponent class version. ].
-			html
-				mdlLayoutTabBar: [ self possiblePages
-						do: [ :aClass | 
-							html mdlLayoutTab
-								callback: [ self displayInstanceOf: aClass ];
-								isActiveIf: aClass = self rootComponent componentToDisplay class;
-								with: aClass pageName ] ] ]
+					html text: '	Version ' , self rootComponent class version.
+					self renderForkMeOnGithubOn: html ].
+			self renderNavMenu: html ]
+]
+
+{ #category : #rendering }
+ASDHMHeader >> renderNavMenu: html [
+	html
+		mdlLayoutTabBar: [ self possiblePages
+				do: [ :aClass | 
+					html mdlLayoutTab
+						callback: [ self displayInstanceOf: aClass ];
+						isActiveIf: aClass = self rootComponent componentToDisplay class;
+						with: aClass pageName ] ]
 ]
