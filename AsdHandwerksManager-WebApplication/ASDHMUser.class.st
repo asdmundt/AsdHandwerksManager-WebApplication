@@ -10,8 +10,7 @@ Class {
 		'index',
 		'indexLoggedUser',
 		'benutzerName',
-		'type',
-		'types'
+		'objectId'
 	],
 	#category : #'AsdHandwerksManager-WebApplication-Model'
 }
@@ -203,9 +202,8 @@ ASDHMUser >> initialize [
 	self admin: false.
 	self indexLoggedUser: nil.
 	
-	types := OrderedCollection
-		newFrom: {#admin . #projektLeiter . #user . #costumer}.
-	self type: #costumer
+	
+	
 ]
 
 { #category : #testing }
@@ -246,19 +244,4 @@ ASDHMUser >> pwdGmail [
 { #category : #accessing }
 ASDHMUser >> pwdGmail: anObject [
 	pwdGmail := anObject
-]
-
-{ #category : #accessing }
-ASDHMUser >> type [
-	^ type
-]
-
-{ #category : #accessing }
-ASDHMUser >> type: anObject [
-	type := anObject
-]
-
-{ #category : #accessing }
-ASDHMUser >> types [
-	^ types
 ]

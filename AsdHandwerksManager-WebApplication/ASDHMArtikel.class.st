@@ -6,7 +6,7 @@ Class {
 		'titel',
 		'descr',
 		'artikelNr',
-		'hersteller',
+		'herstellerId',
 		'lieferant',
 		'descrUrl',
 		'ekPreis',
@@ -14,7 +14,7 @@ Class {
 		'artKategorie',
 		'oberKategorie',
 		'kategorie',
-		'shopId',
+		'KatId',
 		'bild',
 		'tags'
 	],
@@ -92,14 +92,6 @@ ASDHMArtikel >> descrUrl: anObject [
 	descrUrl := anObject
 ]
 
-{ #category : #'magritte-accessing' }
-ASDHMArtikel >> descriptionLieferant [
-	<magritteDescription>
-	^ MAStringDescription new
-		accessor: #lieferant;
-		yourself
-]
-
 { #category : #accessing }
 ASDHMArtikel >> ekPreis [
 	^ ekPreis
@@ -108,16 +100,6 @@ ASDHMArtikel >> ekPreis [
 { #category : #accessing }
 ASDHMArtikel >> ekPreis: anObject [
 	ekPreis := anObject
-]
-
-{ #category : #accessing }
-ASDHMArtikel >> hersteller [
-	^ hersteller
-]
-
-{ #category : #accessing }
-ASDHMArtikel >> hersteller: anObject [
-	hersteller := anObject
 ]
 
 { #category : #initialization }
@@ -164,16 +146,6 @@ ASDHMArtikel >> oberKategorie [
 { #category : #accessing }
 ASDHMArtikel >> oberKategorie: anObject [
 	oberKategorie := anObject
-]
-
-{ #category : #accessing }
-ASDHMArtikel >> shopId [
-	^ shopId
-]
-
-{ #category : #accessing }
-ASDHMArtikel >> shopId: anObject [
-	shopId := anObject
 ]
 
 { #category : #accessing }

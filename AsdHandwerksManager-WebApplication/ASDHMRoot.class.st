@@ -137,6 +137,11 @@ ASDHMRoot >> footer: aComponent [
 	footer := aComponent
 ]
 
+{ #category : #action }
+ASDHMRoot >> goToLoginView [
+	self displayInstanceOf: ASDELoginPage
+]
+
 { #category : #accessing }
 ASDHMRoot >> header [
 	^ header
@@ -192,6 +197,25 @@ ASDHMRoot >> renderContentOn: html [
 								with: [ html render: self componentToDisplay ] ].
 					html render: self footer ] ].
 			self renderEmptyGenericDialogOn: html
+]
+
+{ #category : #action }
+ASDHMRoot >> tryConnectionWithLogin: login andPassword: password [
+	| user |
+	user := self session model userFromLogin: login andPassword: password.
+	"self halt."
+	user
+		ifNotNil: [ :arg | 
+			arg logged: true.
+			self session currentUser: arg.
+			self session userId: arg id.
+			"arg logged: true."
+			self session model addLoggedUser: arg.
+			arg isAdmin
+				ifTrue: [ self goToShopAdminView ]
+				ifFalse: [ self goToOverviewView ] ]
+		ifNil: [ self session loginError:'Ihre Benutzer Eingaben konnten nicht zugeordnet werden'.
+			self goToLoginView ]
 ]
 
 { #category : #updating }

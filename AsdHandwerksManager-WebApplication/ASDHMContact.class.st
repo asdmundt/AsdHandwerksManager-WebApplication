@@ -7,10 +7,26 @@ Class {
 		'nachname',
 		'adressen',
 		'telefonNummern',
-		'email'
+		'email',
+		'type',
+		'types'
 	],
 	#category : #'AsdHandwerksManager-WebApplication-Model'
 }
+
+{ #category : #voyage }
+ASDHMContact class >> isVoyageRoot [
+	"Indicates that instances of this class are top level documents
+    in noSQL databases"
+
+	^ true
+]
+
+{ #category : #accessing }
+ASDHMContact >> addAdresse: anObject [
+
+	adressen add: anObject
+]
 
 { #category : #accessing }
 ASDHMContact >> adressen [
@@ -42,6 +58,15 @@ ASDHMContact >> email: anObject [
 	email := anObject
 ]
 
+{ #category : #initialization }
+ASDHMContact >> initialize [
+	super initialize.
+	types := OrderedCollection
+		newFrom: {#admin . #projektLeiter . #user . #costumer}.
+	self type: #costumer
+	
+]
+
 { #category : #accessing }
 ASDHMContact >> nachname [
 
@@ -58,6 +83,30 @@ ASDHMContact >> nachname: anObject [
 ASDHMContact >> telefonNummern [
 ^ telefonNummern ifNil: [ telefonNummern := OrderedCollection new ]
 
+]
+
+{ #category : #accessing }
+ASDHMContact >> telefonNummern: anObject [
+
+	telefonNummern := anObject
+]
+
+{ #category : #accessing }
+ASDHMContact >> type [
+
+	^ type
+]
+
+{ #category : #accessing }
+ASDHMContact >> type: anObject [
+
+	type := anObject
+]
+
+{ #category : #accessing }
+ASDHMContact >> types [
+
+	^ types
 ]
 
 { #category : #accessing }

@@ -9,7 +9,7 @@ Class {
 		'Repos'
 	],
 	#classInstVars : [
-		'uniqueInstanceDbModelPortal'
+		'uniqueInstanceDbModelBauManagerBase'
 	],
 	#category : #'AsdHandwerksManager-WebApplication-Utils'
 }
@@ -17,6 +17,52 @@ Class {
 { #category : #voyage }
 ASDHMDbModelBase class >> createAdmin [
 	Repos save: (ASDEUser benutzerName: 'admin' password: 'pwd' admin: true) 
+]
+
+{ #category : #'data sample' }
+ASDHMDbModelBase class >> createDataBauDekoration [
+	"(ASDEUser benutzerName: 'shop' password: 'xyz' admin: false)
+		asShopOwner save."
+Repos save: (ASDEKategorie name: 'Portal' andType: 'shop').
+	Repos save: (ASDEKategorie name: 'Elektronik' andType: 'shop').
+	Repos save: (ASDEKategorie name: 'Baumarkt' andType: 'shop').
+	Repos save: (ASDEKategorie name: 'Textilien' andType: 'shop').
+	Repos save: (ASDEKategorie name: 'SecondHand' andType: 'shop').
+	Repos save: (ASDEKategorie name: 'Moebel' andType: 'shop').
+	Repos save: (ASDEKategorie name: 'Werkzeug' andType: 'shop').
+	Repos
+		save: (ASDEKategorie name: 'Multimedia' andType: 'artikelArtKategorie').
+	Repos
+		save: (ASDEKategorie name: 'Computer' andType: 'artikelArtKategorie').
+	Repos
+		save:
+			(ASDEKategorie
+				name: 'ComputerKomponenten'
+				andType: 'artikelArtKategorie').
+	Repos
+		save: (ASDEKategorie name: 'Lampen' andType: 'artikelArtKategorie').
+	Repos
+		save: (ASDEKategorie name: 'Moebel' andType: 'artikelArtKategorie').
+	Repos
+		save:
+			(ASDEKategorie
+				name: 'ElektronikKomponenten'
+				andType: 'artikelArtKategorie').
+	Repos
+		save: (ASDEKategorie name: 'Boxen' andType: 'artikelOberKategorie').
+	Repos
+		save: (ASDEKategorie name: 'Reciever' andType: 'artikelOberKategorie').
+	Repos
+		save: (ASDEKategorie name: 'Mp3Player' andType: 'artikelOberKategorie').
+	Repos
+		save: (ASDEKategorie name: 'TV' andType: 'artikelOberKategorie').
+	Repos
+		save: (ASDEKategorie name: 'Satelit' andType: 'artikelOberKategorie').
+	Repos
+		save:
+			(ASDEKategorie
+				name: 'ElektronikKomponenten'
+				andType: 'artikelOberKategorie')
 ]
 
 { #category : #'data sample' }
@@ -67,7 +113,7 @@ Repos save: (ASDEKategorie name: 'Portal' andType: 'shop').
 
 { #category : #'class initialization' }
 ASDHMDbModelBase class >> current [
-	^ uniqueInstanceDbModelPortal ifNil: [ uniqueInstanceDbModelPortal := self new ]
+	^ uniqueInstanceDbModelBauManagerBase ifNil: [ uniqueInstanceDbModelBauManagerBase := self new ]
 ]
 
 { #category : #'default values' }
@@ -94,7 +140,7 @@ ASDHMDbModelBase class >> isVoyageRoot [
 
 { #category : #'class initialization' }
 ASDHMDbModelBase class >> reset [
-	uniqueInstanceDbModelPortal := nil.
+	uniqueInstanceDbModelBauManagerBase := nil.
 	"VORepository current reset."
 	VORepository repositoryContainer: VODynamicContainer new.
 	self initializeLocalhostMongoDB
