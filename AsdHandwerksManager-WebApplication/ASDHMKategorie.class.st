@@ -26,6 +26,12 @@ ASDHMKategorie class >> name: aName andType: aString [
 ]
 
 { #category : #accessing }
+ASDHMKategorie class >> types [
+	^ OrderedCollection
+		newFrom: {'ArbeitsartenOberKategorie' . 'Arbeitsarten' . 'MaterialOberKategorie' . 'MaterialKategorie'. 'MaterialArtKategorie'.'TelefonNrArten'.'AdressBezeichnungen Warengruppen'}.
+]
+
+{ #category : #accessing }
 ASDHMKategorie >> name [
 	^ name
 ]
@@ -48,5 +54,5 @@ ASDHMKategorie >> type: anObject [
 { #category : #accessing }
 ASDHMKategorie >> types [
 	^ OrderedCollection
-		newFrom: {'ArbeitsartenOberKategorie' . 'Arbeitsarten' . 'MaterialOberKategorie' . 'MaterialKategorie'. 'MaterialArtKategorie'.'TelefonNrArten'.'AdressBezeichnungen'}.
+		newFrom: {'ArbeitsartenOberKategorie' . 'Arbeitsarten' . 'MaterialOberKategorie' . 'MaterialKategorie'. 'MaterialArtKategorie'.'TelefonNrArten'.'AdressBezeichnungen Warengruppen'}.
 ]

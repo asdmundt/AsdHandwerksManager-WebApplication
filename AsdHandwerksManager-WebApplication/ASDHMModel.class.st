@@ -6,10 +6,34 @@ Class {
 		'task',
 		'states',
 		'id',
-		'dataModel'
+		'dataModel',
+		'bez'
 	],
 	#category : #'AsdHandwerksManager-WebApplication-Model'
 }
+
+{ #category : #'instance creation' }
+ASDHMModel class >> bez: aString [
+	^ self new
+		bez: aString;
+		yourself
+]
+
+{ #category : #accessing }
+ASDHMModel class >> states [ 
+^ OrderedCollection
+		newFrom: {'new' . 'accepted' . 'inProgress' . 'done' . 'problem'}.
+]
+
+{ #category : #accessing }
+ASDHMModel >> bez [
+	^ bez
+]
+
+{ #category : #accessing }
+ASDHMModel >> bez: anObject [
+	bez := anObject
+]
 
 { #category : #accessing }
 ASDHMModel >> dataModel [

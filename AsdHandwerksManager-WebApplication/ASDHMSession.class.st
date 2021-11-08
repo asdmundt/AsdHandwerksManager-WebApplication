@@ -8,7 +8,9 @@ Class {
 		'model',
 		'loginError',
 		'adminView',
-		'userId'
+		'userId',
+		'firma',
+		'firmenId'
 	],
 	#category : #'AsdHandwerksManager-WebApplication-Utils'
 }
@@ -31,6 +33,30 @@ ASDHMSession >> currentUser [
 { #category : #accessing }
 ASDHMSession >> currentUser: anObject [
 	currentUser := anObject
+]
+
+{ #category : #accessing }
+ASDHMSession >> firma [
+
+	^ firma
+]
+
+{ #category : #accessing }
+ASDHMSession >> firma: anObject [
+
+	firma := anObject
+]
+
+{ #category : #accessing }
+ASDHMSession >> firmenId [
+
+	^ firmenId
+]
+
+{ #category : #accessing }
+ASDHMSession >> firmenId: anObject [
+
+	firmenId := anObject
 ]
 
 { #category : #initialization }

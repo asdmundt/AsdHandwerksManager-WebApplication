@@ -2,7 +2,6 @@ Class {
 	#name : #ASDHMAdresse,
 	#superclass : #ASDHMModel,
 	#instVars : [
-		'bez',
 		'str',
 		'hsnr',
 		'plz',
@@ -10,7 +9,7 @@ Class {
 		'land',
 		'tel',
 		'bemerkung',
-		'userId'
+		'objectId'
 	],
 	#category : #'AsdHandwerksManager-WebApplication-Model'
 }
@@ -23,10 +22,10 @@ ASDHMAdresse class >> bez: aBez [
 ]
 
 { #category : #'instance creation' }
-ASDHMAdresse class >> bez: aBez andUserId: anInteger [ 
+ASDHMAdresse class >> bez: aBez andObjectId: anInteger [ 
 	^ self new
 		bez: aBez;
-		userId: anInteger;
+		objectId: anInteger;
 		yourself
 ]
 
@@ -46,16 +45,6 @@ ASDHMAdresse >> bemerkung [
 { #category : #accessing }
 ASDHMAdresse >> bemerkung: anObject [
 	bemerkung := anObject
-]
-
-{ #category : #accessing }
-ASDHMAdresse >> bez [
-	^ bez
-]
-
-{ #category : #accessing }
-ASDHMAdresse >> bez: anObject [
-	bez := anObject
 ]
 
 { #category : #'magritte-accessing' }
@@ -83,6 +72,14 @@ ASDHMAdresse >> descriptionBez [
 		requiredErrorMessage: 'Bitte die Bezeichnung eingeben';
 		comment: 'Bitte Ihren Benutzernamen eingeben';
 		componentClass: MDLMATextInputComponent;
+		yourself
+]
+
+{ #category : #'magritte-accessing' }
+ASDHMAdresse >> descriptionContainer [
+	<magritteContainer>
+	^ super descriptionContainer
+		componentRenderer: MDLMAFormRenderer;
 		yourself
 ]
 
@@ -178,6 +175,18 @@ ASDHMAdresse >> land: anObject [
 ]
 
 { #category : #accessing }
+ASDHMAdresse >> objectId [
+
+	^ objectId
+]
+
+{ #category : #accessing }
+ASDHMAdresse >> objectId: anObject [
+
+	objectId := anObject
+]
+
+{ #category : #accessing }
 ASDHMAdresse >> ort [
 	^ ort
 ]
@@ -215,14 +224,4 @@ ASDHMAdresse >> tel [
 { #category : #accessing }
 ASDHMAdresse >> tel: anObject [
 	tel := anObject
-]
-
-{ #category : #accessing }
-ASDHMAdresse >> userId [
-	^ userId
-]
-
-{ #category : #accessing }
-ASDHMAdresse >> userId: anObject [
-	userId := anObject
 ]

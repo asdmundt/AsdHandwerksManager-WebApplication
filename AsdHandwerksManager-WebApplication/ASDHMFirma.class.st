@@ -4,7 +4,8 @@ Class {
 	#instVars : [
 		'name',
 		'adressen',
-		'firmenForm'
+		'firmenForm',
+		'bankVerbindungen'
 	],
 	#category : #'AsdHandwerksManager-WebApplication-Model'
 }
@@ -24,9 +25,20 @@ ASDHMFirma >> addAdresse: anObject [
 ]
 
 { #category : #accessing }
+ASDHMFirma >> addBankverbindungen: anObject [
+
+	bankVerbindungen  add: anObject
+]
+
+{ #category : #accessing }
 ASDHMFirma >> adressen [
 ^ adressen ifNil: [ adressen := OrderedCollection new ]
 	
+]
+
+{ #category : #accessing }
+ASDHMFirma >> bankVerbindungen [
+^ bankVerbindungen ifNil: [ bankVerbindungen := OrderedCollection new ]
 ]
 
 { #category : #accessing }

@@ -3,7 +3,9 @@ Class {
 	#superclass : #ASDHMFirma,
 	#instVars : [
 		'syncEmail',
-		'syncEmailPwd'
+		'syncEmailPwd',
+		'angestellte',
+		'accounts'
 	],
 	#category : #'AsdHandwerksManager-WebApplication-Model'
 }
@@ -14,6 +16,36 @@ ASDHMEigeneFirma class >> isVoyageRoot [
     in noSQL databases"
 
 	^ true
+]
+
+{ #category : #accessing }
+ASDHMEigeneFirma >> accounts [
+^ accounts ifNil: [ accounts := OrderedCollection new ]
+
+]
+
+{ #category : #accessing }
+ASDHMEigeneFirma >> accounts: anObject [
+
+	accounts := anObject
+]
+
+{ #category : #accessing }
+ASDHMEigeneFirma >> addAccounts: anObject [
+
+	accounts add: anObject
+]
+
+{ #category : #accessing }
+ASDHMEigeneFirma >> addAngestellte: anObject [
+
+	angestellte addadd: anObject
+]
+
+{ #category : #accessing }
+ASDHMEigeneFirma >> angestellte [
+^ angestellte ifNil: [ angestellte := OrderedCollection new ]
+
 ]
 
 { #category : #accessing }

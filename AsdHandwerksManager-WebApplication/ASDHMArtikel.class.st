@@ -16,10 +16,29 @@ Class {
 		'kategorie',
 		'KatId',
 		'bild',
-		'tags'
+		'tags',
+		'einheit',
+		'EanNr',
+		'warenGruppe',
+		'warenGruppeId'
 	],
 	#category : #'AsdHandwerksManager-WebApplication-Model'
 }
+
+{ #category : #'instance creation' }
+ASDHMArtikel class >> artikelNr: anArtikel titel: aTitel name: aName ekPreis: aPreis einheit: aUnit warenGruppe: anArtikelGroup warenGruppeId: anArtikelGroupId lieferant: aSupplier eanNr: aNumber [
+	^ self new
+		artikelNr: anArtikel;
+		titel: aTitel;
+		name: aName;
+		ekPreis: aPreis;
+		einheit: aUnit;
+		warenGruppe: anArtikelGroup;
+		warenGruppeId: anArtikelGroupId;
+		lieferant: aSupplier;
+		eanNr: aNumber
+		yourself
+]
 
 { #category : #voyage }
 ASDHMArtikel class >> isVoyageRoot [
@@ -93,6 +112,30 @@ ASDHMArtikel >> descrUrl: anObject [
 ]
 
 { #category : #accessing }
+ASDHMArtikel >> eanNr [
+
+	^ EanNr
+]
+
+{ #category : #accessing }
+ASDHMArtikel >> eanNr: anObject [
+
+	EanNr := anObject
+]
+
+{ #category : #accessing }
+ASDHMArtikel >> einheit [
+
+	^ einheit
+]
+
+{ #category : #accessing }
+ASDHMArtikel >> einheit: anObject [
+
+	einheit := anObject
+]
+
+{ #category : #accessing }
 ASDHMArtikel >> ekPreis [
 	^ ekPreis
 ]
@@ -102,10 +145,34 @@ ASDHMArtikel >> ekPreis: anObject [
 	ekPreis := anObject
 ]
 
+{ #category : #accessing }
+ASDHMArtikel >> herstellerId [
+
+	^ herstellerId
+]
+
+{ #category : #accessing }
+ASDHMArtikel >> herstellerId: anObject [
+
+	herstellerId := anObject
+]
+
 { #category : #initialization }
 ASDHMArtikel >> initialize [
 	super initialize.
 	self tags: OrderedCollection new.
+]
+
+{ #category : #accessing }
+ASDHMArtikel >> katId [
+
+	^ KatId
+]
+
+{ #category : #accessing }
+ASDHMArtikel >> katId: anObject [
+
+	KatId := anObject
 ]
 
 { #category : #accessing }
@@ -176,4 +243,28 @@ ASDHMArtikel >> vkPreis [
 { #category : #accessing }
 ASDHMArtikel >> vkPreis: anObject [
 	vkPreis := anObject
+]
+
+{ #category : #accessing }
+ASDHMArtikel >> warenGruppe [
+
+	^ warenGruppe
+]
+
+{ #category : #accessing }
+ASDHMArtikel >> warenGruppe: anObject [
+
+	warenGruppe := anObject
+]
+
+{ #category : #accessing }
+ASDHMArtikel >> warenGruppeId [
+
+	^ warenGruppeId
+]
+
+{ #category : #accessing }
+ASDHMArtikel >> warenGruppeId: anObject [
+
+	warenGruppeId := anObject
 ]

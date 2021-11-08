@@ -1,60 +1,63 @@
 Class {
-	#name : #ASDHMPageLogin,
-	#superclass : #ASDHMPageAdmin,
+	#name : #ASDHMPageAdmin,
+	#superclass : #ASDHMComponent,
+	#instVars : [
+		'displayComponent'
+	],
 	#category : #'AsdHandwerksManager-WebApplication-Core'
 }
 
 { #category : #testing }
-ASDHMPageLogin class >> isAbstract [
-	^ self = ASDHMPageLogin
+ASDHMPageAdmin class >> isAbstract [
+	^ self = ASDHMPageAdmin
 ]
 
 { #category : #accessing }
-ASDHMPageLogin class >> pageName [
+ASDHMPageAdmin class >> pageName [
 	"Title of the page that will be used in menus and URLs."
 
 	^ self subclassResponsibility
 ]
 
 { #category : #accessing }
-ASDHMPageLogin class >> pagesToDisplay [
+ASDHMPageAdmin class >> pagesToDisplay [
 	^ (self allSubclasses reject: #isAbstract) sorted: #priority ascending
 ]
 
 { #category : #accessing }
-ASDHMPageLogin class >> pathName [
+ASDHMPageAdmin class >> pathName [
 	"Use to define the URL name"
 
 	^ self pageName copyWithout: $  
 ]
 
 { #category : #accessing }
-ASDHMPageLogin class >> priority [
+ASDHMPageAdmin class >> priority [
 	^ self subclassResponsibility
 ]
 
 { #category : #hooks }
-ASDHMPageLogin >> children [
+ASDHMPageAdmin >> children [
 	^ {}
 ]
 
 { #category : #accessing }
-ASDHMPageLogin >> displayComponent [
+ASDHMPageAdmin >> displayComponent [
 	^ displayComponent
 ]
 
 { #category : #accessing }
-ASDHMPageLogin >> displayComponent: anObject [
+ASDHMPageAdmin >> displayComponent: anObject [
 	displayComponent := anObject
 ]
 
 { #category : #initialization }
-ASDHMPageLogin >> initialize [
+ASDHMPageAdmin >> initialize [
 	super initialize.
 	
 ]
 
 { #category : #accessing }
-ASDHMPageLogin >> pathName [
+ASDHMPageAdmin >> pathName [
 	^ self class pathName
 ]

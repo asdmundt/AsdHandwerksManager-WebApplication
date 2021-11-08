@@ -10,7 +10,9 @@ Class {
 		'index',
 		'indexLoggedUser',
 		'benutzerName',
-		'objectId'
+		'objectId',
+		'indexInstall',
+		'indexSize'
 	],
 	#category : #'AsdHandwerksManager-WebApplication-Model'
 }
@@ -186,6 +188,18 @@ ASDHMUser >> index: anObject [
 ]
 
 { #category : #accessing }
+ASDHMUser >> indexInstall [
+
+	^ indexInstall
+]
+
+{ #category : #accessing }
+ASDHMUser >> indexInstall: anObject [
+
+	indexInstall := anObject
+]
+
+{ #category : #accessing }
 ASDHMUser >> indexLoggedUser [
 	^ indexLoggedUser
 ]
@@ -195,12 +209,25 @@ ASDHMUser >> indexLoggedUser: anObject [
 	indexLoggedUser := anObject
 ]
 
+{ #category : #accessing }
+ASDHMUser >> indexSize [
+
+	^ indexSize
+]
+
+{ #category : #accessing }
+ASDHMUser >> indexSize: anObject [
+
+	indexSize := anObject
+]
+
 { #category : #initialization }
 ASDHMUser >> initialize [
 	super initialize.
 	self logged: false.
 	self admin: false.
 	self indexLoggedUser: nil.
+	self indexSize: 7
 	
 	
 	
@@ -209,6 +236,12 @@ ASDHMUser >> initialize [
 { #category : #testing }
 ASDHMUser >> isAdmin [ 
 ^ self admin
+]
+
+{ #category : #testing }
+ASDHMUser >> isInstallReady [
+	indexInstall = indexSize 
+	ifTrue: [ ^ true ] ifFalse: [ ^ false ]
 ]
 
 { #category : #testing }
@@ -224,6 +257,23 @@ ASDHMUser >> logged [
 { #category : #accessing }
 ASDHMUser >> logged: anObject [
 	logged := anObject
+]
+
+{ #category : #accessing }
+ASDHMUser >> nextIndex [
+	indexInstall := indexInstall + 1
+]
+
+{ #category : #accessing }
+ASDHMUser >> objectId [
+
+	^ objectId
+]
+
+{ #category : #accessing }
+ASDHMUser >> objectId: anObject [
+
+	objectId := anObject
 ]
 
 { #category : #accessing }

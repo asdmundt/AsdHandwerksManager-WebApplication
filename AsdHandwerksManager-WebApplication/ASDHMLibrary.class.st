@@ -27,11 +27,14 @@ ASDHMLibrary >> projectCss [
     min-height: 48px;
 }
 body{
-	background-color: #121212;
-	color: #ffffff;
+	background-color: #0b1727;
+	color: #9da9bb;
 	
 }
-
+.mdl-layout__header{
+background-color: #0b1727;
+color: #9da9bb;
+}
 .mdl-layout__container {
   
   background-size: cover;
@@ -67,7 +70,7 @@ body{
     height: 100%;
     -webkit-transition: all .75s;
     transition: all .75s;
-    background-color: #ffffff14;
+    background-color: #121e2d;
     overflow: auto;
     position: absolute;
 	right: 0px;
@@ -78,12 +81,12 @@ body{
 
 
 .mdl-textfield__input {
-    background-color: #121212;
+    background-color: #0b1727;
     
     -webkit-box-shadow: none;
     box-shadow: none;
     height: 38px;
-    color: #ffffffb3 !important;
+    color: #9da9bb !important;
     font-size: 14px;
     display: block;
     font-size: 16px;
@@ -108,11 +111,11 @@ body{
 
 
 .mdl-layout__drawer {
-   background: #1f1f1f !important;
+   background: #121e2d !important;
 }
 
 .mdl-layout__drawer .mdl-navigation .mdl-navigation__link--current {
-    background-color: #1f1f1f;
+    background-color: #121e2d;
     color: #0f0f0f;
 }
 
@@ -132,7 +135,7 @@ body{
     position: relative;
     border: 1px solid #343434 !important;
     border-radius: 2px;
-    background-color: #1f1f1f !important;
+    background-color: #121e2d !important;
  }  
 
 .div-form {
@@ -189,7 +192,7 @@ body{
 
 .mdl-card__title {
 
-    color: #3c5b7f; !important;
+    color: #9da9bb; !important;
 
 }
 .mdl-grid {
@@ -199,18 +202,18 @@ body{
 .mdl-expansion-panel {
     border: 1px solid #343434 !important;
     border-radius: 2px;
-    background-color: #1f1f1f !important;
+    background-color: #121e2d !important;
 }
 .ui-dialog {
 border: 1px solid #343434 !important;
     border-radius: 2px;
-    background-color: #1f1f1f !important;
+    background-color: #121e2d !important;
 }
 
 .bar {
     box-sizing: border-box;
-    background: #1f1f1f;
-    color: white;
+    background: #121e2d;
+    color: #9da9bb;
     width: 100%;
     padding: 16px;
 position: relative;

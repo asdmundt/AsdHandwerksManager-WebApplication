@@ -216,7 +216,7 @@ ASDHMRoot >> tryConnectionWithLogin: login andPassword: password [
 			"arg logged: true."
 			self session model addLoggedUser: arg.
 			arg isAdmin
-				ifTrue: [ self goToShopAdminView ]
+				ifTrue: [ self goToAdminView ]
 				ifFalse: [ self goToOverviewView ] ]
 		ifNil: [ self session loginError:'Ihre Benutzer Eingaben konnten nicht zugeordnet werden'.
 			self goToLoginView ]

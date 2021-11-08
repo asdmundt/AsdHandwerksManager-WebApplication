@@ -5,11 +5,12 @@ Class {
 		'anrede',
 		'vorname',
 		'nachname',
-		'adressen',
+		'adresse',
 		'telefonNummern',
 		'email',
 		'type',
-		'types'
+		'types',
+		'bankVerbindungen'
 	],
 	#category : #'AsdHandwerksManager-WebApplication-Model'
 }
@@ -23,15 +24,27 @@ ASDHMContact class >> isVoyageRoot [
 ]
 
 { #category : #accessing }
-ASDHMContact >> addAdresse: anObject [
-
-	adressen add: anObject
+ASDHMContact class >> types [ 
+^ OrderedCollection
+		newFrom: {#admin . #projektLeiter . #user . #costumer}.
 ]
 
 { #category : #accessing }
-ASDHMContact >> adressen [
-^ adressen ifNil: [ adressen := OrderedCollection new ]
-	
+ASDHMContact >> addBankVerbindungen: anObject [
+
+	bankVerbindungen add: anObject
+]
+
+{ #category : #accessing }
+ASDHMContact >> adresse [
+
+	^ adresse
+]
+
+{ #category : #accessing }
+ASDHMContact >> adresse: anObject [
+
+	adresse := anObject
 ]
 
 { #category : #accessing }
@@ -44,6 +57,11 @@ ASDHMContact >> anrede [
 ASDHMContact >> anrede: anObject [
 
 	anrede := anObject
+]
+
+{ #category : #accessing }
+ASDHMContact >> bankVerbindungen [
+^ bankVerbindungen ifNil: [ bankVerbindungen := OrderedCollection new ]
 ]
 
 { #category : #accessing }

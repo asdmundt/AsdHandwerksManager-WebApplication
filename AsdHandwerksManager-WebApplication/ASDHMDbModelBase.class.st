@@ -16,7 +16,7 @@ Class {
 
 { #category : #voyage }
 ASDHMDbModelBase class >> createAdmin [
-	Repos save: (ASDEUser benutzerName: 'admin' password: 'pwd' admin: true) 
+	Repos save: (ASDHMUser benutzerName: 'admin' password: 'pwd' admin: true) 
 ]
 
 { #category : #'data sample' }
@@ -118,7 +118,7 @@ ASDHMDbModelBase class >> current [
 
 { #category : #'default values' }
 ASDHMDbModelBase class >> defaultRepository [
-	^ 'handwerk_asdmundt'
+	^ 'handwerkBase'
 ]
 
 { #category : #'class initialization' }
