@@ -30,9 +30,21 @@ ASDHMContact class >> types [
 ]
 
 { #category : #accessing }
+ASDHMContact >> addAdresse: anObject [
+
+	adressen add: anObject
+]
+
+{ #category : #accessing }
 ASDHMContact >> addBankVerbindungen: anObject [
 
 	bankVerbindungen add: anObject
+]
+
+{ #category : #accessing }
+ASDHMContact >> addBankverbindungen: anObject [
+
+	bankVerbindungen  add: anObject
 ]
 
 { #category : #accessing }
@@ -45,6 +57,12 @@ ASDHMContact >> adresse [
 ASDHMContact >> adresse: anObject [
 
 	adresse := anObject
+]
+
+{ #category : #accessing }
+ASDHMContact >> adressen [
+^ adressen ifNil: [ adressen := OrderedCollection new ]
+	
 ]
 
 { #category : #accessing }
@@ -95,6 +113,18 @@ ASDHMContact >> nachname [
 ASDHMContact >> nachname: anObject [
 
 	nachname := anObject
+]
+
+{ #category : #accessing }
+ASDHMContact >> name [
+
+	^ name
+]
+
+{ #category : #accessing }
+ASDHMContact >> name: anObject [
+
+	name := anObject
 ]
 
 { #category : #accessing }
