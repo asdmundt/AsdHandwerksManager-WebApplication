@@ -139,7 +139,7 @@ ASDHMRoot >> footer: aComponent [
 
 { #category : #action }
 ASDHMRoot >> goToLoginView [
-	self displayInstanceOf: ASDELoginPage
+	self displayInstanceOf: ASDHMArtikel 
 ]
 
 { #category : #accessing }

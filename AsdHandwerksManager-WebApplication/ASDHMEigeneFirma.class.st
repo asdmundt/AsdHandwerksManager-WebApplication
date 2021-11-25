@@ -39,13 +39,18 @@ ASDHMEigeneFirma >> addAccounts: anObject [
 { #category : #accessing }
 ASDHMEigeneFirma >> addAngestellte: anObject [
 
-	angestellte addadd: anObject
+	angestellte add: anObject
 ]
 
 { #category : #accessing }
 ASDHMEigeneFirma >> angestellte [
 ^ angestellte ifNil: [ angestellte := OrderedCollection new ]
 
+]
+
+{ #category : #initialization }
+ASDHMEigeneFirma >> initialize [
+	super initialize.
 ]
 
 { #category : #accessing }

@@ -5,7 +5,7 @@ Class {
 		'anrede',
 		'vorname',
 		'nachname',
-		'adresse',
+		'adressen',
 		'telefonNummern',
 		'email',
 		'type',
@@ -26,7 +26,7 @@ ASDHMContact class >> isVoyageRoot [
 { #category : #accessing }
 ASDHMContact class >> types [ 
 ^ OrderedCollection
-		newFrom: {#admin . #projektLeiter . #user . #costumer}.
+		newFrom: {'admin' . 'projektLeiter' . 'user' . 'costumer'}.
 ]
 
 { #category : #accessing }
@@ -39,24 +39,6 @@ ASDHMContact >> addAdresse: anObject [
 ASDHMContact >> addBankVerbindungen: anObject [
 
 	bankVerbindungen add: anObject
-]
-
-{ #category : #accessing }
-ASDHMContact >> addBankverbindungen: anObject [
-
-	bankVerbindungen  add: anObject
-]
-
-{ #category : #accessing }
-ASDHMContact >> adresse [
-
-	^ adresse
-]
-
-{ #category : #accessing }
-ASDHMContact >> adresse: anObject [
-
-	adresse := anObject
 ]
 
 { #category : #accessing }
@@ -97,9 +79,8 @@ ASDHMContact >> email: anObject [
 { #category : #initialization }
 ASDHMContact >> initialize [
 	super initialize.
-	types := OrderedCollection
-		newFrom: {#admin . #projektLeiter . #user . #costumer}.
-	self type: #costumer
+	
+	self type: 'costumer'
 	
 ]
 
@@ -113,18 +94,6 @@ ASDHMContact >> nachname [
 ASDHMContact >> nachname: anObject [
 
 	nachname := anObject
-]
-
-{ #category : #accessing }
-ASDHMContact >> name [
-
-	^ name
-]
-
-{ #category : #accessing }
-ASDHMContact >> name: anObject [
-
-	name := anObject
 ]
 
 { #category : #accessing }

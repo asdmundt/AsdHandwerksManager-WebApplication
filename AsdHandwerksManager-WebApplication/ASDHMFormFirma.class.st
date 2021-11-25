@@ -1,57 +1,30 @@
 Class {
-	#name : #ASDHMFormAdresse,
+	#name : #ASDHMFormFirma,
 	#superclass : #ASDForm,
 	#instVars : [
-		'strLabel',
-		'hsnrLabel',
-		'plzLabel',
-		'ortLabel'
+		'nameLabel',
+		'firmenFormLabel',
+		'firmenSitzLabel',
+		'amtsgerichtSitzLabel',
+		'hreLabel',
+		'steuerNrLabel',
+		'umsatzSteuerLabel'
 	],
 	#category : #'AsdHandwerksManager-WebApplication-Components'
 }
 
-{ #category : #accessing }
-ASDHMFormAdresse >> hsnrLabel [
-	^ hsnrLabel
-]
-
-{ #category : #accessing }
-ASDHMFormAdresse >> hsnrLabel: anObject [
-	hsnrLabel := anObject
-]
-
 { #category : #initalize }
-ASDHMFormAdresse >> initialize [
+ASDHMFormFirma >> initialize [
 	super initialize.
-	self id: #adressForm.
+	self id: #firmaForm.
 	self strLabel: 'Strasse'.
 	self hsnrLabel: 'Haus Nr.'.
 	self plzLabel: 'Plz'.
 	self ortLabel: 'Ort'
 ]
 
-{ #category : #accessing }
-ASDHMFormAdresse >> ortLabel [
-	^ ortLabel
-]
-
-{ #category : #accessing }
-ASDHMFormAdresse >> ortLabel: anObject [
-	ortLabel := anObject
-]
-
-{ #category : #accessing }
-ASDHMFormAdresse >> plzLabel [
-	^ plzLabel
-]
-
-{ #category : #accessing }
-ASDHMFormAdresse >> plzLabel: anObject [
-	plzLabel := anObject
-]
-
 { #category : #rendering }
-ASDHMFormAdresse >> renderBezOn: html [
+ASDHMFormFirma >> renderBezOn: html [
 	html mdlTextFieldContainer
 		floatingLabel;
 		with: [ html mdlTextFieldLabel
@@ -65,7 +38,7 @@ ASDHMFormAdresse >> renderBezOn: html [
 ]
 
 { #category : #rendering }
-ASDHMFormAdresse >> renderContentOn: html [
+ASDHMFormFirma >> renderContentOn: html [
 self withCard ifTrue:  [  
 	html mdlCard
 		shadow: 0;
@@ -80,7 +53,7 @@ self withCard ifTrue:  [
 ]
 
 { #category : #rendering }
-ASDHMFormAdresse >> renderFieldsOn: html [
+ASDHMFormFirma >> renderFieldsOn: html [
 	self renderBezOn: html.
 	self renderStrOn: html.
 	self renderHsnrOn: html.
@@ -90,13 +63,13 @@ ASDHMFormAdresse >> renderFieldsOn: html [
 ]
 
 { #category : #rendering }
-ASDHMFormAdresse >> renderFormContentOn: html [
+ASDHMFormFirma >> renderFormContentOn: html [
 	self renderFieldsOn: html.
 
 ]
 
 { #category : #rendering }
-ASDHMFormAdresse >> renderHsnrOn: html [
+ASDHMFormFirma >> renderHsnrOn: html [
 	html mdlTextFieldContainer
 		floatingLabel;
 		with: [ html mdlTextFieldLabel
@@ -110,7 +83,7 @@ ASDHMFormAdresse >> renderHsnrOn: html [
 ]
 
 { #category : #rendering }
-ASDHMFormAdresse >> renderOrtOn: html [
+ASDHMFormFirma >> renderOrtOn: html [
 	html mdlTextFieldContainer
 		floatingLabel;
 		with: [ html mdlTextFieldLabel
@@ -123,7 +96,7 @@ ASDHMFormAdresse >> renderOrtOn: html [
 ]
 
 { #category : #rendering }
-ASDHMFormAdresse >> renderPlzOn: html [
+ASDHMFormFirma >> renderPlzOn: html [
 	html mdlTextFieldContainer
 		floatingLabel;
 		with: [ html mdlTextFieldLabel
@@ -137,7 +110,7 @@ ASDHMFormAdresse >> renderPlzOn: html [
 ]
 
 { #category : #rendering }
-ASDHMFormAdresse >> renderStrOn: html [
+ASDHMFormFirma >> renderStrOn: html [
 	html mdlTextFieldContainer
 		floatingLabel;
 		with: [ html mdlTextFieldLabel
@@ -148,14 +121,4 @@ ASDHMFormAdresse >> renderStrOn: html [
 
 				value: self model str;
 				callback: [ :aString | self model str: aString ] ]
-]
-
-{ #category : #accessing }
-ASDHMFormAdresse >> strLabel [
-	^ strLabel
-]
-
-{ #category : #accessing }
-ASDHMFormAdresse >> strLabel: anObject [
-	strLabel := anObject
 ]

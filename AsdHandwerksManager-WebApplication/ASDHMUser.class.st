@@ -225,7 +225,9 @@ ASDHMUser >> indexSize: anObject [
 ASDHMUser >> initialize [
 	super initialize.
 	self logged: false.
-	self admin: false.
+	self type = 'admin'
+	ifTrue: [ self admin: true. ] ifFalse: [ self admin: false. ].
+	
 	self indexLoggedUser: nil.
 	self indexSize: 7
 	

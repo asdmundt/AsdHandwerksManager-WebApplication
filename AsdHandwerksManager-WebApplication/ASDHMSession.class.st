@@ -6,6 +6,8 @@ Class {
 		'rootComponent',
 		'task',
 		'model',
+		'modelDataNorm',
+		'modelBlz',
 		'loginError',
 		'adminView',
 		'userId',
@@ -63,7 +65,8 @@ ASDHMSession >> firmenId: anObject [
 ASDHMSession >> initialize [
 	super initialize.
 	self model: ASDHMDbModelBase current.
-	
+	self modelBlz: ASDHMDbModelBlz current.
+	self modelDataNorm: ASDHMDbModelMalerGewerg current.
 	self adminView: false
 ]
 
@@ -90,6 +93,30 @@ ASDHMSession >> model [
 { #category : #accessing }
 ASDHMSession >> model: anObject [
 	model := anObject
+]
+
+{ #category : #accessing }
+ASDHMSession >> modelBlz [
+
+	^ modelBlz
+]
+
+{ #category : #accessing }
+ASDHMSession >> modelBlz: anObject [
+
+	modelBlz := anObject
+]
+
+{ #category : #accessing }
+ASDHMSession >> modelDataNorm [
+
+	^ modelDataNorm
+]
+
+{ #category : #accessing }
+ASDHMSession >> modelDataNorm: anObject [
+
+	modelDataNorm := anObject
 ]
 
 { #category : #actions }

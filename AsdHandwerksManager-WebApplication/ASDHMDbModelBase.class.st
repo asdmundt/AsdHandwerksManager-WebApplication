@@ -16,7 +16,7 @@ Class {
 
 { #category : #voyage }
 ASDHMDbModelBase class >> createAdmin [
-	Repos save: (ASDHMUser benutzerName: 'admin' password: 'pwd' admin: true) 
+	Repos save: (ASDHMUser benutzerName: 'admin' password: 'pwd' admin: 'true') 
 ]
 
 { #category : #'data sample' }

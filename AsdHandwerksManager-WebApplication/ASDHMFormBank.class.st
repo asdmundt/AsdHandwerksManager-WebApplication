@@ -108,7 +108,7 @@ ASDHMFormBank >> ibanLabel: anObject [
 { #category : #initalize }
 ASDHMFormBank >> initialize [
 	super initialize.
-	self id: 'userFormCard'.
+	self id: #bankForm.
 	self bankNameLabel: 'Bank Name'.
 	self bicLabel: 'Bic'.
 	self cancelLabel: 'abbrechen'.
