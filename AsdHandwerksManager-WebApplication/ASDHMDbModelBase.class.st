@@ -11,58 +11,12 @@ Class {
 	#classInstVars : [
 		'uniqueInstanceDbModelBauManagerBase'
 	],
-	#category : #'AsdHandwerksManager-WebApplication-Utils'
+	#category : #'AsdHandwerksManager-WebApplication-db'
 }
 
 { #category : #voyage }
 ASDHMDbModelBase class >> createAdmin [
 	Repos save: (ASDHMUser benutzerName: 'admin' password: 'pwd' admin: 'true') 
-]
-
-{ #category : #'data sample' }
-ASDHMDbModelBase class >> createDataBauDekoration [
-	"(ASDEUser benutzerName: 'shop' password: 'xyz' admin: false)
-		asShopOwner save."
-Repos save: (ASDEKategorie name: 'Portal' andType: 'shop').
-	Repos save: (ASDEKategorie name: 'Elektronik' andType: 'shop').
-	Repos save: (ASDEKategorie name: 'Baumarkt' andType: 'shop').
-	Repos save: (ASDEKategorie name: 'Textilien' andType: 'shop').
-	Repos save: (ASDEKategorie name: 'SecondHand' andType: 'shop').
-	Repos save: (ASDEKategorie name: 'Moebel' andType: 'shop').
-	Repos save: (ASDEKategorie name: 'Werkzeug' andType: 'shop').
-	Repos
-		save: (ASDEKategorie name: 'Multimedia' andType: 'artikelArtKategorie').
-	Repos
-		save: (ASDEKategorie name: 'Computer' andType: 'artikelArtKategorie').
-	Repos
-		save:
-			(ASDEKategorie
-				name: 'ComputerKomponenten'
-				andType: 'artikelArtKategorie').
-	Repos
-		save: (ASDEKategorie name: 'Lampen' andType: 'artikelArtKategorie').
-	Repos
-		save: (ASDEKategorie name: 'Moebel' andType: 'artikelArtKategorie').
-	Repos
-		save:
-			(ASDEKategorie
-				name: 'ElektronikKomponenten'
-				andType: 'artikelArtKategorie').
-	Repos
-		save: (ASDEKategorie name: 'Boxen' andType: 'artikelOberKategorie').
-	Repos
-		save: (ASDEKategorie name: 'Reciever' andType: 'artikelOberKategorie').
-	Repos
-		save: (ASDEKategorie name: 'Mp3Player' andType: 'artikelOberKategorie').
-	Repos
-		save: (ASDEKategorie name: 'TV' andType: 'artikelOberKategorie').
-	Repos
-		save: (ASDEKategorie name: 'Satelit' andType: 'artikelOberKategorie').
-	Repos
-		save:
-			(ASDEKategorie
-				name: 'ElektronikKomponenten'
-				andType: 'artikelOberKategorie')
 ]
 
 { #category : #'data sample' }
@@ -119,6 +73,30 @@ ASDHMDbModelBase class >> current [
 { #category : #'default values' }
 ASDHMDbModelBase class >> defaultRepository [
 	^ 'handwerkBase'
+]
+
+{ #category : #'data sample' }
+ASDHMDbModelBase class >> importBlz [
+|dataFile coll|
+
+"dataFile := FileLocator imageDirectory / 'files' / 'streha.csv' asFileReference ."
+
+coll := OrderedCollection withAll: ( 'Blz.csv' asFileReference readStreamDo: [ :input |
+(NeoCSVReader on: (ZnBufferedReadStream on: input))
+skipHeader;
+recordClass: ASDHMBankLeitzahlen ;
+addField: #blz:;
+addField: #bankName:;
+addField: #plz:;
+
+addField: #bankNameKurz:;
+addField: #bic:;
+addField: #pruefZiffer:;
+upToEnd 
+ ]) .
+coll inspect.
+^coll
+
 ]
 
 { #category : #'class initialization' }
@@ -180,6 +158,13 @@ ASDHMDbModelBase >> categorieCollection [
 	^ categorieColl
 ]
 
+{ #category : #operations }
+ASDHMDbModelBase >> eigeneFirma [
+	^ Repos 
+		selectAll: ASDHMEigeneFirma
+		
+]
+
 { #category : #initialization }
 ASDHMDbModelBase >> initialize [
 	super initialize.
@@ -206,11 +191,6 @@ ASDHMDbModelBase >> oberCategories [
 { #category : #operations }
 ASDHMDbModelBase >> storeObject: aObject [
 	Repos save: aObject
-]
-
-{ #category : #operations }
-ASDHMDbModelBase >> storeUser: aUser [
-	aUser save.
 ]
 
 { #category : #operations }

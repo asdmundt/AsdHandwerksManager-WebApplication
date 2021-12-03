@@ -5,7 +5,8 @@ Class {
 		'bankName',
 		'Iban',
 		'Bic',
-		'KontoInhaber'
+		'KontoInhaber',
+		'bankObjectId'
 	],
 	#category : #'AsdHandwerksManager-WebApplication-Model'
 }
@@ -35,6 +36,18 @@ ASDHMBank >> bankName [
 ASDHMBank >> bankName: anObject [
 
 	bankName := anObject
+]
+
+{ #category : #accessing }
+ASDHMBank >> bankObjectId [
+
+	^ bankObjectId
+]
+
+{ #category : #accessing }
+ASDHMBank >> bankObjectId: anObject [
+
+	bankObjectId := anObject
 ]
 
 { #category : #accessing }

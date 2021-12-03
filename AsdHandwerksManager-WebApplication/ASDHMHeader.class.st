@@ -60,7 +60,7 @@ ASDHMHeader >> renderContentOn: html [
 						callback: [ "Just refresh" ];
 						with: [ html
 								mdlLayoutTitle: [ 
-									html text: '    Material Design Lite for Seaside' ] ].
+									html text: '    Hoxha HandwerksManager' ] ].
 					html mdlLayoutSpacer.
 					html text: '	Version ' , self rootComponent class version.
 					].

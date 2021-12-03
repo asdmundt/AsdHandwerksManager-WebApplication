@@ -43,6 +43,12 @@ ASDHMFirma >> adressen [
 ]
 
 { #category : #accessing }
+ASDHMFirma >> adressen: anObject [
+
+	adressen := anObject
+]
+
+{ #category : #accessing }
 ASDHMFirma >> amtsgerichtSitz [
 
 	^ amtsgerichtSitz
@@ -57,6 +63,12 @@ ASDHMFirma >> amtsgerichtSitz: anObject [
 { #category : #accessing }
 ASDHMFirma >> bankVerbindungen [
 ^ bankVerbindungen ifNil: [ bankVerbindungen := OrderedCollection new ]
+]
+
+{ #category : #accessing }
+ASDHMFirma >> bankVerbindungen: anObject [
+
+	bankVerbindungen := anObject
 ]
 
 { #category : #accessing }
@@ -110,6 +122,8 @@ ASDHMFirma >> hre: anObject [
 { #category : #initialization }
 ASDHMFirma >> initialize [
 	super initialize.
+	self adressen: OrderedCollection new.
+	self bankVerbindungen: OrderedCollection new.
 	
 	
 ]

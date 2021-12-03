@@ -10,7 +10,6 @@ Class {
 		'index',
 		'indexLoggedUser',
 		'benutzerName',
-		'objectId',
 		'indexInstall',
 		'indexSize'
 	],
@@ -229,7 +228,8 @@ ASDHMUser >> initialize [
 	ifTrue: [ self admin: true. ] ifFalse: [ self admin: false. ].
 	
 	self indexLoggedUser: nil.
-	self indexSize: 7
+	self indexSize: 7.
+	self indexInstall: 1
 	
 	
 	
@@ -264,18 +264,6 @@ ASDHMUser >> logged: anObject [
 { #category : #accessing }
 ASDHMUser >> nextIndex [
 	indexInstall := indexInstall + 1
-]
-
-{ #category : #accessing }
-ASDHMUser >> objectId [
-
-	^ objectId
-]
-
-{ #category : #accessing }
-ASDHMUser >> objectId: anObject [
-
-	objectId := anObject
 ]
 
 { #category : #accessing }

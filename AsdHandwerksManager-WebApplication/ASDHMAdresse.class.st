@@ -9,25 +9,10 @@ Class {
 		'land',
 		'tel',
 		'bemerkung',
-		'objectId'
+		'adresseObjectId'
 	],
 	#category : #'AsdHandwerksManager-WebApplication-Model'
 }
-
-{ #category : #'instance creation' }
-ASDHMAdresse class >> bez: aBez [
-	^ self new
-		bez: aBez;
-		yourself
-]
-
-{ #category : #'instance creation' }
-ASDHMAdresse class >> bez: aBez andObjectId: anInteger [ 
-	^ self new
-		bez: aBez;
-		objectId: anInteger;
-		yourself
-]
 
 { #category : #voyage }
 ASDHMAdresse class >> isVoyageRoot [
@@ -35,6 +20,18 @@ ASDHMAdresse class >> isVoyageRoot [
     in noSQL databases"
 
 	^ true
+]
+
+{ #category : #accessing }
+ASDHMAdresse >> adresseObjectId [
+
+	^ adresseObjectId
+]
+
+{ #category : #accessing }
+ASDHMAdresse >> adresseObjectId: anObject [
+
+	adresseObjectId := anObject
 ]
 
 { #category : #accessing }
@@ -172,18 +169,6 @@ ASDHMAdresse >> land [
 { #category : #accessing }
 ASDHMAdresse >> land: anObject [
 	land := anObject
-]
-
-{ #category : #accessing }
-ASDHMAdresse >> objectId [
-
-	^ objectId
-]
-
-{ #category : #accessing }
-ASDHMAdresse >> objectId: anObject [
-
-	objectId := anObject
 ]
 
 { #category : #accessing }

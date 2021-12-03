@@ -10,8 +10,54 @@ Class {
 	#classInstVars : [
 		'uniqueInstanceDbModelBauManagerDataNorm'
 	],
-	#category : #'AsdHandwerksManager-WebApplication-Utils'
+	#category : #'AsdHandwerksManager-WebApplication-db'
 }
+
+{ #category : #'data sample' }
+ASDHMDbModelMalerGewerg class >> createDataBauDekoration [
+	"(ASDEUser benutzerName: 'shop' password: 'xyz' admin: false)
+		asShopOwner save."
+Repos save: (ASDEKategorie name: 'Portal' andType: 'shop').
+	Repos save: (ASDEKategorie name: 'Elektronik' andType: 'shop').
+	Repos save: (ASDEKategorie name: 'Baumarkt' andType: 'shop').
+	Repos save: (ASDEKategorie name: 'Textilien' andType: 'shop').
+	Repos save: (ASDEKategorie name: 'SecondHand' andType: 'shop').
+	Repos save: (ASDEKategorie name: 'Moebel' andType: 'shop').
+	Repos save: (ASDEKategorie name: 'Werkzeug' andType: 'shop').
+	Repos
+		save: (ASDEKategorie name: 'Multimedia' andType: 'artikelArtKategorie').
+	Repos
+		save: (ASDEKategorie name: 'Computer' andType: 'artikelArtKategorie').
+	Repos
+		save:
+			(ASDEKategorie
+				name: 'ComputerKomponenten'
+				andType: 'artikelArtKategorie').
+	Repos
+		save: (ASDEKategorie name: 'Lampen' andType: 'artikelArtKategorie').
+	Repos
+		save: (ASDEKategorie name: 'Moebel' andType: 'artikelArtKategorie').
+	Repos
+		save:
+			(ASDEKategorie
+				name: 'ElektronikKomponenten'
+				andType: 'artikelArtKategorie').
+	Repos
+		save: (ASDEKategorie name: 'Boxen' andType: 'artikelOberKategorie').
+	Repos
+		save: (ASDEKategorie name: 'Reciever' andType: 'artikelOberKategorie').
+	Repos
+		save: (ASDEKategorie name: 'Mp3Player' andType: 'artikelOberKategorie').
+	Repos
+		save: (ASDEKategorie name: 'TV' andType: 'artikelOberKategorie').
+	Repos
+		save: (ASDEKategorie name: 'Satelit' andType: 'artikelOberKategorie').
+	Repos
+		save:
+			(ASDEKategorie
+				name: 'ElektronikKomponenten'
+				andType: 'artikelOberKategorie')
+]
 
 { #category : #'class initialization' }
 ASDHMDbModelMalerGewerg class >> current [
@@ -29,7 +75,7 @@ ASDHMDbModelMalerGewerg class >> importArtikel [
 
 "dataFile := FileLocator imageDirectory / 'files' / 'streha.csv' asFileReference ."
 
-coll := OrderedCollection withAll: ( 'arbeiten.csv' asFileReference readStreamDo: [ :input |
+coll := OrderedCollection withAll: ( 'artikel.csv' asFileReference readStreamDo: [ :input |
 (NeoCSVReader on: (ZnBufferedReadStream on: input))
 skipHeader;
 recordClass: ASDHMArtikel ;

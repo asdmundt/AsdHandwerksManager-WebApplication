@@ -1,5 +1,5 @@
 Class {
 	#name : #ASDHMInstallConfigView,
-	#superclass : #ASDHMItemView,
+	#superclass : #ASDHMInstallerComponent,
 	#category : #'AsdHandwerksManager-WebApplication-Components'
 }

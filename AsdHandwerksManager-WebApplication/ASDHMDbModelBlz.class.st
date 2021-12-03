@@ -10,7 +10,7 @@ Class {
 	#classInstVars : [
 		'uniqueInstanceDbModelBauManagerBlz'
 	],
-	#category : #'AsdHandwerksManager-WebApplication-Utils'
+	#category : #'AsdHandwerksManager-WebApplication-db'
 }
 
 { #category : #'class initialization' }
@@ -21,30 +21,6 @@ ASDHMDbModelBlz class >> current [
 { #category : #'default values' }
 ASDHMDbModelBlz class >> defaultRepository [
 	^ 'handwerkBlz'
-]
-
-{ #category : #'data sample' }
-ASDHMDbModelBlz class >> importBlz [
-|dataFile coll|
-
-"dataFile := FileLocator imageDirectory / 'files' / 'streha.csv' asFileReference ."
-
-coll := OrderedCollection withAll: ( 'Blz.csv' asFileReference readStreamDo: [ :input |
-(NeoCSVReader on: (ZnBufferedReadStream on: input))
-skipHeader;
-recordClass: ASDHMBankLeitzahlen ;
-addField: #blz:;
-addField: #bankName:;
-addField: #plz:;
-addField: #ort:;
-addField: #bankNameKurz:;
-addField: #bic:;
-addField: #pruefZiffer:;
-upToEnd 
- ]) .
-coll inspect.
-^coll
-
 ]
 
 { #category : #'class initialization' }

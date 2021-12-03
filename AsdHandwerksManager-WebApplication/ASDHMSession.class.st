@@ -6,7 +6,7 @@ Class {
 		'rootComponent',
 		'task',
 		'model',
-		'modelDataNorm',
+		'modelMalerGewerk',
 		'modelBlz',
 		'loginError',
 		'adminView',
@@ -66,7 +66,7 @@ ASDHMSession >> initialize [
 	super initialize.
 	self model: ASDHMDbModelBase current.
 	self modelBlz: ASDHMDbModelBlz current.
-	self modelDataNorm: ASDHMDbModelMalerGewerg current.
+	self modelMalerGewerk: ASDHMDbModelMalerGewerg current.
 	self adminView: false
 ]
 
@@ -108,15 +108,15 @@ ASDHMSession >> modelBlz: anObject [
 ]
 
 { #category : #accessing }
-ASDHMSession >> modelDataNorm [
+ASDHMSession >> modelMalerGewerk [
 
-	^ modelDataNorm
+	^ modelMalerGewerk
 ]
 
 { #category : #accessing }
-ASDHMSession >> modelDataNorm: anObject [
+ASDHMSession >> modelMalerGewerk: anObject [
 
-	modelDataNorm := anObject
+	modelMalerGewerk := anObject
 ]
 
 { #category : #actions }

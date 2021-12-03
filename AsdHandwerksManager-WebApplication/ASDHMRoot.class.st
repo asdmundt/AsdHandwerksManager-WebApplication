@@ -142,6 +142,11 @@ ASDHMRoot >> goToLoginView [
 	self displayInstanceOf: ASDHMArtikel 
 ]
 
+{ #category : #action }
+ASDHMRoot >> goToOverviewView [
+	self displayInstanceOf: ASDHMHomePage 
+]
+
 { #category : #accessing }
 ASDHMRoot >> header [
 	^ header
@@ -196,6 +201,7 @@ ASDHMRoot >> renderContentOn: html [
 								size: 12;
 								with: [ html div 
 									class:'container';
+									id: #main;
 									with:[ html div 
 									class:'center';
 									with:[ html render: self componentToDisplay] ]] ].
@@ -215,9 +221,11 @@ ASDHMRoot >> tryConnectionWithLogin: login andPassword: password [
 			self session userId: arg id.
 			"arg logged: true."
 			self session model addLoggedUser: arg.
-			arg isAdmin
+			self session firma: self session model eigeneFirma.
+			self goToOverviewView.
+			"arg isAdmin
 				ifTrue: [ self goToAdminView ]
-				ifFalse: [ self goToOverviewView ] ]
+				ifFalse: [ self goToOverviewView ]" ]
 		ifNil: [ self session loginError:'Ihre Benutzer Eingaben konnten nicht zugeordnet werden'.
 			self goToLoginView ]
 ]

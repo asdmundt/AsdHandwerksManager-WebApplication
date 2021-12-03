@@ -1,6 +1,6 @@
 Class {
-	#name : #ASDHMAutoInstallPage,
-	#superclass : #ASDHMPageInstall,
+	#name : #ASDHMAuftragsVerwaltungPage,
+	#superclass : #ASDHMPageLogin,
 	#instVars : [
 		'installer'
 	],
@@ -8,22 +8,22 @@ Class {
 }
 
 { #category : #accessing }
-ASDHMAutoInstallPage class >> pageName [
+ASDHMAuftragsVerwaltungPage class >> pageName [
 	^ 'AutoInstallation'
 ]
 
 { #category : #accessing }
-ASDHMAutoInstallPage class >> priority [
+ASDHMAuftragsVerwaltungPage class >> priority [
 	^ 1
 ]
 
 { #category : #hooks }
-ASDHMAutoInstallPage >> children [
+ASDHMAuftragsVerwaltungPage >> children [
 	^ { installer }
 ]
 
 { #category : #initialization }
-ASDHMAutoInstallPage >> initialize [
+ASDHMAuftragsVerwaltungPage >> initialize [
 |list|
 super initialize.
 list := OrderedCollection new.
@@ -39,19 +39,19 @@ list := OrderedCollection new.
 ]
 
 { #category : #accessing }
-ASDHMAutoInstallPage >> installer [
+ASDHMAuftragsVerwaltungPage >> installer [
 
 	^ installer
 ]
 
 { #category : #accessing }
-ASDHMAutoInstallPage >> installer: anObject [
+ASDHMAuftragsVerwaltungPage >> installer: anObject [
 
 	installer := anObject
 ]
 
 { #category : #rendering }
-ASDHMAutoInstallPage >> renderContentOn: html [
+ASDHMAuftragsVerwaltungPage >> renderContentOn: html [
  html mdlGrid
 						noSpacing;
 						with: [ html mdlCell
@@ -73,14 +73,14 @@ ASDHMAutoInstallPage >> renderContentOn: html [
 ]
 
 { #category : #rendering }
-ASDHMAutoInstallPage >> renderInstallComponentOn: html [
+ASDHMAuftragsVerwaltungPage >> renderInstallComponentOn: html [
 	html div
 		style: 'position: relative; height: 100%';
 		with: [html render: self installer]
 ]
 
 { #category : #rendering }
-ASDHMAutoInstallPage >> style [
+ASDHMAuftragsVerwaltungPage >> style [
 ^'#loaderWrapper {
   position: fixed;
   top: 0;

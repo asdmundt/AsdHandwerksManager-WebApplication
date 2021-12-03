@@ -1,24 +1,11 @@
 Class {
 	#name : #ASDHMItemView,
-	#superclass : #MDLWidget,
+	#superclass : #ASDHMBaseComponent,
 	#instVars : [
-		'visible',
-		'model'
+		'visible'
 	],
 	#category : #'AsdHandwerksManager-WebApplication-Components'
 }
-
-{ #category : #accessing }
-ASDHMItemView >> model [
-
-	^ model
-]
-
-{ #category : #accessing }
-ASDHMItemView >> model: anObject [
-
-	model := anObject
-]
 
 { #category : #rendering }
 ASDHMItemView >> renderHeadingOn: html [

@@ -1,14 +1,15 @@
 Class {
-	#name : #ASDHMListView,
+	#name : #ASDHMInstallerComponent,
 	#superclass : #MDLWidget,
 	#instVars : [
-		'visible'
+		'title',
+		'components'
 	],
 	#category : #'AsdHandwerksManager-WebApplication-Components'
 }
 
 { #category : #rendering }
-ASDHMListView >> renderHeadingOn: html [
+ASDHMInstallerComponent >> renderHeadingOn: html [
 | helpId |
     helpId := html nextId.
     (html heading)

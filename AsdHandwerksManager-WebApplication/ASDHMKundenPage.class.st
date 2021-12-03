@@ -1,6 +1,6 @@
 Class {
-	#name : #ASDHMAutoInstallPage,
-	#superclass : #ASDHMPageInstall,
+	#name : #ASDHMKundenPage,
+	#superclass : #ASDHMPageLogin,
 	#instVars : [
 		'installer'
 	],
@@ -8,22 +8,22 @@ Class {
 }
 
 { #category : #accessing }
-ASDHMAutoInstallPage class >> pageName [
+ASDHMKundenPage class >> pageName [
 	^ 'AutoInstallation'
 ]
 
 { #category : #accessing }
-ASDHMAutoInstallPage class >> priority [
+ASDHMKundenPage class >> priority [
 	^ 1
 ]
 
 { #category : #hooks }
-ASDHMAutoInstallPage >> children [
+ASDHMKundenPage >> children [
 	^ { installer }
 ]
 
 { #category : #initialization }
-ASDHMAutoInstallPage >> initialize [
+ASDHMKundenPage >> initialize [
 |list|
 super initialize.
 list := OrderedCollection new.
@@ -39,19 +39,19 @@ list := OrderedCollection new.
 ]
 
 { #category : #accessing }
-ASDHMAutoInstallPage >> installer [
+ASDHMKundenPage >> installer [
 
 	^ installer
 ]
 
 { #category : #accessing }
-ASDHMAutoInstallPage >> installer: anObject [
+ASDHMKundenPage >> installer: anObject [
 
 	installer := anObject
 ]
 
 { #category : #rendering }
-ASDHMAutoInstallPage >> renderContentOn: html [
+ASDHMKundenPage >> renderContentOn: html [
  html mdlGrid
 						noSpacing;
 						with: [ html mdlCell
@@ -73,14 +73,14 @@ ASDHMAutoInstallPage >> renderContentOn: html [
 ]
 
 { #category : #rendering }
-ASDHMAutoInstallPage >> renderInstallComponentOn: html [
+ASDHMKundenPage >> renderInstallComponentOn: html [
 	html div
 		style: 'position: relative; height: 100%';
 		with: [html render: self installer]
 ]
 
 { #category : #rendering }
-ASDHMAutoInstallPage >> style [
+ASDHMKundenPage >> style [
 ^'#loaderWrapper {
   position: fixed;
   top: 0;

@@ -1,6 +1,9 @@
 Class {
 	#name : #ASDHMPageLogin,
-	#superclass : #ASDHMPageAdmin,
+	#superclass : #ASDHMComponent,
+	#instVars : [
+		'displayComponent'
+	],
 	#category : #'AsdHandwerksManager-WebApplication-Core'
 }
 

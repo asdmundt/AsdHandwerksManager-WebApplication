@@ -27,13 +27,13 @@ ASDHMLibrary >> projectCss [
     min-height: 48px;
 }
 body{
-	background-color: #0b1727;
-	color: #9da9bb;
+	background-color: #0d1117;
+	color: #c9d1d9;
 	
 }
 .mdl-layout__header{
-background-color: #0b1727;
-color: #9da9bb;
+background-color: #161b22;
+color: #c9d1d9;
 }
 .mdl-layout__container {
   
@@ -70,23 +70,23 @@ color: #9da9bb;
     height: 100%;
     -webkit-transition: all .75s;
     transition: all .75s;
-    background-color: #121e2d;
+    background-color: #161b22;
     overflow: auto;
     position: absolute;
 	right: 0px;
 	z-index: 1;
-	border: 1px solid #343434 !important;
+	border: 1px solid #30363d !important;
 	
 }
 
 
 .mdl-textfield__input {
-    background-color: #0b1727;
-    
+    background-color: #000000;
+    border: 1px solid #30363d !important;
     -webkit-box-shadow: none;
     box-shadow: none;
     height: 38px;
-    color: #9da9bb !important;
+    color: #c9d1d9 !important;
     font-size: 14px;
     display: block;
     font-size: 16px;
@@ -111,12 +111,12 @@ color: #9da9bb;
 
 
 .mdl-layout__drawer {
-   background: #121e2d !important;
+   background: #161b22 !important;
 }
 
 .mdl-layout__drawer .mdl-navigation .mdl-navigation__link--current {
-    background-color: #121e2d;
-    color: #0f0f0f;
+    background-color: #161b22;
+    color: #c9d1d9;
 }
 
 .mdl-card {
@@ -133,9 +133,9 @@ color: #9da9bb;
     width: 330px;
     z-index: 1;
     position: relative;
-    border: 1px solid #343434 !important;
+    border: 1px solid #30363d !important;
     border-radius: 2px;
-    background-color: #121e2d !important;
+    background-color: #161b22 !important;
  }  
 
 .div-form {
@@ -174,7 +174,7 @@ color: #9da9bb;
     box-shadow: 0 2px 2px 0 rgba(0,0,0,.14), 0 3px 1px -2px rgba(0,0,0,.2), 0 1px 5px 0 rgba(0,0,0,.12);
     box-sizing: border-box;
     /* border-right: 1px solid #e0e0e0; */
-    background: #fafafa;
+    background: #161b22;
     -webkit-transform: translateX(-250px);
     transform: translateX(-250px);
     -webkit-transform-style: preserve-3d;
@@ -184,7 +184,7 @@ color: #9da9bb;
     transition-timing-function: cubic-bezier(.4,0,.2,1);
     transition-property: transform;
     transition-property: transform,-webkit-transform;
-    color: #424242;
+    color: #c9d1d9;
     overflow: visible;
     overflow-y: auto;
     z-index: 5;
@@ -192,7 +192,7 @@ color: #9da9bb;
 
 .mdl-card__title {
 
-    color: #9da9bb; !important;
+    color: #c9d1d9; !important;
 
 }
 .mdl-grid {
@@ -202,18 +202,18 @@ color: #9da9bb;
 .mdl-expansion-panel {
     border: 1px solid #343434 !important;
     border-radius: 2px;
-    background-color: #121e2d !important;
+    background-color: #161b22 !important;
 }
 .ui-dialog {
 border: 1px solid #343434 !important;
     border-radius: 2px;
-    background-color: #121e2d !important;
+    background-color: #161b22 !important;
 }
 
 .bar {
     box-sizing: border-box;
-    background: #121e2d;
-    color: #9da9bb;
+    background: #161b22;
+    color: #c9d1d9;
     width: 100%;
     padding: 16px;
 position: relative;
@@ -225,6 +225,39 @@ position: relative;
     position: absolute;
     right: 16px;
 }
+
+.mdl-layout__tab-bar {
+    background-color: #161b22 !important;
+
+}
+
+.mdl-layout__tab-bar-button {
+
+    background-color: #161b22 !important;
+    color: #c9d1d9 !important;
+
+}
+
+.mdl-layout__header {
+
+    background-color: #161b22 !important;
+    color: #c9d1d9 !important;
+
+}
+
+.center {
+  margin: 0;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  -ms-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
+}
+
+.mdl-button--accent.mdl-button--accent.mdl-button--raised, .mdl-button--accent.mdl-button--accent.mdl-button--fab {
+background-color: #30c94c !important;
+}
+    
 
 '
 ]

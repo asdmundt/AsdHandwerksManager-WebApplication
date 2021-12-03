@@ -8,10 +8,71 @@ Class {
 		'amtsgerichtSitzLabel',
 		'hreLabel',
 		'steuerNrLabel',
-		'umsatzSteuerLabel'
+		'umsatzSteuerLabel',
+		'geschaeftsFuehrerLabel'
 	],
 	#category : #'AsdHandwerksManager-WebApplication-Components'
 }
+
+{ #category : #accessing }
+ASDHMFormFirma >> amtsgerichtSitzLabel [
+
+	^ amtsgerichtSitzLabel
+]
+
+{ #category : #accessing }
+ASDHMFormFirma >> amtsgerichtSitzLabel: anObject [
+
+	amtsgerichtSitzLabel := anObject
+]
+
+{ #category : #accessing }
+ASDHMFormFirma >> firmenFormLabel [
+
+	^ firmenFormLabel
+]
+
+{ #category : #accessing }
+ASDHMFormFirma >> firmenFormLabel: anObject [
+
+	firmenFormLabel := anObject
+]
+
+{ #category : #accessing }
+ASDHMFormFirma >> firmenSitzLabel [
+
+	^ firmenSitzLabel
+]
+
+{ #category : #accessing }
+ASDHMFormFirma >> firmenSitzLabel: anObject [
+
+	firmenSitzLabel := anObject
+]
+
+{ #category : #accessing }
+ASDHMFormFirma >> geschaeftsFuehrerLabel [
+
+	^ geschaeftsFuehrerLabel
+]
+
+{ #category : #accessing }
+ASDHMFormFirma >> geschaeftsFuehrerLabel: anObject [
+
+	geschaeftsFuehrerLabel := anObject
+]
+
+{ #category : #accessing }
+ASDHMFormFirma >> hreLabel [
+
+	^ hreLabel
+]
+
+{ #category : #accessing }
+ASDHMFormFirma >> hreLabel: anObject [
+
+	hreLabel := anObject
+]
 
 { #category : #initalize }
 ASDHMFormFirma >> initialize [
@@ -21,6 +82,18 @@ ASDHMFormFirma >> initialize [
 	self hsnrLabel: 'Haus Nr.'.
 	self plzLabel: 'Plz'.
 	self ortLabel: 'Ort'
+]
+
+{ #category : #accessing }
+ASDHMFormFirma >> nameLabel [
+
+	^ nameLabel
+]
+
+{ #category : #accessing }
+ASDHMFormFirma >> nameLabel: anObject [
+
+	nameLabel := anObject
 ]
 
 { #category : #rendering }
@@ -121,4 +194,28 @@ ASDHMFormFirma >> renderStrOn: html [
 
 				value: self model str;
 				callback: [ :aString | self model str: aString ] ]
+]
+
+{ #category : #accessing }
+ASDHMFormFirma >> steuerNrLabel [
+
+	^ steuerNrLabel
+]
+
+{ #category : #accessing }
+ASDHMFormFirma >> steuerNrLabel: anObject [
+
+	steuerNrLabel := anObject
+]
+
+{ #category : #accessing }
+ASDHMFormFirma >> umsatzSteuerLabel [
+
+	^ umsatzSteuerLabel
+]
+
+{ #category : #accessing }
+ASDHMFormFirma >> umsatzSteuerLabel: anObject [
+
+	umsatzSteuerLabel := anObject
 ]
