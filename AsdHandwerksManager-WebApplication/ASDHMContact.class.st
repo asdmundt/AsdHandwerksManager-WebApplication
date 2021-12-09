@@ -1,16 +1,11 @@
 Class {
 	#name : #ASDHMContact,
-	#superclass : #ASDHMModel,
+	#superclass : #ASDHMAbstractContact,
 	#instVars : [
 		'anrede',
 		'vorname',
 		'nachname',
-		'adressen',
-		'telefonNummern',
-		'email',
-		'type',
-		'types',
-		'bankVerbindungen'
+		'title'
 	],
 	#category : #'AsdHandwerksManager-WebApplication-Model'
 }
@@ -24,27 +19,14 @@ ASDHMContact class >> isVoyageRoot [
 ]
 
 { #category : #accessing }
+ASDHMContact class >> titleText [
+^'Kontakt'
+]
+
+{ #category : #accessing }
 ASDHMContact class >> types [ 
 ^ OrderedCollection
 		newFrom: {'admin' . 'projektLeiter' . 'user' . 'costumer'}.
-]
-
-{ #category : #accessing }
-ASDHMContact >> addAdresse: anObject [
-
-	adressen add: anObject
-]
-
-{ #category : #accessing }
-ASDHMContact >> addBankVerbindungen: anObject [
-
-	bankVerbindungen add: anObject
-]
-
-{ #category : #accessing }
-ASDHMContact >> adressen [
-^ adressen ifNil: [ adressen := OrderedCollection new ]
-	
 ]
 
 { #category : #accessing }
@@ -57,11 +39,6 @@ ASDHMContact >> anrede [
 ASDHMContact >> anrede: anObject [
 
 	anrede := anObject
-]
-
-{ #category : #accessing }
-ASDHMContact >> bankVerbindungen [
-^ bankVerbindungen ifNil: [ bankVerbindungen := OrderedCollection new ]
 ]
 
 { #category : #accessing }
@@ -97,15 +74,15 @@ ASDHMContact >> nachname: anObject [
 ]
 
 { #category : #accessing }
-ASDHMContact >> telefonNummern [
-^ telefonNummern ifNil: [ telefonNummern := OrderedCollection new ]
+ASDHMContact >> title [
 
+	^ title
 ]
 
 { #category : #accessing }
-ASDHMContact >> telefonNummern: anObject [
+ASDHMContact >> title: anObject [
 
-	telefonNummern := anObject
+	title := anObject
 ]
 
 { #category : #accessing }

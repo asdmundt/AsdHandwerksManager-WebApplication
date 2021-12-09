@@ -1,9 +1,6 @@
 Class {
 	#name : #ASDHMPageAdmin,
 	#superclass : #ASDHMComponent,
-	#instVars : [
-		'displayComponent'
-	],
 	#category : #'AsdHandwerksManager-WebApplication-Core'
 }
 
@@ -39,16 +36,6 @@ ASDHMPageAdmin class >> priority [
 { #category : #hooks }
 ASDHMPageAdmin >> children [
 	^ {}
-]
-
-{ #category : #accessing }
-ASDHMPageAdmin >> displayComponent [
-	^ displayComponent
-]
-
-{ #category : #accessing }
-ASDHMPageAdmin >> displayComponent: anObject [
-	displayComponent := anObject
 ]
 
 { #category : #initialization }

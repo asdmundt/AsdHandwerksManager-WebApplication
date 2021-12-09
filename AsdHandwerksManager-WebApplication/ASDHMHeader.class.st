@@ -22,7 +22,45 @@ ASDHMHeader >> possiblePages [
 ]
 
 { #category : #rendering }
+ASDHMHeader >> renderAccountButtonOn: html [
+	html
+		mdlNavigation: [ html mdlButton icon
+				id: #bottomLeftButton;
+				with: [ html mdlIcon: #account_circle ].
+			html mdlMenu
+				bottomRight;
+				for: #bottomLeftButton;
+				with: [ html mdlMenuItem: 'Einstellungen'.
+					html mdlMenuItem
+						fullBleedDivider;
+						with: 'Konto'.
+					html mdlMenuItem
+						disabled;
+						with: 'Disabled Action'.
+					html mdlMenuItem: 'Yet Another Action' ] ]
+]
+
+{ #category : #rendering }
+ASDHMHeader >> renderAdminSwitchOn: html [
+"	self session user isAdmin
+		ifTrue: [ html mdlSwitchContainer
+				rippleEffect;
+				style: 'width: 150px;';
+				for: html nextId;
+				with: [ html mdlSwitch
+						value: self session model jingleWithVideo;
+						onClick:
+							(html jQuery ajax
+								callback: [ self session model
+										jingleWithVideo: self session model jingleWithVideo not ]);
+						id: html lastId.
+					html mdlSwitchLabel: 'Jingle with video' ] ]"
+]
+
+{ #category : #rendering }
 ASDHMHeader >> renderButtonMenu: html [
+	self session isLogged
+		ifFalse: [ ^ self ].
 "
 html mdlAnchorButton
 						icon;
@@ -52,6 +90,12 @@ html mdlAnchorButton
 ]
 
 { #category : #rendering }
+ASDHMHeader >> renderButtonsOn: html [
+	self session isLogged
+		ifTrue: [ html mdlNavigation: [self renderButtonMenu: html.self renderAccountButtonOn: html ] ]
+]
+
+{ #category : #rendering }
 ASDHMHeader >> renderContentOn: html [
 	html mdlLayoutHeader
 		waterfall;
@@ -61,6 +105,8 @@ ASDHMHeader >> renderContentOn: html [
 						with: [ html
 								mdlLayoutTitle: [ 
 									html text: '    Hoxha HandwerksManager' ] ].
+					html mdlLayoutSpacer.
+					self renderButtonsOn: html		
 					html mdlLayoutSpacer.
 					html text: '	Version ' , self rootComponent class version.
 					].

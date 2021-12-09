@@ -1,11 +1,9 @@
 Class {
 	#name : #ASDHMFirma,
-	#superclass : #ASDHMModel,
+	#superclass : #ASDHMAbstractContact,
 	#instVars : [
 		'name',
-		'adressen',
 		'firmenForm',
-		'bankVerbindungen',
 		'firmenSitz',
 		'amtsgerichtSitz',
 		'hre',
@@ -25,27 +23,8 @@ ASDHMFirma class >> isVoyageRoot [
 ]
 
 { #category : #accessing }
-ASDHMFirma >> addAdresse: anObject [
-
-	adressen add: anObject
-]
-
-{ #category : #accessing }
-ASDHMFirma >> addBankverbindungen: anObject [
-
-	bankVerbindungen  add: anObject
-]
-
-{ #category : #accessing }
-ASDHMFirma >> adressen [
-^ adressen ifNil: [ adressen := OrderedCollection new ]
-	
-]
-
-{ #category : #accessing }
-ASDHMFirma >> adressen: anObject [
-
-	adressen := anObject
+ASDHMFirma class >> titleText [
+^'Firmen Kontakt'
 ]
 
 { #category : #accessing }
@@ -58,17 +37,6 @@ ASDHMFirma >> amtsgerichtSitz [
 ASDHMFirma >> amtsgerichtSitz: anObject [
 
 	amtsgerichtSitz := anObject
-]
-
-{ #category : #accessing }
-ASDHMFirma >> bankVerbindungen [
-^ bankVerbindungen ifNil: [ bankVerbindungen := OrderedCollection new ]
-]
-
-{ #category : #accessing }
-ASDHMFirma >> bankVerbindungen: anObject [
-
-	bankVerbindungen := anObject
 ]
 
 { #category : #accessing }
@@ -117,15 +85,6 @@ ASDHMFirma >> hre [
 ASDHMFirma >> hre: anObject [
 
 	hre := anObject
-]
-
-{ #category : #initialization }
-ASDHMFirma >> initialize [
-	super initialize.
-	self adressen: OrderedCollection new.
-	self bankVerbindungen: OrderedCollection new.
-	
-	
 ]
 
 { #category : #accessing }

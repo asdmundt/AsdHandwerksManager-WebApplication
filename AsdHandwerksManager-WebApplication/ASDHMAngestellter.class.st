@@ -13,6 +13,19 @@ Class {
 	#category : #'AsdHandwerksManager-WebApplication-Model'
 }
 
+{ #category : #voyage }
+ASDHMAngestellter class >> isVoyageRoot [
+	"Indicates that instances of this class are top level documents
+    in noSQL databases"
+
+	^ true
+]
+
+{ #category : #accessing }
+ASDHMAngestellter class >> titleText [
+^'Angestellter'
+]
+
 { #category : #accessing }
 ASDHMAngestellter >> beruf [
 

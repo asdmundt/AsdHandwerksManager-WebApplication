@@ -75,30 +75,6 @@ ASDHMDbModelBase class >> defaultRepository [
 	^ 'handwerkBase'
 ]
 
-{ #category : #'data sample' }
-ASDHMDbModelBase class >> importBlz [
-|dataFile coll|
-
-"dataFile := FileLocator imageDirectory / 'files' / 'streha.csv' asFileReference ."
-
-coll := OrderedCollection withAll: ( 'Blz.csv' asFileReference readStreamDo: [ :input |
-(NeoCSVReader on: (ZnBufferedReadStream on: input))
-skipHeader;
-recordClass: ASDHMBankLeitzahlen ;
-addField: #blz:;
-addField: #bankName:;
-addField: #plz:;
-
-addField: #bankNameKurz:;
-addField: #bic:;
-addField: #pruefZiffer:;
-upToEnd 
- ]) .
-coll inspect.
-^coll
-
-]
-
 { #category : #'class initialization' }
 ASDHMDbModelBase class >> initialize [
 	self reset

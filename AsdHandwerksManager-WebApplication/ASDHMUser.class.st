@@ -42,6 +42,11 @@ ASDHMUser class >> isVoyageRoot [
 ]
 
 { #category : #accessing }
+ASDHMUser class >> titleText [
+^'Benutzer'
+]
+
+{ #category : #accessing }
 ASDHMUser >> admin [
 	^ admin
 ]

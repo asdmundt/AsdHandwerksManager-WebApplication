@@ -1,6 +1,14 @@
 Class {
 	#name : #ASDHMHomePage,
 	#superclass : #ASDHMPageLogin,
+	#instVars : [
+		'titleCardAuftragsLabel',
+		'titleCardAufgabenLabel',
+		'textKeineAuftraege',
+		'textKeineAufgaben',
+		'titleCardTasksLabel',
+		'textKeineTasks'
+	],
 	#category : #'AsdHandwerksManager-WebApplication-Pages'
 }
 
@@ -24,10 +32,51 @@ ASDHMHomePage >> initialize [
 
 super initialize.
 
+self titleCardTasksLabel: 'Vorgänge'.
+self titleCardAufgabenLabel: 'Aufgaben'.
+self titleCardAuftragsLabel: 'Aufträge'.
+self textKeineAufgaben: 'Es liegen keine neuen Aufgaben vor'.
+self textKeineAuftraege: 'Es liegen keine neuen Auftäge vor'.
+self textKeineTasks: 'Es liegen keine neuen Vorgänge vor'.	
+	self session rootComponent header: ASDHMHeader new.
 	
-	self session rootComponent header: ASDHMAdminHeader new.
 	
-	
+]
+
+{ #category : #rendering }
+ASDHMHomePage >> renderAufgabenCardOn: html [
+	html
+		render:
+			(MDLCardWidget new
+				shadow: 2;
+				style: 'width: 400px;';
+				class: 'mdl-card__login-widget';
+				
+				title: titleCardAufgabenLabel level: 2;
+				addTextContainer: [ :canvas | canvas text: textKeineAufgaben ];
+				yourself)
+]
+
+{ #category : #rendering }
+ASDHMHomePage >> renderAuftragsCardOn: html [
+	html
+		render:
+			(MDLCardWidget new
+				shadow: 2;
+				style: 'width: 400px;';
+				class: 'mdl-card__login-widget';
+				
+				title: titleCardAuftragsLabel level: 2;
+				addTextContainer: [ :canvas | canvas text: self textKeineAuftraege  ];
+				yourself)
+]
+
+{ #category : #rendering }
+ASDHMHomePage >> renderCardOn: html [
+self renderAuftragsCardOn: html.
+self renderTasksCardOn: html.
+self renderAufgabenCardOn: html
+
 ]
 
 { #category : #rendering }
@@ -41,22 +90,23 @@ ASDHMHomePage >> renderContentOn: html [
 									class:'container';
 									with:[ html div 
 									class:'center';
-									with:[  self renderInstallComponentOn: html] ]] ].
+									with:[  self renderCardOn: html] ]] ].
 				
-	html div
-		id: #loaderWrapper;
-		with: [ html div 
-									class:'container';
-									with:[ html div 
-										class:'center';
-										with:[  self renderInstallComponentOn: html] ] ]
+
 ]
 
 { #category : #rendering }
-ASDHMHomePage >> renderInstallComponentOn: html [
-	html div
-		style: 'position: relative; height: 100%';
-		with: [html render: self installer]
+ASDHMHomePage >> renderTasksCardOn: html [
+	html
+		render:
+			(MDLCardWidget new
+				shadow: 2;
+				style: 'width: 400px;';
+				class: 'mdl-card__login-widget';
+				
+				title: self titleCardTasksLabel level: 2;
+				addTextContainer: [ :canvas | canvas text: self textKeineAuftraege  ];
+				yourself)
 ]
 
 { #category : #rendering }
@@ -71,4 +121,76 @@ ASDHMHomePage >> style [
   overflow: hidden;
 background-color: #0b1727;
 }'
+]
+
+{ #category : #accessing }
+ASDHMHomePage >> textKeineAufgaben [
+
+	^ textKeineAufgaben
+]
+
+{ #category : #accessing }
+ASDHMHomePage >> textKeineAufgaben: anObject [
+
+	textKeineAufgaben := anObject
+]
+
+{ #category : #accessing }
+ASDHMHomePage >> textKeineAuftraege [
+
+	^ textKeineAuftraege
+]
+
+{ #category : #accessing }
+ASDHMHomePage >> textKeineAuftraege: anObject [
+
+	textKeineAuftraege := anObject
+]
+
+{ #category : #accessing }
+ASDHMHomePage >> textKeineTasks [
+
+	^ textKeineTasks
+]
+
+{ #category : #accessing }
+ASDHMHomePage >> textKeineTasks: anObject [
+
+	textKeineTasks := anObject
+]
+
+{ #category : #accessing }
+ASDHMHomePage >> titleCardAufgabenLabel [
+
+	^ titleCardAufgabenLabel
+]
+
+{ #category : #accessing }
+ASDHMHomePage >> titleCardAufgabenLabel: anObject [
+
+	titleCardAufgabenLabel := anObject
+]
+
+{ #category : #accessing }
+ASDHMHomePage >> titleCardAuftragsLabel [
+
+	^ titleCardAuftragsLabel
+]
+
+{ #category : #accessing }
+ASDHMHomePage >> titleCardAuftragsLabel: anObject [
+
+	titleCardAuftragsLabel := anObject
+]
+
+{ #category : #accessing }
+ASDHMHomePage >> titleCardTasksLabel [
+
+	^ titleCardTasksLabel
+]
+
+{ #category : #accessing }
+ASDHMHomePage >> titleCardTasksLabel: anObject [
+
+	titleCardTasksLabel := anObject
 ]
