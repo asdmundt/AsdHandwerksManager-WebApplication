@@ -2,7 +2,7 @@ Class {
 	#name : #ASDHMContactPage,
 	#superclass : #ASDHMPageLogin,
 	#instVars : [
-		'installer'
+		'contactTable'
 	],
 	#category : #'AsdHandwerksManager-WebApplication-Pages'
 }
@@ -19,69 +19,52 @@ ASDHMContactPage class >> priority [
 
 { #category : #hooks }
 ASDHMContactPage >> children [
-	^ { installer }
+	^ { contactTable }
+]
+
+{ #category : #accessing }
+ASDHMContactPage >> contactTable [
+
+	^ contactTable
+]
+
+{ #category : #accessing }
+ASDHMContactPage >> contactTable: anObject [
+
+	contactTable := anObject
 ]
 
 { #category : #initialization }
 ASDHMContactPage >> initialize [
 
-super initialize.
+	super initialize.
 
-	
-	self session rootComponent header: ASDHMHeader new.
-	
-	
-]
-
-{ #category : #accessing }
-ASDHMContactPage >> installer [
-
-	^ installer
-]
-
-{ #category : #accessing }
-ASDHMContactPage >> installer: anObject [
-
-	installer := anObject
+	self contactTable: (ASDHMObjectViewTableContactComponent withList:
+			 self session model contacts).
+	self session rootComponent header: ASDHMHeader new
 ]
 
 { #category : #rendering }
 ASDHMContactPage >> renderComponentOn: html [
-	html mdlCard
-		shadow: 0;
-		mdlTypographyTextLeft;
-		"style: 'width: 512px';"
-		with: [ 
-			html mdlCardTitleContainer
-	
-				
-				with: [ html mdlCardTitleText: 'Kunden' ].
-				
-			html mdlCardTextContainer: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris sagittis pellentesque lacus eleifend lacinia...'.
-
-					
-			html mdlCardMenu
-				style: 'color: #fff';
-				with: [ html mdlButton
-						icon;
-						rippleEffect;
-						with: [ html mdlIcon: 'share' ] ] ]
+html render: contactTable
 ]
 
 { #category : #rendering }
 ASDHMContactPage >> renderContentOn: html [
- html mdlGrid
-						noSpacing;
-						with: [ html mdlCell
-								class: 'rootComponent';
-								size: 12;
-								with: [ html div 
-									class:'container';
-									with:[ html div 
-									class:'center';
-									with:[  self renderComponentOn: html] ]] ].
-				
 
+	html mdlGrid
+		noSpacing;
+		with: [ 
+			html mdlCell
+				class: 'rootComponent';
+				size: 12;
+				with: [ 
+					html div
+						class: 'container';
+						with: [ 
+							html div
+								class: 'centerInner';
+								with: [ self renderComponentOn: html ] ] ] ]
 ]
 
 { #category : #rendering }

@@ -14,11 +14,15 @@ Class {
 
 { #category : #accessing }
 ASDHMHeader >> possiblePages [
-	self session isLogged
+self session isLogged
 		ifTrue: [ self session currentUser isAdmin
 				ifTrue: [ ^ ASDHMPageAdmin pagesToDisplay ]
 				ifFalse: [ ^ ASDHMPageLogin pagesToDisplay ] ]
 		ifFalse: [ ^ ASDHMPage pagesToDisplay ]
+		"self session isLogged
+		ifTrue: [ASDHMPageAdmin pagesToDisplay]
+		ifFalse: [ ^ ASDHMPage pagesToDisplay ]
+	"
 ]
 
 { #category : #rendering }
@@ -70,7 +74,7 @@ html mdlAnchorButton
 						with: [ html mdlIcon: 'account_circle' ].
 					html mdlTooltip
 						for: html lastId;
-						with: 'Add Playable'.
+						with: 'Add Playable'."
 					html mdlAnchorButton
 						icon;
 						id: html nextId;
@@ -86,7 +90,7 @@ html mdlAnchorButton
 						with: [ html mdlIcon: 'cloud_upload' ].
 					html mdlTooltip
 						for: html lastId;
-						with: 'Export'."
+						with: 'Export'.
 ]
 
 { #category : #rendering }
@@ -98,6 +102,7 @@ ASDHMHeader >> renderButtonsOn: html [
 { #category : #rendering }
 ASDHMHeader >> renderContentOn: html [
 	html mdlLayoutHeader
+	
 		waterfall;
 		with: [ html
 				mdlLayoutHeaderRow: [ html mdlNavigationLink
@@ -106,22 +111,37 @@ ASDHMHeader >> renderContentOn: html [
 								mdlLayoutTitle: [ 
 									html text: '    Hoxha HandwerksManager' ] ].
 					html mdlLayoutSpacer.
-					self renderButtonsOn: html		
-					html mdlLayoutSpacer.
-					html text: '	Version ' , self rootComponent class version.
+					self renderButtonsOn: html.		
+					"html text: '	Version ' , self rootComponent class version."
 					].
-			self renderNavMenu: html ]
+				html
+						mdlLayoutHeaderRow: [
+							html mdlLayoutSpacer.
+							self renderNavMenu: html] ].
+					self renderDrawerOn: html
+			
+]
+
+{ #category : #rendering }
+ASDHMHeader >> renderDrawerOn: html [
+self session isLogged
+		ifFalse: [ ^ self ].
+	html
+		mdlLayoutDrawer: [ 
+			html
+				mdlNavigation: [ 
+					self possiblePages
+						do: [ :aClass | 
+							html mdlNavigationLink
+								beCurrentIf: aClass = self rootComponent componentToDisplay class;
+								callback: [ self displayInstanceOf: aClass ];
+								with: aClass pageName ] ] ]
 ]
 
 { #category : #rendering }
 ASDHMHeader >> renderNavMenu: html [
-	html
-		mdlLayoutTabBar: [ self possiblePages
-				do: [ :aClass | 
-					html mdlLayoutTab
-						callback: [ self displayInstanceOf: aClass ];
-						isActiveIf: aClass = self rootComponent componentToDisplay class;
-						with: aClass pageName ] ]
+html mdlLayoutSpacer.
+							html mdlNavigation: [ 1 to: 5 do: [ :i | html mdlNavigationLink: 'Link' ] ]
 ]
 
 { #category : #accessing }

@@ -127,6 +127,13 @@ ASDHMDbModelMalerGewerg class >> version [
 ]
 
 { #category : #operations }
+ASDHMDbModelMalerGewerg >> artikelsFromWarengruppe: aGroup [
+	^ Repos 
+		selectMany: ASDHMArtikel
+		where: [ :each | each warenGruppe = aGroup  ]
+]
+
+{ #category : #operations }
 ASDHMDbModelMalerGewerg >> categorieCollection [
 	| categorieColl |
 	categorieColl := OrderedCollection new.

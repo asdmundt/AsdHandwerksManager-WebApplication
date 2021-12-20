@@ -1,6 +1,6 @@
 Class {
 	#name : #ASDHMAngestellter,
-	#superclass : #ASDHMContact,
+	#superclass : #ASDHMAbstractContact,
 	#instVars : [
 		'beruf',
 		'gelernterBeruf',

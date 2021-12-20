@@ -16,7 +16,9 @@ Class {
 
 { #category : #voyage }
 ASDHMDbModelBase class >> createAdmin [
-	Repos save: (ASDHMUser benutzerName: 'admin' password: 'pwd' admin: 'true') 
+
+	Repos save:
+		(ASDHMUser benutzerName: 'admin' password: 'pwd' admin: true)
 ]
 
 { #category : #'data sample' }
@@ -65,6 +67,13 @@ Repos save: (ASDEKategorie name: 'Portal' andType: 'shop').
 				andType: 'artikelOberKategorie')
 ]
 
+{ #category : #voyage }
+ASDHMDbModelBase class >> createUser [
+
+	Repos save:
+		(ASDHMUser benutzerName: 'test' password: 'test' admin: false)
+]
+
 { #category : #'class initialization' }
 ASDHMDbModelBase class >> current [
 	^ uniqueInstanceDbModelBauManagerBase ifNil: [ uniqueInstanceDbModelBauManagerBase := self new ]
@@ -73,6 +82,23 @@ ASDHMDbModelBase class >> current [
 { #category : #'default values' }
 ASDHMDbModelBase class >> defaultRepository [
 	^ 'handwerkBase'
+]
+
+{ #category : #'data sample' }
+ASDHMDbModelBase class >> importContacts [
+
+	| dataFile coll |
+	"dataFile := FileLocator imageDirectory / 'files' / 'streha.csv' asFileReference ."
+	coll := OrderedCollection withAll:
+		        ('contacts.csv' asFileReference readStreamDo: [ :input | 
+			         (NeoCSVReader on: (ZnBufferedReadStream on: input))
+				         skipHeader;
+				         recordClass: ASDHMContact;
+				         addField: #displayName:;
+				         addField: #telefonNr:;
+				         upToEnd ]).
+	coll inspect.
+	^ coll
 ]
 
 { #category : #'class initialization' }
@@ -134,11 +160,25 @@ ASDHMDbModelBase >> categorieCollection [
 	^ categorieColl
 ]
 
+{ #category : #accessing }
+ASDHMDbModelBase >> contacts [
+
+	| collection |
+	 collection := Repos selectAll: ASDHMContact.
+	^ collection yourself.
+]
+
 { #category : #operations }
 ASDHMDbModelBase >> eigeneFirma [
 	^ Repos 
 		selectAll: ASDHMEigeneFirma
 		
+]
+
+{ #category : #accessing }
+ASDHMDbModelBase >> firmen [
+
+	^ Repos selectAll: ASDHMFirma 
 ]
 
 { #category : #initialization }

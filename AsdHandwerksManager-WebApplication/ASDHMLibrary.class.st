@@ -21,6 +21,7 @@ ASDHMLibrary >> materialbluegreydeeporangeminCss [
 
 { #category : #css }
 ASDHMLibrary >> projectCss [
+
 	^ '
 	.mdl-layout.is-small-screen .mdl-layout__header {
     display: flex;
@@ -192,7 +193,7 @@ color: #c9d1d9;
 
 .mdl-card__title {
 
-    color: #c9d1d9; !important;
+    color: #2196f3; !important;
 
 }
 .mdl-grid {
@@ -256,6 +257,15 @@ position: relative;
 
 .mdl-button--accent.mdl-button--accent.mdl-button--raised, .mdl-button--accent.mdl-button--accent.mdl-button--fab {
 background-color: #30c94c !important;
+}
+
+.centerInner{
+
+}
+
+.containerCard{
+border: 1px solid #343434 !important;
+ background-color: #0d1117 !important;
 }
     
 

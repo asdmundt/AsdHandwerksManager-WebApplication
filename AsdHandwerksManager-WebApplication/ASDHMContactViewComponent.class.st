@@ -1,6 +1,6 @@
 Class {
 	#name : #ASDHMContactViewComponent,
-	#superclass : #ASDHMObjectViewComponent,
+	#superclass : #ASDHMSuperContactView,
 	#instVars : [
 		'labelAnrede',
 		'labelTitle',
@@ -13,11 +13,13 @@ Class {
 
 { #category : #initialization }
 ASDHMContactViewComponent >> initialize [
+
 	super initialize.
 	self labelAnrede: 'Anrede'.
-	self labelTitle:  'Title'.
+	self labelTitle: 'Title'.
 	self labelVorname: 'Vorname'.
 	self labelNachname: 'Nachname'.
+	self titlepanelPersonalData: 'Persönliche Daten'
 ]
 
 { #category : #accessing }
@@ -69,62 +71,70 @@ ASDHMContactViewComponent >> labelVorname: anObject [
 ]
 
 { #category : #rendering }
+ASDHMContactViewComponent >> renderInnerContentOn: html [
+
+	self renderPersonalDataPanelOn: html.
+	self renderCommunicationDataPanelOn: html.
+]
+
+{ #category : #rendering }
 ASDHMContactViewComponent >> renderPersonalDataPanelOn: html [
-	html mdlExpansionPanel
-		shadow: 0;
-		fold;
-		with: [ html mdlExpansionPanelHeader
-				toggleExpansionOnClick;
-				onClick:
-					'
-	if($(this).parent().hasClass("isFolded")) {
-		$(this).find(".mdl-expansion-panel__header-icon").text("expand_less");
-		$(this).find(".mdl-expansion-panel__header-description").text("I am folded");
-	}
-	else {
-		$(this).find(".mdl-expansion-panel__header-icon").text("network_wifi");
-		$(this).find(".mdl-expansion-panel__header-description").text("I am unfolded");
-	}' js;
-				with: [ html mdlExpansionPanelHeaderTitle: 'Persönliche Daten'.
-					html mdlExpansionPanelHeaderDescription: 'I am folded'.
-					html mdlExpansionPanelHeaderIcon: 'network_wifi' ].
-			html
-				mdlExpansionPanelContent: [	html
-		form: [ html mdlTextFieldContainer
-				floatingLabel;
-				with: [ html mdlTextFieldLabel
-						for: html nextId;
-						with: self labelAnrede.
-					html mdlTextFieldInput
-						id: html lastId;
-						callback: [ :input | self model anrede: input ] ].
-			html mdlTextFieldContainer
-				floatingLabel;
-				with: [ html mdlTextFieldLabel
-						for: html nextId;
-						with: self labelTitle.
-					html mdlTextFieldInput
-						id: html lastId;
-						callback: [ :input | self model title: input ] ].
-			html mdlTextFieldContainer
-				floatingLabel;
-				with: [ html mdlTextFieldLabel
-						for: html nextId;
-						with: self labelVorname.
-					html mdlTextFieldInput
-						id: html lastId;
-						callback: [ :input | self model vorname: input ] ].
-			html mdlTextFieldContainer
-				floatingLabel;
-				with: [ html mdlTextFieldLabel
-						for: html nextId;
-						with: self labelNachname.
-					html mdlTextFieldInput
-						id: html lastId;
-						callback: [ :input | self model nachname: input ] ].
-			html mdlButton
-				beSubmit;
-				callback: [  ];
-				with: 'Accept'.
-			html mdlButton with: 'Cancel' ]] ]
+
+	html fieldSet
+		legend: self titlepanelPersonalData;
+		with: [ 
+			html div: [ 
+					html span: [ 
+							html paragraph
+								script: (html scriptaculous inPlaceEditor
+										 cancelControl: 'false';
+										 externalControl: #click;
+										 submitOnBlur: true;
+										 okControl: 'false';
+										 triggerInPlaceEditor: [ :valueAnrede | 
+											 self model anrede: valueAnrede ];
+										 callback: [ :r | r render: self model anrede ]);
+								with: self model anrede , ' '.
+							html paragraph
+								script: (html scriptaculous inPlaceEditor
+										 cancelControl: 'false';
+										 externalControl: #click;
+										 submitOnBlur: true;
+										 okControl: 'false';
+										 triggerInPlaceEditor: [ :valueTitle | 
+											 self model titel: valueTitle ];
+										 callback: [ :r | r render: self model titel ]);
+								with: self model titel , ' '.
+							html paragraph
+								script: (html scriptaculous inPlaceEditor
+										 cancelControl: 'false';
+										 externalControl: #click;
+										 submitOnBlur: true;
+										 okControl: 'false';
+										 triggerInPlaceEditor: [ :valueVorname | 
+											 self model titel: valueVorname ];
+										 callback: [ :r | r render: self model vorname ]);
+								with: self model vorname , ' '.
+							html paragraph
+								script: (html scriptaculous inPlaceEditor
+										 cancelControl: 'false';
+										 externalControl: #click;
+										 submitOnBlur: true;
+										 okControl: 'false';
+										 triggerInPlaceEditor: [ :valueNachname | 
+											 self model titel: valueNachname ];
+										 callback: [ :r | r render: self model nachname ]);
+								with: self model nachname ] ] ]
+]
+
+{ #category : #accessing }
+ASDHMContactViewComponent >> titlepanelPersonalData [
+
+	^ titlepanelPersonalData
+]
+
+{ #category : #accessing }
+ASDHMContactViewComponent >> titlepanelPersonalData: anObject [
+
+	titlepanelPersonalData := anObject
 ]

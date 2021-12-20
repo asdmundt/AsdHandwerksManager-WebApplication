@@ -2,13 +2,18 @@ Class {
 	#name : #ASDHMContact,
 	#superclass : #ASDHMAbstractContact,
 	#instVars : [
-		'anrede',
-		'vorname',
-		'nachname',
-		'title'
+		'displayName'
 	],
 	#category : #'AsdHandwerksManager-WebApplication-Model'
 }
+
+{ #category : #'instance creation' }
+ASDHMContact class >> displayName: aName telefonNummer: aNumber [
+
+	^ self new
+		  displayName: aName;
+		  telefonNummer: aNumber
+]
 
 { #category : #voyage }
 ASDHMContact class >> isVoyageRoot [
@@ -20,37 +25,27 @@ ASDHMContact class >> isVoyageRoot [
 
 { #category : #accessing }
 ASDHMContact class >> titleText [
-^'Kontakt'
+
+	^ 'Telefon Kontakt'
 ]
 
 { #category : #accessing }
-ASDHMContact class >> types [ 
-^ OrderedCollection
-		newFrom: {'admin' . 'projektLeiter' . 'user' . 'costumer'}.
+ASDHMContact class >> types [
+
+	^ OrderedCollection newFrom:
+		  { 'TelefonKontakt'. 'projektLeiter'. 'user'. 'costumer' }
 ]
 
 { #category : #accessing }
-ASDHMContact >> anrede [
+ASDHMContact >> displayName [
 
-	^ anrede
+	^ displayName
 ]
 
 { #category : #accessing }
-ASDHMContact >> anrede: anObject [
+ASDHMContact >> displayName: anObject [
 
-	anrede := anObject
-]
-
-{ #category : #accessing }
-ASDHMContact >> email [
-
-	^ email
-]
-
-{ #category : #accessing }
-ASDHMContact >> email: anObject [
-
-	email := anObject
+	displayName := anObject
 ]
 
 { #category : #initialization }
@@ -59,30 +54,6 @@ ASDHMContact >> initialize [
 	
 	self type: 'costumer'
 	
-]
-
-{ #category : #accessing }
-ASDHMContact >> nachname [
-
-	^ nachname
-]
-
-{ #category : #accessing }
-ASDHMContact >> nachname: anObject [
-
-	nachname := anObject
-]
-
-{ #category : #accessing }
-ASDHMContact >> title [
-
-	^ title
-]
-
-{ #category : #accessing }
-ASDHMContact >> title: anObject [
-
-	title := anObject
 ]
 
 { #category : #accessing }
@@ -101,16 +72,4 @@ ASDHMContact >> type: anObject [
 ASDHMContact >> types [
 
 	^ types
-]
-
-{ #category : #accessing }
-ASDHMContact >> vorname [
-
-	^ vorname
-]
-
-{ #category : #accessing }
-ASDHMContact >> vorname: anObject [
-
-	vorname := anObject
 ]

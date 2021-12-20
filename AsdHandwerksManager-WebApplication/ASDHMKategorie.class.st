@@ -2,12 +2,19 @@ Class {
 	#name : #ASDHMKategorie,
 	#superclass : #ASDHMModel,
 	#instVars : [
-		'name',
-		'type',
-		'types'
+		'type'
 	],
 	#category : #'AsdHandwerksManager-WebApplication-Model'
 }
+
+{ #category : #'instance creation' }
+ASDHMKategorie class >> bez: aName andType: aString [
+
+	^ self new
+		  bez: aName;
+		  type: aString;
+		  yourself
+]
 
 { #category : #voyage }
 ASDHMKategorie class >> isVoyageRoot [
@@ -17,28 +24,10 @@ ASDHMKategorie class >> isVoyageRoot [
 	^ true
 ]
 
-{ #category : #'instance creation' }
-ASDHMKategorie class >> name: aName andType: aString [
-	^ self new
-		name: aName;
-		type: aString;
-		yourself
-]
-
 { #category : #accessing }
 ASDHMKategorie class >> types [
 	^ OrderedCollection
 		newFrom: {'ArbeitsartenOberKategorie' . 'Arbeitsarten' . 'MaterialOberKategorie' . 'MaterialKategorie'. 'MaterialArtKategorie'.'TelefonNrArten'.'AdressBezeichnungen Warengruppen'}.
-]
-
-{ #category : #accessing }
-ASDHMKategorie >> name [
-	^ name
-]
-
-{ #category : #accessing }
-ASDHMKategorie >> name: anObject [
-	name := anObject
 ]
 
 { #category : #accessing }
@@ -49,10 +38,4 @@ ASDHMKategorie >> type [
 { #category : #accessing }
 ASDHMKategorie >> type: anObject [
 	type := anObject
-]
-
-{ #category : #accessing }
-ASDHMKategorie >> types [
-	^ OrderedCollection
-		newFrom: {'ArbeitsartenOberKategorie' . 'Arbeitsarten' . 'MaterialOberKategorie' . 'MaterialKategorie'. 'MaterialArtKategorie'.'TelefonNrArten'.'AdressBezeichnungen Warengruppen'}.
 ]

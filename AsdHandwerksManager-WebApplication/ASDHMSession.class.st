@@ -12,7 +12,8 @@ Class {
 		'adminView',
 		'userId',
 		'firma',
-		'firmenId'
+		'firmenId',
+		'currentObject'
 	],
 	#category : #'AsdHandwerksManager-WebApplication-Utils'
 }
@@ -25,6 +26,18 @@ ASDHMSession >> adminView [
 { #category : #accessing }
 ASDHMSession >> adminView: anObject [
 	adminView := anObject
+]
+
+{ #category : #accessing }
+ASDHMSession >> currentObject [
+
+	^ currentObject
+]
+
+{ #category : #accessing }
+ASDHMSession >> currentObject: anObject [
+
+	currentObject := anObject
 ]
 
 { #category : #accessing }

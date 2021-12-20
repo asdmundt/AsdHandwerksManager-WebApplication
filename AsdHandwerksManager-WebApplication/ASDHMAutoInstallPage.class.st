@@ -63,13 +63,7 @@ ASDHMAutoInstallPage >> renderContentOn: html [
 									class:'center';
 									with:[  self renderInstallComponentOn: html] ]] ].
 				
-	html div
-		id: #loaderWrapper;
-		with: [ html div 
-									class:'container';
-									with:[ html div 
-										class:'center';
-										with:[  self renderInstallComponentOn: html] ] ]
+	
 ]
 
 { #category : #rendering }

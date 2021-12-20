@@ -1,6 +1,6 @@
 Class {
 	#name : #ASDHMBauAbwicklungPage,
-	#superclass : #ASDHMPageLogin,
+	#superclass : #ASDHMPageAdmin,
 	#instVars : [
 		'installer'
 	],
@@ -9,7 +9,7 @@ Class {
 
 { #category : #accessing }
 ASDHMBauAbwicklungPage class >> pageName [
-	^ 'AutoInstallation'
+	^ 'Bauabwicklung'
 ]
 
 { #category : #accessing }

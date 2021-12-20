@@ -25,12 +25,6 @@ ASDHMEigeneFirma >> accounts [
 ]
 
 { #category : #accessing }
-ASDHMEigeneFirma >> accounts: anObject [
-
-	accounts := anObject
-]
-
-{ #category : #accessing }
 ASDHMEigeneFirma >> addAccounts: anObject [
 
 	accounts add: anObject

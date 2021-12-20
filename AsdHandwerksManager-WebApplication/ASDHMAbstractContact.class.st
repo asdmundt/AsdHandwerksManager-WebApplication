@@ -2,6 +2,10 @@ Class {
 	#name : #ASDHMAbstractContact,
 	#superclass : #ASDHMModel,
 	#instVars : [
+		'anrede',
+		'vorname',
+		'nachname',
+		'title',
 		'adressen',
 		'mobilFunkNr',
 		'telefonNummer',
@@ -48,6 +52,18 @@ ASDHMAbstractContact >> adressen: anObject [
 ]
 
 { #category : #accessing }
+ASDHMAbstractContact >> anrede [
+
+	^ anrede
+]
+
+{ #category : #accessing }
+ASDHMAbstractContact >> anrede: anObject [
+
+	anrede := anObject
+]
+
+{ #category : #accessing }
 ASDHMAbstractContact >> bankVerbindungen [
 ^ bankVerbindungen ifNil: [ bankVerbindungen := OrderedCollection new ]
 ]
@@ -58,13 +74,24 @@ ASDHMAbstractContact >> bankVerbindungen: anObject [
 	bankVerbindungen := anObject
 ]
 
+{ #category : #accessing }
+ASDHMAbstractContact >> email [
+
+	^ email
+]
+
+{ #category : #accessing }
+ASDHMAbstractContact >> email: anObject [
+
+	email := anObject
+]
+
 { #category : #initialization }
 ASDHMAbstractContact >> initialize [
+
 	super initialize.
-	self adressen: OrderedCollection new.
-	self bankVerbindungen: OrderedCollection new.
-	
-	
+	"self adressen: OrderedCollection new.
+	self bankVerbindungen: OrderedCollection new"
 ]
 
 { #category : #accessing }
@@ -80,6 +107,19 @@ ASDHMAbstractContact >> mobilFunkNr: anObject [
 ]
 
 { #category : #accessing }
+ASDHMAbstractContact >> nachname [
+
+	^ nachname ifNil: [ 
+		  nachname := '']
+]
+
+{ #category : #accessing }
+ASDHMAbstractContact >> nachname: anObject [
+
+	nachname := anObject
+]
+
+{ #category : #accessing }
 ASDHMAbstractContact >> telefonNummer [
 
 	^ telefonNummer
@@ -89,4 +129,28 @@ ASDHMAbstractContact >> telefonNummer [
 ASDHMAbstractContact >> telefonNummer: anObject [
 
 	telefonNummer := anObject
+]
+
+{ #category : #accessing }
+ASDHMAbstractContact >> title [
+
+	^ title
+]
+
+{ #category : #accessing }
+ASDHMAbstractContact >> title: anObject [
+
+	title := anObject
+]
+
+{ #category : #accessing }
+ASDHMAbstractContact >> vorname [
+
+	^ vorname ifNil: [ vorname := '' ]
+]
+
+{ #category : #accessing }
+ASDHMAbstractContact >> vorname: anObject [
+
+	vorname := anObject
 ]

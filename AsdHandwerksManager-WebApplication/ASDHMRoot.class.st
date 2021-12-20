@@ -42,7 +42,7 @@ ASDHMRoot class >> development [
 
 { #category : #initialization }
 ASDHMRoot class >> initialize [
-		self environment at: #WADevelopmentConfiguration ifPresent: [ :class | WAAdmin applicationDefaults removeParent: class instance ]. "Remove development tools."
+		self environment at: #WADevelopmentConfiguration ifPresent: [ :class | WAAdmin applicationDefaults addParent: class instance ]. "Remove development tools."
 	^ (WAAdmin register: self asApplicationAt: 'HandwerksManager')
 		preferenceAt: #sessionClass put: ASDHMSession;
 		addLibrary: JQDeploymentLibrary;
@@ -139,7 +139,7 @@ ASDHMRoot >> footer: aComponent [
 
 { #category : #action }
 ASDHMRoot >> goToLoginView [
-	self displayInstanceOf: ASDHMArtikel 
+	self displayInstanceOf: ASDHMLoginPage 
 ]
 
 { #category : #action }
@@ -190,27 +190,43 @@ ASDHMRoot >> initialize [
 
 { #category : #rendering }
 ASDHMRoot >> renderContentOn: html [
-	html
-		mdlLayout: [ html render: self header.
-			html mdlLayoutContent
-				class: 'mdl-color-text--grey-600';
-				with: [ html mdlGrid
-						noSpacing;
-						with: [ html mdlCell
-								class: 'rootComponent';
-								size: 12;
-								with: [ html div 
-									class:'container';
+
+	html mdlLayout: [ 
+		html render: self header.
+		html mdlLayoutContent
+			class: 'mdl-color-text--grey-600';
+			with: [ 
+				html mdlGrid
+					noSpacing;
+					with: [ 
+						html mdlCell
+							class: 'rootComponent';
+							size: 12;
+							with: [ 
+								html div
+									class: 'container';
 									id: #main;
-									with:[ html div 
-									class:'center';
-									with:[ html render: self componentToDisplay] ]] ].
-					html render: self footer ] ].
-			self renderEmptyGenericDialogOn: html
+									with: [ 
+										html div
+											class: 'center';
+											with: [ html render: self componentToDisplay ] ] ] ].
+				html render: self footer ] ].
+	self renderEmptyGenericDialogOn: html.
+	"html div
+		id: #loaderWrapper;
+		with: [ 
+			html div
+				class: 'container';
+				with: [ 
+					html div
+						class: 'center';
+						id: #loader;
+						with: [ '' ] ] ]"
 ]
 
 { #category : #action }
 ASDHMRoot >> tryConnectionWithLogin: login andPassword: password [
+
 	| user |
 	user := self session model userFromLogin: login andPassword: password.
 	"self halt."
@@ -226,7 +242,9 @@ ASDHMRoot >> tryConnectionWithLogin: login andPassword: password [
 			"arg isAdmin
 				ifTrue: [ self goToAdminView ]
 				ifFalse: [ self goToOverviewView ]" ]
-		ifNil: [ self session loginError:'Ihre Benutzer Eingaben konnten nicht zugeordnet werden'.
+		ifNil: [ 
+			self session loginError:
+				'Ihre Benutzer Eingaben konnten nicht zugeordnet werden'.
 			self goToLoginView ]
 ]
 

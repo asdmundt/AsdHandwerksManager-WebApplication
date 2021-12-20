@@ -1,6 +1,6 @@
 Class {
 	#name : #ASDHMUser,
-	#superclass : #ASDHMContact,
+	#superclass : #ASDHMAbstractContact,
 	#instVars : [
 		'gmail',
 		'pwdGmail',
@@ -58,7 +58,7 @@ ASDHMUser >> admin: anObject [
 
 { #category : #accessing }
 ASDHMUser >> asAdmin [
-	self type: #admin
+	self admin: true
 ]
 
 { #category : #accessing }
@@ -229,8 +229,8 @@ ASDHMUser >> indexSize: anObject [
 ASDHMUser >> initialize [
 	super initialize.
 	self logged: false.
-	self type = 'admin'
-	ifTrue: [ self admin: true. ] ifFalse: [ self admin: false. ].
+	
+	self admin: false.
 	
 	self indexLoggedUser: nil.
 	self indexSize: 7.

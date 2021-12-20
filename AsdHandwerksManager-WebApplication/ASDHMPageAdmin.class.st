@@ -18,7 +18,9 @@ ASDHMPageAdmin class >> pageName [
 
 { #category : #accessing }
 ASDHMPageAdmin class >> pagesToDisplay [
-	^ (self allSubclasses reject: #isAbstract) sorted: #priority ascending
+
+	^ (self allSubclasses reject: #isAbstract) sorted:
+		  #priority ascending
 ]
 
 { #category : #accessing }

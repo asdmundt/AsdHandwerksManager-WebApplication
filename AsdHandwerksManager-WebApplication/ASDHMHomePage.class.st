@@ -14,7 +14,7 @@ Class {
 
 { #category : #accessing }
 ASDHMHomePage class >> pageName [
-	^ 'AutoInstallation'
+	^ 'Home'
 ]
 
 { #category : #accessing }
@@ -105,7 +105,7 @@ ASDHMHomePage >> renderTasksCardOn: html [
 				class: 'mdl-card__login-widget';
 				
 				title: self titleCardTasksLabel level: 2;
-				addTextContainer: [ :canvas | canvas text: self textKeineAuftraege  ];
+				addTextContainer: [ :canvas | canvas text: self textKeineTasks  ];
 				yourself)
 ]
 

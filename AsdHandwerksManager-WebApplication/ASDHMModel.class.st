@@ -7,7 +7,8 @@ Class {
 		'states',
 		'id',
 		'dataModel',
-		'bez'
+		'bez',
+		'userId'
 	],
 	#category : #'AsdHandwerksManager-WebApplication-Model'
 }

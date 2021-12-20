@@ -2,7 +2,7 @@ Class {
 	#name : #ASDHMFirma,
 	#superclass : #ASDHMAbstractContact,
 	#instVars : [
-		'name',
+		'firmenName',
 		'firmenForm',
 		'firmenSitz',
 		'amtsgerichtSitz',
@@ -52,6 +52,18 @@ ASDHMFirma >> firmenForm: anObject [
 ]
 
 { #category : #accessing }
+ASDHMFirma >> firmenName [
+
+	^ firmenName
+]
+
+{ #category : #accessing }
+ASDHMFirma >> firmenName: anObject [
+
+	firmenName := anObject
+]
+
+{ #category : #accessing }
 ASDHMFirma >> firmenSitz [
 
 	^ firmenSitz
@@ -85,18 +97,6 @@ ASDHMFirma >> hre [
 ASDHMFirma >> hre: anObject [
 
 	hre := anObject
-]
-
-{ #category : #accessing }
-ASDHMFirma >> name [
-
-	^ name
-]
-
-{ #category : #accessing }
-ASDHMFirma >> name: anObject [
-
-	name := anObject
 ]
 
 { #category : #accessing }

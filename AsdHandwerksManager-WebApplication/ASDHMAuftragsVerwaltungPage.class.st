@@ -1,6 +1,6 @@
 Class {
 	#name : #ASDHMAuftragsVerwaltungPage,
-	#superclass : #ASDHMPageLogin,
+	#superclass : #ASDHMPageAdmin,
 	#instVars : [
 		'installer'
 	],
@@ -9,7 +9,7 @@ Class {
 
 { #category : #accessing }
 ASDHMAuftragsVerwaltungPage class >> pageName [
-	^ 'AutoInstallation'
+	^ 'Auftragsverwaltung'
 ]
 
 { #category : #accessing }

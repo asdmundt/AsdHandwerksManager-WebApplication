@@ -2,10 +2,7 @@ Class {
 	#name : #ASDHMSubUnternehmer,
 	#superclass : #ASDHMFirma,
 	#instVars : [
-		'syncEmail',
-		'syncEmailPwd',
-		'angestellte',
-		'accounts'
+		'stundensatz'
 	],
 	#category : #'AsdHandwerksManager-WebApplication-Model'
 }
@@ -13,4 +10,16 @@ Class {
 { #category : #accessing }
 ASDHMSubUnternehmer class >> titleText [
 ^'Subunternehmer'
+]
+
+{ #category : #accessing }
+ASDHMSubUnternehmer >> stundensatz [
+
+	^ stundensatz
+]
+
+{ #category : #accessing }
+ASDHMSubUnternehmer >> stundensatz: anObject [
+
+	stundensatz := anObject
 ]

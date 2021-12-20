@@ -1,6 +1,6 @@
 Class {
 	#name : #ASDHMFormUser,
-	#superclass : #ASDForm,
+	#superclass : #ASDHMFormSuperContact,
 	#instVars : [
 		'cancelLabel',
 		'passwordLabel',
