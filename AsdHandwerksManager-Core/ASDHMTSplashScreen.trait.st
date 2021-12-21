@@ -1,6 +1,6 @@
 Trait {
 	#name : #ASDHMTSplashScreen,
-	#category : #'AsdHandwerksManager-WebApplication-Traits'
+	#category : #'AsdHandwerksManager-Core-Traits'
 }
 
 { #category : #initialization }

@@ -7,7 +7,7 @@ Class {
 		'arbeiten',
 		'angebot'
 	],
-	#category : #'AsdHandwerksManager-WebApplication-Model'
+	#category : #'AsdHandwerksManager-Core-Model'
 }
 
 { #category : #voyage }

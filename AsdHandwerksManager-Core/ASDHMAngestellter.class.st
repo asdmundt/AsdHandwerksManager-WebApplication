@@ -10,7 +10,7 @@ Class {
 		'userAccount',
 		'firmenId'
 	],
-	#category : #'AsdHandwerksManager-WebApplication-Model'
+	#category : #'AsdHandwerksManager-Core-Model'
 }
 
 { #category : #voyage }

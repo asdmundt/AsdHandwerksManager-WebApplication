@@ -78,17 +78,3 @@ ASDHMBauAbwicklungPage >> renderInstallComponentOn: html [
 		style: 'position: relative; height: 100%';
 		with: [html render: self installer]
 ]
-
-{ #category : #rendering }
-ASDHMBauAbwicklungPage >> style [
-^'#loaderWrapper {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  z-index: 10;
-  overflow: hidden;
-background-color: #0b1727;
-}'
-]

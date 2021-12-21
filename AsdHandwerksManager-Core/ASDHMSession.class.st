@@ -15,7 +15,7 @@ Class {
 		'firmenId',
 		'currentObject'
 	],
-	#category : #'AsdHandwerksManager-WebApplication-Utils'
+	#category : #'AsdHandwerksManager-Core-Utils'
 }
 
 { #category : #accessing }

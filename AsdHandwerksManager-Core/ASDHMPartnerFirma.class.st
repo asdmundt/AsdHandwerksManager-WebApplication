@@ -4,7 +4,7 @@ Class {
 	#instVars : [
 		'stundensatz'
 	],
-	#category : #'AsdHandwerksManager-WebApplication-Model'
+	#category : #'AsdHandwerksManager-Core-Model'
 }
 
 { #category : #voyage }

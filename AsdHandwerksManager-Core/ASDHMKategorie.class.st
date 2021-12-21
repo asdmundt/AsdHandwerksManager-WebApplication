@@ -4,7 +4,7 @@ Class {
 	#instVars : [
 		'type'
 	],
-	#category : #'AsdHandwerksManager-WebApplication-Model'
+	#category : #'AsdHandwerksManager-Core-Model'
 }
 
 { #category : #'instance creation' }

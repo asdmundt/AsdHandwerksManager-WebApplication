@@ -10,7 +10,7 @@ Class {
 		'bankNameKurz',
 		'pruefZiffer'
 	],
-	#category : #'AsdHandwerksManager-WebApplication-Model'
+	#category : #'AsdHandwerksManager-Core-Model'
 }
 
 { #category : #'instance creation' }

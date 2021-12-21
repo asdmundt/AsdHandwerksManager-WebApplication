@@ -10,7 +10,7 @@ Class {
 	#classInstVars : [
 		'uniqueInstanceDbModelBauManagerDataNorm'
 	],
-	#category : #'AsdHandwerksManager-WebApplication-db'
+	#category : #'AsdHandwerksManager-Core-Db'
 }
 
 { #category : #'data sample' }

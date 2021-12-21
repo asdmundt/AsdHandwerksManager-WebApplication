@@ -10,7 +10,7 @@ Class {
 	#classInstVars : [
 		'uniqueInstanceDbModelBauManagerBlz'
 	],
-	#category : #'AsdHandwerksManager-WebApplication-db'
+	#category : #'AsdHandwerksManager-Core-Db'
 }
 
 { #category : #'class initialization' }

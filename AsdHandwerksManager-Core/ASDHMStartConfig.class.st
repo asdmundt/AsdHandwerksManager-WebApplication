@@ -6,7 +6,7 @@ Class {
 		'msgId',
 		'model'
 	],
-	#category : #'AsdHandwerksManager-WebApplication-Model'
+	#category : #'AsdHandwerksManager-Core-Model'
 }
 
 { #category : #accessing }

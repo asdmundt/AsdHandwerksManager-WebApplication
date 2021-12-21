@@ -191,27 +191,30 @@ ASDHMRoot >> initialize [
 { #category : #rendering }
 ASDHMRoot >> renderContentOn: html [
 
-	html mdlLayout: [ 
-		html render: self header.
-		html mdlLayoutContent
-			class: 'mdl-color-text--grey-600';
-			with: [ 
-				html mdlGrid
-					noSpacing;
-					with: [ 
-						html mdlCell
-							class: 'rootComponent';
-							size: 12;
-							with: [ 
-								html div
-									class: 'container';
-									id: #main;
-									with: [ 
-										html div
-											class: 'center';
-											with: [ html render: self componentToDisplay ] ] ] ].
-				html render: self footer ] ].
-	self renderEmptyGenericDialogOn: html.
+	html mdlLayout
+		fixedDrawer;
+		fixedHeader;
+		with: [ 
+			html render: self header.
+			html mdlLayoutContent
+				class: 'mdl-color-text--grey-600';
+				with: [ 
+					html mdlGrid
+						noSpacing;
+						with: [ 
+							html mdlCell
+								class: 'rootComponent';
+								size: 12;
+								with: [ 
+									html div
+										class: 'container';
+										id: #main;
+										with: [ 
+											html div
+												class: 'center';
+												with: [ html render: self componentToDisplay ] ] ] ].
+					html render: self footer ] ].
+	self renderEmptyGenericDialogOn: html
 	"html div
 		id: #loaderWrapper;
 		with: [ 

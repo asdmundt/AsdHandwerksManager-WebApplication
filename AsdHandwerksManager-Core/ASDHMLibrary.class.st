@@ -4,7 +4,7 @@ TODO
 Class {
 	#name : #ASDHMLibrary,
 	#superclass : #WAFileLibrary,
-	#category : #'AsdHandwerksManager-WebApplication-Utils'
+	#category : #'AsdHandwerksManager-Core-Utils'
 }
 
 { #category : #uploaded }
@@ -113,6 +113,8 @@ color: #c9d1d9;
 
 .mdl-layout__drawer {
    background: #161b22 !important;
+border-right: 1px solid #161b22 !important; 
+height: 90% !important;
 }
 
 .mdl-layout__drawer .mdl-navigation .mdl-navigation__link--current {
@@ -167,14 +169,14 @@ color: #c9d1d9;
     -ms-flex-wrap: nowrap;
     flex-wrap: nowrap;
     width: 240px;
-    height: 100%;
+    height: 90%;
     max-height: 100%;
     position: absolute;
     top: 0;
     left: 0;
     box-shadow: 0 2px 2px 0 rgba(0,0,0,.14), 0 3px 1px -2px rgba(0,0,0,.2), 0 1px 5px 0 rgba(0,0,0,.12);
     box-sizing: border-box;
-    /* border-right: 1px solid #e0e0e0; */
+    border-right: 1px solid #161b22; 
     background: #161b22;
     -webkit-transform: translateX(-250px);
     transform: translateX(-250px);
@@ -267,8 +269,20 @@ background-color: #30c94c !important;
 border: 1px solid #343434 !important;
  background-color: #0d1117 !important;
 }
-    
-
+  #loaderWrapper {
+display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 10;
+  overflow: hidden;
+background-color: #0b1727;
+}  
+.mdl-layout--fixed-drawer>.mdl-layout__content{
+margin-left: 0px !important;
+}
 '
 ]
 

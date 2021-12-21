@@ -4,7 +4,7 @@ Class {
 	#instVars : [
 		'kunde'
 	],
-	#category : #'AsdHandwerksManager-WebApplication-Model'
+	#category : #'AsdHandwerksManager-Core-Model'
 }
 
 { #category : #voyage }

@@ -111,16 +111,8 @@ ASDHMHomePage >> renderTasksCardOn: html [
 
 { #category : #rendering }
 ASDHMHomePage >> style [
-^'#loaderWrapper {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  z-index: 10;
-  overflow: hidden;
-background-color: #0b1727;
-}'
+
+	^ ''
 ]
 
 { #category : #accessing }

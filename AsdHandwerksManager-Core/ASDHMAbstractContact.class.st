@@ -14,7 +14,7 @@ Class {
 		'types',
 		'bankVerbindungen'
 	],
-	#category : #'AsdHandwerksManager-WebApplication-Model'
+	#category : #'AsdHandwerksManager-Core-Model'
 }
 
 { #category : #testing }

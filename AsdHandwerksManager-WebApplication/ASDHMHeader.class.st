@@ -101,25 +101,22 @@ ASDHMHeader >> renderButtonsOn: html [
 
 { #category : #rendering }
 ASDHMHeader >> renderContentOn: html [
+
 	html mdlLayoutHeader
-	
-		waterfall;
-		with: [ html
-				mdlLayoutHeaderRow: [ html mdlNavigationLink
+		
+		with: [ 
+			html mdlLayoutHeaderRow: [ 
+					html mdlNavigationLink
 						callback: [ "Just refresh" ];
-						with: [ html
-								mdlLayoutTitle: [ 
-									html text: '    Hoxha HandwerksManager' ] ].
+						with: [ 
+							html mdlLayoutTitle: [ html text: '    Hoxha HandwerksManager' ] ].
 					html mdlLayoutSpacer.
-					self renderButtonsOn: html.		
-					"html text: '	Version ' , self rootComponent class version."
-					].
-				html
-						mdlLayoutHeaderRow: [
-							html mdlLayoutSpacer.
-							self renderNavMenu: html] ].
-					self renderDrawerOn: html
-			
+					self renderButtonsOn: html
+					"html text: '	Version ' , self rootComponent class version." ].
+			html mdlLayoutHeaderRow: [ 
+				html mdlLayoutSpacer.
+				self renderNavMenu: html ] ].
+	self renderDrawerOn: html
 ]
 
 { #category : #rendering }
@@ -140,8 +137,11 @@ self session isLogged
 
 { #category : #rendering }
 ASDHMHeader >> renderNavMenu: html [
-html mdlLayoutSpacer.
-							html mdlNavigation: [ 1 to: 5 do: [ :i | html mdlNavigationLink: 'Link' ] ]
+
+	
+	"	html mdlLayoutSpacer.
+	html mdlNavigation: [ 
+		1 to: 5 do: [ :i | html mdlNavigationLink: 'Link' ] ]"
 ]
 
 { #category : #accessing }

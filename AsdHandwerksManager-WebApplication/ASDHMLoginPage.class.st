@@ -72,17 +72,18 @@ ASDHMLoginPage >> rendeModalLoginButtonOn: html [
 
 { #category : #rendering }
 ASDHMLoginPage >> renderContentOn: html [
+
 	html mdlGrid
-		shadow: 0;
-		style: 'align-items: center; height: 100%';
-		with: [ html mdlCell
-				middle;
-				desktopOffset: 3;
-				tabletOffset: 3;
-				phoneOffset: 2;
-				desktopSize: 8;
-				tabletSize: 5;
-				phoneSize: 2;
-				
-				with: [ self rendeModalLoginButtonOn: html ] ]
+		noSpacing;
+		with: [ 
+			html mdlCell
+				class: 'rootComponent';
+				size: 12;
+				with: [ 
+					html div
+						class: 'container';
+						with: [ 
+							html div
+								class: 'centerInner';
+								with: [ self rendeModalLoginButtonOn: html ] ] ] ]
 ]

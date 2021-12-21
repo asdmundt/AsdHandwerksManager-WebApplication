@@ -11,7 +11,7 @@ Class {
 	#classInstVars : [
 		'uniqueInstanceDbModelBauManagerBase'
 	],
-	#category : #'AsdHandwerksManager-WebApplication-db'
+	#category : #'AsdHandwerksManager-Core-Db'
 }
 
 { #category : #voyage }

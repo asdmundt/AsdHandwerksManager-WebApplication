@@ -11,7 +11,7 @@ Class {
 		'bemerkung',
 		'adresseObjectId'
 	],
-	#category : #'AsdHandwerksManager-WebApplication-Model'
+	#category : #'AsdHandwerksManager-Core-Model'
 }
 
 { #category : #voyage }
