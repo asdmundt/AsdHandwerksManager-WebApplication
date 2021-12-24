@@ -52,17 +52,14 @@ html render: contactTable
 { #category : #rendering }
 ASDHMContactPage >> renderContentOn: html [
 
-	html mdlGrid
-		noSpacing;
+	html leftPanel
+		class: 'mdl-components__nav';
+		shadow: 4;
 		with: [ 
-			html mdlCell
-				class: 'rootComponent';
-				size: 12;
-				with: [ 
-					html div
-						class: 'container';
-						with: [ 
-							html div
-								class: 'centerInner';
-								with: [ self renderComponentOn: html ] ] ] ]
+			html
+				render: self defaultList;
+				leftPanelResizer ].
+	(html tag: 'main')
+		class: 'mdl-components__pages';
+		with: [ self renderComponentOn: html ]
 ]

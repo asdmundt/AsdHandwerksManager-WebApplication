@@ -192,7 +192,7 @@ ASDHMRoot >> initialize [
 ASDHMRoot >> renderContentOn: html [
 
 	html mdlLayout
-		fixedDrawer;
+		
 		fixedHeader;
 		with: [ 
 			html render: self header.
@@ -207,12 +207,8 @@ ASDHMRoot >> renderContentOn: html [
 								size: 12;
 								with: [ 
 									html div
-										class: 'container';
 										id: #main;
-										with: [ 
-											html div
-												class: 'center';
-												with: [ html render: self componentToDisplay ] ] ] ].
+										with: [ html render: self componentToDisplay ] ] ].
 					html render: self footer ] ].
 	self renderEmptyGenericDialogOn: html
 	"html div
@@ -236,12 +232,13 @@ ASDHMRoot >> tryConnectionWithLogin: login andPassword: password [
 	user
 		ifNotNil: [ :arg | 
 			arg logged: true.
+			
 			self session currentUser: arg.
 			self session userId: arg id.
 			"arg logged: true."
 			self session model addLoggedUser: arg.
 			self session firma: self session model eigeneFirma.
-			self goToOverviewView.
+			self goToOverviewView
 			"arg isAdmin
 				ifTrue: [ self goToAdminView ]
 				ifFalse: [ self goToOverviewView ]" ]

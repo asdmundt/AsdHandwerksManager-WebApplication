@@ -44,7 +44,7 @@ ASDHMObjectViewTableComponent >> renderAddDialog: html [
 ASDHMObjectViewTableComponent >> renderContentOn: html [
 
 	html div
-		class: 'container';
+		class: 'asdContainer';
 		shadow: 2;
 		with: [ 
 			html div
@@ -59,7 +59,7 @@ ASDHMObjectViewTableComponent >> renderContentOn: html [
 								openDialogWithId: self rootDialogOpenId;
 								onClickUpdateRootDialogWith: [ :r | self renderAddDialog: r ];
 								with: [ html mdlIcon: 'add' ].
-							
+
 							html mdlButton icon
 								id: #bottomRightButton;
 								with: [ html mdlIcon: #more_vert ].
@@ -77,8 +77,7 @@ ASDHMObjectViewTableComponent >> renderContentOn: html [
 									html mdlMenuItem: 'Yet Another Action' ] ] ].
 			html div
 				class: 'background';
-				style:
-					'width: 100%;height: 400px;overflow: scroll;/* max-height: none; */min-height: 330px;/* max-width: none; */min-width: 0px;';
+				style: 'width: 100%;min-width: 0px;overflow: scroll;height: 400px;';
 				with: [ self renderInnerContentOn: html ] ]
 ]
 

@@ -86,7 +86,7 @@ ASDHMSuperContactView >> renderBezOn: html [
 ASDHMSuperContactView >> renderCommunicationDataPanelOn: html [
 
 	html fieldSet
-		legend: 'Persönliche Daten';
+		legend: self labelFieldset;
 		with: [ 
 			html div: [ 
 					html span: [ 

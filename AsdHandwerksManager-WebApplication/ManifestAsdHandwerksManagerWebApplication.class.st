@@ -7,3 +7,8 @@ Class {
 	#superclass : #PackageManifest,
 	#category : #'AsdHandwerksManager-WebApplication-Manifest'
 }
+
+{ #category : #'code-critics' }
+ManifestAsdHandwerksManagerWebApplication class >> ruleCodeCruftLeftInMethodsRuleV1FalsePositive [
+	^ #(#(#(#RGMethodDefinition #(#ASDHMRoot #tryConnectionWithLogin:andPassword: #false)) #'2021-12-22T15:27:12.692767+01:00') )
+]

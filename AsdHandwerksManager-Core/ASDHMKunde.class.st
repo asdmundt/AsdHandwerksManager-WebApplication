@@ -1,5 +1,5 @@
 Class {
-	#name : #ASDHMContact,
+	#name : #ASDHMKunde,
 	#superclass : #ASDHMAbstractContact,
 	#instVars : [
 		'displayName'
@@ -8,7 +8,7 @@ Class {
 }
 
 { #category : #'instance creation' }
-ASDHMContact class >> displayName: aName telefonNummer: aNumber [
+ASDHMKunde class >> displayName: aName telefonNummer: aNumber [
 
 	^ self new
 		  displayName: aName;
@@ -16,7 +16,7 @@ ASDHMContact class >> displayName: aName telefonNummer: aNumber [
 ]
 
 { #category : #voyage }
-ASDHMContact class >> isVoyageRoot [
+ASDHMKunde class >> isVoyageRoot [
 	"Indicates that instances of this class are top level documents
     in noSQL databases"
 
@@ -24,32 +24,32 @@ ASDHMContact class >> isVoyageRoot [
 ]
 
 { #category : #accessing }
-ASDHMContact class >> titleText [
+ASDHMKunde class >> titleText [
 
 	^ 'Telefon Kontakt'
 ]
 
 { #category : #accessing }
-ASDHMContact class >> types [
+ASDHMKunde class >> types [
 
 	^ OrderedCollection newFrom:
 		  { 'TelefonKontakt'. 'projektLeiter'. 'user'. 'costumer' }
 ]
 
 { #category : #accessing }
-ASDHMContact >> displayName [
+ASDHMKunde >> displayName [
 
 	^ displayName
 ]
 
 { #category : #accessing }
-ASDHMContact >> displayName: anObject [
+ASDHMKunde >> displayName: anObject [
 
 	displayName := anObject
 ]
 
 { #category : #accessing }
-ASDHMContact >> displayString [
+ASDHMKunde >> displayString [
 
 	^ String streamContents: [ :s | 
 		  s
@@ -60,7 +60,7 @@ ASDHMContact >> displayString [
 ]
 
 { #category : #initialization }
-ASDHMContact >> initialize [
+ASDHMKunde >> initialize [
 	super initialize.
 	
 	self type: 'costumer'
@@ -68,19 +68,19 @@ ASDHMContact >> initialize [
 ]
 
 { #category : #accessing }
-ASDHMContact >> type [
+ASDHMKunde >> type [
 
 	^ type
 ]
 
 { #category : #accessing }
-ASDHMContact >> type: anObject [
+ASDHMKunde >> type: anObject [
 
 	type := anObject
 ]
 
 { #category : #accessing }
-ASDHMContact >> types [
+ASDHMKunde >> types [
 
 	^ types
 ]

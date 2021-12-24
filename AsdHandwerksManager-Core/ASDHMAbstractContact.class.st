@@ -22,6 +22,15 @@ ASDHMAbstractContact class >> isAbstract [
 	^ self = ASDHMAbstractContact
 ]
 
+{ #category : #voyage }
+ASDHMAbstractContact class >> isVoyageRoot [
+
+	"Indicates that instances of this class are top level documents
+    in noSQL databases"
+
+	^ true
+]
+
 { #category : #accessing }
 ASDHMAbstractContact class >> titleText [
 ^''
@@ -89,9 +98,8 @@ ASDHMAbstractContact >> email: anObject [
 { #category : #initialization }
 ASDHMAbstractContact >> initialize [
 
-	super initialize.
-	"self adressen: OrderedCollection new.
-	self bankVerbindungen: OrderedCollection new"
+	super initialize. self adressen: OrderedCollection new.
+	self bankVerbindungen: OrderedCollection new
 ]
 
 { #category : #accessing }

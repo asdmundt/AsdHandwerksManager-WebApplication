@@ -84,6 +84,6 @@ ASDHMLoginPage >> renderContentOn: html [
 						class: 'container';
 						with: [ 
 							html div
-								class: 'centerInner';
+								class: 'center';
 								with: [ self rendeModalLoginButtonOn: html ] ] ] ]
 ]

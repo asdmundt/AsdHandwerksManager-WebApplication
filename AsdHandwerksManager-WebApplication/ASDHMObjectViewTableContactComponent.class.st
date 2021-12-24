@@ -264,33 +264,45 @@ ASDHMObjectViewTableContactComponent >> renderInnerContentOn: html [
 
 	html mdlTable
 		shadow: 2;
+		style: 'height: 400px;';
 		selectable;
 		with: [ 
-			html tableHead: [ 
-					html tableRow: [ 
+			html tableHead: [ "html tableRow
+						style: 'background-color: #161b22; ';
+						with: [ 
 							html mdlTableHeading
 								nonNumerical;
+								style:
+									'background-color: #161b22; position: relativ; top: 10px;';
 								with: self labelDisplayString.
 
 							html mdlTableHeading
 								nonNumerical;
+								style:
+									'background-color: #161b22; position: relativ; top: 10px;';
 								with: self labelEmail.
 							html mdlTableHeading
 								nonNumerical;
-								with: self labelTelefonNr.
-							 ] ].
-			html tableBody: [ 
-				list do: [ :each | 
-					html tableRow: [ 
-						html mdlTableCell
-							nonNumerical;
-							with: each displayName.
+								style:
+									'background-color: #161b22; position: relativ; top: 10px;';
+								with: self labelTelefonNr ]"
+					 ].
+			html tableBody
+				"style: 'overflow: scroll;height: 400px;';"
+				with: [ 
+					list do: [ :each | 
+							html tableRow: [ 
+									html mdlTableCell
+										nonNumerical;
+										style: 'background-color: #0d1117;';
+										with: each displayName.
 
-						html mdlTableCell
-							nonNumerical;
-							with: each email.
-						html mdlTableCell
-							nonNumerical;
-							with: each telefonNummer.
-						 ] ] ] ]
+									html mdlTableCell
+										nonNumerical;
+										style: 'background-color: #0d1117;';
+										with: each email.
+									html mdlTableCell
+										nonNumerical;
+										style: 'background-color: #0d1117;';
+										with: each telefonNummer ] ] ] ]
 ]

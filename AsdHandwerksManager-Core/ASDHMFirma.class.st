@@ -40,6 +40,19 @@ ASDHMFirma >> amtsgerichtSitz: anObject [
 ]
 
 { #category : #accessing }
+ASDHMFirma >> displayString [
+
+	^ String streamContents: [ :s | 
+		  s
+			  nextPutAll: self firmenName;
+			  space;
+			  nextPutAll: self firmenForm;
+			  space;
+			 nextPutAll: self firmenSitz
+			 ]
+]
+
+{ #category : #accessing }
 ASDHMFirma >> firmenForm [
 
 	^ firmenForm

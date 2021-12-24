@@ -121,18 +121,16 @@ ASDHMHeader >> renderContentOn: html [
 
 { #category : #rendering }
 ASDHMHeader >> renderDrawerOn: html [
-self session isLogged
-		ifFalse: [ ^ self ].
-	html
-		mdlLayoutDrawer: [ 
-			html
-				mdlNavigation: [ 
-					self possiblePages
-						do: [ :aClass | 
-							html mdlNavigationLink
-								beCurrentIf: aClass = self rootComponent componentToDisplay class;
-								callback: [ self displayInstanceOf: aClass ];
-								with: aClass pageName ] ] ]
+
+	self session isLogged ifFalse: [ ^ self ].
+	html mdlLayoutDrawer: [ 
+		html mdlLayoutTitle: 'Title'.
+		html mdlNavigation: [ 
+			self possiblePages do: [ :aClass | 
+				html mdlNavigationLink
+					beCurrentIf: aClass = self rootComponent componentToDisplay class;
+					callback: [ self displayInstanceOf: aClass ];
+					with: aClass pageName ] ] ]
 ]
 
 { #category : #rendering }

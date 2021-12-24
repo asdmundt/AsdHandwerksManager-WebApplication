@@ -8,7 +8,8 @@ Class {
 		'id',
 		'dataModel',
 		'bez',
-		'userId'
+		'userId',
+		'displayString'
 	],
 	#category : #'AsdHandwerksManager-Core-Model'
 }
@@ -46,6 +47,18 @@ ASDHMModel >> dataModel [
 ASDHMModel >> dataModel: anObject [
 
 	dataModel := anObject
+]
+
+{ #category : #accessing }
+ASDHMModel >> displayString [
+
+	^  String streamContents: [ :s | 
+		  s
+			  nextPutAll: self bez;
+			  space;
+			  nextPutAll: self status;
+			  space
+ ]
 ]
 
 { #category : #accessing }
