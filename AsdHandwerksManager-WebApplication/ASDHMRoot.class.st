@@ -192,7 +192,6 @@ ASDHMRoot >> initialize [
 ASDHMRoot >> renderContentOn: html [
 
 	html mdlLayout
-		
 		fixedHeader;
 		with: [ 
 			html render: self header.
@@ -208,7 +207,9 @@ ASDHMRoot >> renderContentOn: html [
 								with: [ 
 									html div
 										id: #main;
-										with: [ html render: self componentToDisplay ] ] ].
+										with: [ html render: self componentToDisplay ].
+										html render: ASDHMComponentWithRightPanel new
+										 ] ].
 					html render: self footer ] ].
 	self renderEmptyGenericDialogOn: html
 	"html div

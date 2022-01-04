@@ -84,6 +84,22 @@ ASDHMAbstractContact >> bankVerbindungen: anObject [
 ]
 
 { #category : #accessing }
+ASDHMAbstractContact >> displayString [
+
+	^ String streamContents: [ :s | 
+		  s
+			  nextPutAll: self anrede;
+			  space;
+			  nextPutAll: self title;
+			  space;
+			  nextPutAll: self vorname;
+			  space;
+			  nextPutAll: self nachname;
+			 
+			  space ]
+]
+
+{ #category : #accessing }
 ASDHMAbstractContact >> email [
 
 	^ email

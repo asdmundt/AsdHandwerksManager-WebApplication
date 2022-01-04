@@ -8,6 +8,15 @@ Class {
 }
 
 { #category : #'instance creation' }
+ASDHMContact class >> displayName: aName email: aString telefonNummer: aNumber [
+
+	^ self new
+		  displayName: aName;
+		email: aString;
+		  telefonNummer: aNumber
+]
+
+{ #category : #'instance creation' }
 ASDHMContact class >> displayName: aName telefonNummer: aNumber [
 
 	^ self new

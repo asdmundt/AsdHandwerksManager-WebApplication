@@ -46,20 +46,56 @@ ASDHMContactPage >> initialize [
 
 { #category : #rendering }
 ASDHMContactPage >> renderComponentOn: html [
-html render: contactTable
+
+	html div
+	style: 'padding: 8px;';
+		id: #tableDiv;
+		with: [ html render: contactTable ]
 ]
 
 { #category : #rendering }
 ASDHMContactPage >> renderContentOn: html [
 
-	html leftPanel
-		class: 'mdl-components__nav';
-		shadow: 4;
+	html div
+		shadow: 0;
+		style: 'height: auto; display: flex; padding-top: ';
 		with: [ 
-			html
-				render: self defaultList;
-				leftPanelResizer ].
-	(html tag: 'main')
-		class: 'mdl-components__pages';
-		with: [ self renderComponentOn: html ]
+			html leftPanel
+				class: 'mdl-components__nav';
+				shadow: 0;
+				style: 'height: 100%; width: 300px;';
+				with: [ self renderSelectListOn: html ].
+			(html tag: 'main')
+				class: 'mdl-components__pages';
+				with: [ self renderComponentOn: html ] ]
+]
+
+{ #category : #accessing }
+ASDHMContactPage >> renderSelectListOn: html [
+
+	| selectList |
+	selectList := OrderedCollection new.
+	selectList add: (ASDHMObjectViewTableContactComponent withList:
+			 self session model contacts).
+
+	html mdlList: [ 
+		
+			html mdlListItem: [ 
+				html mdlListPrimaryContent: [
+					html mdlIcon
+								listItemAvatar;
+								with: #person. 
+					html mdlListItemTextBody: ASDHMContact titleText  ].
+				html mdlListSecondaryContent: [ 
+					html mdlListItemSecondaryAction with: [ 
+						html anchor
+							onClick:  (( html jQuery ajax )
+			script: [ :s | 
+				self contactTable:  (ASDHMObjectViewTableContactComponent withList:
+			 self session model contacts).
+				s << ( ( s jQuery id: 'tableDiv' ) load: [ html render: self contactTable ] ). 
+				
+			]	
+		);			
+							with: [[ html mdlIcon: #keyboard_arrow_right ]] ] ] ] ] 
 ]

@@ -1,25 +1,14 @@
 Class {
-	#name : #ASDHMObjectViewTableContactComponent,
+	#name : #ASDHMObjectViewTableKundeComponent,
 	#superclass : #ASDHMObjectViewTableComponent,
 	#instVars : [
-		'labelDisplayString',
-		'labelAnrede',
-		'labelTitle',
-		'labelVorname',
-		'labelNachname',
-		'labelEmail',
-		'labelTelefonNr',
-		'labelMobileFunkNr',
-		'labelAdresse',
-		'labelAddContact',
-		'labeBankverbindungen',
-		'labelBez'
+		'labelDisplayString'
 	],
 	#category : #'AsdHandwerksManager-WebApplication-Components'
 }
 
 { #category : #initialization }
-ASDHMObjectViewTableContactComponent >> initialize [
+ASDHMObjectViewTableKundeComponent >> initialize [
 
 	super initialize.
 	self labelDisplayString: 'Name'.
@@ -36,151 +25,19 @@ ASDHMObjectViewTableContactComponent >> initialize [
 ]
 
 { #category : #accessing }
-ASDHMObjectViewTableContactComponent >> labeBankverbindungen [
-
-	^ labeBankverbindungen
-]
-
-{ #category : #accessing }
-ASDHMObjectViewTableContactComponent >> labeBankverbindungen: anObject [
-
-	labeBankverbindungen := anObject
-]
-
-{ #category : #accessing }
-ASDHMObjectViewTableContactComponent >> labelAddContact [
-
-	^ labelAddContact
-]
-
-{ #category : #accessing }
-ASDHMObjectViewTableContactComponent >> labelAddContact: anObject [
-
-	labelAddContact := anObject
-]
-
-{ #category : #accessing }
-ASDHMObjectViewTableContactComponent >> labelAdresse [
-
-	^ labelAdresse
-]
-
-{ #category : #accessing }
-ASDHMObjectViewTableContactComponent >> labelAdresse: anObject [
-
-	labelAdresse := anObject
-]
-
-{ #category : #accessing }
-ASDHMObjectViewTableContactComponent >> labelAnrede [
-
-	^ labelAnrede
-]
-
-{ #category : #accessing }
-ASDHMObjectViewTableContactComponent >> labelAnrede: anObject [
-
-	labelAnrede := anObject
-]
-
-{ #category : #accessing }
-ASDHMObjectViewTableContactComponent >> labelBez [
-
-	^ labelBez
-]
-
-{ #category : #accessing }
-ASDHMObjectViewTableContactComponent >> labelBez: anObject [
-
-	labelBez := anObject
-]
-
-{ #category : #accessing }
-ASDHMObjectViewTableContactComponent >> labelDisplayString [
+ASDHMObjectViewTableKundeComponent >> labelDisplayString [
 
 	^ labelDisplayString
 ]
 
 { #category : #accessing }
-ASDHMObjectViewTableContactComponent >> labelDisplayString: anObject [
+ASDHMObjectViewTableKundeComponent >> labelDisplayString: anObject [
 
 	labelDisplayString := anObject
 ]
 
-{ #category : #accessing }
-ASDHMObjectViewTableContactComponent >> labelEmail [
-
-	^ labelEmail
-]
-
-{ #category : #accessing }
-ASDHMObjectViewTableContactComponent >> labelEmail: anObject [
-
-	labelEmail := anObject
-]
-
-{ #category : #accessing }
-ASDHMObjectViewTableContactComponent >> labelMobileFunkNr [
-
-	^ labelMobileFunkNr
-]
-
-{ #category : #accessing }
-ASDHMObjectViewTableContactComponent >> labelMobileFunkNr: anObject [
-
-	labelMobileFunkNr := anObject
-]
-
-{ #category : #accessing }
-ASDHMObjectViewTableContactComponent >> labelNachname [
-
-	^ labelNachname
-]
-
-{ #category : #accessing }
-ASDHMObjectViewTableContactComponent >> labelNachname: anObject [
-
-	labelNachname := anObject
-]
-
-{ #category : #accessing }
-ASDHMObjectViewTableContactComponent >> labelTelefonNr [
-
-	^ labelTelefonNr
-]
-
-{ #category : #accessing }
-ASDHMObjectViewTableContactComponent >> labelTelefonNr: anObject [
-
-	labelTelefonNr := anObject
-]
-
-{ #category : #accessing }
-ASDHMObjectViewTableContactComponent >> labelTitle [
-
-	^ labelTitle
-]
-
-{ #category : #accessing }
-ASDHMObjectViewTableContactComponent >> labelTitle: anObject [
-
-	labelTitle := anObject
-]
-
-{ #category : #accessing }
-ASDHMObjectViewTableContactComponent >> labelVorname [
-
-	^ labelVorname
-]
-
-{ #category : #accessing }
-ASDHMObjectViewTableContactComponent >> labelVorname: anObject [
-
-	labelVorname := anObject
-]
-
 { #category : #rendering }
-ASDHMObjectViewTableContactComponent >> renderAddDialog: html [
+ASDHMObjectViewTableKundeComponent >> renderAddDialog: html [
 
 	| newContact |
 	newContact := ASDHMContact new.
@@ -259,7 +116,7 @@ ASDHMObjectViewTableContactComponent >> renderAddDialog: html [
 ]
 
 { #category : #rendering }
-ASDHMObjectViewTableContactComponent >> renderDialog: html withModel: aModel [
+ASDHMObjectViewTableKundeComponent >> renderDialog: html withModel: aModel [
 
 	html form: [ 
 		html mdlDialogTitle: self labelAddContact.
@@ -333,7 +190,7 @@ ASDHMObjectViewTableContactComponent >> renderDialog: html withModel: aModel [
 ]
 
 { #category : #rendering }
-ASDHMObjectViewTableContactComponent >> renderDialogMenu: html [
+ASDHMObjectViewTableKundeComponent >> renderDialogMenu: html [
 | newContact |
 	newContact := ASDHMContact new.
 html mdlAnchorButton
@@ -345,15 +202,14 @@ html mdlAnchorButton
 ]
 
 { #category : #rendering }
-ASDHMObjectViewTableContactComponent >> renderInnerContentOn: html [
+ASDHMObjectViewTableKundeComponent >> renderInnerContentOn: html [
 
 	html mdlTable
-		shadow: 0;
+		shadow: 2;
 		style: 'height: 400px;';
-		
+		selectable;
 		with: [ 
-			html tableHead: [ 
-					html tableRow
+			html tableHead: [ html tableRow
 						style: 'background-color: #161b22; ';
 						with: [ 
 							html mdlTableHeading
@@ -371,21 +227,23 @@ ASDHMObjectViewTableContactComponent >> renderInnerContentOn: html [
 								nonNumerical;
 								style:
 									'background-color: #161b22; position: relativ; top: 10px;';
-								with: self labelTelefonNr ] ].
-			html tableBody with: [ "style: 'overflow: scroll;height: 400px;';"
-				list doWithIndex: [ :each :index | 
-					html tableRow: [ 
-						html mdlTableCell
-							nonNumerical;
-							style: 'background-color: #0d1117;';
-							with: each displayName.
+								with: self labelTelefonNr ]
+					 ].
+			html tableBody with: [ 
+					list doWithIndex: [ :each :index | 
+							html tableRow: [ 
+									html mdlTableCell
+										nonNumerical;
+										style: 'background-color: #0d1117;';
+										with: each displayName.
 
-						html mdlTableCell
-							nonNumerical;
-							style: 'background-color: #0d1117;';
-							with: each email.
-						html mdlTableCell
-							nonNumerical;
-							style: 'background-color: #0d1117;';
-							with: each telefonNummer ] ] ] ]
+									html mdlTableCell
+										nonNumerical;
+										style: 'background-color: #0d1117;';
+										with: each email.
+									html mdlTableCell
+										nonNumerical;
+										style: 'background-color: #0d1117;';
+										with: each telefonNummer ] ] ]
+			"style: 'overflow: scroll;height: 400px;';" ]
 ]

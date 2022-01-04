@@ -53,12 +53,7 @@ ASDHMObjectViewTableComponent >> renderContentOn: html [
 					html div
 						class: 'wrapper';
 						with: [ 
-							html mdlAnchorButton
-								icon;
-								id: html nextId;
-								openDialogWithId: self rootDialogOpenId;
-								onClickUpdateRootDialogWith: [ :r | self renderAddDialog: r ];
-								with: [ html mdlIcon: 'add' ].
+							self renderDialogMenu: html.
 
 							html mdlButton icon
 								id: #bottomRightButton;
@@ -77,8 +72,15 @@ ASDHMObjectViewTableComponent >> renderContentOn: html [
 									html mdlMenuItem: 'Yet Another Action' ] ] ].
 			html div
 				class: 'background';
-				style: 'width: 100%;min-width: 0px;overflow: scroll;height: 400px;';
+				style:
+					'width: 100%;min-width: 0px;overflow-y: scroll;height: 400px;';
 				with: [ self renderInnerContentOn: html ] ]
+]
+
+{ #category : #rendering }
+ASDHMObjectViewTableComponent >> renderDialogMenu: html [
+
+	self subclassResponsibility
 ]
 
 { #category : #rendering }

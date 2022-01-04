@@ -1,8 +1,14 @@
 Class {
 	#name : #ASDHMKunde,
-	#superclass : #ASDHMAbstractContact,
+	#superclass : #ASDHMModel,
 	#instVars : [
-		'displayName'
+		'displayName',
+		'gewerblich',
+		'firma',
+		'contact',
+		'auftraege',
+		'startDate',
+		'endDate'
 	],
 	#category : #'AsdHandwerksManager-Core-Model'
 }
@@ -36,6 +42,36 @@ ASDHMKunde class >> types [
 		  { 'TelefonKontakt'. 'projektLeiter'. 'user'. 'costumer' }
 ]
 
+{ #category : #actions }
+ASDHMKunde >> addAuftrag: anAuftrag [
+
+self auftraege add: anAuftrag
+]
+
+{ #category : #accessing }
+ASDHMKunde >> auftraege [
+
+	^ auftraege ifNil: [ auftraege := OrderedCollection new ]
+]
+
+{ #category : #accessing }
+ASDHMKunde >> auftraege: anObject [
+
+	auftraege := anObject
+]
+
+{ #category : #accessing }
+ASDHMKunde >> contact [
+
+	^ contact
+]
+
+{ #category : #accessing }
+ASDHMKunde >> contact: anObject [
+
+	contact := anObject
+]
+
 { #category : #accessing }
 ASDHMKunde >> displayName [
 
@@ -59,6 +95,42 @@ ASDHMKunde >> displayString [
 			  space ]
 ]
 
+{ #category : #accessing }
+ASDHMKunde >> endDate [
+
+	^ endDate
+]
+
+{ #category : #accessing }
+ASDHMKunde >> endDate: anObject [
+
+	endDate := anObject
+]
+
+{ #category : #accessing }
+ASDHMKunde >> firma [
+
+	^ firma
+]
+
+{ #category : #accessing }
+ASDHMKunde >> firma: anObject [
+
+	firma := anObject
+]
+
+{ #category : #accessing }
+ASDHMKunde >> gewerblich [
+
+	^ gewerblich
+]
+
+{ #category : #accessing }
+ASDHMKunde >> gewerblich: anObject [
+
+	gewerblich := anObject
+]
+
 { #category : #initialization }
 ASDHMKunde >> initialize [
 	super initialize.
@@ -68,19 +140,13 @@ ASDHMKunde >> initialize [
 ]
 
 { #category : #accessing }
-ASDHMKunde >> type [
+ASDHMKunde >> startDate [
 
-	^ type
+	^ startDate
 ]
 
 { #category : #accessing }
-ASDHMKunde >> type: anObject [
+ASDHMKunde >> startDate: anObject [
 
-	type := anObject
-]
-
-{ #category : #accessing }
-ASDHMKunde >> types [
-
-	^ types
+	startDate := anObject
 ]

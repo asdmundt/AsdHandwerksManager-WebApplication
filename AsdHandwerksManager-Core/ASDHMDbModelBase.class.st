@@ -95,7 +95,8 @@ ASDHMDbModelBase class >> importContacts [
 				         skipHeader;
 				         recordClass: ASDHMContact;
 				         addField: #displayName:;
-				         addField: #telefonNr:;
+				addField: #email:;
+				         addField: #telefonNummer:;
 				         upToEnd ]).
 	coll inspect.
 	^ coll
