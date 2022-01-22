@@ -9,8 +9,20 @@ Class {
 	#superclass : #ASDHMComponent,
 	#traits : 'TWithRootDialogComponent',
 	#classTraits : 'TWithRootDialogComponent classTrait',
+	#instVars : [
+		'tooltipLabelopenRightPanel',
+		'tooltipLabelCloseRightPanel'
+	],
 	#category : #'AsdHandwerksManager-WebApplication-Components'
 }
+
+{ #category : #initalize }
+ASDHMHeader >> initialize [
+
+	super initialize.
+	self tooltipLabelopenRightPanel: 'Rechtes Panel öffnen'.
+	self tooltipLabelCloseRightPanel: 'Rechtes Panel schliessen'.
+]
 
 { #category : #accessing }
 ASDHMHeader >> possiblePages [
@@ -63,9 +75,9 @@ ASDHMHeader >> renderAdminSwitchOn: html [
 
 { #category : #rendering }
 ASDHMHeader >> renderButtonMenu: html [
-	self session isLogged
-		ifFalse: [ ^ self ].
-"
+
+	self session isLogged ifFalse: [ ^ self ].
+	"
 html mdlAnchorButton
 						icon;
 						id: html nextId;
@@ -75,22 +87,22 @@ html mdlAnchorButton
 					html mdlTooltip
 						for: html lastId;
 						with: 'Add Playable'."
-					html mdlAnchorButton
-						icon;
-						id: html nextId;
-						callback: [ self session model import ];
-						with: [ html mdlIcon: 'cloud_download' ].
-					html mdlTooltip
-						for: html lastId;
-						with: 'Import'.
-					html mdlAnchorButton
-						icon;
-						id: html nextId;
-						callback: [ self session model export ];
-						with: [ html mdlIcon: 'cloud_upload' ].
-					html mdlTooltip
-						for: html lastId;
-						with: 'Export'.
+	html mdlAnchorButton
+		icon;
+		id: html nextId;
+		class: 'openNav';
+		with: [ html mdlIcon: 'open_in_new' ].
+	html mdlTooltip
+		for: html lastId;
+		with: self tooltipLabelopenRightPanel.
+	html mdlAnchorButton
+		icon;
+		id: html nextId;
+		class: 'closeNav';
+		with: [ html mdlIcon: 'close_fullscreen' ].
+	html mdlTooltip
+		for: html lastId;
+		with: self tooltipLabelCloseRightPanel
 ]
 
 { #category : #rendering }
@@ -102,20 +114,16 @@ ASDHMHeader >> renderButtonsOn: html [
 { #category : #rendering }
 ASDHMHeader >> renderContentOn: html [
 
-	html mdlLayoutHeader
-		
-		with: [ 
-			html mdlLayoutHeaderRow: [ 
-					html mdlNavigationLink
-						callback: [ "Just refresh" ];
-						with: [ 
-							html mdlLayoutTitle: [ html text: '    Hoxha HandwerksManager' ] ].
-					html mdlLayoutSpacer.
-					self renderButtonsOn: html
-					"html text: '	Version ' , self rootComponent class version." ].
-			html mdlLayoutHeaderRow: [ 
-				html mdlLayoutSpacer.
-				self renderNavMenu: html ] ].
+	html mdlLayoutHeader with: [ 
+		html mdlLayoutHeaderRow: [ 
+			html mdlNavigationLink
+				callback: [ "Just refresh" ];
+				with: [ 
+					html mdlLayoutTitle: [ html text: '    Hoxha HandwerksManager' ] ].
+			html mdlLayoutSpacer.
+			self renderButtonsOn: html
+			"html text: '	Version ' , self rootComponent class version." ].
+		 ].
 	self renderDrawerOn: html
 ]
 
@@ -144,7 +152,8 @@ ASDHMHeader >> renderNavMenu: html [
 
 { #category : #accessing }
 ASDHMHeader >> style [
-^'.modal {
+
+	^ '.modal {
   display: none; /* Hidden by default */
   position: fixed; /* Stay in place */
   z-index: 1; /* Sit on top */
@@ -154,7 +163,7 @@ ASDHMHeader >> style [
   width: 100%; /* Full width */
   height: 100%; /* Full height */
   overflow: auto; /* Enable scroll if needed */
-  background-color: rgb(0,0,0); /* Fallback color */
+  background-color: #161b22; /* Fallback color */
   background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
 }
 
@@ -181,4 +190,28 @@ ASDHMHeader >> style [
   text-decoration: none;
   cursor: pointer;
 }'
+]
+
+{ #category : #accessing }
+ASDHMHeader >> tooltipLabelCloseRightPanel [
+
+	^ tooltipLabelCloseRightPanel
+]
+
+{ #category : #accessing }
+ASDHMHeader >> tooltipLabelCloseRightPanel: anObject [
+
+	tooltipLabelCloseRightPanel := anObject
+]
+
+{ #category : #accessing }
+ASDHMHeader >> tooltipLabelopenRightPanel [
+
+	^ tooltipLabelopenRightPanel
+]
+
+{ #category : #accessing }
+ASDHMHeader >> tooltipLabelopenRightPanel: anObject [
+
+	tooltipLabelopenRightPanel := anObject
 ]

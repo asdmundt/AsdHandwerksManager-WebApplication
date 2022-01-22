@@ -1,8 +1,31 @@
 Class {
 	#name : #ASDHMComponentWithRightPanel,
 	#superclass : #MDLWidget,
+	#instVars : [
+		'component'
+	],
 	#category : #'AsdHandwerksManager-WebApplication-Components'
 }
+
+{ #category : #'instance creation' }
+ASDHMComponentWithRightPanel class >> withComponent: aComponent [
+
+^ self new component: aComponent
+
+	
+]
+
+{ #category : #'as yet unclassified' }
+ASDHMComponentWithRightPanel >> component [
+
+	^ component
+]
+
+{ #category : #'as yet unclassified' }
+ASDHMComponentWithRightPanel >> component: anObject [
+
+	component := anObject
+]
 
 { #category : #initialization }
 ASDHMComponentWithRightPanel >> initialize [
@@ -13,32 +36,47 @@ ASDHMComponentWithRightPanel >> initialize [
 
 { #category : #rendering }
 ASDHMComponentWithRightPanel >> renderContentOn: html [
-html div 
-id: self id;
-class: 'sidenav'; with: [];
- script: 'function openNav() {
-  document.getElementById("mySidenav").style.width = "250px";
-  document.getElementById("main").style.marginRight = "250px";
-}
 
-function closeNav() {
-  document.getElementById("mySidenav").style.width = "0";
-  document.getElementById("main").style.marginRight= "0";
-}'
-	
-	
+	html div
+		id: self id;
+		class: 'sidenav';
+		with: [ html text: 'test' ].
+	"html addLoadScript: ((html jQuery class: 'openNav')
+			 on: 'click'
+			 do: ((html jQuery id: 'mySidenav') cssAt: 'width' put: '250px')
+				 , ((html jQuery id: 'main') cssAt: 'marginRight' put: '250px')).
+	html addLoadScript: ((html jQuery class: 'closeNav')
+			 on: 'click'
+			 do: ((html jQuery id: 'mySidenav') cssAt: 'width' put: '0')
+				 , ((html jQuery id: 'main') cssAt: 'marginRight' put: '0')) "
 ]
 
 { #category : #hooks }
-ASDHMComponentWithRightPanel >> style [ 
-^'.sidenav {
-  height: 100%;
+ASDHMComponentWithRightPanel >> script [
+
+	^ '$(document).ready(function(){
+  $(".openNav").click(function(){
+    $("#mySidenav").css("width", "350px");
+    $("#main").css("margin-right", "350px");
+  });
+$(".closeNav").click(function(){
+    $("#mySidenav").css("width", "0px");
+    $("#main").css("margin-right", "0px");
+  });
+});'
+]
+
+{ #category : #hooks }
+ASDHMComponentWithRightPanel >> style [
+
+	^ '.sidenav {
+  height: 87%;
   width: 0;
   position: fixed;
   z-index: 1;
   top: 0;
   right: 0;
-  background-color: #111;
+  background-color: #161b22;
   overflow-x: hidden;
   transition: 0.5s;
   padding-top: 60px;

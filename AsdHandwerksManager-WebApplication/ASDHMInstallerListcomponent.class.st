@@ -19,7 +19,7 @@ ASDHMInstallerListcomponent class >> withList: aList [
 { #category : #accessing }
 ASDHMInstallerListcomponent >> components [
 
-	^ components
+	^ components ifNil: [ components := OrderedCollection new ]
 ]
 
 { #category : #accessing }
@@ -36,8 +36,10 @@ ASDHMInstallerListcomponent >> initialize [
 
 { #category : #rendering }
 ASDHMInstallerListcomponent >> renderContentOn: html [
-self renderHeadingOn: html.
-self renderListOn: html
+html div  with:[
+	self renderHeadingOn: html.
+	self renderListOn: html
+	]
 ]
 
 { #category : #rendering }
@@ -61,19 +63,14 @@ ASDHMInstallerListcomponent >> renderHeadingOn: html [
 
 { #category : #rendering }
 ASDHMInstallerListcomponent >> renderListOn: html [
-html mdlList
-		style: 'width: 300px';
-		with: [ self components
-				do: [ :name | 
-					html
-						mdlListItem: [ html
-								mdlListPrimaryContent: [ html mdlIcon
-										listItemAvatar;
-										with: #person.
-									html text: name ].
-							html mdlListItemSecondaryAction
-								url: '#';
-								with: [ html mdlIcon: #star ] ] ] ]
+
+	html mdlList
+		style: 'width: 100%';
+		id: #installerList;
+		with: [ 
+			components do: [ :component | 
+					html mdlListItem: [ 
+							html mdlListPrimaryContent: [ html render: component new ] ] ] ]
 ]
 
 { #category : #accessing }

@@ -1,18 +1,11 @@
 Class {
-	#name : #ASDHMContactViewComponent,
-	#superclass : #ASDHMSuperContactView,
-	#instVars : [
-		'labelAnrede',
-		'labelTitle',
-		'labelVorname',
-		'labelNachname',
-		'titlepanelPersonalData'
-	],
+	#name : #ASDHMKundeComponent,
+	#superclass : #ASDHMSuperContactComponent,
 	#category : #'AsdHandwerksManager-WebApplication-Components'
 }
 
 { #category : #initialization }
-ASDHMContactViewComponent >> initialize [
+ASDHMKundeComponent >> initialize [
 
 	super initialize.
 	self labelAnrede: 'Anrede'.
@@ -22,63 +15,15 @@ ASDHMContactViewComponent >> initialize [
 	self titlepanelPersonalData: 'Persönliche Daten'
 ]
 
-{ #category : #accessing }
-ASDHMContactViewComponent >> labelAnrede [
-
-	^ labelAnrede
-]
-
-{ #category : #accessing }
-ASDHMContactViewComponent >> labelAnrede: anObject [
-
-	labelAnrede := anObject
-]
-
-{ #category : #accessing }
-ASDHMContactViewComponent >> labelNachname [
-
-	^ labelNachname
-]
-
-{ #category : #accessing }
-ASDHMContactViewComponent >> labelNachname: anObject [
-
-	labelNachname := anObject
-]
-
-{ #category : #accessing }
-ASDHMContactViewComponent >> labelTitle [
-
-	^ labelTitle
-]
-
-{ #category : #accessing }
-ASDHMContactViewComponent >> labelTitle: anObject [
-
-	labelTitle := anObject
-]
-
-{ #category : #accessing }
-ASDHMContactViewComponent >> labelVorname [
-
-	^ labelVorname
-]
-
-{ #category : #accessing }
-ASDHMContactViewComponent >> labelVorname: anObject [
-
-	labelVorname := anObject
-]
-
 { #category : #rendering }
-ASDHMContactViewComponent >> renderInnerContentOn: html [
+ASDHMKundeComponent >> renderInnerContentOn: html [
 
 	self renderPersonalDataPanelOn: html.
 	self renderCommunicationDataPanelOn: html.
 ]
 
 { #category : #rendering }
-ASDHMContactViewComponent >> renderPersonalDataPanelOn: html [
+ASDHMKundeComponent >> renderPersonalDataPanelOn: html [
 
 	html fieldSet
 		legend: self titlepanelPersonalData;
@@ -125,16 +70,4 @@ ASDHMContactViewComponent >> renderPersonalDataPanelOn: html [
 											 self model titel: valueNachname ];
 										 callback: [ :r | r render: self model nachname ]);
 								with: self model nachname ] ] ]
-]
-
-{ #category : #accessing }
-ASDHMContactViewComponent >> titlepanelPersonalData [
-
-	^ titlepanelPersonalData
-]
-
-{ #category : #accessing }
-ASDHMContactViewComponent >> titlepanelPersonalData: anObject [
-
-	titlepanelPersonalData := anObject
 ]

@@ -165,8 +165,16 @@ ASDHMDbModelBase >> categorieCollection [
 ASDHMDbModelBase >> contacts [
 
 	| collection |
-	 collection := Repos selectAll: ASDHMContact.
-	^ collection yourself.
+	collection := Repos selectAll: ASDHMContact.
+	^ collection yourself
+]
+
+{ #category : #accessing }
+ASDHMDbModelBase >> costumers [
+
+	| collection |
+	collection := Repos selectAll: ASDHMKunde.
+	^ collection yourself
 ]
 
 { #category : #operations }
@@ -205,6 +213,14 @@ ASDHMDbModelBase >> oberCategories [
 		where: [ :each | each type = 'artikelOberKategorie' ]
 ]
 
+{ #category : #accessing }
+ASDHMDbModelBase >> phoneContacts [
+
+	| collection |
+	collection := Repos selectAll: ASDHMPhoneContact .
+	^ collection yourself
+]
+
 { #category : #operations }
 ASDHMDbModelBase >> storeObject: aObject [
 	Repos save: aObject
@@ -219,5 +235,7 @@ ASDHMDbModelBase >> userFromLogin: aLogin andPassword: aPassword [
 
 { #category : #accessing }
 ASDHMDbModelBase >> users [
-	^ Repos selectAll: ASDHMUser 
+| collection |
+	collection := Repos selectAll: ASDHMUser.
+	^ collection yourself
 ]

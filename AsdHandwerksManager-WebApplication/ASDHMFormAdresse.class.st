@@ -7,7 +7,7 @@ Class {
 		'plzLabel',
 		'ortLabel'
 	],
-	#category : #'AsdHandwerksManager-WebApplication-Components'
+	#category : #'AsdHandwerksManager-WebApplication-forms'
 }
 
 { #category : #accessing }
@@ -97,41 +97,43 @@ ASDHMFormAdresse >> renderFormContentOn: html [
 
 { #category : #rendering }
 ASDHMFormAdresse >> renderHsnrOn: html [
-	html mdlTextFieldContainer
-		floatingLabel;
-		with: [ html mdlTextFieldLabel
-				for: html nextId;
-				with: 'Haus Nr.'.
-			html mdlTextFieldInput
-				id: html lastId;
 
-				value: self model hsnr;
-				callback: [ :aString | self model hsnr: aString ] ]
+	html mdlTextFieldContainer with: [ 
+		html mdlTextFieldLabel
+			for: html nextId;
+			with: self hsnrLabel.
+		html mdlTextFieldInput
+			id: html lastId;
+			size: 4;
+			value: self model hsnr;
+			callback: [ :aString | self model hsnr: aString ] ]
 ]
 
 { #category : #rendering }
 ASDHMFormAdresse >> renderOrtOn: html [
-	html mdlTextFieldContainer
-		floatingLabel;
-		with: [ html mdlTextFieldLabel
-				for: html nextId;
-				with: self ortLabel.
-			html mdlTextFieldInput
-				id: html lastId;
-				value: self model ort;
-				callback: [ :aString | self model ort: aString ] ]
+
+	html mdlTextFieldContainer with: [ 
+		html mdlTextFieldLabel
+			for: html nextId;
+			with: self ortLabel.
+		html mdlTextFieldInput
+			id: html lastId;
+			
+			value: self model ort;
+			callback: [ :aString | self model ort: aString ] ]
 ]
 
 { #category : #rendering }
 ASDHMFormAdresse >> renderPlzOn: html [
+
 	html mdlTextFieldContainer
 		floatingLabel;
-		with: [ html mdlTextFieldLabel
+		with: [ 
+			html mdlTextFieldLabel
 				for: html nextId;
-				with: 'Postleitzahl'.
+				with: self plzLabel.
 			html mdlTextFieldInput
 				id: html lastId;
-
 				value: self model plz;
 				callback: [ :aString | self model plz: aString ] ]
 ]

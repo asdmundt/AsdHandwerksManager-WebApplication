@@ -1,5 +1,5 @@
 Class {
-	#name : #ASDHMContact,
+	#name : #ASDHMPhoneContact,
 	#superclass : #ASDHMAbstractContact,
 	#instVars : [
 		'displayName'
@@ -8,7 +8,7 @@ Class {
 }
 
 { #category : #'instance creation' }
-ASDHMContact class >> displayName: aName email: aString telefonNummer: aNumber [
+ASDHMPhoneContact class >> displayName: aName email: aString telefonNummer: aNumber [
 
 	^ self new
 		  displayName: aName;
@@ -17,7 +17,7 @@ ASDHMContact class >> displayName: aName email: aString telefonNummer: aNumber [
 ]
 
 { #category : #'instance creation' }
-ASDHMContact class >> displayName: aName telefonNummer: aNumber [
+ASDHMPhoneContact class >> displayName: aName telefonNummer: aNumber [
 
 	^ self new
 		  displayName: aName;
@@ -25,7 +25,7 @@ ASDHMContact class >> displayName: aName telefonNummer: aNumber [
 ]
 
 { #category : #voyage }
-ASDHMContact class >> isVoyageRoot [
+ASDHMPhoneContact class >> isVoyageRoot [
 	"Indicates that instances of this class are top level documents
     in noSQL databases"
 
@@ -33,32 +33,32 @@ ASDHMContact class >> isVoyageRoot [
 ]
 
 { #category : #accessing }
-ASDHMContact class >> titleText [
+ASDHMPhoneContact class >> titleText [
 
 	^ 'Telefon Kontakt'
 ]
 
 { #category : #accessing }
-ASDHMContact class >> types [
+ASDHMPhoneContact class >> types [
 
 	^ OrderedCollection newFrom:
 		  { 'TelefonKontakt'. 'projektLeiter'. 'user'. 'costumer' }
 ]
 
 { #category : #accessing }
-ASDHMContact >> displayName [
+ASDHMPhoneContact >> displayName [
 
 	^ displayName
 ]
 
 { #category : #accessing }
-ASDHMContact >> displayName: anObject [
+ASDHMPhoneContact >> displayName: anObject [
 
 	displayName := anObject
 ]
 
 { #category : #accessing }
-ASDHMContact >> displayString [
+ASDHMPhoneContact >> displayString [
 
 	^ String streamContents: [ :s | 
 		  s
@@ -69,27 +69,27 @@ ASDHMContact >> displayString [
 ]
 
 { #category : #initialization }
-ASDHMContact >> initialize [
-
+ASDHMPhoneContact >> initialize [
 	super initialize.
-
-	self type: 'contact'
+	
+	self type: 'costumer'
+	
 ]
 
 { #category : #accessing }
-ASDHMContact >> type [
+ASDHMPhoneContact >> type [
 
 	^ type
 ]
 
 { #category : #accessing }
-ASDHMContact >> type: anObject [
+ASDHMPhoneContact >> type: anObject [
 
 	type := anObject
 ]
 
 { #category : #accessing }
-ASDHMContact >> types [
+ASDHMPhoneContact >> types [
 
 	^ types
 ]

@@ -16,10 +16,11 @@ ASDHMBaustelle class >> isVoyageRoot [
 ]
 
 { #category : #'instance creation' }
-ASDHMBaustelle class >> kontoInhaber: aString [
+ASDHMBaustelle class >> kunde: aString [
+
 	^ self new
-		kontoInhaber: aString;
-		yourself
+		  kunde: aString;
+		  yourself
 ]
 
 { #category : #initialization }

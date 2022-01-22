@@ -2,9 +2,9 @@ Class {
 	#name : #ASDHMLoginPage,
 	#superclass : #ASDHMPage,
 	#instVars : [
-		'centerComponent',
 		'loginComponent',
-		'showLoginError'
+		'showLoginError',
+		'model'
 	],
 	#category : #'AsdHandwerksManager-WebApplication-Pages'
 }
@@ -20,23 +20,15 @@ ASDHMLoginPage class >> priority [
 ]
 
 { #category : #accessing }
-ASDHMLoginPage >> centerComponent [
-	^ centerComponent
-]
-
-{ #category : #accessing }
-ASDHMLoginPage >> centerComponent: anObject [
-	centerComponent := anObject
-]
-
-{ #category : #accessing }
 ASDHMLoginPage >> hasLoginError [
 	^ showLoginError ifNil: [ false ]
 ]
 
 { #category : #initialize }
 ASDHMLoginPage >> initialize [
-	 super initialize
+
+	super initialize.
+	self model: self session model.
 ]
 
 { #category : #accessing }
@@ -54,20 +46,36 @@ ASDHMLoginPage >> loginErrorOccured [
         showLoginError := true
 ]
 
+{ #category : #accessing }
+ASDHMLoginPage >> model [
+
+	^ model
+]
+
+{ #category : #accessing }
+ASDHMLoginPage >> model: anObject [
+
+	model := anObject
+]
+
 { #category : #rendering }
 ASDHMLoginPage >> rendeModalLoginButtonOn: html [
-	html
-		form: [ html
-				render:
-					(ASDLoginCardWidget new
-						callback:
-								[ :login :password | self rootComponent tryConnectionWithLogin: login andPassword: password ];
-						yourself) ].
-	self rootComponent 
- class development
-		ifTrue: [ html anchor
-				callback: [ self show: (WAInspector current on: self session) ];
-				with: 'Inspect Session' ]
+| users|
+users := self model users.
+users ifNil: [self rootComponent goToInstallView  ]  
+ifNotNil: [ 
+	html form: [ 
+		html render: (ASDLoginCardWidget new
+				 callback: [ :login :password | 
+					 self rootComponent
+						 tryConnectionWithLogin: login
+						 andPassword: password ];
+				 yourself) ].
+	self rootComponent class development ifTrue: [ 
+		html anchor
+			callback: [ self show: (WAInspector current on: self session) ];
+			with: 'Inspect Session' ] ]
+	
 ]
 
 { #category : #rendering }

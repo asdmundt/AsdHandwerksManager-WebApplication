@@ -10,16 +10,45 @@ Class {
 		'labelTitle',
 		'labelVorname',
 		'labelNachname',
-		'labelBez'
+		'labelBez',
+		'adressForm',
+		'bankForm',
+		'labeladress',
+		'labelBank'
 	],
-	#category : #'AsdHandwerksManager-WebApplication-Components'
+	#category : #'AsdHandwerksManager-WebApplication-forms'
 }
+
+{ #category : #accessing }
+ASDHMFormSuperContact >> adressForm [
+
+	^ adressForm
+]
+
+{ #category : #accessing }
+ASDHMFormSuperContact >> adressForm: anObject [
+
+	adressForm := anObject
+]
+
+{ #category : #accessing }
+ASDHMFormSuperContact >> bankForm [
+
+	^ bankForm
+]
+
+{ #category : #accessing }
+ASDHMFormSuperContact >> bankForm: anObject [
+
+	bankForm := anObject
+]
 
 { #category : #initalize }
 ASDHMFormSuperContact >> initialize [
 
 	super initialize.
-	self title: 'Kontakt'.
+	self labeladress: 'Adressen'.
+	self labelBank: 'Bankverbindungen'.
 	self labelAnrede: 'Anrede'.
 	self labelTitle: 'Title'.
 	self labelVorname: 'Vorname'.
@@ -39,6 +68,18 @@ ASDHMFormSuperContact >> labelAnrede [
 ASDHMFormSuperContact >> labelAnrede: anObject [
 
 	labelAnrede := anObject
+]
+
+{ #category : #accessing }
+ASDHMFormSuperContact >> labelBank [
+
+	^ labelBank
+]
+
+{ #category : #accessing }
+ASDHMFormSuperContact >> labelBank: anObject [
+
+	labelBank := anObject
 ]
 
 { #category : #accessing }
@@ -125,6 +166,18 @@ ASDHMFormSuperContact >> labelVorname: anObject [
 	labelVorname := anObject
 ]
 
+{ #category : #accessing }
+ASDHMFormSuperContact >> labeladress [
+
+	^ labeladress
+]
+
+{ #category : #accessing }
+ASDHMFormSuperContact >> labeladress: anObject [
+
+	labeladress := anObject
+]
+
 { #category : #rendering }
 ASDHMFormSuperContact >> renderAnredeOn: html [
 
@@ -136,6 +189,7 @@ ASDHMFormSuperContact >> renderAnredeOn: html [
 				with: self labelAnrede.
 			html mdlTextFieldInput
 				id: html lastId;
+				size: 4;
 				value: self model anrede;
 				callback: [ :aString | self model anrede: aString ] ]
 ]
@@ -180,16 +234,6 @@ ASDHMFormSuperContact >> renderEmailOn: html [
 		html mdlTextFieldInput
 			id: html lastId;
 			callback: [ :input | self model email: input ] ]
-]
-
-{ #category : #rendering }
-ASDHMFormSuperContact >> renderFieldsOn: html [
-	self renderBezOn: html.
-	self renderStrOn: html.
-	self renderHsnrOn: html.
-	self renderPlzOn: html.
-	self renderOrtOn: html.
-	
 ]
 
 { #category : #rendering }
@@ -248,6 +292,7 @@ ASDHMFormSuperContact >> renderTitleOn: html [
 				with: self labelTitle.
 			html mdlTextFieldInput
 				id: html lastId;
+				size: 4;
 				value: self model title;
 				callback: [ :aString | self model title: aString ] ]
 ]

@@ -1,5 +1,5 @@
 Class {
-	#name : #ASDHMObjectViewTableContactComponent,
+	#name : #ASDHMObjectViewTablePhoneContactComponent,
 	#superclass : #ASDHMObjectViewTableComponent,
 	#instVars : [
 		'labelAddContact'
@@ -8,10 +8,10 @@ Class {
 }
 
 { #category : #initialization }
-ASDHMObjectViewTableContactComponent >> initialize [
+ASDHMObjectViewTablePhoneContactComponent >> initialize [
 
 	super initialize.
-	self labelBez: 'Kontakte'.
+	self labelBez: 'TelefonKontakt'.
 	self labelDisplayString: 'Name'.
 	self labelAnrede: 'Anrede'.
 	self labelTitle: 'Title'.
@@ -20,23 +20,25 @@ ASDHMObjectViewTableContactComponent >> initialize [
 	self labelTelefonNr: 'Telefon Nr.'.
 	self labelMobileFunkNr: 'Mobil Funk Nr.'.
 	self labelEmail: 'Email'.
-	self labelAddContact: 'Neuer Kontakt'
+	self labelAddContact: 'Neuer Kontakt'.
+	self labeBankverbindungen: 'Bankverbindungen'.
+	self labelAdresse: 'Adressen'
 ]
 
 { #category : #accessing }
-ASDHMObjectViewTableContactComponent >> labelAddContact [
+ASDHMObjectViewTablePhoneContactComponent >> labelAddContact [
 
 	^ labelAddContact
 ]
 
 { #category : #accessing }
-ASDHMObjectViewTableContactComponent >> labelAddContact: anObject [
+ASDHMObjectViewTablePhoneContactComponent >> labelAddContact: anObject [
 
 	labelAddContact := anObject
 ]
 
 { #category : #rendering }
-ASDHMObjectViewTableContactComponent >> renderAddDialog: html [
+ASDHMObjectViewTablePhoneContactComponent >> renderAddDialog: html [
 
 	| newContact |
 	newContact := ASDHMContact new.
@@ -115,7 +117,7 @@ ASDHMObjectViewTableContactComponent >> renderAddDialog: html [
 ]
 
 { #category : #rendering }
-ASDHMObjectViewTableContactComponent >> renderDialog: html withModel: aModel [
+ASDHMObjectViewTablePhoneContactComponent >> renderDialog: html withModel: aModel [
 
 	| contactTable |
 	html form: [ 
@@ -203,7 +205,7 @@ ASDHMObjectViewTableContactComponent >> renderDialog: html withModel: aModel [
 ]
 
 { #category : #rendering }
-ASDHMObjectViewTableContactComponent >> renderDialogMenu: html [
+ASDHMObjectViewTablePhoneContactComponent >> renderDialogMenu: html [
 | newContact |
 	newContact := ASDHMContact new.
 html mdlAnchorButton
@@ -215,11 +217,12 @@ html mdlAnchorButton
 ]
 
 { #category : #rendering }
-ASDHMObjectViewTableContactComponent >> renderInnerContentOn: html [
+ASDHMObjectViewTablePhoneContactComponent >> renderInnerContentOn: html [
 
 	html mdlTable
 		shadow: 0;
 		style: 'height: 400px;';
+		
 		with: [ 
 			html tableHead: [ 
 					html tableRow
@@ -228,50 +231,19 @@ ASDHMObjectViewTableContactComponent >> renderInnerContentOn: html [
 							html mdlTableHeading
 								nonNumerical;
 								style:
-									'background-color: #161b22; position: relativ; top: 0px;';
-								with: self labelAnrede.
+									'background-color: #161b22; position: relativ; top: 10px;';
+								with: self labelDisplayString.
 
 							html mdlTableHeading
 								nonNumerical;
 								style:
-									'background-color: #161b22; position: relativ; top: 0px;';
-								with: self labelTitle.
-							html mdlTableHeading
-								nonNumerical;
-								style:
-									'background-color: #161b22; position: relativ; top: 0px;';
-								with: self labelVorname.
-							html mdlTableHeading
-								nonNumerical;
-								style:
-									'background-color: #161b22; position: relativ; top: 0px;';
-								with: self labelNachname.
-							html mdlTableHeading
-								nonNumerical;
-								style:
-									'background-color: #161b22; position: relativ; top: 0px;';
-								with: self labelTelefonNr.
-							html mdlTableHeading
-								nonNumerical;
-								style:
-									'background-color: #161b22; position: relativ; top: 0px;';
-								with: self labelMobileFunkNr.
-							html mdlTableHeading
-								nonNumerical;
-								style:
-									'background-color: #161b22; position: relativ; top: 0px;';
+									'background-color: #161b22; position: relativ; top: 10px;';
 								with: self labelEmail.
 							html mdlTableHeading
 								nonNumerical;
 								style:
-									'background-color: #161b22; position: relativ; top: 0px;';
-								with: self labelAdresse.
-							html mdlTableHeading
-								nonNumerical;
-								style:
-									'background-color: #161b22; position: relativ; top: 0px;';
-								with: self labeBankverbindungen.
-							self renderTableHeadingActions: html ] ].
+									'background-color: #161b22; position: relativ; top: 10px;';
+								with: self labelTelefonNr ] ].
 			html tableBody with: [ "style: 'overflow: scroll;height: 400px;';"
 				list doWithIndex: [ :each :index | 
 					html tableRow: [ 

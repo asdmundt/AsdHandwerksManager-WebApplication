@@ -13,7 +13,7 @@ Class {
 		'submitLabel',
 		'isDialog'
 	],
-	#category : #'AsdHandwerksManager-WebApplication-Components'
+	#category : #'AsdHandwerksManager-WebApplication-forms'
 }
 
 { #category : #rendering }

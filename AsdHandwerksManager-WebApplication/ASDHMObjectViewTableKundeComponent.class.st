@@ -1,9 +1,6 @@
 Class {
 	#name : #ASDHMObjectViewTableKundeComponent,
 	#superclass : #ASDHMObjectViewTableComponent,
-	#instVars : [
-		'labelDisplayString'
-	],
 	#category : #'AsdHandwerksManager-WebApplication-Components'
 }
 
@@ -11,6 +8,7 @@ Class {
 ASDHMObjectViewTableKundeComponent >> initialize [
 
 	super initialize.
+	self labelBez: 'Kunde'.
 	self labelDisplayString: 'Name'.
 	self labelAnrede: 'Anrede'.
 	self labelTitle: 'Title'.
@@ -19,21 +17,9 @@ ASDHMObjectViewTableKundeComponent >> initialize [
 	self labelTelefonNr: 'Telefon Nr.'.
 	self labelMobileFunkNr: 'Mobil Funk Nr.'.
 	self labelEmail: 'Email'.
-	self labelAddContact: 'Neuer Kontakt'.
+
 	self labeBankverbindungen: 'Bankverbindungen'.
 	self labelAdresse: 'Adressen'
-]
-
-{ #category : #accessing }
-ASDHMObjectViewTableKundeComponent >> labelDisplayString [
-
-	^ labelDisplayString
-]
-
-{ #category : #accessing }
-ASDHMObjectViewTableKundeComponent >> labelDisplayString: anObject [
-
-	labelDisplayString := anObject
 ]
 
 { #category : #rendering }
@@ -205,11 +191,11 @@ html mdlAnchorButton
 ASDHMObjectViewTableKundeComponent >> renderInnerContentOn: html [
 
 	html mdlTable
-		shadow: 2;
+		shadow: 0;
 		style: 'height: 400px;';
-		selectable;
-		with: [ 
-			html tableHead: [ html tableRow
+				with: [ 
+			html tableHead: [ 
+					html tableRow
 						style: 'background-color: #161b22; ';
 						with: [ 
 							html mdlTableHeading
@@ -227,23 +213,21 @@ ASDHMObjectViewTableKundeComponent >> renderInnerContentOn: html [
 								nonNumerical;
 								style:
 									'background-color: #161b22; position: relativ; top: 10px;';
-								with: self labelTelefonNr ]
-					 ].
-			html tableBody with: [ 
-					list doWithIndex: [ :each :index | 
-							html tableRow: [ 
-									html mdlTableCell
-										nonNumerical;
-										style: 'background-color: #0d1117;';
-										with: each displayName.
+								with: self labelTelefonNr ] ].
+			html tableBody with: [ "style: 'overflow: scroll;height: 400px;';"
+				list doWithIndex: [ :each :index | 
+					html tableRow: [ 
+						html mdlTableCell
+							nonNumerical;
+							style: 'background-color: #0d1117;';
+							with: each displayName.
 
-									html mdlTableCell
-										nonNumerical;
-										style: 'background-color: #0d1117;';
-										with: each email.
-									html mdlTableCell
-										nonNumerical;
-										style: 'background-color: #0d1117;';
-										with: each telefonNummer ] ] ]
-			"style: 'overflow: scroll;height: 400px;';" ]
+						html mdlTableCell
+							nonNumerical;
+							style: 'background-color: #0d1117;';
+							with: each email.
+						html mdlTableCell
+							nonNumerical;
+							style: 'background-color: #0d1117;';
+							with: each telefonNummer ] ] ] ]
 ]

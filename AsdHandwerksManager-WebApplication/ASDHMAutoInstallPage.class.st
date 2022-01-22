@@ -24,18 +24,18 @@ ASDHMAutoInstallPage >> children [
 
 { #category : #initialization }
 ASDHMAutoInstallPage >> initialize [
-|list|
-super initialize.
-list := OrderedCollection new.
- list
-  add: ASDHMInstallConfigView;
-	add: ASDHMInstallDataView;
-	add: ASDHMInstallVorlagenView;
-  add: ASDHMInstallServicesView.
+
+	| list |
+	super initialize.
+	list := OrderedCollection new.
+	list add: ASDHMInstallConfigView;
 	
+	add: ASDHMInstallDataView.
+	"add: ASDHMInstallVorlagenView;
+		add: ASDHMInstallServicesView."
+
 	self session rootComponent header: ASDHMAdminHeader new.
 	self installer: (ASDHMInstallerListcomponent withList: list)
-	
 ]
 
 { #category : #accessing }
@@ -52,18 +52,8 @@ ASDHMAutoInstallPage >> installer: anObject [
 
 { #category : #rendering }
 ASDHMAutoInstallPage >> renderContentOn: html [
- html mdlGrid
-						noSpacing;
-						with: [ html mdlCell
-								class: 'rootComponent';
-								size: 12;
-								with: [ html div 
-									class:'container';
-									with:[ html div 
-									class:'center';
-									with:[  self renderInstallComponentOn: html] ]] ].
-				
-	
+
+	 self renderInstallComponentOn: html 
 ]
 
 { #category : #rendering }

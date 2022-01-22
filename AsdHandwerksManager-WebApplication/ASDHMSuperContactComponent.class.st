@@ -1,5 +1,5 @@
 Class {
-	#name : #ASDHMSuperContactView,
+	#name : #ASDHMSuperContactComponent,
 	#superclass : #ASDHMObjectViewComponent,
 	#instVars : [
 		'labelTelefonNr',
@@ -11,7 +11,7 @@ Class {
 }
 
 { #category : #initalize }
-ASDHMSuperContactView >> initialize [
+ASDHMSuperContactComponent >> initialize [
 
 	super initialize.
 	self labelTelefonNr: 'Telefon Nr.'.
@@ -21,55 +21,55 @@ ASDHMSuperContactView >> initialize [
 ]
 
 { #category : #accessing }
-ASDHMSuperContactView >> labelEmail [
+ASDHMSuperContactComponent >> labelEmail [
 
 	^ labelEmail
 ]
 
 { #category : #accessing }
-ASDHMSuperContactView >> labelEmail: anObject [
+ASDHMSuperContactComponent >> labelEmail: anObject [
 
 	labelEmail := anObject
 ]
 
 { #category : #accessing }
-ASDHMSuperContactView >> labelFieldset [
+ASDHMSuperContactComponent >> labelFieldset [
 
 	^ labelFieldset
 ]
 
 { #category : #accessing }
-ASDHMSuperContactView >> labelFieldset: anObject [
+ASDHMSuperContactComponent >> labelFieldset: anObject [
 
 	labelFieldset := anObject
 ]
 
 { #category : #accessing }
-ASDHMSuperContactView >> labelMobilfunkNr [
+ASDHMSuperContactComponent >> labelMobilfunkNr [
 
 	^ labelMobilfunkNr
 ]
 
 { #category : #accessing }
-ASDHMSuperContactView >> labelMobilfunkNr: anObject [
+ASDHMSuperContactComponent >> labelMobilfunkNr: anObject [
 
 	labelMobilfunkNr := anObject
 ]
 
 { #category : #accessing }
-ASDHMSuperContactView >> labelTelefonNr [
+ASDHMSuperContactComponent >> labelTelefonNr [
 
 	^ labelTelefonNr
 ]
 
 { #category : #accessing }
-ASDHMSuperContactView >> labelTelefonNr: anObject [
+ASDHMSuperContactComponent >> labelTelefonNr: anObject [
 
 	labelTelefonNr := anObject
 ]
 
 { #category : #rendering }
-ASDHMSuperContactView >> renderBezOn: html [
+ASDHMSuperContactComponent >> renderBezOn: html [
 	html mdlTextFieldContainer
 		floatingLabel;
 		with: [ html mdlTextFieldLabel
@@ -83,7 +83,7 @@ ASDHMSuperContactView >> renderBezOn: html [
 ]
 
 { #category : #rendering }
-ASDHMSuperContactView >> renderCommunicationDataPanelOn: html [
+ASDHMSuperContactComponent >> renderCommunicationDataPanelOn: html [
 
 	html fieldSet
 		legend: self labelFieldset;
@@ -133,7 +133,7 @@ ASDHMSuperContactView >> renderCommunicationDataPanelOn: html [
 ]
 
 { #category : #rendering }
-ASDHMSuperContactView >> renderFieldsOn: html [
+ASDHMSuperContactComponent >> renderFieldsOn: html [
 	self renderBezOn: html.
 	self renderStrOn: html.
 	self renderHsnrOn: html.
@@ -143,62 +143,7 @@ ASDHMSuperContactView >> renderFieldsOn: html [
 ]
 
 { #category : #rendering }
-ASDHMSuperContactView >> renderFormContentOn: html [
+ASDHMSuperContactComponent >> renderFormContentOn: html [
 	self renderFieldsOn: html.
 
-]
-
-{ #category : #rendering }
-ASDHMSuperContactView >> renderHsnrOn: html [
-	html mdlTextFieldContainer
-		floatingLabel;
-		with: [ html mdlTextFieldLabel
-				for: html nextId;
-				with: 'Haus Nr.'.
-			html mdlTextFieldInput
-				id: html lastId;
-
-				value: self model hsnr;
-				callback: [ :aString | self model hsnr: aString ] ]
-]
-
-{ #category : #rendering }
-ASDHMSuperContactView >> renderOrtOn: html [
-	html mdlTextFieldContainer
-		floatingLabel;
-		with: [ html mdlTextFieldLabel
-				for: html nextId;
-				with: self ortLabel.
-			html mdlTextFieldInput
-				id: html lastId;
-				value: self model ort;
-				callback: [ :aString | self model ort: aString ] ]
-]
-
-{ #category : #rendering }
-ASDHMSuperContactView >> renderPlzOn: html [
-	html mdlTextFieldContainer
-		floatingLabel;
-		with: [ html mdlTextFieldLabel
-				for: html nextId;
-				with: 'Postleitzahl'.
-			html mdlTextFieldInput
-				id: html lastId;
-
-				value: self model plz;
-				callback: [ :aString | self model plz: aString ] ]
-]
-
-{ #category : #rendering }
-ASDHMSuperContactView >> renderStrOn: html [
-	html mdlTextFieldContainer
-		floatingLabel;
-		with: [ html mdlTextFieldLabel
-				for: html nextId;
-				with: 'Strasse'.
-			html mdlTextFieldInput
-				id: html lastId;
-
-				value: self model str;
-				callback: [ :aString | self model str: aString ] ]
 ]

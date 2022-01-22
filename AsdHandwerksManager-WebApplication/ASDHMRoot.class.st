@@ -25,7 +25,8 @@ Class {
 		'header',
 		'componentToDisplay',
 		'componentInstances',
-		'footer'
+		'footer',
+		'rightPanel'
 	],
 	#category : #'AsdHandwerksManager-WebApplication-Core'
 }
@@ -80,12 +81,18 @@ ASDHMRoot class >> open [
 
 { #category : #version }
 ASDHMRoot class >> version [
-	^ '0.0.12'
+
+	^ 'v0.1.0-pre-Alpha.2'
 ]
 
 { #category : #hooks }
 ASDHMRoot >> children [
-	^ { self header. self componentToDisplay. self footer }
+
+	^ { 
+		  self header.
+		  self componentToDisplay.
+			self rightPanel.
+		  self footer }
 ]
 
 { #category : #accessing }
@@ -138,6 +145,12 @@ ASDHMRoot >> footer: aComponent [
 ]
 
 { #category : #action }
+ASDHMRoot >> goToInstallView [
+
+	self displayInstanceOf: ASDHMAutoInstallPage
+]
+
+{ #category : #action }
 ASDHMRoot >> goToLoginView [
 	self displayInstanceOf: ASDHMLoginPage 
 ]
@@ -180,8 +193,10 @@ ASDHMRoot >> initialRequest: aRequest [
 
 { #category : #initialization }
 ASDHMRoot >> initialize [
+
 	super initialize.
 	self header: self defaultHeader.
+	self rightPanel: ASDHMComponentWithRightPanel new.
 	self footer: self defaultFooter.
 	self session rootComponent: self.
 	self componentInstances: Dictionary new.
@@ -208,20 +223,27 @@ ASDHMRoot >> renderContentOn: html [
 									html div
 										id: #main;
 										with: [ html render: self componentToDisplay ].
-										html render: ASDHMComponentWithRightPanel new
-										 ] ].
+									html render: self rightPanel ] ].
 					html render: self footer ] ].
-	self renderEmptyGenericDialogOn: html
-	"html div
-		id: #loaderWrapper;
-		with: [ 
-			html div
-				class: 'container';
-				with: [ 
-					html div
-						class: 'center';
-						id: #loader;
-						with: [ '' ] ] ]"
+	self renderEmptyGenericDialogOn: html.
+	html div
+		id: #mainDialog;
+		class: 'modal';
+		with: [ html div
+			id: #modalContent;
+			 class: 'modal-content' ]
+]
+
+{ #category : #accessing }
+ASDHMRoot >> rightPanel [
+
+	^ rightPanel
+]
+
+{ #category : #accessing }
+ASDHMRoot >> rightPanel: anObject [
+
+	rightPanel := anObject
 ]
 
 { #category : #action }

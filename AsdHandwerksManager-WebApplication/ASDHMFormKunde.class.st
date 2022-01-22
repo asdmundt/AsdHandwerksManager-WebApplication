@@ -1,128 +1,100 @@
 Class {
-	#name : #ASDHMFormFirma,
+	#name : #ASDHMFormKunde,
 	#superclass : #ASDForm,
 	#instVars : [
-		'nameLabel',
-		'firmenFormLabel',
-		'firmenSitzLabel',
-		'amtsgerichtSitzLabel',
-		'hreLabel',
-		'steuerNrLabel',
-		'umsatzSteuerLabel',
-		'geschaeftsFuehrerLabel',
-		'title',
-		'adressForm',
-		'bankForm'
+		'labelGewerblichInput',
+		'formContact',
+		'formFirma',
+		'labelBez',
+		'dictGewerblich',
+		'dictPrivat',
+		'title'
 	],
 	#category : #'AsdHandwerksManager-WebApplication-forms'
 }
 
 { #category : #accessing }
-ASDHMFormFirma >> adressForm [
+ASDHMFormKunde >> dictGewerblich [
 
-	^ adressForm
+	^ dictGewerblich
 ]
 
 { #category : #accessing }
-ASDHMFormFirma >> adressForm: anObject [
+ASDHMFormKunde >> dictGewerblich: anObject [
 
-	adressForm := anObject
+	dictGewerblich := anObject
 ]
 
 { #category : #accessing }
-ASDHMFormFirma >> amtsgerichtSitzLabel [
+ASDHMFormKunde >> dictPrivat [
 
-	^ amtsgerichtSitzLabel
+	^ dictPrivat
 ]
 
 { #category : #accessing }
-ASDHMFormFirma >> amtsgerichtSitzLabel: anObject [
+ASDHMFormKunde >> dictPrivat: anObject [
 
-	amtsgerichtSitzLabel := anObject
+	dictPrivat := anObject
 ]
 
 { #category : #accessing }
-ASDHMFormFirma >> bankForm [
+ASDHMFormKunde >> formContact [
 
-	^ bankForm
+	^ formContact
 ]
 
 { #category : #accessing }
-ASDHMFormFirma >> bankForm: anObject [
+ASDHMFormKunde >> formContact: anObject [
 
-	bankForm := anObject
+	formContact := anObject
 ]
 
 { #category : #accessing }
-ASDHMFormFirma >> firmenFormLabel [
+ASDHMFormKunde >> formFirma [
 
-	^ firmenFormLabel
+	^ formFirma
 ]
 
 { #category : #accessing }
-ASDHMFormFirma >> firmenFormLabel: anObject [
+ASDHMFormKunde >> formFirma: anObject [
 
-	firmenFormLabel := anObject
-]
-
-{ #category : #accessing }
-ASDHMFormFirma >> firmenSitzLabel [
-
-	^ firmenSitzLabel
-]
-
-{ #category : #accessing }
-ASDHMFormFirma >> firmenSitzLabel: anObject [
-
-	firmenSitzLabel := anObject
-]
-
-{ #category : #accessing }
-ASDHMFormFirma >> geschaeftsFuehrerLabel [
-
-	^ geschaeftsFuehrerLabel
-]
-
-{ #category : #accessing }
-ASDHMFormFirma >> geschaeftsFuehrerLabel: anObject [
-
-	geschaeftsFuehrerLabel := anObject
-]
-
-{ #category : #accessing }
-ASDHMFormFirma >> hreLabel [
-
-	^ hreLabel
-]
-
-{ #category : #accessing }
-ASDHMFormFirma >> hreLabel: anObject [
-
-	hreLabel := anObject
+	formFirma := anObject
 ]
 
 { #category : #initalize }
-ASDHMFormFirma >> initialize [
+ASDHMFormKunde >> initialize [
 
 	super initialize.
-	self id: #firmaForm.
-	self title: 'Firma ' , self labelAction
+	self id: #kundeForm.
+	self title: 'Kunde ' , self labelAction
 ]
 
 { #category : #accessing }
-ASDHMFormFirma >> nameLabel [
+ASDHMFormKunde >> labelBez [
 
-	^ nameLabel
+	^ labelBez
 ]
 
 { #category : #accessing }
-ASDHMFormFirma >> nameLabel: anObject [
+ASDHMFormKunde >> labelBez: anObject [
 
-	nameLabel := anObject
+	labelBez := anObject
+]
+
+{ #category : #accessing }
+ASDHMFormKunde >> labelGewerblichInput [
+
+	^ labelGewerblichInput
+]
+
+{ #category : #accessing }
+ASDHMFormKunde >> labelGewerblichInput: anObject [
+
+	labelGewerblichInput := anObject
 ]
 
 { #category : #rendering }
-ASDHMFormFirma >> renderBezOn: html [
+ASDHMFormKunde >> renderBezOn: html [
 	html mdlTextFieldContainer
 		floatingLabel;
 		with: [ html mdlTextFieldLabel
@@ -136,7 +108,7 @@ ASDHMFormFirma >> renderBezOn: html [
 ]
 
 { #category : #rendering }
-ASDHMFormFirma >> renderContentOn: html [
+ASDHMFormKunde >> renderContentOn: html [
 self withCard ifTrue:  [  
 	html mdlCard
 		shadow: 0;
@@ -151,7 +123,7 @@ self withCard ifTrue:  [
 ]
 
 { #category : #rendering }
-ASDHMFormFirma >> renderFieldsOn: html [
+ASDHMFormKunde >> renderFieldsOn: html [
 	self renderBezOn: html.
 	self renderStrOn: html.
 	self renderHsnrOn: html.
@@ -161,13 +133,38 @@ ASDHMFormFirma >> renderFieldsOn: html [
 ]
 
 { #category : #rendering }
-ASDHMFormFirma >> renderFormContentOn: html [
+ASDHMFormKunde >> renderFormContentOn: html [
 	self renderFieldsOn: html.
 
 ]
 
 { #category : #rendering }
-ASDHMFormFirma >> renderHsnrOn: html [
+ASDHMFormKunde >> renderGewerblichOn: html [
+
+	| selected |
+	html div
+		id: 'selectWithAjaxId';
+		with: 'Selected object: 3'.
+	html form: [ 
+		html render: ((MDLSelectWidget
+				  possibilities: #( 1 2 3 4 5 )
+				  inputLabel: 'Select Your Number'
+				  labelBlock: #asString
+				beAutoSubmit
+				  callback: [ :input | selected := input ]
+				  selectedObject: 3
+				  tooltip: 'description'
+				  sortBlock: [ :a :b | a <= b ])
+				 entryTooltip: [ :number | 'Choose number: ' , number asString ];
+				 customizationBlock: [ :textField :renderer | 
+					 textField onChange: (html jQuery ajax serializeThis onComplete:
+									  ((html jQuery id: 'selectWithAjaxId') load html: [ :canvas | 
+											   canvas text: 'Selected object: ' , selected asString ])) ];
+				 yourself) ]
+]
+
+{ #category : #rendering }
+ASDHMFormKunde >> renderHsnrOn: html [
 	html mdlTextFieldContainer
 		floatingLabel;
 		with: [ html mdlTextFieldLabel
@@ -181,7 +178,7 @@ ASDHMFormFirma >> renderHsnrOn: html [
 ]
 
 { #category : #rendering }
-ASDHMFormFirma >> renderOrtOn: html [
+ASDHMFormKunde >> renderOrtOn: html [
 	html mdlTextFieldContainer
 		floatingLabel;
 		with: [ html mdlTextFieldLabel
@@ -194,7 +191,7 @@ ASDHMFormFirma >> renderOrtOn: html [
 ]
 
 { #category : #rendering }
-ASDHMFormFirma >> renderPlzOn: html [
+ASDHMFormKunde >> renderPlzOn: html [
 	html mdlTextFieldContainer
 		floatingLabel;
 		with: [ html mdlTextFieldLabel
@@ -208,7 +205,7 @@ ASDHMFormFirma >> renderPlzOn: html [
 ]
 
 { #category : #rendering }
-ASDHMFormFirma >> renderStrOn: html [
+ASDHMFormKunde >> renderStrOn: html [
 	html mdlTextFieldContainer
 		floatingLabel;
 		with: [ html mdlTextFieldLabel
@@ -222,37 +219,13 @@ ASDHMFormFirma >> renderStrOn: html [
 ]
 
 { #category : #accessing }
-ASDHMFormFirma >> steuerNrLabel [
-
-	^ steuerNrLabel
-]
-
-{ #category : #accessing }
-ASDHMFormFirma >> steuerNrLabel: anObject [
-
-	steuerNrLabel := anObject
-]
-
-{ #category : #accessing }
-ASDHMFormFirma >> title [
+ASDHMFormKunde >> title [
 
 	^ title
 ]
 
 { #category : #accessing }
-ASDHMFormFirma >> title: anObject [
+ASDHMFormKunde >> title: anObject [
 
 	title := anObject
-]
-
-{ #category : #accessing }
-ASDHMFormFirma >> umsatzSteuerLabel [
-
-	^ umsatzSteuerLabel
-]
-
-{ #category : #accessing }
-ASDHMFormFirma >> umsatzSteuerLabel: anObject [
-
-	umsatzSteuerLabel := anObject
 ]

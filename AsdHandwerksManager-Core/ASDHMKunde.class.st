@@ -6,9 +6,7 @@ Class {
 		'gewerblich',
 		'firma',
 		'contact',
-		'auftraege',
-		'startDate',
-		'endDate'
+		'auftraege'
 	],
 	#category : #'AsdHandwerksManager-Core-Model'
 }
@@ -96,18 +94,6 @@ ASDHMKunde >> displayString [
 ]
 
 { #category : #accessing }
-ASDHMKunde >> endDate [
-
-	^ endDate
-]
-
-{ #category : #accessing }
-ASDHMKunde >> endDate: anObject [
-
-	endDate := anObject
-]
-
-{ #category : #accessing }
 ASDHMKunde >> firma [
 
 	^ firma
@@ -137,16 +123,4 @@ ASDHMKunde >> initialize [
 	
 	self type: 'costumer'
 	
-]
-
-{ #category : #accessing }
-ASDHMKunde >> startDate [
-
-	^ startDate
-]
-
-{ #category : #accessing }
-ASDHMKunde >> startDate: anObject [
-
-	startDate := anObject
 ]

@@ -10,7 +10,7 @@ Class {
 		'kontoInhaberLabel',
 		'cancelCallback'
 	],
-	#category : #'AsdHandwerksManager-WebApplication-Components'
+	#category : #'AsdHandwerksManager-WebApplication-forms'
 }
 
 { #category : #rendering }

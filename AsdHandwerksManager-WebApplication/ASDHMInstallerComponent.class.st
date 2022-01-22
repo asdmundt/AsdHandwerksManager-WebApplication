@@ -1,6 +1,6 @@
 Class {
 	#name : #ASDHMInstallerComponent,
-	#superclass : #MDLWidget,
+	#superclass : #ASDHMBaseComponent,
 	#instVars : [
 		'title',
 		'components'
@@ -9,20 +9,78 @@ Class {
 }
 
 { #category : #rendering }
-ASDHMInstallerComponent >> renderHeadingOn: html [
-| helpId |
-    helpId := html nextId.
-    (html heading)
-        class: 'helplink';
-        onClick: ((html jQuery id: helpId)
-            slideToggle: 1 seconds);
-        onClick: ((html jQuery ajax)
-            id: helpId;
-            callback: [visible := visible not]);
-        with: self model title.
-    (html div)
-        id: helpId;
-        class: 'help';
-        style: (visible ifFalse: ['display: none']);
-        with: 'The Enhanced ToDo application.'
+ASDHMInstallerComponent >> renderContentOn: html [
+
+	html div with: [ self renderInnerContentOn: html ].
+	
+]
+
+{ #category : #rendering }
+ASDHMInstallerComponent >> renderInnerContentOn: html [
+
+	self subclassResponsibility
+]
+
+{ #category : #hooks }
+ASDHMInstallerComponent >> script [
+
+	^ '
+var coll = document.getElementsByClassName("collapsible");
+var i;
+
+for (i = 0; i < coll.length; i++) {
+  coll[i].addEventListener("click", function() {
+    this.classList.toggle("active");
+    var content = this.nextElementSibling;
+    if (content.style.maxHeight){
+      content.style.maxHeight = null;
+    } else {
+      content.style.maxHeight = content.scrollHeight + "px";
+    } 
+  });
+}
+'
+]
+
+{ #category : #hooks }
+ASDHMInstallerComponent >> style [
+
+	^ '
+.collapsible {
+  background-color: #777;
+  color: white;
+  cursor: pointer;
+  padding: 18px;
+  width: 100%;
+  border: none;
+  text-align: left;
+  outline: none;
+  font-size: 15px;
+}
+
+.active, .collapsible:hover {
+  background-color: #555;
+}
+
+.collapsible:after {
+  content: ''\002B'';
+  color: white;
+  font-weight: bold;
+  float: right;
+  margin-left: 5px;
+}
+
+.active:after {
+  content: "\2212";
+}
+
+.content {
+  padding: 0 18px;
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.2s ease-out;
+  background-color: #f1f1f1;
+
+}
+'
 ]
