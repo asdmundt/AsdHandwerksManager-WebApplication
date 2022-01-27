@@ -123,8 +123,8 @@ ASDHMHeader >> renderContentOn: html [
 			html mdlLayoutSpacer.
 			self renderButtonsOn: html
 			"html text: '	Version ' , self rootComponent class version." ].
-		 ].
-	self renderDrawerOn: html
+		self renderTabBarOn: html ].
+	"self renderDrawerOn: html"
 ]
 
 { #category : #rendering }
@@ -148,6 +148,17 @@ ASDHMHeader >> renderNavMenu: html [
 	"	html mdlLayoutSpacer.
 	html mdlNavigation: [ 
 		1 to: 5 do: [ :i | html mdlNavigationLink: 'Link' ] ]"
+]
+
+{ #category : #rendering }
+ASDHMHeader >> renderTabBarOn: html [
+
+	html mdlLayoutTabBar: [ 
+		self possiblePages do: [ :aClass | 
+			html mdlLayoutTab
+				callback: [ self displayInstanceOf: aClass ];
+				isActiveIf: aClass = self rootComponent componentToDisplay class;
+				with: aClass pageName ] ]
 ]
 
 { #category : #accessing }

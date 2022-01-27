@@ -1,9 +1,6 @@
 Class {
 	#name : #ASDHMKategorie,
 	#superclass : #ASDHMModel,
-	#instVars : [
-		'type'
-	],
 	#category : #'AsdHandwerksManager-Core-Model'
 }
 

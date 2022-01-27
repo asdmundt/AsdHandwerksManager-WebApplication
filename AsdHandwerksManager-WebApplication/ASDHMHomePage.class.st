@@ -45,30 +45,27 @@ self textKeineTasks: 'Es liegen keine neuen Vorgänge vor'.
 
 { #category : #rendering }
 ASDHMHomePage >> renderAufgabenCardOn: html [
-	html
-		render:
-			(MDLCardWidget new
-				shadow: 2;
-				style: 'width: 400px;';
-				class: 'mdl-card__login-widget';
-				
-				title: titleCardAufgabenLabel level: 2;
-				addTextContainer: [ :canvas | canvas text: textKeineAufgaben ];
-				yourself)
+
+	html render: (MDLCardWidget new
+			 shadow: 2;
+			 style: 'width: 70%;margin:20px';
+			 class: 'mdl-card__login-widget';
+			 title: titleCardAufgabenLabel level: 2;
+			 addTextContainer: [ :canvas | canvas text: textKeineAufgaben ];
+			 yourself)
 ]
 
 { #category : #rendering }
 ASDHMHomePage >> renderAuftragsCardOn: html [
-	html
-		render:
-			(MDLCardWidget new
-				shadow: 2;
-				style: 'width: 400px;';
-				class: 'mdl-card__login-widget';
-				
-				title: titleCardAuftragsLabel level: 2;
-				addTextContainer: [ :canvas | canvas text: self textKeineAuftraege  ];
-				yourself)
+
+	html render: (MDLCardWidget new
+			 shadow: 2;
+			 style: 'width: 70%;margin:20px';
+			 class: 'mdl-card__login-widget';
+			 title: titleCardAuftragsLabel level: 2;
+			 addTextContainer: [ :canvas | 
+				 canvas text: self textKeineAuftraege ];
+			 yourself)
 ]
 
 { #category : #rendering }
@@ -97,16 +94,14 @@ ASDHMHomePage >> renderContentOn: html [
 
 { #category : #rendering }
 ASDHMHomePage >> renderTasksCardOn: html [
-	html
-		render:
-			(MDLCardWidget new
-				shadow: 2;
-				style: 'width: 400px;';
-				class: 'mdl-card__login-widget';
-				
-				title: self titleCardTasksLabel level: 2;
-				addTextContainer: [ :canvas | canvas text: self textKeineTasks  ];
-				yourself)
+
+	html render: (MDLCardWidget new
+			 shadow: 2;
+			 style: 'width: 70%;margin:20px';
+			 class: 'mdl-card__login-widget';
+			 title: self titleCardTasksLabel level: 2;
+			 addTextContainer: [ :canvas | canvas text: self textKeineTasks ];
+			 yourself)
 ]
 
 { #category : #rendering }

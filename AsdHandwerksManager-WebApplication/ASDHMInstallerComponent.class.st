@@ -3,10 +3,17 @@ Class {
 	#superclass : #ASDHMBaseComponent,
 	#instVars : [
 		'title',
-		'components'
+		'ready'
 	],
 	#category : #'AsdHandwerksManager-WebApplication-Components'
 }
+
+{ #category : #initialization }
+ASDHMInstallerComponent >> initialize [
+
+super initialize.
+ 
+]
 
 { #category : #rendering }
 ASDHMInstallerComponent >> renderContentOn: html [

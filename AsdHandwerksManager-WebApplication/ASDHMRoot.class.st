@@ -249,26 +249,33 @@ ASDHMRoot >> rightPanel: anObject [
 { #category : #action }
 ASDHMRoot >> tryConnectionWithLogin: login andPassword: password [
 
-	| user |
-	user := self session model userFromLogin: login andPassword: password.
+	| user users |
+	users := self session model users.
 	"self halt."
-	user
-		ifNotNil: [ :arg | 
-			arg logged: true.
-			
-			self session currentUser: arg.
-			self session userId: arg id.
-			"arg logged: true."
-			self session model addLoggedUser: arg.
-			self session firma: self session model eigeneFirma.
-			self goToOverviewView
-			"arg isAdmin
+	users size < 1
+		ifFalse: [ 
+			user := self session model
+				        userFromLogin: login
+				        andPassword: password.
+			"self halt."
+			user
+				ifNotNil: [ :arg | 
+					arg logged: true.
+
+					self session currentUser: arg.
+					self session userId: arg id.
+					"arg logged: true."
+					self session model addLoggedUser: arg.
+					self session firma: self session model eigeneFirma.
+					self goToOverviewView
+					"arg isAdmin
 				ifTrue: [ self goToAdminView ]
 				ifFalse: [ self goToOverviewView ]" ]
-		ifNil: [ 
-			self session loginError:
-				'Ihre Benutzer Eingaben konnten nicht zugeordnet werden'.
-			self goToLoginView ]
+				ifNil: [ 
+					self session loginError:
+						'Ihre Benutzer Eingaben konnten nicht zugeordnet werden'.
+					self goToLoginView ] ]
+		ifTrue: [ self goToInstallView ]
 ]
 
 { #category : #updating }

@@ -9,7 +9,9 @@ Class {
 		'dataModel',
 		'bez',
 		'userId',
-		'displayString'
+		'displayString',
+		'type',
+		'types'
 	],
 	#category : #'AsdHandwerksManager-Core-Model'
 }

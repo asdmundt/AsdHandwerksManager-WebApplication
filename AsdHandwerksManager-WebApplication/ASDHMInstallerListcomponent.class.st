@@ -30,47 +30,79 @@ ASDHMInstallerListcomponent >> components: anObject [
 
 { #category : #initialization }
 ASDHMInstallerListcomponent >> initialize [
+
 	super initialize.
-	
+	self title: 'Basis Installation'
 ]
 
 { #category : #rendering }
 ASDHMInstallerListcomponent >> renderContentOn: html [
-html div  with:[
-	self renderHeadingOn: html.
-	self renderListOn: html
-	]
+
+	html div
+		class: 'asdContainer';
+		shadow: 0;
+		with: [ 
+			html div
+				class: 'bar';
+				with: [ 
+					html div
+						class: 'wrapper';
+						with: [ 
+							
+
+							html mdlButton icon
+								id: #bottomRightButton;
+								with: [ html mdlIcon: #more_vert ].
+							html mdlMenu
+								bottomRight;
+								for: #bottomRightButton;
+								with: [ 
+									html mdlMenuItem: 'Some Action'.
+									html mdlMenuItem
+										fullBleedDivider;
+										with: 'Another Action'.
+									html mdlMenuItem
+										disabled;
+										with: 'Disabled Action'.
+									html mdlMenuItem: 'Yet Another Action' ] ] ].
+			html div
+				class: 'background';
+				style:
+					'width: 100%;min-width: 0px;overflow-y: scroll;height: 400px;';
+				with: [ self renderListOn: html ] ]
 ]
 
 { #category : #rendering }
 ASDHMInstallerListcomponent >> renderHeadingOn: html [
-| helpId |
-    helpId := html nextId.
-    (html heading)
-        class: 'helplink';
-        onClick: ((html jQuery id: helpId)
-            slideToggle: 1 seconds);
-        onClick: ((html jQuery ajax)
-            id: helpId;
-            callback: [visible := visible not]);
-        with: self model title.
-    (html div)
-        id: helpId;
-        class: 'help';
-        style: (visible ifFalse: ['display: none']);
-        with: 'The Enhanced ToDo application.'
+
+	| helpId |
+	helpId := html nextId.
+	html heading
+		class: 'helplink';
+		onClick: ((html jQuery id: helpId) slideToggle: 1 seconds);
+		onClick: (html jQuery ajax
+				 id: helpId;
+				 callback: [ visible := visible not ]);
+		with: self title.
+	html div
+		id: helpId;
+		class: 'help';
+		style: (visible ifFalse: [ 'display: none' ]);
+		with: 'The Enhanced ToDo application.'
 ]
 
 { #category : #rendering }
 ASDHMInstallerListcomponent >> renderListOn: html [
 
+	| componentInstance |
 	html mdlList
 		style: 'width: 100%';
 		id: #installerList;
 		with: [ 
 			components do: [ :component | 
+					componentInstance := component new.
 					html mdlListItem: [ 
-							html mdlListPrimaryContent: [ html render: component new ] ] ] ]
+							html mdlListPrimaryContent: [ html render: componentInstance ] ] ] ]
 ]
 
 { #category : #accessing }

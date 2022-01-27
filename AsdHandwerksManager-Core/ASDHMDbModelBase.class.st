@@ -196,9 +196,16 @@ ASDHMDbModelBase >> initialize [
 	users := OrderedCollection new
 ]
 
+{ #category : #operations }
+ASDHMDbModelBase >> installConfig [
+
+	^ Repos selectAll: ASDHMInstallConfig 
+]
+
 { #category : #accessing }
 ASDHMDbModelBase >> loggedUsers [
-	^Repos selectMany: ASDEUser where: [ :each | each logged = true ]
+
+	^ Repos selectMany: ASDEUser where: [ :each | each logged == true ]
 ]
 
 { #category : #accessing }

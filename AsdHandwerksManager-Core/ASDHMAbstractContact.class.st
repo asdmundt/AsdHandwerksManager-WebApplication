@@ -10,8 +10,6 @@ Class {
 		'mobilFunkNr',
 		'telefonNummer',
 		'email',
-		'type',
-		'types',
 		'bankVerbindungen'
 	],
 	#category : #'AsdHandwerksManager-Core-Model'

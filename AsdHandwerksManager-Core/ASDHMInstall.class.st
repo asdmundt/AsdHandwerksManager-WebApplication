@@ -2,7 +2,8 @@ Class {
 	#name : #ASDHMInstall,
 	#superclass : #ASDHMModel,
 	#instVars : [
-		'msgId'
+		'msgId',
+		'title'
 	],
 	#category : #'AsdHandwerksManager-Core-Model'
 }
@@ -17,9 +18,10 @@ ASDHMInstall class >> isVoyageRoot [
 ]
 
 { #category : #accessing }
-ASDHMInstall class >> states [ 
-^ OrderedCollection
-		newFrom: {'new' . 'accepted' . 'inProgress' . 'done' . 'problem'}.
+ASDHMInstall class >> states [
+
+	^ OrderedCollection newFrom:
+		  { 'new'. 'inProgress'. 'done'. 'problem' }
 ]
 
 { #category : #initalize }
