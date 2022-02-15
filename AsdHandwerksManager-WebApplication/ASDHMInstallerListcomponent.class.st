@@ -32,7 +32,8 @@ ASDHMInstallerListcomponent >> components: anObject [
 ASDHMInstallerListcomponent >> initialize [
 
 	super initialize.
-	self title: 'Basis Installation'
+	self title: 'Basis Installation'.
+	self components: OrderedCollection new
 ]
 
 { #category : #rendering }
@@ -100,9 +101,9 @@ ASDHMInstallerListcomponent >> renderListOn: html [
 		id: #installerList;
 		with: [ 
 			components do: [ :component | 
-					componentInstance := component new.
+					"componentInstance := component new."
 					html mdlListItem: [ 
-							html mdlListPrimaryContent: [ html render: componentInstance ] ] ] ]
+							html mdlListPrimaryContent: [ html render: component new yourself  ] ] ] ]
 ]
 
 { #category : #accessing }

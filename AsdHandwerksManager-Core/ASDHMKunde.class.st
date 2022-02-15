@@ -5,19 +5,10 @@ Class {
 		'displayName',
 		'gewerblich',
 		'firma',
-		'contact',
-		'auftraege'
+		'contact'
 	],
 	#category : #'AsdHandwerksManager-Core-Model'
 }
-
-{ #category : #'instance creation' }
-ASDHMKunde class >> displayName: aName telefonNummer: aNumber [
-
-	^ self new
-		  displayName: aName;
-		  telefonNummer: aNumber
-]
 
 { #category : #voyage }
 ASDHMKunde class >> isVoyageRoot [
@@ -38,24 +29,6 @@ ASDHMKunde class >> types [
 
 	^ OrderedCollection newFrom:
 		  { 'TelefonKontakt'. 'projektLeiter'. 'user'. 'costumer' }
-]
-
-{ #category : #actions }
-ASDHMKunde >> addAuftrag: anAuftrag [
-
-self auftraege add: anAuftrag
-]
-
-{ #category : #accessing }
-ASDHMKunde >> auftraege [
-
-	^ auftraege ifNil: [ auftraege := OrderedCollection new ]
-]
-
-{ #category : #accessing }
-ASDHMKunde >> auftraege: anObject [
-
-	auftraege := anObject
 ]
 
 { #category : #accessing }
@@ -80,17 +53,6 @@ ASDHMKunde >> displayName [
 ASDHMKunde >> displayName: anObject [
 
 	displayName := anObject
-]
-
-{ #category : #accessing }
-ASDHMKunde >> displayString [
-
-	^ String streamContents: [ :s | 
-		  s
-			  nextPutAll: self displayName;
-			  space;
-			  nextPutAll: self telefonNummer;
-			  space ]
 ]
 
 { #category : #accessing }
@@ -121,6 +83,6 @@ ASDHMKunde >> gewerblich: anObject [
 ASDHMKunde >> initialize [
 	super initialize.
 	
-	self type: 'costumer'
+	
 	
 ]

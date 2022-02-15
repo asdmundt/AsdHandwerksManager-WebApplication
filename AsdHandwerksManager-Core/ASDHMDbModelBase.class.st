@@ -186,8 +186,9 @@ ASDHMDbModelBase >> eigeneFirma [
 
 { #category : #accessing }
 ASDHMDbModelBase >> firmen [
-
-	^ Repos selectAll: ASDHMFirma 
+	| collection |
+	collection := Repos selectAll: ASDHMFirma.
+	^ collection yourself
 ]
 
 { #category : #initialization }

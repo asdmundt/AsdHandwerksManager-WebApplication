@@ -1,9 +1,6 @@
 Class {
 	#name : #ASDHMAuftragsVerwaltungPage,
 	#superclass : #ASDHMPageAdmin,
-	#instVars : [
-		'installer'
-	],
 	#category : #'AsdHandwerksManager-WebApplication-Pages'
 }
 
@@ -14,40 +11,22 @@ ASDHMAuftragsVerwaltungPage class >> pageName [
 
 { #category : #accessing }
 ASDHMAuftragsVerwaltungPage class >> priority [
-	^ 1
+	^ 5
 ]
 
 { #category : #hooks }
 ASDHMAuftragsVerwaltungPage >> children [
-	^ { installer }
+	^ {  }
 ]
 
 { #category : #initialization }
 ASDHMAuftragsVerwaltungPage >> initialize [
-|list|
-super initialize.
-list := OrderedCollection new.
- list
-  add: ASDHMInstallConfigView;
-	add: ASDHMInstallDataView;
-	add: ASDHMInstallVorlagenView;
-  add: ASDHMInstallServicesView.
+
+	| list |
+	super initialize.
 	
 	self session rootComponent header: ASDHMAdminHeader new.
-	self installer: (ASDHMInstallerListcomponent withList: list)
 	
-]
-
-{ #category : #accessing }
-ASDHMAuftragsVerwaltungPage >> installer [
-
-	^ installer
-]
-
-{ #category : #accessing }
-ASDHMAuftragsVerwaltungPage >> installer: anObject [
-
-	installer := anObject
 ]
 
 { #category : #rendering }

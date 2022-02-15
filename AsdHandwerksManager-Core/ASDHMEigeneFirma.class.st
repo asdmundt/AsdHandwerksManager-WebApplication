@@ -44,7 +44,9 @@ ASDHMEigeneFirma >> angestellte [
 
 { #category : #initialization }
 ASDHMEigeneFirma >> initialize [
+
 	super initialize.
+	accounts := OrderedCollection new
 ]
 
 { #category : #accessing }

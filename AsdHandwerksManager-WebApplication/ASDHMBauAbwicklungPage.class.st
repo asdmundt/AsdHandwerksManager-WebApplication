@@ -1,9 +1,6 @@
 Class {
 	#name : #ASDHMBauAbwicklungPage,
 	#superclass : #ASDHMPageAdmin,
-	#instVars : [
-		'installer'
-	],
 	#category : #'AsdHandwerksManager-WebApplication-Pages'
 }
 
@@ -19,35 +16,18 @@ ASDHMBauAbwicklungPage class >> priority [
 
 { #category : #hooks }
 ASDHMBauAbwicklungPage >> children [
-	^ { installer }
+	^ {  }
 ]
 
 { #category : #initialization }
 ASDHMBauAbwicklungPage >> initialize [
-|list|
+
 super initialize.
-list := OrderedCollection new.
- list
-  add: ASDHMInstallConfigView;
-	add: ASDHMInstallDataView;
-	add: ASDHMInstallVorlagenView;
-  add: ASDHMInstallServicesView.
+
 	
 	self session rootComponent header: ASDHMAdminHeader new.
-	self installer: (ASDHMInstallerListcomponent withList: list)
 	
-]
-
-{ #category : #accessing }
-ASDHMBauAbwicklungPage >> installer [
-
-	^ installer
-]
-
-{ #category : #accessing }
-ASDHMBauAbwicklungPage >> installer: anObject [
-
-	installer := anObject
+	
 ]
 
 { #category : #rendering }

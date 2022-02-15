@@ -1,6 +1,11 @@
 Class {
 	#name : #ASDHMInstallConfigView,
 	#superclass : #ASDHMInstallerComponent,
+	#instVars : [
+		'labelConfigLoading',
+		'labelCompanyLoading',
+		'labelUserLoading'
+	],
 	#category : #'AsdHandwerksManager-WebApplication-Components'
 }
 
@@ -9,6 +14,48 @@ ASDHMInstallConfigView >> initialize [
 
 	super initialize.
 	self model: ASDHMInstallConfig new.
+	self idTitle: 'configTitle'.
+	self idContent: 'configContent'.
+	self idProgress: 'configProgress'.
+	self labelConfigLoading: 'Grund Installation wird geladen'.
+	self labelCompanyLoading: 'Firmen Objekte werden installiert...'.
+	self labelUserLoading:  'Benutzer Objekte werden installiert...'.
+]
+
+{ #category : #accessing }
+ASDHMInstallConfigView >> labelCompanyLoading [
+
+	^ labelCompanyLoading
+]
+
+{ #category : #accessing }
+ASDHMInstallConfigView >> labelCompanyLoading: anObject [
+
+	labelCompanyLoading := anObject
+]
+
+{ #category : #accessing }
+ASDHMInstallConfigView >> labelConfigLoading [
+
+	^ labelConfigLoading
+]
+
+{ #category : #accessing }
+ASDHMInstallConfigView >> labelConfigLoading: anObject [
+
+	labelConfigLoading := anObject
+]
+
+{ #category : #accessing }
+ASDHMInstallConfigView >> labelUserLoading [
+
+	^ labelUserLoading
+]
+
+{ #category : #accessing }
+ASDHMInstallConfigView >> labelUserLoading: anObject [
+
+	labelUserLoading := anObject
 ]
 
 { #category : #actions }
@@ -65,61 +112,78 @@ ASDHMInstallConfigView >> loadOwnCompany [
 ]
 
 { #category : #rendering }
+ASDHMInstallConfigView >> renderActionContentOn: html [
+
+	| company user blzData blzModel progression |
+	html mdlButton
+		
+		mdlTypographyFontBold;
+		onClick:
+			(html jQuery ajax script: [ :s | "s << ((s jQuery id: self id) text: '...')."
+					 s << ((s jQuery: #modalContent) html: [ html text: '...' ]).
+					 "s << (s jQuery: #mainDialog) cssAt: 'display' put: 'block'."
+					 s << (s jQuery: #mainDialog) show.
+					 company := self loadOwnCompany.
+					 s << (s jQuery: '#firmen' , self id) show setTimeout: 10000.
+					 s << ((s jQuery: #modalContent)
+							  html: [ html text: self labelCompanyLoading ];
+							  setTimeout: 10000).
+					 user := self loadBaseUser.
+					 " company addAccounts: user."
+					 s << (s jQuery: '#admin' , self id)
+						 cssAt: 'display'
+						 put: 'block'.
+					 s << ((s jQuery: #modalContent)
+						  html: [ :h | h mdlSpinner active ];
+						  setTimeout: 10000).
+					 s << ((s jQuery: #modalContent)
+						  html: [ html mdlSpinner active ];
+						  setTimeout: 10000).
+					 "
+					 s << ((s jQuery id: 'modalContent')
+						  html: [ :h | h render: 'Bankdaten laden' ];
+						  setTimeout: 2000).
+					 blzData := ASDHMDbModelBlz importBlz.
+					 s << ((s jQuery id: 'modalContent')
+						  html: [ :h | h render: blzData size , 'Objekte geladen' ];
+						  setTimeout: 2000).
+					 blzData doWithIndex: [ :each :index | 
+						 blzModel storeObject: each.
+						 progression := progression + 1.
+						 s << ((s jQuery id: 'modalContent') html: [ :h | 
+							  h render: 'Objekt ' , index asString , ' geladen' ]).
+						 (Delay forMilliseconds: 1) wait ]."
+					 s << (s jQuery: #mainDialog) hide ]);
+		with: [ 'Get Started' ]
+]
+
+{ #category : #rendering }
 ASDHMInstallConfigView >> renderInnerContentOn: html [
 
-	| progression company user blzModel blzData |
-	blzModel := ASDHMDbModelBlz current.
-	progression := 0.
 	self ensureId: html.
-	html button
-		id: self id;
-		class: 'collapsible';
-		onClick: (html jQuery ajax script: [ :s | 
-					 s << ((s jQuery id: self id) text: '...').
-					 company := self loadOwnCompany.
-					 s << (s jQuery id: 'firmen') show.
-					 user := self loadBaseUser.
-					 company addAccounts: user.
-					 s << (s jQuery id: 'admin') show.
-					 s << ((s jQuery id: 'modalContent') html: [ html mdlSpinner active ]).
-					 s << (s jQuery id: 'mainDialog') show.
-					s << ((s jQuery id: 'modalContent') html: [ :h | h render: 'Bankdaten laden' ]; setTimeout: 2000).
-					blzData := ASDHMDbModelBlz importBlz.
-					s << ((s jQuery id: 'modalContent') html: [ :h | h render: blzData size , 'Objekte geladen' ]; setTimeout: 2000).
-					blzData doWithIndex: [ :each :index | blzModel storeObject: each.
-						progression := progression + 1.
-						s << ((s jQuery id: 'modalContent') html: [ :h | h render:'Objekt ', index asString  ,' geladen' ]).
-	(Delay forMilliseconds: 1) wait
-	 ].
- s << (s jQuery id: 'mainDialog') hide.
-s << (s jQuery id: 'blz') show.
-					 "setTimeout: 2000" ]);
-		with: [ html text: 'Start..' ].
+
 	html div
 		class: 'content';
 		with: [ 
-			html render:
-					(MDLProgressBarWidget
-						 progression: [ progression ]
-						 every: 0.2 seconds).
+			self renderProgressContentOn: html.
 			html mdlList
 				style: 'width: 100%';
 				id: 'doList' , self id;
 				with: [ 
 					html mdlListItem
-						id: #firmen;
+						id: 'firmen' , self id;
 						style: 'display: none;';
 						with: [ 
 							html mdlListPrimaryContent: [ 
 									html text: 'Firmen Daten installiert' ] ].
 					html mdlListItem
-						id: #admin;
+						id: 'admin' , self id;
 						style: 'display: none;';
 						with: [ 
 							html mdlListPrimaryContent: [ 
 									html text: 'Admin Benutzer installiert' ] ].
 					html mdlListItem
-						id: #blz;
+						id: 'blz' , self id;
 						style: 'display: none;';
 						with: [ 
 							html mdlListPrimaryContent: [ 

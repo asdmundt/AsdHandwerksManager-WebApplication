@@ -228,10 +228,13 @@ ASDHMRoot >> renderContentOn: html [
 	self renderEmptyGenericDialogOn: html.
 	html div
 		id: #mainDialog;
-		class: 'modal';
-		with: [ html div
-			id: #modalContent;
-			 class: 'modal-content' ]
+		style:
+			'display: none; position: fixed; z-index: 300; padding-top: 100px; left: 0; top: 0; width: 100%;height: 100%;overflow: auto;background-color: #0d1117;';
+		with: [ 
+			html div
+				id: #modalContent;
+				style:
+					'color: #c9d1d9; position: fixed; z-index: 500; margin: auto; padding: 20px;border: 1px solid #343434; left: 50%; top: 50%; width: 40%;height: 60%;overflow: auto;background-color: #14181f;-ms-transform: translate(-50%, -50%);transform: translate(-50%, -50%);' ]
 ]
 
 { #category : #accessing }

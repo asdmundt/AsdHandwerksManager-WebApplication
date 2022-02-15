@@ -36,7 +36,7 @@ recordClass: ASDHMBankLeitzahlen ;
 addField: #blz:;
 addField: #bankName:;
 addField: #plz:;
-
+addField: #ort:;
 addField: #bankNameKurz:;
 addField: #bic:;
 addField: #pruefZiffer:;

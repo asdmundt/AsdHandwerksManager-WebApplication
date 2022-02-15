@@ -35,7 +35,7 @@ ASDHMContact class >> isVoyageRoot [
 { #category : #accessing }
 ASDHMContact class >> titleText [
 
-	^ 'Telefon Kontakt'
+	^ 'Kontakt'
 ]
 
 { #category : #accessing }

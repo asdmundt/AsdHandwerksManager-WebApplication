@@ -1,44 +1,64 @@
 Class {
-	#name : #ASDHMObjectViewTablePhoneContactComponent,
-	#superclass : #ASDHMObjectViewTableComponent,
+	#name : #ASDHMObjectViewTableFirmenKontaktComponent,
+	#superclass : #ASDHMObjectViewTableBaseContactComponent,
 	#instVars : [
-		'labelAddContact'
+		'labelFirmenName',
+		'labelFirmenForm',
+		'labelansprechpartner'
 	],
 	#category : #'AsdHandwerksManager-WebApplication-Components'
 }
 
 { #category : #initialization }
-ASDHMObjectViewTablePhoneContactComponent >> initialize [
+ASDHMObjectViewTableFirmenKontaktComponent >> initialize [
 
 	super initialize.
-	self labelBez: 'TelefonKontakt'.
-	self labelDisplayString: 'Name'.
-	self labelAnrede: 'Anrede'.
-	self labelTitle: 'Title'.
-	self labelVorname: 'Vorname'.
-	self labelNachname: 'Nachname'.
-	self labelTelefonNr: 'Telefon Nr.'.
-	self labelMobileFunkNr: 'Mobil Funk Nr.'.
-	self labelEmail: 'Email'.
-	self labelAddContact: 'Neuer Kontakt'.
-	self labeBankverbindungen: 'Bankverbindungen'.
-	self labelAdresse: 'Adressen'
+	self labelBez: 'Gewerbe Kontakt'.
+	self labelFirmenName: 'Firmen Name'.
+	self labelFirmenForm: 'Rechtsform'.
+	self labelansprechpartner: 'Ansprechpartner'.
+	self labelAddContact: 'Neuer gewerblicher Kontakt'
+	
 ]
 
 { #category : #accessing }
-ASDHMObjectViewTablePhoneContactComponent >> labelAddContact [
+ASDHMObjectViewTableFirmenKontaktComponent >> labelFirmenForm [
 
-	^ labelAddContact
+	^ labelFirmenForm
 ]
 
 { #category : #accessing }
-ASDHMObjectViewTablePhoneContactComponent >> labelAddContact: anObject [
+ASDHMObjectViewTableFirmenKontaktComponent >> labelFirmenForm: anObject [
 
-	labelAddContact := anObject
+	labelFirmenForm := anObject
+]
+
+{ #category : #accessing }
+ASDHMObjectViewTableFirmenKontaktComponent >> labelFirmenName [
+
+	^ labelFirmenName
+]
+
+{ #category : #accessing }
+ASDHMObjectViewTableFirmenKontaktComponent >> labelFirmenName: anObject [
+
+	labelFirmenName := anObject
+]
+
+{ #category : #accessing }
+ASDHMObjectViewTableFirmenKontaktComponent >> labelansprechpartner [
+
+	^ labelansprechpartner
+]
+
+{ #category : #accessing }
+ASDHMObjectViewTableFirmenKontaktComponent >> labelansprechpartner: anObject [
+
+	labelansprechpartner := anObject
 ]
 
 { #category : #rendering }
-ASDHMObjectViewTablePhoneContactComponent >> renderAddDialog: html [
+ASDHMObjectViewTableFirmenKontaktComponent >> renderAddDialog: html [
 
 	| newContact |
 	newContact := ASDHMContact new.
@@ -117,72 +137,40 @@ ASDHMObjectViewTablePhoneContactComponent >> renderAddDialog: html [
 ]
 
 { #category : #rendering }
-ASDHMObjectViewTablePhoneContactComponent >> renderDialog: html withModel: aModel [
-
-	| contactTable |
+ASDHMObjectViewTableFirmenKontaktComponent >> renderDialog: html withModel: aModel [
+| contactTable |
 	html form: [ 
 		html mdlDialogTitle: self labelAddContact.
 		html mdlDialogContent: [ 
-			html mdlTextFieldContainer with: [ 
-				html mdlTextFieldLabel
-					for: html nextId;
-					with: self labelDisplayString.
-				html mdlTextFieldInput
-					id: html lastId;
-					callback: [ :input | aModel displayName: input ] ].
 			html span: [ 
 				html mdlTextFieldContainer with: [ 
 					html mdlTextFieldLabel
 						for: html nextId;
-						with: self labelAnrede.
+						with: self labelFirmenName.
 					html mdlTextFieldInput
 						id: html lastId;
-						size: 4;
-						callback: [ :input | aModel anrede: input ] ].
+						callback: [ :input | aModel firmenName: input ];
+						value: aModel firmenName ].
 				html mdlTextFieldContainer with: [ 
 					html mdlTextFieldLabel
 						for: html nextId;
-						with: self labelTitle.
+						with: self labelFirmenForm.
 					html mdlTextFieldInput
 						id: html lastId;
-						size: 4;
-						callback: [ :input | aModel title: input ] ].
+						callback: [ :input | aModel firmenForm: input ];
+						value: aModel firmenForm ].
 				html mdlTextFieldContainer with: [ 
 					html mdlTextFieldLabel
 						for: html nextId;
-						with: self labelVorname.
+						with: self labelansprechpartner.
 					html mdlTextFieldInput
 						id: html lastId;
-						callback: [ :input | aModel vorname: input ] ].
-				html mdlTextFieldContainer with: [ 
-					html mdlTextFieldLabel
-						for: html nextId;
-						with: self labelNachname.
-					html mdlTextFieldInput
-						id: html lastId;
-						callback: [ :input | aModel nachname: input ] ] ].
-			html span: [ 
-				html mdlTextFieldContainer with: [ 
-					html mdlTextFieldLabel
-						for: html nextId;
-						with: self labelTelefonNr.
-					html mdlTextFieldInput
-						id: html lastId;
-						callback: [ :input | aModel telefonNummer: input ] ].
-				html mdlTextFieldContainer with: [ 
-					html mdlTextFieldLabel
-						for: html nextId;
-						with: self labelMobileFunkNr.
-					html mdlTextFieldInput
-						id: html lastId;
-						callback: [ :input | aModel mobilFunkNr: input ] ].
-				html mdlTextFieldContainer with: [ "floatingLabel;"
-					html mdlTextFieldLabel
-						for: html nextId;
-						with: self labelEmail.
-					html mdlTextFieldInput
-						id: html lastId;
-						callback: [ :input | aModel email: input ] ] ] ].
+						callback: [ :input | aModel ansprechPartner: input ];
+						value: aModel ansprechPartner ].
+				 ].
+			self renderAddressFields: html withModel: aModel.	
+			self renderKommunicationsFields: html withModel: aModel.
+			 ].
 		html mdlDialogActions: [ 
 			html mdlButton
 				id: self rootDialogCloseId;
@@ -191,9 +179,8 @@ ASDHMObjectViewTablePhoneContactComponent >> renderDialog: html withModel: aMode
 						 serializeForm;
 						 script: [ :s | 
 							 self session model storeObject: aModel.
-							 contactTable := ASDHMObjectViewTableContactComponent 
-								                 withList: self session model contacts.
-
+							 contactTable := ASDHMObjectViewTableFirmenKontaktComponent 
+								                 withList: self session model firmen.
 							 s
 							 <<
 								 ((s jQuery id: #tableDiv) load html: [ :r | 
@@ -205,9 +192,9 @@ ASDHMObjectViewTablePhoneContactComponent >> renderDialog: html withModel: aMode
 ]
 
 { #category : #rendering }
-ASDHMObjectViewTablePhoneContactComponent >> renderDialogMenu: html [
+ASDHMObjectViewTableFirmenKontaktComponent >> renderDialogMenu: html [
 | newContact |
-	newContact := ASDHMContact new.
+	newContact := ASDHMFirma new.
 html mdlAnchorButton
 								icon;
 								id: html nextId;
@@ -217,12 +204,10 @@ html mdlAnchorButton
 ]
 
 { #category : #rendering }
-ASDHMObjectViewTablePhoneContactComponent >> renderInnerContentOn: html [
+ASDHMObjectViewTableFirmenKontaktComponent >> renderInnerContentOn: html [
 
 	html mdlTable
 		shadow: 0;
-		style: 'height: 400px;';
-		
 		with: [ 
 			html tableHead: [ 
 					html tableRow
@@ -232,26 +217,47 @@ ASDHMObjectViewTablePhoneContactComponent >> renderInnerContentOn: html [
 								nonNumerical;
 								style:
 									'background-color: #161b22; position: relativ; top: 10px;';
-								with: self labelDisplayString.
-
+								with: self labelFirmenName.
 							html mdlTableHeading
 								nonNumerical;
 								style:
 									'background-color: #161b22; position: relativ; top: 10px;';
-								with: self labelEmail.
+								with: self labelFirmenForm.
 							html mdlTableHeading
 								nonNumerical;
 								style:
 									'background-color: #161b22; position: relativ; top: 10px;';
-								with: self labelTelefonNr ] ].
+								with: self labelansprechpartner.								
+								self renderTableHeadingCommunnikationsData: html.
+								html mdlTableHeading
+								nonNumerical;
+								style:
+									'background-color: #161b22; position: relativ; top: 0px;';
+								with: self labelEdit.
+								 ] ].
 			html tableBody with: [ "style: 'overflow: scroll;height: 400px;';"
 				list doWithIndex: [ :each :index | 
 					html tableRow: [ 
 						html mdlTableCell
 							nonNumerical;
 							style: 'background-color: #0d1117;';
-							with: each displayName.
-
+							with: each firmenName.
+						html mdlTableCell
+							nonNumerical;
+							style: 'background-color: #0d1117;';
+							with: each firmenForm.
+					 html mdlTableCell
+							nonNumerical;
+							style: 'background-color: #0d1117;';
+							with: each ansprechPartner.
+						html mdlTableCell
+							nonNumerical;
+							style: 'background-color: #0d1117;';
+							with: each telefonNummer.							
+						html mdlTableCell
+							nonNumerical;
+							style: 'background-color: #0d1117;';
+							with: each mobilFunkNr.
 						html mdlTableCell
 							nonNumerical;
 							style: 'background-color: #0d1117;';
@@ -259,5 +265,12 @@ ASDHMObjectViewTablePhoneContactComponent >> renderInnerContentOn: html [
 						html mdlTableCell
 							nonNumerical;
 							style: 'background-color: #0d1117;';
-							with: each telefonNummer ] ] ] ]
+							with: [ html mdlAnchorButton
+								icon;
+								id: html nextId;
+								openDialogWithId: self rootDialogOpenId;
+								onClickUpdateRootDialogWith: [ :r | self renderDialog: r withModel: each ];
+								with: [ html mdlIcon: 'edit' ]].
+												
+							 ] ] ] ]
 ]

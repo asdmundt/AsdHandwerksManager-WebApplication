@@ -6,18 +6,26 @@ Class {
 		'vorname',
 		'nachname',
 		'title',
-		'adressen',
 		'mobilFunkNr',
 		'telefonNummer',
 		'email',
-		'bankVerbindungen'
+		'bankVerbindungen',
+		'str',
+		'hsnr',
+		'plz',
+		'ort',
+		'bankName',
+		'Iban',
+		'Bic',
+		'KontoInhaber'
 	],
 	#category : #'AsdHandwerksManager-Core-Model'
 }
 
 { #category : #testing }
 ASDHMAbstractContact class >> isAbstract [
-	^ self = ASDHMAbstractContact
+	"^ self = ASDHMAbstractContact"
+	^false
 ]
 
 { #category : #voyage }
@@ -35,27 +43,9 @@ ASDHMAbstractContact class >> titleText [
 ]
 
 { #category : #accessing }
-ASDHMAbstractContact >> addAdresse: anObject [
-
-	adressen add: anObject
-]
-
-{ #category : #accessing }
 ASDHMAbstractContact >> addBankVerbindungen: anObject [
 
 	bankVerbindungen add: anObject
-]
-
-{ #category : #accessing }
-ASDHMAbstractContact >> adressen [
-^ adressen ifNil: [ adressen := OrderedCollection new ]
-	
-]
-
-{ #category : #accessing }
-ASDHMAbstractContact >> adressen: anObject [
-
-	adressen := anObject
 ]
 
 { #category : #accessing }
@@ -71,6 +61,18 @@ ASDHMAbstractContact >> anrede: anObject [
 ]
 
 { #category : #accessing }
+ASDHMAbstractContact >> bankName [
+
+	^ bankName
+]
+
+{ #category : #accessing }
+ASDHMAbstractContact >> bankName: anObject [
+
+	bankName := anObject
+]
+
+{ #category : #accessing }
 ASDHMAbstractContact >> bankVerbindungen [
 ^ bankVerbindungen ifNil: [ bankVerbindungen := OrderedCollection new ]
 ]
@@ -79,6 +81,18 @@ ASDHMAbstractContact >> bankVerbindungen [
 ASDHMAbstractContact >> bankVerbindungen: anObject [
 
 	bankVerbindungen := anObject
+]
+
+{ #category : #accessing }
+ASDHMAbstractContact >> bic [
+
+	^ Bic
+]
+
+{ #category : #accessing }
+ASDHMAbstractContact >> bic: anObject [
+
+	Bic := anObject
 ]
 
 { #category : #accessing }
@@ -109,11 +123,47 @@ ASDHMAbstractContact >> email: anObject [
 	email := anObject
 ]
 
+{ #category : #accessing }
+ASDHMAbstractContact >> hsnr [
+
+	^ hsnr
+]
+
+{ #category : #accessing }
+ASDHMAbstractContact >> hsnr: anObject [
+
+	hsnr := anObject
+]
+
+{ #category : #accessing }
+ASDHMAbstractContact >> iban [
+
+	^ Iban
+]
+
+{ #category : #accessing }
+ASDHMAbstractContact >> iban: anObject [
+
+	Iban := anObject
+]
+
 { #category : #initialization }
 ASDHMAbstractContact >> initialize [
 
-	super initialize. self adressen: OrderedCollection new.
+	super initialize. 
 	self bankVerbindungen: OrderedCollection new
+]
+
+{ #category : #accessing }
+ASDHMAbstractContact >> kontoInhaber [
+
+	^ KontoInhaber
+]
+
+{ #category : #accessing }
+ASDHMAbstractContact >> kontoInhaber: anObject [
+
+	KontoInhaber := anObject
 ]
 
 { #category : #accessing }
@@ -139,6 +189,42 @@ ASDHMAbstractContact >> nachname [
 ASDHMAbstractContact >> nachname: anObject [
 
 	nachname := anObject
+]
+
+{ #category : #accessing }
+ASDHMAbstractContact >> ort [
+
+	^ ort
+]
+
+{ #category : #accessing }
+ASDHMAbstractContact >> ort: anObject [
+
+	ort := anObject
+]
+
+{ #category : #accessing }
+ASDHMAbstractContact >> plz [
+
+	^ plz
+]
+
+{ #category : #accessing }
+ASDHMAbstractContact >> plz: anObject [
+
+	plz := anObject
+]
+
+{ #category : #accessing }
+ASDHMAbstractContact >> str [
+
+	^ str
+]
+
+{ #category : #accessing }
+ASDHMAbstractContact >> str: anObject [
+
+	str := anObject
 ]
 
 { #category : #accessing }

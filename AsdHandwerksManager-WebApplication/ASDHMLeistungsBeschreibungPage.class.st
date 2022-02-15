@@ -1,5 +1,5 @@
 Class {
-	#name : #ASDHMContactPage,
+	#name : #ASDHMLeistungsBeschreibungPage,
 	#superclass : #ASDHMPageLogin,
 	#instVars : [
 		'contactTable'
@@ -8,34 +8,34 @@ Class {
 }
 
 { #category : #accessing }
-ASDHMContactPage class >> pageName [
-	^ 'Kontakte'
+ASDHMLeistungsBeschreibungPage class >> pageName [
+	^ 'Leistungsverzeichniss'
 ]
 
 { #category : #accessing }
-ASDHMContactPage class >> priority [
-	^ 2
+ASDHMLeistungsBeschreibungPage class >> priority [
+	^ 3
 ]
 
 { #category : #hooks }
-ASDHMContactPage >> children [
+ASDHMLeistungsBeschreibungPage >> children [
 	^ { contactTable }
 ]
 
 { #category : #accessing }
-ASDHMContactPage >> contactTable [
+ASDHMLeistungsBeschreibungPage >> contactTable [
 
 	^ contactTable
 ]
 
 { #category : #accessing }
-ASDHMContactPage >> contactTable: anObject [
+ASDHMLeistungsBeschreibungPage >> contactTable: anObject [
 
 	contactTable := anObject
 ]
 
 { #category : #initialization }
-ASDHMContactPage >> initialize [
+ASDHMLeistungsBeschreibungPage >> initialize [
 
 	super initialize.
 
@@ -45,7 +45,7 @@ ASDHMContactPage >> initialize [
 ]
 
 { #category : #rendering }
-ASDHMContactPage >> renderComponentOn: html [
+ASDHMLeistungsBeschreibungPage >> renderComponentOn: html [
 
 	html div
 		style: 'margin-left: 38px;';
@@ -54,7 +54,7 @@ ASDHMContactPage >> renderComponentOn: html [
 ]
 
 { #category : #rendering }
-ASDHMContactPage >> renderContentOn: html [
+ASDHMLeistungsBeschreibungPage >> renderContentOn: html [
 
 	html div
 		shadow: 0;
@@ -69,7 +69,7 @@ ASDHMContactPage >> renderContentOn: html [
 ]
 
 { #category : #accessing }
-ASDHMContactPage >> renderSelectListOn: html [
+ASDHMLeistungsBeschreibungPage >> renderSelectListOn: html [
 
 	html mdlList: [ 
 		html mdlListItem: [ 

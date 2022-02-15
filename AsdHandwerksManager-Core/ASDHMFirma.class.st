@@ -9,7 +9,8 @@ Class {
 		'hre',
 		'steuerNr',
 		'umsatzSteuer',
-		'geschaeftsFuehrer'
+		'geschaeftsFuehrer',
+		'ansprechPartner'
 	],
 	#category : #'AsdHandwerksManager-Core-Model'
 }
@@ -37,6 +38,18 @@ ASDHMFirma >> amtsgerichtSitz [
 ASDHMFirma >> amtsgerichtSitz: anObject [
 
 	amtsgerichtSitz := anObject
+]
+
+{ #category : #accessing }
+ASDHMFirma >> ansprechPartner [
+
+	^ ansprechPartner
+]
+
+{ #category : #accessing }
+ASDHMFirma >> ansprechPartner: anObject [
+
+	ansprechPartner := anObject
 ]
 
 { #category : #accessing }

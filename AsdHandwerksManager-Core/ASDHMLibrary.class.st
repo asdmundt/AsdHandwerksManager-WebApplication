@@ -83,14 +83,14 @@ color: #c9d1d9;
 
 .mdl-textfield__input {
     background-color: #14181f;
-    border-bottom: 1px solid #b8b9bb80 !important;
+    
     -webkit-box-shadow: none;
     box-shadow: none;
-    height: 38px;
+    height: 30px;
     color: #c9d1d9 !important;
     font-size: 14px;
     display: block;
-    font-size: 16px;
+    font-size: 12px;
     font-family: "Helvetica","Arial",sans-serif;
      margin: 10px;
     padding: 4px 4px;
@@ -110,15 +110,15 @@ color: #c9d1d9;
 }
 
 .mdl-textfield__label {
-    top: 0px; 
-    
-   color: #b8b9bb80 !important;
-   
-    left: 15px;
+    top: -2px;
+    color: #b8b9bb80 !important;
+    left: 19px;
     right: 0;
-  
-    
- 
+	font-size: 12px !important;
+}
+
+.mdl-textfield.is-dirty .mdl-textfield__label,.mdl-textfield.has-placeholder .mdl-textfield__label {
+    visibility: visible;
 }
 
 .mdl-layout__drawer {
@@ -271,9 +271,6 @@ position: relative;
 background-color: #30c94c !important;
 }
 
-.centerInner{
-
-}
 
 .containerCard{
 border: 1px solid #343434 !important;
@@ -303,7 +300,7 @@ html{box-sizing:border-box}*,*:before,*:after{box-sizing:inherit}
 .asdContainer {
     border: 1px solid #30363d;
     background-color: #0d1117;
-    width: 800px;
+    width: 900px;
 }
 #tableDiv{
 width: 800px;
@@ -331,14 +328,15 @@ width: 350px;
 }
 }
 .mdl-data-table {
-    position: relative;
-    height: 500px !important;
+    /* position: relative; */
+    /* height: 500px !important; */
     border-collapse: collapse;
     white-space: nowrap;
     font-size: 13px;
     background-color: #0d1117 !important;
-    border-top: 1px solid #30363d !important;
-    width:100%;}
+    border-top: 1px solid #161b22 !important;
+    width: 100%;
+}
 
 .mdl-dialog{
 width: 50% !important;
@@ -363,42 +361,22 @@ dialog{
     display: none;
 }
 
+.mdl-dialog__title {
+    font-size: 20px !important;
+}
+
 .message{
 border: 1px solid #343434 !important;
  background-color: #0d1117 !important;
     color: #c9d1d9 !important;
 }
 
-.modal {
-  display: none; /* Hidden by default */
-  position: fixed; /* Stay in place */
-  z-index: 1; /* Sit on top */
-  padding-top: 100px; /* Location of the box */
-  left: 0;
-  top: 0;
-  width: 100%; /* Full width */
-  height: 100%; /* Full height */
-  overflow: auto; /* Enable scroll if needed */
-background-color: #0d1117;
-}
-
-/* Modal Content */
-.modal-content {
-   background: #14181f !important;
-    color: #c9d1d9 !important;
-  margin: auto;
-  padding: 20px;
-  border: 1px solid #343434 !important;
-  width: 70%;
-   position: absolute;
-  top: 50%;
-  left: 50%;
-  -ms-transform: translate(-50%, -50%);
-  transform: translate(-50%, -50%);
-
 .mdl-list__item-primary-content{
  color: #c9d1d9 !important;
 }
+
+.mdl-data-table td, .mdl-data-table td .mdl-data-table__select {
+    vertical-align: top !important;
 '
 ]
 
