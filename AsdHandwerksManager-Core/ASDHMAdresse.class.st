@@ -6,8 +6,6 @@ Class {
 		'hsnr',
 		'plz',
 		'ort',
-		'land',
-		'tel',
 		'bemerkung',
 		'adresseObjectId'
 	],
@@ -162,16 +160,6 @@ ASDHMAdresse >> initialize [
 ]
 
 { #category : #accessing }
-ASDHMAdresse >> land [
-	^ land
-]
-
-{ #category : #accessing }
-ASDHMAdresse >> land: anObject [
-	land := anObject
-]
-
-{ #category : #accessing }
 ASDHMAdresse >> ort [
 	^ ort
 ]
@@ -199,14 +187,4 @@ ASDHMAdresse >> str [
 { #category : #accessing }
 ASDHMAdresse >> str: anObject [
 	str := anObject
-]
-
-{ #category : #accessing }
-ASDHMAdresse >> tel [
-	^ tel
-]
-
-{ #category : #accessing }
-ASDHMAdresse >> tel: anObject [
-	tel := anObject
 ]

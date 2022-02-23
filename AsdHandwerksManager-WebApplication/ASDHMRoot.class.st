@@ -214,17 +214,18 @@ ASDHMRoot >> renderContentOn: html [
 				class: 'mdl-color-text--grey-600';
 				with: [ 
 					html mdlGrid
-						noSpacing;
+						"noSpacing;"
 						with: [ 
 							html mdlCell
 								class: 'rootComponent';
 								size: 12;
+								stretch;
 								with: [ 
 									html div
 										id: #main;
 										with: [ html render: self componentToDisplay ].
 									html render: self rightPanel ] ].
-					html render: self footer ] ].
+					"html render: self footer" ] ].
 	self renderEmptyGenericDialogOn: html.
 	html div
 		id: #mainDialog;

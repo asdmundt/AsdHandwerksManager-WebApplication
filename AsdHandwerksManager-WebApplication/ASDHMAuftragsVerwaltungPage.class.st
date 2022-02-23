@@ -22,7 +22,7 @@ ASDHMAuftragsVerwaltungPage >> children [
 { #category : #initialization }
 ASDHMAuftragsVerwaltungPage >> initialize [
 
-	| list |
+	
 	super initialize.
 	
 	self session rootComponent header: ASDHMAdminHeader new.
@@ -31,29 +31,17 @@ ASDHMAuftragsVerwaltungPage >> initialize [
 
 { #category : #rendering }
 ASDHMAuftragsVerwaltungPage >> renderContentOn: html [
- html mdlGrid
-						noSpacing;
-						with: [ html mdlCell
-								class: 'rootComponent';
-								size: 12;
-								with: [ html div 
-									class:'container';
-									with:[ html div 
-									class:'center';
-									with:[  self renderInstallComponentOn: html] ]] ].
-				
-	html div
-		id: #loaderWrapper;
-		with: [ html div 
-									class:'container';
-									with:[ html div 
-										class:'center';
-										with:[  self renderInstallComponentOn: html] ] ]
-]
-
-{ #category : #rendering }
-ASDHMAuftragsVerwaltungPage >> renderInstallComponentOn: html [
-	html div
-		style: 'position: relative; height: 100%';
-		with: [html render: self installer]
+	html mdlGrid
+		noSpacing;
+		with: [ 
+			html mdlCell
+				class: 'rootComponent';
+				size: 12;
+				with: [ 
+					html div
+						class: 'container';
+						with: [ 
+							html div
+								class: 'center';
+								with: [  ] ] ] ]
 ]

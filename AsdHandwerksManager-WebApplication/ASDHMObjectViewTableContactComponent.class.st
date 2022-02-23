@@ -14,13 +14,7 @@ ASDHMObjectViewTableContactComponent >> initialize [
 	self labelTitle: 'Title'.
 	self labelVorname: 'Vorname'.
 	self labelNachname: 'Nachname'.
-	self labelTelefonNr: 'Telefon Nr.'.
-	self labelMobileFunkNr: 'Mobil Funk Nr.'.
-	self labelEmail: 'Email'.
-		self labelStr: 'Strasse'.
-	self labelHsnr: 'Haus Nr.'.
-	self labelPlz: 'Postleitzahl'.
-	self labelOrt: 'Ort'.
+
 	self labelAddContact: 'Neuer Kontakt'
 ]
 
@@ -158,17 +152,19 @@ ASDHMObjectViewTableContactComponent >> renderDialog: html withModel: aModel [
 			html mdlButton
 				id: self rootDialogCloseId;
 				bePush;
-				onClick: (html jQuery ajax
-						 serializeForm;
-						 script: [ :s | 
-							 self session model storeObject: aModel.
-							 contactTable := ASDHMObjectViewTableContactComponent 
+				onClick: 
+								(html jQuery ajax
+						serializeForm;
+						callback: [ "serializeForm;"
+							self session model storeObject: aModel. 
+							contactTable := ASDHMObjectViewTableContactComponent 
 								                 withList: self session model contacts.
-
-							 s
-							 <<
-								 ((s jQuery id: #tableDiv) load html: [ :r | 
-										  r render: contactTable ]) ]);
+							 ];
+						onComplete:
+							((html jQuery id: #tableDiv) load
+								html: [ :ajaxHtml | ajaxHtml render: contactTable ];
+								onComplete: 'componentHandler.upgradeElements(this);' js));
+			
 				with: 'Accept'.
 			html mdlButton
 				id: self rootDialogCloseId;

@@ -58,14 +58,14 @@ ASDHMContactPage >> renderContentOn: html [
 
 	html div
 		shadow: 0;
-		style: 'height: auto; display: flex; margin-top: ';
+		style: 'height: 100%; display: flex; margin-top: width: 100%;';
 		with: [ 
 			html leftPanel
 				shadow: 0;
 				style:
 					'height: 100%; width: 300px; border: 1px solid #30363d !important;';
 				with: [ self renderSelectListOn: html ].
-			(html tag: 'main') with: [ self renderComponentOn: html ] ]
+			html div style: 'width: 100%; height: 100%;';  with: [ self renderComponentOn: html ] ]
 ]
 
 { #category : #accessing }
@@ -77,39 +77,27 @@ ASDHMContactPage >> renderSelectListOn: html [
 				html mdlIcon
 					listItemIcon;
 					with: #person.
-				html mdlListItemTextBody: ASDHMContact titleText ].
-			html mdlListSecondaryContent: [ 
-				html mdlListItemSecondaryAction with: [ 
-					html anchor
+				html mdlListItemTextBody: [  html anchor
 						onClick: (html jQuery ajax script: [ :s | 
 									 self contactTable:
 											 (ASDHMObjectViewTableContactComponent withList:
 													  self session model contacts).
 									 s << ((s jQuery id: #tableDiv) load html: [ :h | 
 												  h render: self contactTable ]) ]);
-						with: [ 
-							html mdlButton
-								fab;
-								miniFab;
-								with: [ html mdlIcon: 'keyboard_arrow_right' ] ] ] ] ].
+						with: [ html text:ASDHMContact titleText ]  ].
+			]].
 		html mdlListItem: [ 
 			html mdlListPrimaryContent: [ 
 				html mdlIcon
 					listItemIcon;
 					with: #perm_contact_calendar.
-				html mdlListItemTextBody: ASDHMFirma titleText ].
-			html mdlListSecondaryContent: [ 
-				html mdlListItemSecondaryAction with: [ 
-					html anchor
+				html mdlListItemTextBody: [html anchor
 						onClick: (html jQuery ajax script: [ :s | 
 									 self contactTable:
 											 (ASDHMObjectViewTableFirmenKontaktComponent withList:
 													  self session model firmen).
 									 s << ((s jQuery id: #tableDiv) load html: [ :h | 
 												  h render: self contactTable ]) ]);
-						with: [ 
-							html mdlButton
-								fab;
-								miniFab;
-								with: [ html mdlIcon: 'keyboard_arrow_right' ] ] ] ] ] ]
+						with: [html text: ASDHMFirma titleText ]].
+			 ] ]]
 ]

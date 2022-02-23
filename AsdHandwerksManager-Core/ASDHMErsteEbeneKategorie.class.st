@@ -1,11 +1,11 @@
 Class {
-	#name : #ASDHMKategorie,
+	#name : #ASDHMErsteEbeneKategorie,
 	#superclass : #ASDHMSuperKategorie,
 	#category : #'AsdHandwerksManager-Core-Model'
 }
 
 { #category : #voyage }
-ASDHMKategorie class >> isVoyageRoot [
+ASDHMErsteEbeneKategorie class >> isVoyageRoot [
 	"Indicates that instances of this class are top level documents
     in noSQL databases"
 
@@ -13,8 +13,9 @@ ASDHMKategorie class >> isVoyageRoot [
 ]
 
 { #category : #initialization }
-ASDHMKategorie >> initialize [
+ASDHMErsteEbeneKategorie >> initialize [
 
-	super initialize.
-	self index: 3.
+super initialize.
+
+
 ]

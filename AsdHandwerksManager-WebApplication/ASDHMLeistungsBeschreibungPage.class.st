@@ -1,8 +1,9 @@
 Class {
 	#name : #ASDHMLeistungsBeschreibungPage,
-	#superclass : #ASDHMPageLogin,
+	#superclass : #ASDHMPageAdmin,
 	#instVars : [
-		'contactTable'
+		'leistungenList',
+		'kategorieTreeComponent'
 	],
 	#category : #'AsdHandwerksManager-WebApplication-Pages'
 }
@@ -19,19 +20,7 @@ ASDHMLeistungsBeschreibungPage class >> priority [
 
 { #category : #hooks }
 ASDHMLeistungsBeschreibungPage >> children [
-	^ { contactTable }
-]
-
-{ #category : #accessing }
-ASDHMLeistungsBeschreibungPage >> contactTable [
-
-	^ contactTable
-]
-
-{ #category : #accessing }
-ASDHMLeistungsBeschreibungPage >> contactTable: anObject [
-
-	contactTable := anObject
+	^ { leistungenList }
 ]
 
 { #category : #initialization }
@@ -39,77 +28,63 @@ ASDHMLeistungsBeschreibungPage >> initialize [
 
 	super initialize.
 
-	self contactTable: (ASDHMObjectViewTableContactComponent withList:
-			 self session model contacts).
-	self session rootComponent header: ASDHMHeader new
+	self kategorieTreeComponent: (ASDHMIKategorieBaumComponent withList:
+			 (self session model ebeneEinsKategorien)).
+	self session rootComponent header: ASDHMAdminHeader new
+]
+
+{ #category : #accessing }
+ASDHMLeistungsBeschreibungPage >> kategorieTreeComponent [
+
+	^ kategorieTreeComponent
+]
+
+{ #category : #accessing }
+ASDHMLeistungsBeschreibungPage >> kategorieTreeComponent: anObject [
+
+	kategorieTreeComponent := anObject
+]
+
+{ #category : #accessing }
+ASDHMLeistungsBeschreibungPage >> leistungenList [
+
+	^ leistungenList
+]
+
+{ #category : #accessing }
+ASDHMLeistungsBeschreibungPage >> leistungenList: anObject [
+
+	leistungenList := anObject
 ]
 
 { #category : #rendering }
 ASDHMLeistungsBeschreibungPage >> renderComponentOn: html [
 
 	html div
-		style: 'margin-left: 38px;';
-		id: #tableDiv;
-		with: [ html render: contactTable ]
+		style: 'margin-left: 38px;display:block;';
+		id: #tableLeistungDiv;
+		with: [ html render: leistungenList ]
 ]
 
 { #category : #rendering }
 ASDHMLeistungsBeschreibungPage >> renderContentOn: html [
 
-	html div
-		shadow: 0;
-		style: 'height: auto; display: flex; margin-top: ';
+	html mdlGrid
+		
 		with: [ 
-			html leftPanel
-				shadow: 0;
-				style:
-					'height: 100%; width: 300px; border: 1px solid #30363d !important;';
-				with: [ self renderSelectListOn: html ].
-			(html tag: 'main') with: [ self renderComponentOn: html ] ]
-]
-
-{ #category : #accessing }
-ASDHMLeistungsBeschreibungPage >> renderSelectListOn: html [
-
-	html mdlList: [ 
-		html mdlListItem: [ 
-			html mdlListPrimaryContent: [ 
-				html mdlIcon
-					listItemIcon;
-					with: #person.
-				html mdlListItemTextBody: ASDHMContact titleText ].
-			html mdlListSecondaryContent: [ 
-				html mdlListItemSecondaryAction with: [ 
-					html anchor
-						onClick: (html jQuery ajax script: [ :s | 
-									 self contactTable:
-											 (ASDHMObjectViewTableContactComponent withList:
-													  self session model contacts).
-									 s << ((s jQuery id: #tableDiv) load html: [ :h | 
-												  h render: self contactTable ]) ]);
-						with: [ 
-							html mdlButton
-								fab;
-								miniFab;
-								with: [ html mdlIcon: 'keyboard_arrow_right' ] ] ] ] ].
-		html mdlListItem: [ 
-			html mdlListPrimaryContent: [ 
-				html mdlIcon
-					listItemIcon;
-					with: #perm_contact_calendar.
-				html mdlListItemTextBody: ASDHMFirma titleText ].
-			html mdlListSecondaryContent: [ 
-				html mdlListItemSecondaryAction with: [ 
-					html anchor
-						onClick: (html jQuery ajax script: [ :s | 
-									 self contactTable:
-											 (ASDHMObjectViewTableFirmenKontaktComponent withList:
-													  self session model firmen).
-									 s << ((s jQuery id: #tableDiv) load html: [ :h | 
-												  h render: self contactTable ]) ]);
-						with: [ 
-							html mdlButton
-								fab;
-								miniFab;
-								with: [ html mdlIcon: 'keyboard_arrow_right' ] ] ] ] ] ]
+			html mdlCell
+				class: 'grid-cell-demo';
+				size: 2;
+				stretch;
+				tabletSize: 8;
+				with: '6 (8 tablet)'.
+			html mdlCell
+				class: 'grid-cell-demo';
+				size: 10;
+				stretch;
+				tabletSize: 6;
+				with: [ 
+					
+							 self renderComponentOn: html ]].
+			
 ]

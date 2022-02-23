@@ -2,7 +2,6 @@ Class {
 	#name : #ASDHMObjectViewTableBaseContactComponent,
 	#superclass : #ASDHMObjectViewTableBaseComponent,
 	#instVars : [
-		'list',
 		'labelDisplayString',
 		'labelAnrede',
 		'labelTitle',
@@ -38,7 +37,10 @@ ASDHMObjectViewTableBaseContactComponent >> initialize [
 	self labelKommunikation: 'Kommunikation'.
 	self labeBankverbindungen: 'Bankverbindungen'.
 	self labelPersoenlicheDaten: 'Persönliche Daten'.
-	self labelStr: 'Strasse'.
+		self labelTelefonNr: 'Telefon Nr.'.
+	self labelMobileFunkNr: 'Mobil Funk Nr.'.
+	self labelEmail: 'Email'.
+		self labelStr: 'Strasse'.
 	self labelHsnr: 'Haus Nr.'.
 	self labelPlz: 'Postleitzahl'.
 	self labelOrt: 'Ort'.
@@ -258,18 +260,6 @@ ASDHMObjectViewTableBaseContactComponent >> labelaktionen [
 ASDHMObjectViewTableBaseContactComponent >> labelaktionen: anObject [
 
 	labelaktionen := anObject
-]
-
-{ #category : #accessing }
-ASDHMObjectViewTableBaseContactComponent >> list [
-
-	^ list
-]
-
-{ #category : #accessing }
-ASDHMObjectViewTableBaseContactComponent >> list: anObject [
-
-	list := anObject
 ]
 
 { #category : #actions }

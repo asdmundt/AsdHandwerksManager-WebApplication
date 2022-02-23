@@ -82,15 +82,15 @@ color: #c9d1d9;
 
 
 .mdl-textfield__input {
-    background-color: #14181f;
-    
+    background-color: #14181f !important;
+    border: none !important;
+    border-bottom: none !important;  
     -webkit-box-shadow: none;
     box-shadow: none;
     height: 30px;
     color: #c9d1d9 !important;
-    font-size: 14px;
-    display: block;
-    font-size: 12px;
+      display: block;
+    font-size: 12px !important;
     font-family: "Helvetica","Arial",sans-serif;
      margin: 10px;
     padding: 4px 4px;
@@ -143,7 +143,7 @@ height: 90% !important;
     font-weight: 400;
     min-height: 200px;
     overflow: hidden;
-    width: 330px;
+    width: auto;
     z-index: 1;
     position: relative;
     border: 1px solid #30363d !important;
@@ -223,14 +223,15 @@ border: 1px solid #343434 !important;
     background-color: #161b22 !important;
 }
 
+
 .bar {
     box-sizing: border-box;
     background: #161b22;
     color: #c9d1d9;
     width: 100%;
-    padding: 16px;
-position: relative;
-    height: 64px;
+    padding: 5px;
+    position: relative;
+    height: 30px;
 }
 
 .wrapper {
@@ -261,7 +262,7 @@ position: relative;
 .center {
   margin: 0;
   position: absolute;
-  top: 50%;
+  top: 40%;
   left: 50%;
   -ms-transform: translate(-50%, -50%);
   transform: translate(-50%, -50%);
@@ -302,9 +303,7 @@ html{box-sizing:border-box}*,*:before,*:after{box-sizing:inherit}
     background-color: #0d1117;
     width: 900px;
 }
-#tableDiv{
-width: 800px;
-}
+
 }
 
 @media screen and (max-width: 760px) {
@@ -313,9 +312,7 @@ width: 800px;
     background-color: #0d1117;
     width: 600px;
 }
-#tableDiv{
-width: 600px;
-}
+
 }
 @media screen and (max-width: 360px) {
 .asdContainer {
@@ -323,9 +320,7 @@ width: 600px;
     background-color: #0d1117;
     width: 350px;
 }
-#tableDiv{
-width: 350px;
-}
+
 }
 .mdl-data-table {
     /* position: relative; */
@@ -362,7 +357,7 @@ dialog{
 }
 
 .mdl-dialog__title {
-    font-size: 20px !important;
+    font-size: 16px !important;
 }
 
 .message{
@@ -377,6 +372,33 @@ border: 1px solid #343434 !important;
 
 .mdl-data-table td, .mdl-data-table td .mdl-data-table__select {
     vertical-align: top !important;
+}
+
+.mdl-data-table th{
+color: #c9d1d9 !important;
+}
+
+.mdl-list__item--three-line {
+    height: 188px;
+    border: 1px solid #30363d;
+    background-color: #0d1117;
+    margin: 10px;
+}
+
+#main {
+    transition: margin-right .5s;
+    padding: 16px;
+    height: 100%;
+}
+
+.deepPanel{
+background-color: #000000;
+margin: 10px;
+height: 100%;
+width: 100%;
+}
+
+
 '
 ]
 

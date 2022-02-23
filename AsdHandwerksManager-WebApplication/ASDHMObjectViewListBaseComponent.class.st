@@ -1,40 +1,52 @@
 Class {
-	#name : #ASDHMObjectViewTableBaseComponent,
+	#name : #ASDHMObjectViewListBaseComponent,
 	#superclass : #ASDHMBaseComponent,
-	#traits : 'TWithRootDialogComponent',
-	#classTraits : 'TWithRootDialogComponent classTrait',
 	#instVars : [
-		'labelBez',
-		'labelView',
-		'labelEdit',
-		'labelDelete',
+		'visible',
+		'title',
+		'components',
 		'labelSelect',
-		'list'
+		'labelDelete',
+		'list',
+		'labelEdit',
+		'labelBez'
 	],
 	#category : #'AsdHandwerksManager-WebApplication-Components'
 }
 
 { #category : #'instance creation' }
-ASDHMObjectViewTableBaseComponent class >> withList: aList [
+ASDHMObjectViewListBaseComponent class >> withList: aList [
 ^ self new list: aList
 
 	
 ]
 
 { #category : #actions }
-ASDHMObjectViewTableBaseComponent >> add [
+ASDHMObjectViewListBaseComponent >> add [
 self subclassResponsibility
 ]
 
+{ #category : #accessing }
+ASDHMObjectViewListBaseComponent >> components [
+
+	^ components
+]
+
+{ #category : #accessing }
+ASDHMObjectViewListBaseComponent >> components: anObject [
+
+	components := anObject
+]
+
 { #category : #actions }
-ASDHMObjectViewTableBaseComponent >> edit: anObject [
+ASDHMObjectViewListBaseComponent >> edit: anObject [
 
 
 	self subclassResponsibility
 ]
 
 { #category : #initialization }
-ASDHMObjectViewTableBaseComponent >> initialize [
+ASDHMObjectViewListBaseComponent >> initialize [
 
 	super initialize.
 		self labelSelect: 'Auswählen'.
@@ -46,88 +58,82 @@ ASDHMObjectViewTableBaseComponent >> initialize [
 ]
 
 { #category : #accessing }
-ASDHMObjectViewTableBaseComponent >> labelBez [
+ASDHMObjectViewListBaseComponent >> labelBez [
 
 	^ labelBez
 ]
 
 { #category : #accessing }
-ASDHMObjectViewTableBaseComponent >> labelBez: anObject [
+ASDHMObjectViewListBaseComponent >> labelBez: anObject [
 
 	labelBez := anObject
 ]
 
 { #category : #accessing }
-ASDHMObjectViewTableBaseComponent >> labelDelete [
+ASDHMObjectViewListBaseComponent >> labelDelete [
 
 	^ labelDelete
 ]
 
 { #category : #accessing }
-ASDHMObjectViewTableBaseComponent >> labelDelete: anObject [
+ASDHMObjectViewListBaseComponent >> labelDelete: anObject [
 
 	labelDelete := anObject
 ]
 
 { #category : #accessing }
-ASDHMObjectViewTableBaseComponent >> labelEdit [
+ASDHMObjectViewListBaseComponent >> labelEdit [
 
 	^ labelEdit
 ]
 
 { #category : #accessing }
-ASDHMObjectViewTableBaseComponent >> labelEdit: anObject [
+ASDHMObjectViewListBaseComponent >> labelEdit: anObject [
 
 	labelEdit := anObject
 ]
 
 { #category : #accessing }
-ASDHMObjectViewTableBaseComponent >> labelSelect [
+ASDHMObjectViewListBaseComponent >> labelSelect [
 
 	^ labelSelect
 ]
 
 { #category : #accessing }
-ASDHMObjectViewTableBaseComponent >> labelSelect: anObject [
+ASDHMObjectViewListBaseComponent >> labelSelect: anObject [
 
 	labelSelect := anObject
 ]
 
 { #category : #accessing }
-ASDHMObjectViewTableBaseComponent >> list [
+ASDHMObjectViewListBaseComponent >> list [
 
 	^ list ifNil: [ list := OrderedCollection new ]
 ]
 
 { #category : #accessing }
-ASDHMObjectViewTableBaseComponent >> list: anObject [
+ASDHMObjectViewListBaseComponent >> list: anObject [
 
 	list := anObject
 ]
 
 { #category : #actions }
-ASDHMObjectViewTableBaseComponent >> remove: anObject [
+ASDHMObjectViewListBaseComponent >> remove: anObject [
 
 	self subclassResponsibility
 ]
 
 { #category : #rendering }
-ASDHMObjectViewTableBaseComponent >> renderAddDialog: html [
-
-	self subclassResponsibility
-]
-
-{ #category : #rendering }
-ASDHMObjectViewTableBaseComponent >> renderBezOn: html [
+ASDHMObjectViewListBaseComponent >> renderBezOn: html [
 
 	html text: self labelBez 
 ]
 
 { #category : #rendering }
-ASDHMObjectViewTableBaseComponent >> renderContentOn: html [
+ASDHMObjectViewListBaseComponent >> renderContentOn: html [
 
 	html div
-		style: 'border: 1px solid #30363d; display: block;';
+		style: ' display: block;';
 		shadow: 0;
 		with: [ 
 			html div
@@ -161,33 +167,36 @@ ASDHMObjectViewTableBaseComponent >> renderContentOn: html [
 ]
 
 { #category : #rendering }
-ASDHMObjectViewTableBaseComponent >> renderDialogMenu: html [
+ASDHMObjectViewListBaseComponent >> renderDialogMenu: html [
 
 	self subclassResponsibility
 ]
 
 { #category : #rendering }
-ASDHMObjectViewTableBaseComponent >> renderInnerContentOn: html [
+ASDHMObjectViewListBaseComponent >> renderInnerContentOn: html [
 	self subclassResponsibility
 ]
 
-{ #category : #rendering }
-ASDHMObjectViewTableBaseComponent >> renderTableHeadingActions: html [
+{ #category : #accessing }
+ASDHMObjectViewListBaseComponent >> title [
 
-	html mdlTableHeading
-		nonNumerical;
-		style: 'background-color: #161b22; position: relativ; top: 0px;';
-		with: self labelView.
-	html mdlTableHeading
-		nonNumerical;
-		style: 'background-color: #161b22; position: relativ; top: 0px;';
-		with: self labelEdit.
-	html mdlTableHeading
-		nonNumerical;
-		style: 'background-color: #161b22; position: relativ; top: 0px;';
-		with: self labelDelete.		
-	html mdlTableHeading
-		nonNumerical;
-		style: 'background-color: #161b22; position: relativ; top: 0px;';
-		with: self labelSelect 
+	^ title
+]
+
+{ #category : #accessing }
+ASDHMObjectViewListBaseComponent >> title: anObject [
+
+	title := anObject
+]
+
+{ #category : #accessing }
+ASDHMObjectViewListBaseComponent >> visible [
+
+	^ visible
+]
+
+{ #category : #accessing }
+ASDHMObjectViewListBaseComponent >> visible: anObject [
+
+	visible := anObject
 ]

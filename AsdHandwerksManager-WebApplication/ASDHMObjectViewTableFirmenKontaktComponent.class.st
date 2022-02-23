@@ -175,16 +175,19 @@ ASDHMObjectViewTableFirmenKontaktComponent >> renderDialog: html withModel: aMod
 			html mdlButton
 				id: self rootDialogCloseId;
 				bePush;
-				onClick: (html jQuery ajax
-						 serializeForm;
-						 script: [ :s | 
-							 self session model storeObject: aModel.
-							 contactTable := ASDHMObjectViewTableFirmenKontaktComponent 
+				onClick: 
+				(html jQuery ajax
+						serializeForm;
+						callback: [ "serializeForm;"
+							self session model storeObject: aModel. 
+							contactTable := ASDHMObjectViewTableFirmenKontaktComponent 
 								                 withList: self session model firmen.
-							 s
-							 <<
-								 ((s jQuery id: #tableDiv) load html: [ :r | 
-										  r render: contactTable ]) ]);
+							 ];
+						onComplete:
+							((html jQuery id: #tableDiv) parent load
+								html: [ :ajaxHtml | ajaxHtml render: contactTable ];
+								onComplete: 'componentHandler.upgradeElements(this);' js));
+				
 				with: 'Accept'.
 			html mdlButton
 				id: self rootDialogCloseId;
@@ -216,17 +219,17 @@ ASDHMObjectViewTableFirmenKontaktComponent >> renderInnerContentOn: html [
 							html mdlTableHeading
 								nonNumerical;
 								style:
-									'background-color: #161b22; position: relativ; top: 10px;';
+									'background-color: #161b22; position: relativ; top: 0px;';
 								with: self labelFirmenName.
 							html mdlTableHeading
 								nonNumerical;
 								style:
-									'background-color: #161b22; position: relativ; top: 10px;';
+									'background-color: #161b22; position: relativ; top: 0px;';
 								with: self labelFirmenForm.
 							html mdlTableHeading
 								nonNumerical;
 								style:
-									'background-color: #161b22; position: relativ; top: 10px;';
+									'background-color: #161b22; position: relativ; top: 0px;';
 								with: self labelansprechpartner.								
 								self renderTableHeadingCommunnikationsData: html.
 								html mdlTableHeading

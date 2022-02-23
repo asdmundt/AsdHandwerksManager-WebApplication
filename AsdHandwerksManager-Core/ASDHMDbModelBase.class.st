@@ -2,8 +2,7 @@ Class {
 	#name : #ASDHMDbModelBase,
 	#superclass : #Object,
 	#instVars : [
-		'users',
-		'loggedUsers'
+		'users'
 	],
 	#classVars : [
 		'Repos'
@@ -22,49 +21,173 @@ ASDHMDbModelBase class >> createAdmin [
 ]
 
 { #category : #'data sample' }
-ASDHMDbModelBase class >> createDemoData [
-	"(ASDEUser benutzerName: 'shop' password: 'xyz' admin: false)
-		asShopOwner save."
-Repos save: (ASDEKategorie name: 'Portal' andType: 'shop').
-	Repos save: (ASDEKategorie name: 'Elektronik' andType: 'shop').
-	Repos save: (ASDEKategorie name: 'Baumarkt' andType: 'shop').
-	Repos save: (ASDEKategorie name: 'Textilien' andType: 'shop').
-	Repos save: (ASDEKategorie name: 'SecondHand' andType: 'shop').
-	Repos save: (ASDEKategorie name: 'Moebel' andType: 'shop').
-	Repos save: (ASDEKategorie name: 'Werkzeug' andType: 'shop').
-	Repos
-		save: (ASDEKategorie name: 'Multimedia' andType: 'artikelArtKategorie').
-	Repos
-		save: (ASDEKategorie name: 'Computer' andType: 'artikelArtKategorie').
-	Repos
-		save:
-			(ASDEKategorie
-				name: 'ComputerKomponenten'
-				andType: 'artikelArtKategorie').
-	Repos
-		save: (ASDEKategorie name: 'Lampen' andType: 'artikelArtKategorie').
-	Repos
-		save: (ASDEKategorie name: 'Moebel' andType: 'artikelArtKategorie').
-	Repos
-		save:
-			(ASDEKategorie
-				name: 'ElektronikKomponenten'
-				andType: 'artikelArtKategorie').
-	Repos
-		save: (ASDEKategorie name: 'Boxen' andType: 'artikelOberKategorie').
-	Repos
-		save: (ASDEKategorie name: 'Reciever' andType: 'artikelOberKategorie').
-	Repos
-		save: (ASDEKategorie name: 'Mp3Player' andType: 'artikelOberKategorie').
-	Repos
-		save: (ASDEKategorie name: 'TV' andType: 'artikelOberKategorie').
-	Repos
-		save: (ASDEKategorie name: 'Satelit' andType: 'artikelOberKategorie').
-	Repos
-		save:
-			(ASDEKategorie
-				name: 'ElektronikKomponenten'
-				andType: 'artikelOberKategorie')
+ASDHMDbModelBase class >> createDataMalerKategorieBaum [
+| ebeneEins ebeneEinsInnen ebeneEinsHolz ebeneEinsMetall ebeneEinsKunststoff ebeneEinsBeton ebeneEinsBrandSchutz ebeneEinsRegiearbeiten |
+ebeneEins := ASDHMErsteEbeneKategorie bez: 'Fasade'.
+ebeneEinsInnen := ASDHMErsteEbeneKategorie bez: 'Innenraum'.
+ebeneEinsHolz := ASDHMErsteEbeneKategorie bez: 'Holz'.
+ebeneEinsMetall := ASDHMErsteEbeneKategorie bez: 'Metall'.
+ebeneEinsKunststoff := ASDHMErsteEbeneKategorie bez: 'Kunststoff'.
+ebeneEinsBeton := ASDHMErsteEbeneKategorie bez: 'Beton'.
+ebeneEinsBrandSchutz := ASDHMErsteEbeneKategorie bez: 'Brandschutz'.
+ebeneEinsRegiearbeiten := ASDHMErsteEbeneKategorie bez: 'Regiearbeiten'.
+
+ ebeneEins addChilds: ((ASDHMZweiteEbeneKategorie bez: 'Abdeckarbeiten')
+addChilds: (ASDHMKategorie bez: 'Oberfläche' andKuerzel: 'FAO' );
+addChilds: (ASDHMKategorie bez: 'Schutzeinrichtungen' andKuerzel: 'FAS' )).
+Repos save: ebeneEins.
+
+ ebeneEins addChilds: ((ASDHMZweiteEbeneKategorie bez: 'Gerüstbau')
+addChilds: (ASDHMKategorie bez: 'Gerüst/Arbeitsbühne' andKuerzel: 'FGA' );
+addChilds: (ASDHMKategorie bez: 'Schutzeinrichtungen' andKuerzel: 'FGE' )).
+Repos save: ebeneEins.
+
+ ebeneEins addChilds: ((ASDHMZweiteEbeneKategorie bez: 'Risssanierung')
+addChilds: (ASDHMKategorie bez: 'Vorbereitung' andKuerzel: 'FRV' );
+addChilds: (ASDHMKategorie bez: 'Spachteln' andKuerzel: 'FRS' );
+addChilds: (ASDHMKategorie bez: 'Grundierung' andKuerzel: 'FRG' );
+addChilds: (ASDHMKategorie bez: 'Zwischenbeschichtung' andKuerzel: 'FRZ' );
+addChilds: (ASDHMKategorie bez: 'Schlussbeschichtung' andKuerzel: 'FRB' )).
+Repos save: ebeneEins.
+
+ ebeneEins addChilds: ((ASDHMZweiteEbeneKategorie bez: 'Putz')
+addChilds: (ASDHMKategorie bez: 'Vorbereitung' andKuerzel: 'FPV' );
+addChilds: (ASDHMKategorie bez: 'Spachteln' andKuerzel: 'FPS' );
+addChilds: (ASDHMKategorie bez: 'Grundierung' andKuerzel: 'FPG' );
+addChilds: (ASDHMKategorie bez: 'SchlussBeschichtung' andKuerzel: 'FPB' )).
+Repos save: ebeneEins.
+
+ ebeneEins addChilds: ((ASDHMZweiteEbeneKategorie bez: 'AnStrich')
+addChilds: (ASDHMKategorie bez: 'Vorbereitung' andKuerzel: 'FSV' );
+addChilds: (ASDHMKategorie bez: 'Spachteln' andKuerzel: 'FSS' );
+addChilds: (ASDHMKategorie bez: 'Grundierung' andKuerzel: 'FSG' );
+addChilds: (ASDHMKategorie bez: 'Zwischenbeschichtung' andKuerzel: 'FSZ' );
+addChilds: (ASDHMKategorie bez: 'SchlussBeschichtung' andKuerzel: 'FSB' )).
+Repos save: ebeneEins.
+
+ ebeneEins addChilds: ((ASDHMZweiteEbeneKategorie bez: 'Wärmedämmung')
+addChilds: (ASDHMKategorie bez: 'Vorbereitung' andKuerzel: 'FWV' );
+addChilds: (ASDHMKategorie bez: 'DämmschutzPlatte' andKuerzel: 'FWP' );
+addChilds: (ASDHMKategorie bez: 'Ammierung/BeFestigung' andKuerzel: 'FWA' );
+addChilds: (ASDHMKategorie bez: 'Zwischenbeschichtung' andKuerzel: 'FWZ' );
+addChilds: (ASDHMKategorie bez: 'Schlussbeschichtung' andKuerzel: 'FWB' )).
+Repos save: ebeneEins.
+
+ebeneEinsInnen addChilds: ((ASDHMZweiteEbeneKategorie bez: 'Abdeckarbeiten')
+addChilds: (ASDHMKategorie bez: 'Oberfläche' andKuerzel: 'IAO' );
+addChilds: (ASDHMKategorie bez: 'SchutzEinrichtung' andKuerzel: 'IAE' ) ).
+Repos save: ebeneEinsInnen.
+
+ebeneEinsInnen addChilds: ((ASDHMZweiteEbeneKategorie bez: 'Gerüstbau')
+addChilds: (ASDHMKategorie bez: 'Gerüst/Arbeitsbühne' andKuerzel: 'IGA' )).
+Repos save: ebeneEinsInnen.
+
+ebeneEinsInnen addChilds: ((ASDHMZweiteEbeneKategorie bez: 'Risssanierung')
+addChilds: (ASDHMKategorie bez: 'Vorbereitung' andKuerzel: 'IRV' );
+addChilds: (ASDHMKategorie bez: 'Spachteln' andKuerzel: 'IRS' );
+addChilds: (ASDHMKategorie bez: 'Grundierung' andKuerzel: 'IRG' );
+addChilds: (ASDHMKategorie bez: 'Zwischenbeschichtung' andKuerzel: 'IRZ' );
+addChilds: (ASDHMKategorie bez: 'SchutzEinrichtung' andKuerzel: 'IAB' ) ).
+Repos save: ebeneEinsInnen.
+
+ebeneEinsInnen addChilds: ((ASDHMZweiteEbeneKategorie bez: 'Putz')
+addChilds: (ASDHMKategorie bez: 'Vorbereitung' andKuerzel: 'IPV' );
+addChilds: (ASDHMKategorie bez: 'Spachteln' andKuerzel: 'IPS' );
+addChilds: (ASDHMKategorie bez: 'Grundierung' andKuerzel: 'IPG' );
+addChilds: (ASDHMKategorie bez: 'SchutzBeschichtung' andKuerzel: 'IPB' ) ).
+Repos save: ebeneEinsInnen.
+
+ebeneEinsInnen addChilds: ((ASDHMZweiteEbeneKategorie bez: 'Tapizierarbeiten')
+addChilds: (ASDHMKategorie bez: 'Vorbereitung' andKuerzel: 'ITV' );
+addChilds: (ASDHMKategorie bez: 'Grundierung' andKuerzel: 'ITG' );
+addChilds: (ASDHMKategorie bez: 'Schlussbeschichtung' andKuerzel: 'ITT' )).
+Repos save: ebeneEinsInnen.
+
+
+ebeneEinsInnen addChilds: ((ASDHMZweiteEbeneKategorie bez: 'AnStrich')
+addChilds: (ASDHMKategorie bez: 'Vorbereitung' andKuerzel: 'ISV' );
+addChilds: (ASDHMKategorie bez: 'Spachteln' andKuerzel: 'ISS' );
+addChilds: (ASDHMKategorie bez: 'Grundierung' andKuerzel: 'ISG' );
+addChilds: (ASDHMKategorie bez: 'Zwischenbeschichtung' andKuerzel: 'ISZ' );
+addChilds: (ASDHMKategorie bez: 'SchlussBeschichtung' andKuerzel: 'ISB' ) ).
+Repos save: ebeneEinsInnen.
+
+ebeneEinsInnen addChilds: ((ASDHMZweiteEbeneKategorie bez: 'Bodenbeschichtung')
+addChilds: (ASDHMKategorie bez: 'Vorbereitung' andKuerzel: 'IBV' );
+addChilds: (ASDHMKategorie bez: 'Beschichtung' andKuerzel: 'IBB' );
+addChilds: (ASDHMKategorie bez: 'VeRsiegelung' andKuerzel: 'IBR' )).
+Repos save: ebeneEinsInnen.
+
+
+ebeneEinsInnen addChilds: ((ASDHMZweiteEbeneKategorie bez: 'Verlegerarbeitung')
+addChilds: (ASDHMKategorie bez: 'Vorbereitng' andKuerzel: 'IVV' );
+addChilds: (ASDHMKategorie bez: 'Untergrund' andKuerzel: 'IVU' );
+addChilds: (ASDHMKategorie bez: 'Verlegung Oberfläche' andKuerzel: 'IVO' );
+addChilds: (ASDHMKategorie bez: 'Verlegung Treppe/Stufe/Podest' andKuerzel: 'IVQ')).
+Repos save: ebeneEinsInnen.
+
+ebeneEinsInnen addChilds: ((ASDHMZweiteEbeneKategorie bez: 'TrocKenbau')
+addChilds: (ASDHMKategorie bez: 'Deckensysteme' andKuerzel: 'IKD' );
+addChilds: (ASDHMKategorie bez: 'Wandsysteme' andKuerzel: 'IKW' );
+addChilds: (ASDHMKategorie bez: 'Nebenarbeitung' andKuerzel: 'IKN' )).
+Repos save: ebeneEinsInnen.
+
+ ebeneEinsInnen addChilds: ((ASDHMZweiteEbeneKategorie bez: 'Wärmedämmung')
+addChilds: (ASDHMKategorie bez: 'Vorbereitung' andKuerzel: 'IWV' );
+addChilds: (ASDHMKategorie bez: 'DämmschutzPlatte' andKuerzel: 'IWP' );
+addChilds: (ASDHMKategorie bez: 'Ammierung/BeFestigung' andKuerzel: 'IWF' );
+addChilds: (ASDHMKategorie bez: 'Spachteln' andKuerzel: 'IWS' );
+addChilds: (ASDHMKategorie bez: 'SchlussBeschichtung' andKuerzel: 'IWB' )).
+Repos save: ebeneEinsInnen.
+
+ebeneEinsHolz addChilds: ((ASDHMZweiteEbeneKategorie bez: 'Oberfläche')
+addChilds: (ASDHMKategorie bez: 'Vorbereitung' andKuerzel: 'HOV' );
+addChilds: (ASDHMKategorie bez: 'Spachteln' andKuerzel: 'HOS' );
+addChilds: (ASDHMKategorie bez: 'Grundierung' andKuerzel: 'HOG' );
+addChilds: (ASDHMKategorie bez: 'Zwischenbeschichtung' andKuerzel: 'HOZ' );
+addChilds: (ASDHMKategorie bez: 'SchlussBeschichtung' andKuerzel: 'HOB' ) ).
+Repos save: ebeneEinsHolz.
+
+ebeneEinsHolz addChilds: ((ASDHMZweiteEbeneKategorie bez: 'Fenster')
+addChilds: (ASDHMKategorie bez: 'Vorbereitung' andKuerzel: 'HFV' );
+addChilds: (ASDHMKategorie bez: 'Spachteln' andKuerzel: 'HFS' );
+addChilds: (ASDHMKategorie bez: 'Grundierung' andKuerzel: 'HFG' );
+addChilds: (ASDHMKategorie bez: 'Zwischenbeschichtung' andKuerzel: 'HFZ' );
+addChilds: (ASDHMKategorie bez: 'SchlussBeschichtung' andKuerzel: 'HFB' ) ).
+Repos save: ebeneEinsHolz.
+
+ebeneEinsMetall addChilds: ((ASDHMZweiteEbeneKategorie bez: 'Oberfläche')
+addChilds: (ASDHMKategorie bez: 'Vorbereitung' andKuerzel: 'MOV' );
+addChilds: (ASDHMKategorie bez: 'Spachteln' andKuerzel: 'MOS' );
+addChilds: (ASDHMKategorie bez: 'Grundierung' andKuerzel: 'MOG' );
+addChilds: (ASDHMKategorie bez: 'Zwischenbeschichtung' andKuerzel: 'MOZ' );
+addChilds: (ASDHMKategorie bez: 'SchlussBeschichtung' andKuerzel: 'MOB' ) ).
+Repos save: ebeneEinsMetall.
+
+ebeneEinsKunststoff addChilds: ((ASDHMZweiteEbeneKategorie bez: 'Oberfläche')
+addChilds: (ASDHMKategorie bez: 'Vorbereitung' andKuerzel: 'KOV' );
+addChilds: (ASDHMKategorie bez: 'Grundierung' andKuerzel: 'KOG' );
+addChilds: (ASDHMKategorie bez: 'Zwischenbeschichtung' andKuerzel: 'KOZ' );
+addChilds: (ASDHMKategorie bez: 'SchlussBeschichtung' andKuerzel: 'KOB' )).
+Repos save: ebeneEinsKunststoff.
+
+ebeneEinsBeton addChilds: ((ASDHMZweiteEbeneKategorie bez: 'Oberfläche')
+addChilds: (ASDHMKategorie bez: 'Vorbereitung' andKuerzel: 'BOV' );
+addChilds: (ASDHMKategorie bez: 'Beschichtung' andKuerzel: 'BOB' )).
+Repos save: ebeneEinsBeton.
+
+
+ebeneEinsBrandSchutz addChilds: ((ASDHMZweiteEbeneKategorie bez: 'Dämmung')
+addChilds: (ASDHMKategorie bez: 'Metall/Stahl' andKuerzel: 'SDM' );
+addChilds: (ASDHMKategorie bez: 'Holz' andKuerzel: 'SDH' )).
+Repos save: ebeneEinsBrandSchutz.
+
+
+ebeneEinsRegiearbeiten addChilds: ((ASDHMZweiteEbeneKategorie bez: 'Regiearbeiten')
+addChilds: (ASDHMKategorie bez: 'BaustellenEinrichtung' andKuerzel: 'RE' );
+addChilds: (ASDHMKategorie bez: 'StundenLohn' andKuerzel: 'RL' );
+addChilds: (ASDHMKategorie bez: 'Geräte/Werkzeuge' andKuerzel: 'RW' )).
+Repos save: ebeneEinsRegiearbeiten.
 ]
 
 { #category : #voyage }
@@ -122,8 +245,8 @@ ASDHMDbModelBase class >> isVoyageRoot [
 { #category : #'class initialization' }
 ASDHMDbModelBase class >> reset [
 	uniqueInstanceDbModelBauManagerBase := nil.
-	"VORepository current reset."
-	VORepository repositoryContainer: VODynamicContainer new.
+	"VOMongoRepository current reset."
+	VOMongoRepository repositoryContainer: VODynamicContainer new.
 	self initializeLocalhostMongoDB
 ]
 
@@ -139,26 +262,10 @@ ASDHMDbModelBase >> addLoggedUser: aUser [
 ]
 
 { #category : #operations }
-ASDHMDbModelBase >> artCategories [
-	^ Repos
-		selectMany: ASDHMKategorie
-		where: [ :each | each type = 'artikelArtKategorie' ]
-]
-
-{ #category : #operations }
 ASDHMDbModelBase >> artikelCategories [
 	^ Repos
 		selectMany: ASDEKategorie
 		where: [ :each | each type = 'artikelKategorie' ]
-]
-
-{ #category : #operations }
-ASDHMDbModelBase >> categorieCollection [
-	| categorieColl |
-	categorieColl := OrderedCollection new.
-	self  shopCategories
-		do: [ :aCat | categorieColl add: aCat name ].
-	^ categorieColl
 ]
 
 { #category : #accessing }
@@ -175,6 +282,26 @@ ASDHMDbModelBase >> costumers [
 	| collection |
 	collection := Repos selectAll: ASDHMKunde.
 	^ collection yourself
+]
+
+{ #category : #accessing }
+ASDHMDbModelBase >> ebeneEinsKategorien [
+
+	| collection |
+	collection := Repos selectAll: ASDHMErsteEbeneKategorie.
+	^ collection yourself
+]
+
+{ #category : #accessing }
+ASDHMDbModelBase >> ebeneEinsKategorienCount [
+^ Repos count: ASDHMErsteEbeneKategorie.
+
+]
+
+{ #category : #accessing }
+ASDHMDbModelBase >> ebeneZweiKategorienCount [
+^ Repos count: ASDHMZweiteEbeneKategorie.
+
 ]
 
 { #category : #operations }
@@ -204,14 +331,28 @@ ASDHMDbModelBase >> installConfig [
 ]
 
 { #category : #accessing }
-ASDHMDbModelBase >> loggedUsers [
+ASDHMDbModelBase >> leistungen [
 
-	^ Repos selectMany: ASDEUser where: [ :each | each logged == true ]
+	| collection |
+	collection := Repos selectAll: ASDHMLeistungen.
+	^ collection yourself
 ]
 
 { #category : #accessing }
-ASDHMDbModelBase >> loggedUsers: anObject [
-	loggedUsers := anObject
+ASDHMDbModelBase >> leistungenWithKuerzel: idCode [
+
+	| collection |
+	collection := Repos selectMany: ASDHMLeistungen
+		where: [ :each | each kuerzel = idCode ].
+	^ collection yourself.
+	
+
+]
+
+{ #category : #accessing }
+ASDHMDbModelBase >> loggedUsers [
+
+	^ Repos selectMany: ASDEUser where: [ :each | each logged == true ]
 ]
 
 { #category : #operations }
@@ -219,14 +360,6 @@ ASDHMDbModelBase >> oberCategories [
 	^ Repos
 		selectMany: ASDEKategorie
 		where: [ :each | each type = 'artikelOberKategorie' ]
-]
-
-{ #category : #accessing }
-ASDHMDbModelBase >> phoneContacts [
-
-	| collection |
-	collection := Repos selectAll: ASDHMPhoneContact .
-	^ collection yourself
 ]
 
 { #category : #operations }

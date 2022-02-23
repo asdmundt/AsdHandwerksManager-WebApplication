@@ -13,7 +13,9 @@ Class {
 		'userId',
 		'firma',
 		'firmenId',
-		'currentObject'
+		'currentObject',
+		'loggedUsers',
+		'leistungen'
 	],
 	#category : #'AsdHandwerksManager-Core-Utils'
 }
@@ -86,6 +88,19 @@ ASDHMSession >> initialize [
 { #category : #testing }
 ASDHMSession >> isLogged [
 	^ self currentUser notNil
+]
+
+{ #category : #accessing }
+ASDHMSession >> leistungen [
+
+	^ leistungen ifNil: [ leistungen := self model leistungen ]
+]
+
+{ #category : #accessing }
+ASDHMSession >> loggedUsers [
+
+	^ loggedUsers ifNil: [ loggedUsers := OrderedCollection new ]
+
 ]
 
 { #category : #accessing }
