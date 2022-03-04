@@ -127,7 +127,7 @@ ASDHMObjectViewTableBaseComponent >> renderBezOn: html [
 ASDHMObjectViewTableBaseComponent >> renderContentOn: html [
 
 	html div
-		style: 'border: 1px solid #30363d; display: block;';
+		style: 'display: block; height:100%';
 		shadow: 0;
 		with: [ 
 			html div

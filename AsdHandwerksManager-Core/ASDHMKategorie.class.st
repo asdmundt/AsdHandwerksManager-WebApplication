@@ -17,4 +17,6 @@ ASDHMKategorie >> initialize [
 
 	super initialize.
 	self index: 3.
+	"pathString := super pathString , ' / ' , self pathString."
+	collectionClassName := false
 ]

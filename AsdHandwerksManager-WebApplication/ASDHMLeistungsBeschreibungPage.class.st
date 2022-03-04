@@ -20,7 +20,7 @@ ASDHMLeistungsBeschreibungPage class >> priority [
 
 { #category : #hooks }
 ASDHMLeistungsBeschreibungPage >> children [
-	^ { leistungenList }
+	^ { self kategorieTreeComponent. self leistungenList }
 ]
 
 { #category : #initialization }
@@ -29,7 +29,9 @@ ASDHMLeistungsBeschreibungPage >> initialize [
 	super initialize.
 
 	self kategorieTreeComponent: (ASDHMIKategorieBaumComponent withList:
-			 (self session model ebeneEinsKategorien)).
+			 self session model ebeneEinsKategorien).
+	self leistungenList: (ASDHMObjectViewListLeistungenComponent withList:
+			 self session model leistungen).
 	self session rootComponent header: ASDHMAdminHeader new
 ]
 
@@ -58,10 +60,19 @@ ASDHMLeistungsBeschreibungPage >> leistungenList: anObject [
 ]
 
 { #category : #rendering }
+ASDHMLeistungsBeschreibungPage >> renderBaumOn: html [
+
+	html div
+		style: 'display:block; height: 100%;';
+		id: #baumKategorieLeistungDiv;
+		with: [ html render: self kategorieTreeComponent ]
+]
+
+{ #category : #rendering }
 ASDHMLeistungsBeschreibungPage >> renderComponentOn: html [
 
 	html div
-		style: 'margin-left: 38px;display:block;';
+		style: 'display:block; height: 100%;';
 		id: #tableLeistungDiv;
 		with: [ html render: leistungenList ]
 ]
@@ -70,21 +81,20 @@ ASDHMLeistungsBeschreibungPage >> renderComponentOn: html [
 ASDHMLeistungsBeschreibungPage >> renderContentOn: html [
 
 	html mdlGrid
-		
+		noSpacing;
 		with: [ 
 			html mdlCell
-				class: 'grid-cell-demo';
-				size: 2;
+				class: 'sideBar';
+				id: 'sideBar';
+				size: 3;
 				stretch;
-				tabletSize: 8;
-				with: '6 (8 tablet)'.
+				tabletSize: 2;
+				with: [ self renderBaumOn: html ].
 			html mdlCell
-				class: 'grid-cell-demo';
-				size: 10;
+				class: 'content';
+				id: 'content';
+				size: 9;
 				stretch;
 				tabletSize: 6;
-				with: [ 
-					
-							 self renderComponentOn: html ]].
-			
+				with: [ self renderComponentOn: html ] ]
 ]

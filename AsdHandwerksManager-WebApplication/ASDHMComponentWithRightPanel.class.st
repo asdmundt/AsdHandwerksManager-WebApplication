@@ -56,8 +56,13 @@ ASDHMComponentWithRightPanel >> script [
 
 	^ '$(document).ready(function(){
   $(".openNav").click(function(){
-    $("#mySidenav").css("width", "350px");
-    $("#main").css("margin-right", "350px");
+		if($("#mySidenav").css("width") == "0px"){
+    		$("#mySidenav").css("width", "350px");
+    		$("#main").css("margin-right", "350px");
+		} else{
+    		$("#mySidenav").css("width", "0px");
+    		$("#main").css("margin-right", "0px");
+		}
   });
 $(".closeNav").click(function(){
     $("#mySidenav").css("width", "0px");
@@ -70,7 +75,7 @@ $(".closeNav").click(function(){
 ASDHMComponentWithRightPanel >> style [
 
 	^ '.sidenav {
-  height: 87%;
+  height: 95%;
   width: 0;
   position: fixed;
   z-index: 1;

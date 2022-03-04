@@ -5,7 +5,8 @@ Class {
 		'childs',
 		'kuerzel',
 		'index',
-		'endIndex'
+		'endIndex',
+		'collectionClassName'
 	],
 	#category : #'AsdHandwerksManager-Core-Model'
 }
@@ -46,6 +47,12 @@ ASDHMSuperKategorie >> childs: anObject [
 ]
 
 { #category : #accessing }
+ASDHMSuperKategorie >> collectionClassName [
+
+	^ collectionClassName
+]
+
+{ #category : #accessing }
 ASDHMSuperKategorie >> endIndex [
 
 	^ endIndex
@@ -73,8 +80,10 @@ ASDHMSuperKategorie >> index: anObject [
 ASDHMSuperKategorie >> initialize [
 
 	super initialize.
-	self index: 0.
-	childs := OrderedCollection new. 
+	self index: 1.
+	self endIndex: 3.
+	
+	childs := OrderedCollection new
 ]
 
 { #category : #accessing }

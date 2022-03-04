@@ -15,7 +15,8 @@ Class {
 		'firmenId',
 		'currentObject',
 		'loggedUsers',
-		'leistungen'
+		'leistungen',
+		'kategorieKuerzel'
 	],
 	#category : #'AsdHandwerksManager-Core-Utils'
 }
@@ -91,9 +92,27 @@ ASDHMSession >> isLogged [
 ]
 
 { #category : #accessing }
+ASDHMSession >> kategorieKuerzel [
+
+	^ kategorieKuerzel
+]
+
+{ #category : #accessing }
+ASDHMSession >> kategorieKuerzel: anObject [
+
+	kategorieKuerzel := anObject
+]
+
+{ #category : #accessing }
 ASDHMSession >> leistungen [
 
 	^ leistungen ifNil: [ leistungen := self model leistungen ]
+]
+
+{ #category : #accessing }
+ASDHMSession >> leistungen: anObject [
+
+	leistungen := anObject
 ]
 
 { #category : #accessing }
@@ -101,6 +120,12 @@ ASDHMSession >> loggedUsers [
 
 	^ loggedUsers ifNil: [ loggedUsers := OrderedCollection new ]
 
+]
+
+{ #category : #accessing }
+ASDHMSession >> loggedUsers: anObject [
+
+	loggedUsers := anObject
 ]
 
 { #category : #accessing }

@@ -12,8 +12,11 @@ ASDHMZweiteEbeneKategorie class >> isVoyageRoot [
 	^ true
 ]
 
-{ #category : #accessing }
-ASDHMZweiteEbeneKategorie >> kuerzel [
+{ #category : #initialization }
+ASDHMZweiteEbeneKategorie >> initialize [
 
-	^ kuerzel
+	super initialize.
+	self index: 2.
+	"pathString := super pathString , ' / ' , self pathString."
+	collectionClassName := 'ASDHMKategorie'
 ]

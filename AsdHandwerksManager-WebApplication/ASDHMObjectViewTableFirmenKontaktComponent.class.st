@@ -138,7 +138,8 @@ ASDHMObjectViewTableFirmenKontaktComponent >> renderAddDialog: html [
 
 { #category : #rendering }
 ASDHMObjectViewTableFirmenKontaktComponent >> renderDialog: html withModel: aModel [
-| contactTable |
+
+	| contactTable |
 	html form: [ 
 		html mdlDialogTitle: self labelAddContact.
 		html mdlDialogContent: [ 
@@ -166,28 +167,22 @@ ASDHMObjectViewTableFirmenKontaktComponent >> renderDialog: html withModel: aMod
 					html mdlTextFieldInput
 						id: html lastId;
 						callback: [ :input | aModel ansprechPartner: input ];
-						value: aModel ansprechPartner ].
-				 ].
-			self renderAddressFields: html withModel: aModel.	
-			self renderKommunicationsFields: html withModel: aModel.
-			 ].
+						value: aModel ansprechPartner ] ].
+			self renderAddressFields: html withModel: aModel.
+			self renderKommunicationsFields: html withModel: aModel ].
 		html mdlDialogActions: [ 
 			html mdlButton
 				id: self rootDialogCloseId;
 				bePush;
-				onClick: 
-				(html jQuery ajax
-						serializeForm;
-						callback: [ "serializeForm;"
-							self session model storeObject: aModel. 
-							contactTable := ASDHMObjectViewTableFirmenKontaktComponent 
-								                 withList: self session model firmen.
-							 ];
-						onComplete:
-							((html jQuery id: #tableDiv) parent load
-								html: [ :ajaxHtml | ajaxHtml render: contactTable ];
-								onComplete: 'componentHandler.upgradeElements(this);' js));
-				
+				onClick: (html jQuery ajax
+						 serializeForm;
+						 callback: [ "serializeForm;"
+							 self session model storeObject: aModel.
+							 contactTable := ASDHMObjectViewTableFirmenKontaktComponent 
+								                 withList: self session model firmen ];
+						 onComplete: ((html jQuery id: #tableDiv) load
+								  html: [ :ajaxHtml | ajaxHtml render: contactTable ];
+								  onComplete: 'componentHandler.upgradeElements(this);' js));
 				with: 'Accept'.
 			html mdlButton
 				id: self rootDialogCloseId;

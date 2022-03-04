@@ -48,7 +48,7 @@ ASDHMContactPage >> initialize [
 ASDHMContactPage >> renderComponentOn: html [
 
 	html div
-		style: 'margin-left: 38px;';
+		style: 'margin-left: 38px; height: 100%;';
 		id: #tableDiv;
 		with: [ html render: contactTable ]
 ]
@@ -56,16 +56,23 @@ ASDHMContactPage >> renderComponentOn: html [
 { #category : #rendering }
 ASDHMContactPage >> renderContentOn: html [
 
-	html div
-		shadow: 0;
-		style: 'height: 100%; display: flex; margin-top: width: 100%;';
+	html mdlGrid
+		noSpacing;
 		with: [ 
-			html leftPanel
-				shadow: 0;
-				style:
-					'height: 100%; width: 300px; border: 1px solid #30363d !important;';
+			html mdlCell
+				class: 'sideBar';
+				id: 'sideBar';
+				size: 2;
+				stretch;
+				tabletSize: 2;
 				with: [ self renderSelectListOn: html ].
-			html div style: 'width: 100%; height: 100%;';  with: [ self renderComponentOn: html ] ]
+			html mdlCell
+				class: 'content';
+				id: 'content';
+				size: 10;
+				stretch;
+				tabletSize: 6;
+				with: [ self renderComponentOn: html ] ]
 ]
 
 { #category : #accessing }

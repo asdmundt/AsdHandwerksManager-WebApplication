@@ -5,15 +5,25 @@ Class {
 		'leistungsBeschreibung',
 		'einheit',
 		'preis',
-		'artikelKurzText',
-		'artikelBeschreibung',
-		'artikelGroesse',
 		'zeitProEinheit',
+		'artikelKurzText',
+		'artikelTitel',
 		'artikelId',
-		'kategorieKuerzel'
+		'kategorieKuerzel',
+		'artikelBeschreibung',
+		'artikelGroesse'
 	],
 	#category : #'AsdHandwerksManager-Core-Model'
 }
+
+{ #category : #'instance creation' }
+ASDHMLeistungen class >> bez: aString andKategorieKuerzel: aThreeDigit [
+
+	^ self new
+		  bez: aString;
+		  kategorieKuerzel: aThreeDigit;
+		  yourself
+]
 
 { #category : #voyage }
 ASDHMLeistungen class >> isVoyageRoot [
@@ -23,10 +33,18 @@ ASDHMLeistungen class >> isVoyageRoot [
 	^ true
 ]
 
+{ #category : #'instance creation' }
+ASDHMLeistungen class >> kategorieKuerzel: aThreeDigit [
+
+	^ self new
+		  kategorieKuerzel: aThreeDigit;
+		  yourself
+]
+
 { #category : #accessing }
 ASDHMLeistungen class >> titleText [
 
-	^ 'Telefon Kontakt'
+	^ 'Leistungen'
 ]
 
 { #category : #accessing }
@@ -78,6 +96,18 @@ ASDHMLeistungen >> artikelKurzText: anObject [
 ]
 
 { #category : #accessing }
+ASDHMLeistungen >> artikelTitel [
+
+	^ artikelTitel
+]
+
+{ #category : #accessing }
+ASDHMLeistungen >> artikelTitel: anObject [
+
+	artikelTitel := anObject
+]
+
+{ #category : #accessing }
 ASDHMLeistungen >> einheit [
 
 	^ einheit
@@ -94,6 +124,18 @@ ASDHMLeistungen >> initialize [
 	super initialize.
 	
 	
+]
+
+{ #category : #accessing }
+ASDHMLeistungen >> kategorieKuerzel [
+
+	^ kategorieKuerzel
+]
+
+{ #category : #accessing }
+ASDHMLeistungen >> kategorieKuerzel: anObject [
+
+	kategorieKuerzel := anObject
 ]
 
 { #category : #accessing }

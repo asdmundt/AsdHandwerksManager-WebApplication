@@ -1,6 +1,8 @@
 Class {
 	#name : #ASDHMObjectViewListBaseComponent,
 	#superclass : #ASDHMBaseComponent,
+	#traits : 'TWithRootDialogComponent',
+	#classTraits : 'TWithRootDialogComponent classTrait',
 	#instVars : [
 		'visible',
 		'title',
@@ -16,9 +18,8 @@ Class {
 
 { #category : #'instance creation' }
 ASDHMObjectViewListBaseComponent class >> withList: aList [
-^ self new list: aList
 
-	
+	^ self new list: aList; yourself 
 ]
 
 { #category : #actions }
@@ -133,7 +134,7 @@ ASDHMObjectViewListBaseComponent >> renderBezOn: html [
 ASDHMObjectViewListBaseComponent >> renderContentOn: html [
 
 	html div
-		style: ' display: block;';
+		style: ' display: block; height: 100%; margin: 10px 10px 10px 20px;';
 		shadow: 0;
 		with: [ 
 			html div
@@ -162,7 +163,7 @@ ASDHMObjectViewListBaseComponent >> renderContentOn: html [
 			html div
 				class: 'background';
 				style:
-					'width: 100%;min-height: 400px;overflow-y: scroll; height:100%;';
+					'width: 100%;min-height: 400px;overflow-y: auto; height:100%;';
 				with: [ self renderInnerContentOn: html ] ]
 ]
 

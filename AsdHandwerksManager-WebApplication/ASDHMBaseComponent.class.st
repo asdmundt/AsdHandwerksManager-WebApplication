@@ -9,8 +9,8 @@ Class {
 
 { #category : #'instance creation' }
 ASDHMBaseComponent class >> withModel: aModel [
-	^ self new
-		model: aModel
+
+	^ self new model: aModel; yourself 
 ]
 
 { #category : #accessing }

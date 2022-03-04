@@ -214,8 +214,8 @@ ASDHMRoot >> renderContentOn: html [
 				class: 'mdl-color-text--grey-600';
 				with: [ 
 					html mdlGrid
-						"noSpacing;"
-						with: [ 
+						noSpacing;
+						with: [ "noSpacing;""html render: self footer"
 							html mdlCell
 								class: 'rootComponent';
 								size: 12;
@@ -224,8 +224,7 @@ ASDHMRoot >> renderContentOn: html [
 									html div
 										id: #main;
 										with: [ html render: self componentToDisplay ].
-									html render: self rightPanel ] ].
-					"html render: self footer" ] ].
+									html render: self rightPanel ] ] ] ].
 	self renderEmptyGenericDialogOn: html.
 	html div
 		id: #mainDialog;
@@ -235,7 +234,8 @@ ASDHMRoot >> renderContentOn: html [
 			html div
 				id: #modalContent;
 				style:
-					'color: #c9d1d9; position: fixed; z-index: 500; margin: auto; padding: 20px;border: 1px solid #343434; left: 50%; top: 50%; width: 40%;height: 60%;overflow: auto;background-color: #14181f;-ms-transform: translate(-50%, -50%);transform: translate(-50%, -50%);' ]
+					'color: #c9d1d9; position: fixed; z-index: 500; margin: auto; padding: 20px;border: 1px solid #343434; left: 50%; top: 50%; width: 40%;height: 60%;overflow: auto;background-color: #14181f;-ms-transform: translate(-50%, -50%);transform: translate(-50%, -50%);' ].
+
 ]
 
 { #category : #accessing }

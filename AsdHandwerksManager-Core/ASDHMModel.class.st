@@ -11,7 +11,8 @@ Class {
 		'userId',
 		'displayString',
 		'type',
-		'types'
+		'types',
+		'pathString'
 	],
 	#category : #'AsdHandwerksManager-Core-Model'
 }
@@ -83,6 +84,17 @@ ASDHMModel >> initialize [
 	states := OrderedCollection
 		newFrom: {'new' . 'accepted' . 'inProgress' . 'done' . 'problem'}.
 	self status: 'new'
+]
+
+{ #category : #accessing }
+ASDHMModel >> pathString [
+^ String streamContents: [ :s | 
+		  s
+			  nextPutAll: '/';
+			  space;
+			  nextPutAll: self bez;
+			  space ]
+	
 ]
 
 { #category : #accessing }

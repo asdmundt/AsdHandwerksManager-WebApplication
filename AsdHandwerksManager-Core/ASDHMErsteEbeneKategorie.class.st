@@ -15,7 +15,9 @@ ASDHMErsteEbeneKategorie class >> isVoyageRoot [
 { #category : #initialization }
 ASDHMErsteEbeneKategorie >> initialize [
 
-super initialize.
-
-
+	super initialize.
+	self index: 1.
+	"pathString := super pathString , ' / ' , self pathString."
+	
+	collectionClassName := 'ASDHMZweiteEbeneKategorie'
 ]
