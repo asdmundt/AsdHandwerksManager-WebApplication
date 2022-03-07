@@ -29,6 +29,7 @@ ASDHMObjectViewListLeistungenComponent >> artikelId: anObject [
 ASDHMObjectViewListLeistungenComponent >> initialize [
 
 	super initialize.
+	self id: #listLeistungen
 ]
 
 { #category : #accessing }
@@ -107,8 +108,7 @@ ASDHMObjectViewListLeistungenComponent >> labelZeitProEinheit: anObject [
 ASDHMObjectViewListLeistungenComponent >> renderDialog: html withModel: aModel [
 
 	| listView formWiev |
-	formWiev := ASDHMFormLeistungen
-		            withModel: aModel.
+	formWiev := ASDHMFormLeistungen withModel: aModel.
 	html form: [ 
 		html mdlDialogTitle: 'Leistungen'.
 		html mdlDialogContent: [ html render: formWiev ].
@@ -125,7 +125,7 @@ ASDHMObjectViewListLeistungenComponent >> renderDialog: html withModel: aModel [
 											              self session kategorieKuerzel) ];
 						 onComplete: ((html jQuery id: #tableLeistungDiv) load
 								  html: [ :ajaxHtml | ajaxHtml render: listView ];
-								  onComplete: 'componentHandler.upgradeElements(this);' js));
+								  onComplete: 'componentHandler.upgradeDom();' js));
 				with: 'Accept'.
 
 			html mdlButton
@@ -156,10 +156,24 @@ ASDHMObjectViewListLeistungenComponent >> renderDialogMenu: html [
 ASDHMObjectViewListLeistungenComponent >> renderInnerContentOn: html [
 
 	html mdlList
-		style: 'width: 300px';
-		with: [ 
+		id: self id;
+		with: [ "style: 'width: 300px';"
 			self list doWithIndex: [ :each :index | 
-					html mdlListItem: [ 
-							html mdlListPrimaryContent:
-									each bez , ' ' , each kategorieKuerzel ] ] ]
+					html mdlListItem 
+					threeLine;
+					with: [ 
+							html mdlListPrimaryContent: [ 
+									html mdlChipContact
+										hexColor: '3f51b5';
+										with: each kategorieKuerzel.
+									html text: each bez.
+									html mdlListItemTextBody style: 'font-size: 12px;'; with: each leistungsBeschreibung ].
+							html mdlListSecondaryContent: [ 
+								html mdlAnchorButton
+									icon;
+									id: html nextId;
+									openDialogWithId: self rootDialogOpenId;
+									onClickUpdateRootDialogWith: [ :r | 
+										self renderDialog: r withModel: each ];
+									with: [ html mdlIcon: 'edit' ] ] ] ] ]
 ]

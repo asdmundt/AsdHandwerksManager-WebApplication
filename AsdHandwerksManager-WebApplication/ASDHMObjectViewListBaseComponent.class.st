@@ -134,7 +134,7 @@ ASDHMObjectViewListBaseComponent >> renderBezOn: html [
 ASDHMObjectViewListBaseComponent >> renderContentOn: html [
 
 	html div
-		style: ' display: block; height: 100%; margin: 10px 10px 10px 20px;';
+		style: ' display: block; height: 100%; margin: 0px 0px 0px 0px;';
 		shadow: 0;
 		with: [ 
 			html div

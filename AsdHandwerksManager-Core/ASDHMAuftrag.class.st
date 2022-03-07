@@ -5,7 +5,10 @@ Class {
 		'kunde',
 		'baustelle',
 		'arbeiten',
-		'angebot'
+		'angebot',
+		'technischeBeschreibung',
+		'startauftrag',
+		'endeAuftrag'
 	],
 	#category : #'AsdHandwerksManager-Core-Model'
 }

@@ -156,7 +156,7 @@ ASDHMObjectViewTableBaseComponent >> renderContentOn: html [
 			html div
 				class: 'background';
 				style:
-					'width: 100%;min-height: 400px;overflow-y: scroll; height:100%;';
+					'width: 100%;min-height: 400px;overflow-y: auto; height:100%;';
 				with: [ self renderInnerContentOn: html ] ]
 ]
 

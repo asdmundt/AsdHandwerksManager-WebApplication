@@ -158,33 +158,31 @@ ASDHMFormLeistungen >> renderContentOn: html [
 
 { #category : #rendering }
 ASDHMFormLeistungen >> renderEinheitOn: html [
-
-	html mdlTextFieldContainer with: [ 
-		html mdlTextFieldLabel
-			for: html nextId;
-			with: self labelEinheit.
-		html mdlTextFieldInput
-			id: html lastId;
-			size: 4;
-			value: self model einheit;
-			callback: [ :aString | self model einheit: aString ] ]
+	html
+				render:
+					((MDLSelectWidget
+						possibilities: #('Stk' 'm' 'mm' 'qm')
+						inputLabel: self labelEinheit 
+						labelBlock: #asString
+						callback: [ :input | self model einheit: input ]
+						selectedObject: self model einheit
+						tooltip: 'description'
+						sortBlock: [ :a :b | a <= b ])
+						entryTooltip: [ :number | 'Choose number: ' , number asString ];
+						yourself).
+	
+	
 ]
 
 { #category : #rendering }
 ASDHMFormLeistungen >> renderFieldsOn: html [
 
 	html span: [ 
+		html text: self kuerzel.
+		html space.
+		html space.
 		self renderBezOn: html.
-		html space.
-		html space.
-		html space.
-		html space.
-		html space.
-		html space.
-		html text: labelKategorieKuerzel.
-		html space.
-		html space.
-		html text: self kuerzel
+
 		 ].
 	self renderLeistungsBeschreibungOn: html.
 	html span: [ 

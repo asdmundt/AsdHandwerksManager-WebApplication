@@ -194,7 +194,7 @@ Repos save: ebeneEinsRegiearbeiten.
 ASDHMDbModelBase class >> createUser [
 
 	Repos save:
-		(ASDHMUser benutzerName: 'test' password: 'test' admin: false)
+		(ASDHMUser benutzerName: 'sonja' password: 'saino' admin: true)
 ]
 
 { #category : #'class initialization' }

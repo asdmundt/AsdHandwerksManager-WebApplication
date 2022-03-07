@@ -98,21 +98,9 @@ color: #c9d1d9;
     text-align: left;
 }
 
-.mdl-textfield__input: {
-    background-color: #0c0f15 !important;
-    border: none !important;
-    border-bottom: none !important;  
-    -webkit-box-shadow: none;
-    box-shadow: none;
-    height: 30px;
-    color: #c9d1d9 !important;
-      display: block;
-    font-size: 12px !important;
-    font-family: "Helvetica","Arial",sans-serif;
-     margin: 10px;
-    padding: 4px 4px;
-    width: 100%;
-    text-align: left;
+.mdl-textfield__input::focus {
+     border: 1px solid #161b22 !important;
+
 }
 
 .mdl-textfield {
@@ -268,6 +256,10 @@ border: 1px solid #161b22 !important;
 
 }
 
+.mdl-layout.is-upgraded .mdl-layout__tab.is-active {
+    color: #7a84fb;
+}
+
 .mdl-layout__tab-bar-button {
 
     background-color: #161b22 !important;
@@ -349,13 +341,13 @@ html{box-sizing:border-box}*,*:before,*:after{box-sizing:inherit}
 
 }
 .mdl-data-table {
-    /* position: relative; */
+    position: relative;
     /* height: 500px !important; */
     border-collapse: collapse;
     white-space: nowrap;
     font-size: 13px;
-    background-color: #161b22 !important;
-    border-top: 1px solid #161b22 !important;
+    background-color: #0d1117 !important;
+    border: 1px solid #161b22 !important;
     width: 100%;
 }
 
@@ -444,6 +436,61 @@ width: 100%;
     color: #ffffff94;
     overflow: hidden;
 }
+
+.mdl-list__item--three-line {
+    height: 120px;
+    border: 1px solid #30363d;
+    background-color: #0d1117;
+    margin: 10px;
+vertical-align: top !important;
+}
+
+.mdl-list__item, .mdl-list__item .mdl-list__item-primary-content {
+    box-sizing: border-box;
+    /* display: -webkit-flex; */
+    display: block;
+    /* display: flex; */
+    -webkit-align-items: initial;
+    -ms-flex-align: center;
+    align-items: flex-start;
+}
+
+.mdl-list__item--three-line .mdl-list__item-text-body {
+    font-size: 14px;
+    font-weight: 400;
+    letter-spacing: 0;
+    line-height: 18px;
+    height: 52px;
+    color: #ffffff8a;
+    display: block;
+    padding: 5px 5px 5px 40px;
+}
+
+.material-icons {
+    font-family: ''Material Icons'';
+    font-weight: 400;
+    font-style: normal;
+    font-size: 24px;
+    line-height: 1;
+    letter-spacing: normal;
+    text-transform: none;
+    display: inline-block;
+    word-wrap: normal;
+    -moz-font-feature-settings: ''liga'';
+    font-feature-settings: ''liga'';
+    -webkit-font-feature-settings: ''liga'';
+    -webkit-font-smoothing: antialiased;
+	color: #ffffff8a;
+}
+
+.mdl-chip__contact {
+    height: 32px;
+    width: 32px;
+    border-radius: 16px;
+    margin-right: 8px;
+    font-size: 12px;
+    line-height: 32px;
+}
 '
 ]
 
@@ -459,9 +506,11 @@ ASDHMLibrary >> resizeScriptJs [
 		var aw = screen.availWidth;
 		var mh = (ah - 300) + ''px'';
 		var th = (ah - 450) + ''px'';
+		var lw = (aw - 880) + ''px'';
   		//document.getElementById("main").style.height = mh;
 		document.getElementById("content").style.height = th;
 		document.getElementById("sideBar").style.height = th;
+		//document.getElementById("listLeistungen").style.width = lw;
 	} '
 ]
 
