@@ -43,6 +43,13 @@ ASDHMAbstractContact class >> titleText [
 ]
 
 { #category : #accessing }
+ASDHMAbstractContact class >> types [
+
+	^ OrderedCollection newFrom:
+		  { 'TelefonKontakt'. 'Kontakt'. 'Kunde'. 'Benutzer' }
+]
+
+{ #category : #accessing }
 ASDHMAbstractContact >> addBankVerbindungen: anObject [
 
 	bankVerbindungen add: anObject

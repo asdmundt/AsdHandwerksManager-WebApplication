@@ -134,12 +134,15 @@ ASDHMObjectViewListBaseComponent >> renderBezOn: html [
 ASDHMObjectViewListBaseComponent >> renderContentOn: html [
 
 	html div
-		style: ' display: block; height: 100%; margin: 0px 0px 0px 0px;';
+		style: ' display: block; height: 100%; margin: 0px 0px 0px 0px; padding-left: 5px;';
 		shadow: 0;
 		with: [ 
 			html div
 				class: 'bar';
 				with: [ 
+					html text: self session kategorieKuerzel asString .
+
+
 					html div
 						class: 'wrapper';
 						with: [ 
@@ -149,7 +152,7 @@ ASDHMObjectViewListBaseComponent >> renderContentOn: html [
 								id: #bottomRightButton;
 								with: [ html mdlIcon: #more_vert ].
 							html mdlMenu
-								bottomRight;
+								bottomLeft;
 								for: #bottomRightButton;
 								with: [ 
 									html mdlMenuItem: 'Some Action'.

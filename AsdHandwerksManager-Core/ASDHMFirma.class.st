@@ -59,9 +59,7 @@ ASDHMFirma >> displayString [
 		  s
 			  nextPutAll: self firmenName;
 			  space;
-			  nextPutAll: self firmenForm;
-			  space;
-			 nextPutAll: self firmenSitz
+			  nextPutAll: self firmenForm
 			 ]
 ]
 

@@ -197,6 +197,11 @@ ASDHMObjectViewTableContactComponent >> renderInnerContentOn: html [
 								nonNumerical;
 								style:
 									'background-color: #161b22; position: relativ; top: 0px;';
+								with: self labelSelect.
+							html mdlTableHeading
+								nonNumerical;
+								style:
+									'background-color: #161b22; position: relativ; top: 0px;';
 								with: self labelAnrede.
 
 							html mdlTableHeading
@@ -213,20 +218,27 @@ ASDHMObjectViewTableContactComponent >> renderInnerContentOn: html [
 								nonNumerical;
 								style:
 									'background-color: #161b22; position: relativ; top: 0px;';
-								with: self labelNachname.								
+								with: self labelNachname.
 							self renderTableHeadingCommunnikationsData: html.
 							html mdlTableHeading
 								nonNumerical;
 								style:
 									'background-color: #161b22; position: relativ; top: 0px;';
-								with: self labelEdit. ] ].
+								with: self labelEdit ] ].
 			html tableBody with: [ "style: 'overflow: scroll;height: 400px;';"
 				list doWithIndex: [ :each :index | 
 					html tableRow: [ 
-						html mdlTableCell
+html mdlTableCell
 							nonNumerical;
 							style: 'background-color: #0d1117;';
-							with: each anrede.
+							with: [ 
+								html mdlAnchorButton
+									icon;
+									id: html nextId;
+									openDialogWithId: self rootDialogOpenId;
+									onClickUpdateRootDialogWith: [ :r | 
+										self renderDialog: r withModel: each ];
+									with: [ html mdlIcon: 'edit' ]]. 
 						html mdlTableCell
 							nonNumerical;
 							style: 'background-color: #0d1117;';
@@ -234,7 +246,7 @@ ASDHMObjectViewTableContactComponent >> renderInnerContentOn: html [
 						html mdlTableCell
 							nonNumerical;
 							style: 'background-color: #0d1117;';
-							with: each vorname.							
+							with: each vorname.
 						html mdlTableCell
 							nonNumerical;
 							style: 'background-color: #0d1117;';
@@ -246,19 +258,20 @@ ASDHMObjectViewTableContactComponent >> renderInnerContentOn: html [
 						html mdlTableCell
 							nonNumerical;
 							style: 'background-color: #0d1117;';
-							with: each mobilFunkNr.											
+							with: each mobilFunkNr.
 						html mdlTableCell
 							nonNumerical;
 							style: 'background-color: #0d1117;';
 							with: each email.
-					 html mdlTableCell
+						html mdlTableCell
 							nonNumerical;
 							style: 'background-color: #0d1117;';
-							with: [ html mdlAnchorButton
-								icon;
-								id: html nextId;
-								openDialogWithId: self rootDialogOpenId;
-								onClickUpdateRootDialogWith: [ :r | self renderDialog: r withModel: each ];
-								with: [ html mdlIcon: 'edit' ]].		
-							 ] ] ] ]
+							with: [ 
+								html mdlAnchorButton
+									icon;
+									id: html nextId;
+									openDialogWithId: self rootDialogOpenId;
+									onClickUpdateRootDialogWith: [ :r | 
+										self renderDialog: r withModel: each ];
+									with: [ html mdlIcon: 'edit' ] ] ] ] ] ]
 ]

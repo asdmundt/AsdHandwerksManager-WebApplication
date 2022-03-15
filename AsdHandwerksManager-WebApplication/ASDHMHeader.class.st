@@ -91,40 +91,49 @@ html mdlAnchorButton
 		icon;
 		id: html nextId;
 		class: 'openNav';
-		with: [ html mdlIcon: 'open_in_new' ].
+		with: [ html mdlIcon: 'more_vert' ].
 	html mdlTooltip
 		for: html lastId;
-		with: self tooltipLabelopenRightPanel.
-	html mdlAnchorButton
+		with: self tooltipLabelopenRightPanel
+	"	html mdlAnchorButton
 		icon;
 		id: html nextId;
 		class: 'closeNav';
 		with: [ html mdlIcon: 'close_fullscreen' ].
 	html mdlTooltip
 		for: html lastId;
-		with: self tooltipLabelCloseRightPanel
+		with: self tooltipLabelCloseRightPanel"
 ]
 
 { #category : #rendering }
 ASDHMHeader >> renderButtonsOn: html [
-	self session isLogged
-		ifTrue: [ html mdlNavigation: [self renderButtonMenu: html.self renderAccountButtonOn: html ] ]
+
+	self session isLogged ifTrue: [ 
+		html mdlNavigation: [ 
+			
+			self renderAccountButtonOn: html.
+			self renderButtonMenu: html.
+			 ] ]
 ]
 
 { #category : #rendering }
 ASDHMHeader >> renderContentOn: html [
 
-	html mdlLayoutHeader with: [ 
+	html mdlLayoutHeader with: [ "self renderDrawerOn: html"
 		html mdlLayoutHeaderRow: [ 
 			html mdlNavigationLink
 				callback: [ "Just refresh" ];
 				with: [ 
-					html mdlLayoutTitle: [ html text: '    Hoxha HandwerksManager' ] ].
+					html mdlLayoutTitle: [ 
+							html text: ' Test   asdDelMundt HandwerksManager' ] ].
 			html mdlLayoutSpacer.
+			self rootComponent class development ifTrue: [ 
+			html anchor
+				callback: [ self show: (WAInspector current on: self session) ];
+				with: 'Inspect Session' ].
 			self renderButtonsOn: html
 			"html text: '	Version ' , self rootComponent class version." ].
-		self renderTabBarOn: html ].
-	"self renderDrawerOn: html"
+		self renderTabBarOn: html ]
 ]
 
 { #category : #rendering }

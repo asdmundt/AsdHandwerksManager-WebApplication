@@ -41,7 +41,25 @@ color: #c9d1d9;
   background-size: cover;
  
 }
+/* width */
+::-webkit-scrollbar {
+  width: 10px;
+}
 
+/* Track */
+::-webkit-scrollbar-track {
+  background: #0d1117; 
+}
+ 
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: #30363d; 
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: #161b22; 
+}
 .avatar {
   vertical-align: middle;
   width: 50px;
@@ -98,8 +116,9 @@ color: #c9d1d9;
     text-align: left;
 }
 
-.mdl-textfield__input::focus {
-     border: 1px solid #161b22 !important;
+.mdl-textfield__input:focus {
+     border: 1px solid #1a71ec !important;
+	border-radius: 2px;
 
 }
 
@@ -243,6 +262,7 @@ border: 1px solid #161b22 !important;
     padding: 5px;
     position: relative;
     height: 45px;
+	 display: flex;
 }
 
 .wrapper {
@@ -505,7 +525,7 @@ ASDHMLibrary >> resizeScriptJs [
   		var ah = screen.availHeight;
 		var aw = screen.availWidth;
 		var mh = (ah - 300) + ''px'';
-		var th = (ah - 450) + ''px'';
+		var th = (ah - 350) + ''px'';
 		var lw = (aw - 880) + ''px'';
   		//document.getElementById("main").style.height = mh;
 		document.getElementById("content").style.height = th;

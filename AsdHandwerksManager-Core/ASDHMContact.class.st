@@ -1,28 +1,8 @@
 Class {
 	#name : #ASDHMContact,
 	#superclass : #ASDHMAbstractContact,
-	#instVars : [
-		'displayName'
-	],
 	#category : #'AsdHandwerksManager-Core-Model'
 }
-
-{ #category : #'instance creation' }
-ASDHMContact class >> displayName: aName email: aString telefonNummer: aNumber [
-
-	^ self new
-		  displayName: aName;
-		email: aString;
-		  telefonNummer: aNumber
-]
-
-{ #category : #'instance creation' }
-ASDHMContact class >> displayName: aName telefonNummer: aNumber [
-
-	^ self new
-		  displayName: aName;
-		  telefonNummer: aNumber
-]
 
 { #category : #voyage }
 ASDHMContact class >> isVoyageRoot [
@@ -36,25 +16,6 @@ ASDHMContact class >> isVoyageRoot [
 ASDHMContact class >> titleText [
 
 	^ 'Kontakt'
-]
-
-{ #category : #accessing }
-ASDHMContact class >> types [
-
-	^ OrderedCollection newFrom:
-		  { 'TelefonKontakt'. 'projektLeiter'. 'user'. 'costumer' }
-]
-
-{ #category : #accessing }
-ASDHMContact >> displayName [
-
-	^ displayName
-]
-
-{ #category : #accessing }
-ASDHMContact >> displayName: anObject [
-
-	displayName := anObject
 ]
 
 { #category : #accessing }

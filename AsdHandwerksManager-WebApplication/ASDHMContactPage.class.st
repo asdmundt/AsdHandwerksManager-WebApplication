@@ -56,22 +56,21 @@ ASDHMContactPage >> renderComponentOn: html [
 { #category : #rendering }
 ASDHMContactPage >> renderContentOn: html [
 
-	html mdlGrid
-		noSpacing;
+	html div
+		shadow: 2;
+		style: 'display: flex;';
 		with: [ 
-			html mdlCell
+			html leftPanel
+				style: 'height: 100%; width: 300px;';
 				class: 'sideBar';
 				id: 'sideBar';
-				size: 2;
-				stretch;
-				tabletSize: 2;
-				with: [ self renderSelectListOn: html ].
-			html mdlCell
+				with: [ 
+					self renderSelectListOn: html.
+					html leftPanelResizer ].
+			html div
 				class: 'content';
 				id: 'content';
-				size: 10;
-				stretch;
-				tabletSize: 6;
+				style: 'flex-grow: 1;';
 				with: [ self renderComponentOn: html ] ]
 ]
 

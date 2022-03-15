@@ -204,8 +204,9 @@ ASDHMFormLeistungen >> renderLeistungsBeschreibungOn: html [
 		html mdlTextFieldLabel
 			for: html nextId;
 			with: self labelLeistungsBeschreibung.
-		html mdlTextArea 
+		html mdlTextArea
 			id: html lastId;
+			rows: 6;
 			value: self model leistungsBeschreibung;
 			callback: [ :aString | self model leistungsBeschreibung: aString ] ]
 ]

@@ -60,22 +60,18 @@ ASDHMLoginPage >> model: anObject [
 
 { #category : #rendering }
 ASDHMLoginPage >> rendeModalLoginButtonOn: html [
-| users|
-users := self model users.
-users ifNil: [self rootComponent goToInstallView  ]  
-ifNotNil: [ 
-	html form: [ 
-		html render: (ASDLoginCardWidget new
-				 callback: [ :login :password | 
-					 self rootComponent
-						 tryConnectionWithLogin: login
-						 andPassword: password ];
-				 yourself) ].
-	self rootComponent class development ifTrue: [ 
-		html anchor
-			callback: [ self show: (WAInspector current on: self session) ];
-			with: 'Inspect Session' ] ]
-	
+
+	| users |
+	users := self model users.
+	users ifNil: [ self rootComponent goToInstallView ] ifNotNil: [ 
+		html form: [ 
+			html render: (ASDLoginCardWidget new
+					 callback: [ :login :password | 
+						 self rootComponent
+							 tryConnectionWithLogin: login
+							 andPassword: password ];
+					 yourself) ].
+		 ]
 ]
 
 { #category : #rendering }

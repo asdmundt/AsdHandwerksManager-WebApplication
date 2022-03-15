@@ -79,22 +79,21 @@ ASDHMLeistungsBeschreibungPage >> renderComponentOn: html [
 
 { #category : #rendering }
 ASDHMLeistungsBeschreibungPage >> renderContentOn: html [
-
-	html mdlGrid
-		noSpacing;
+	html div
+		shadow: 2;
+		style: 'display: flex;';
 		with: [ 
-			html mdlCell
+			html leftPanel
+				style: 'height: 100%; width: 300px;';
 				class: 'sideBar';
 				id: 'sideBar';
-				size: 3;
-				stretch;
-				tabletSize: 2;
-				with: [ self renderBaumOn: html ].
-			html mdlCell
+				with: [ 
+					self renderBaumOn: html.
+					html leftPanelResizer ].
+			html div
 				class: 'content';
 				id: 'content';
-				size: 9;
-				stretch;
-				tabletSize: 6;
+				style: 'flex-grow: 1;';
 				with: [ self renderComponentOn: html ] ]
+
 ]

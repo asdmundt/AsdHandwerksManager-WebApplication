@@ -81,12 +81,16 @@ self withCard ifTrue:  [
 
 { #category : #rendering }
 ASDHMFormAdresse >> renderFieldsOn: html [
+
 	self renderBezOn: html.
+	html span: [ 
 	self renderStrOn: html.
 	self renderHsnrOn: html.
+	].
+html span: [ 
 	self renderPlzOn: html.
-	self renderOrtOn: html.
-	
+	self renderOrtOn: html
+	]
 ]
 
 { #category : #rendering }
@@ -104,6 +108,7 @@ ASDHMFormAdresse >> renderHsnrOn: html [
 			with: self hsnrLabel.
 		html mdlTextFieldInput
 			id: html lastId;
+			style: 'width: 20%;';			
 			size: 4;
 			value: self model hsnr;
 			callback: [ :aString | self model hsnr: aString ] ]
@@ -134,6 +139,7 @@ ASDHMFormAdresse >> renderPlzOn: html [
 				with: self plzLabel.
 			html mdlTextFieldInput
 				id: html lastId;
+				style: 'width: 20%;';
 				value: self model plz;
 				callback: [ :aString | self model plz: aString ] ]
 ]

@@ -122,7 +122,9 @@ ASDHMObjectViewListLeistungenComponent >> renderDialog: html withModel: aModel [
 							 self session model storeObject: aModel.
 							 listView := ASDHMObjectViewListLeistungenComponent withList:
 									             (self session model leistungenWithKuerzel:
-											              self session kategorieKuerzel) ];
+											              self session kategorieKuerzel).
+											self session kategorieKuerzel: nil.
+											 ];
 						 onComplete: ((html jQuery id: #tableLeistungDiv) load
 								  html: [ :ajaxHtml | ajaxHtml render: listView ];
 								  onComplete: 'componentHandler.upgradeDom();' js));
@@ -138,18 +140,19 @@ ASDHMObjectViewListLeistungenComponent >> renderDialogMenu: html [
 
 	| newContact katKuerzel |
 	katKuerzel := self session kategorieKuerzel asString.
-	katKuerzel ifNotNil: [ 
-		newContact := ASDHMLeistungen kategorieKuerzel: katKuerzel.
+	self session kategorieKuerzel ifNotNil: [ 
+		
 		html mdlAnchorButton
 			icon;
-			id: html nextId;
+			id: #add;
 			openDialogWithId: self rootDialogOpenId;
 			onClickUpdateRootDialogWith: [ :r | 
+				newContact := ASDHMLeistungen kategorieKuerzel: katKuerzel.
 				self renderDialog: r withModel: newContact ];
 			with: [ html mdlIcon: 'add' ].
 		html mdlTooltip
-			for: html lastId;
-			with: '_' , newContact kategorieKuerzel asString ]
+			for: #add;
+			with: katKuerzel ]
 ]
 
 { #category : #rendering }
