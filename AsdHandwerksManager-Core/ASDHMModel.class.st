@@ -25,9 +25,10 @@ ASDHMModel class >> bez: aString [
 ]
 
 { #category : #accessing }
-ASDHMModel class >> states [ 
-^ OrderedCollection
-		newFrom: {'new' . 'accepted' . 'inProgress' . 'done' . 'problem'}.
+ASDHMModel class >> states [
+
+	^ OrderedCollection newFrom:
+		  { 'neu'. 'accepted'. 'inProgress'. 'success'. 'failure'. 'problem' }
 ]
 
 { #category : #accessing }
@@ -78,11 +79,11 @@ ASDHMModel >> id: anObject [
 
 { #category : #initalize }
 ASDHMModel >> initialize [
+
 	super initialize.
 	self task: OrderedCollection new.
 	self id: UUID new.
-	states := OrderedCollection
-		newFrom: {'new' . 'accepted' . 'inProgress' . 'done' . 'problem'}.
+	
 	self status: 'new'
 ]
 

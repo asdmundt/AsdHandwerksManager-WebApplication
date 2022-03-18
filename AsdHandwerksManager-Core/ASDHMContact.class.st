@@ -1,8 +1,19 @@
 Class {
 	#name : #ASDHMContact,
 	#superclass : #ASDHMAbstractContact,
+	#instVars : [
+		'gewerblich'
+	],
 	#category : #'AsdHandwerksManager-Core-Model'
 }
+
+{ #category : #'instance creation' }
+ASDHMContact class >> gewerblicherKontakt: aBoolean [
+
+	^ self new
+		  gewerblich: aBoolean;
+		  yourself
+]
 
 { #category : #voyage }
 ASDHMContact class >> isVoyageRoot [
@@ -27,6 +38,18 @@ ASDHMContact >> displayString [
 			  space;
 			  nextPutAll: self telefonNummer;
 			  space ]
+]
+
+{ #category : #accessing }
+ASDHMContact >> gewerblich [
+
+	^ gewerblich
+]
+
+{ #category : #accessing }
+ASDHMContact >> gewerblich: anObject [
+
+	gewerblich := anObject
 ]
 
 { #category : #initialization }

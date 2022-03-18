@@ -2,15 +2,13 @@ Class {
 	#name : #ASDHMFirma,
 	#superclass : #ASDHMAbstractContact,
 	#instVars : [
-		'firmenName',
 		'firmenForm',
 		'firmenSitz',
 		'amtsgerichtSitz',
 		'hre',
 		'steuerNr',
 		'umsatzSteuer',
-		'geschaeftsFuehrer',
-		'ansprechPartner'
+		'geschaeftsFuehrer'
 	],
 	#category : #'AsdHandwerksManager-Core-Model'
 }
@@ -41,26 +39,13 @@ ASDHMFirma >> amtsgerichtSitz: anObject [
 ]
 
 { #category : #accessing }
-ASDHMFirma >> ansprechPartner [
-
-	^ ansprechPartner
-]
-
-{ #category : #accessing }
-ASDHMFirma >> ansprechPartner: anObject [
-
-	ansprechPartner := anObject
-]
-
-{ #category : #accessing }
 ASDHMFirma >> displayString [
 
 	^ String streamContents: [ :s | 
 		  s
 			  nextPutAll: self firmenName;
 			  space;
-			  nextPutAll: self firmenForm
-			 ]
+			  nextPutAll: self ansprechPartner ]
 ]
 
 { #category : #accessing }
@@ -73,18 +58,6 @@ ASDHMFirma >> firmenForm [
 ASDHMFirma >> firmenForm: anObject [
 
 	firmenForm := anObject
-]
-
-{ #category : #accessing }
-ASDHMFirma >> firmenName [
-
-	^ firmenName
-]
-
-{ #category : #accessing }
-ASDHMFirma >> firmenName: anObject [
-
-	firmenName := anObject
 ]
 
 { #category : #accessing }

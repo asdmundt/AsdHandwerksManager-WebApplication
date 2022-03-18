@@ -66,16 +66,19 @@ ASDHMFormAdresse >> renderBezOn: html [
 
 { #category : #rendering }
 ASDHMFormAdresse >> renderContentOn: html [
-self withCard ifTrue:  [  
-	html mdlCard
-		shadow: 0;
-		mdlTypographyTextLeft;
-		style: 'width: 100%; height: 500px;';
-		with: [ html mdlCardTitleContainer
-				with: [ html mdlCardTitleText: 'Shop anlegen' level: 2 ].
-			html mdlCardTextContainer
-				id: html nextId;
-				with: [ super renderContentOn: html ] ]]
+
+	self withPanel
+		ifTrue: [ 
+			html mdlCard
+				shadow: 0;
+				mdlTypographyTextLeft;
+				style: 'width: 100%; height: 500px;';
+				with: [ 
+					html mdlCardTitleContainer with: [ 
+							html mdlCardTitleText: 'Shop anlegen' level: 2 ].
+					html mdlCardTextContainer
+						id: html nextId;
+						with: [ super renderContentOn: html ] ] ]
 		ifFalse: [ super renderContentOn: html ]
 ]
 

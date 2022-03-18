@@ -122,14 +122,14 @@ ASDHMFormBank >> initialize [
 
 { #category : #rendering }
 ASDHMFormBank >> kontoInhaberInputWidget [
+
 	^ MDLTextFieldWidget new
-		beFloatingLabel;
-		
-		type: 'text';
-		label: kontoInhaberLabel;
-		pattern: '^\S+$' errorMessage: 'kein leerstring';
-		callback: [ :aString | self model kontoInhaber: aString ];
-		value: self model kontoInhaber 
+		  id: 'kontoInhaber';
+		  type: 'text';
+		  label: kontoInhaberLabel;
+		  pattern: '^\S+$' errorMessage: 'kein leerstring';
+		  callback: [ :aString | self model kontoInhaber: aString ];
+		  value: self model kontoInhaber
 ]
 
 { #category : #accessing }

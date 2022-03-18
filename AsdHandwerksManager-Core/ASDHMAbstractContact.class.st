@@ -17,7 +17,9 @@ Class {
 		'bankName',
 		'Iban',
 		'Bic',
-		'KontoInhaber'
+		'KontoInhaber',
+		'firmenName',
+		'ansprechPartner'
 	],
 	#category : #'AsdHandwerksManager-Core-Model'
 }
@@ -65,6 +67,18 @@ ASDHMAbstractContact >> anrede [
 ASDHMAbstractContact >> anrede: anObject [
 
 	anrede := anObject
+]
+
+{ #category : #accessing }
+ASDHMAbstractContact >> ansprechPartner [
+
+	^ ansprechPartner
+]
+
+{ #category : #accessing }
+ASDHMAbstractContact >> ansprechPartner: anObject [
+
+	ansprechPartner := anObject
 ]
 
 { #category : #accessing }
@@ -128,6 +142,18 @@ ASDHMAbstractContact >> email [
 ASDHMAbstractContact >> email: anObject [
 
 	email := anObject
+]
+
+{ #category : #accessing }
+ASDHMAbstractContact >> firmenName [
+
+	^ firmenName
+]
+
+{ #category : #accessing }
+ASDHMAbstractContact >> firmenName: anObject [
+
+	firmenName := anObject
 ]
 
 { #category : #accessing }
