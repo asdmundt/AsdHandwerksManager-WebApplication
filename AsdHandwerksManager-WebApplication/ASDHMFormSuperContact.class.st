@@ -2,9 +2,6 @@ Class {
 	#name : #ASDHMFormSuperContact,
 	#superclass : #ASDForm,
 	#instVars : [
-		'labelTelefonNr',
-		'labelMobilfunkNr',
-		'labelEmail',
 		'title',
 		'labelAnrede',
 		'labelTitle',
@@ -14,7 +11,8 @@ Class {
 		'adressForm',
 		'bankForm',
 		'labeladress',
-		'labelBank'
+		'labelBank',
+		'labelWaehleEinheit'
 	],
 	#category : #'AsdHandwerksManager-WebApplication-forms'
 }
@@ -53,9 +51,7 @@ ASDHMFormSuperContact >> initialize [
 	self labelTitle: 'Title'.
 	self labelVorname: 'Vorname'.
 	self labelNachname: 'Nachname'.
-	self labelTelefonNr: 'Telefon Nr.'.
-	self labelMobilfunkNr: 'Mobilfunk Nr.'.
-	self labelEmail: 'Email'
+
 ]
 
 { #category : #accessing }
@@ -95,30 +91,6 @@ ASDHMFormSuperContact >> labelBez: anObject [
 ]
 
 { #category : #accessing }
-ASDHMFormSuperContact >> labelEmail [
-
-	^ labelEmail
-]
-
-{ #category : #accessing }
-ASDHMFormSuperContact >> labelEmail: anObject [
-
-	labelEmail := anObject
-]
-
-{ #category : #accessing }
-ASDHMFormSuperContact >> labelMobilfunkNr [
-
-	^ labelMobilfunkNr
-]
-
-{ #category : #accessing }
-ASDHMFormSuperContact >> labelMobilfunkNr: anObject [
-
-	labelMobilfunkNr := anObject
-]
-
-{ #category : #accessing }
 ASDHMFormSuperContact >> labelNachname [
 
 	^ labelNachname
@@ -128,18 +100,6 @@ ASDHMFormSuperContact >> labelNachname [
 ASDHMFormSuperContact >> labelNachname: anObject [
 
 	labelNachname := anObject
-]
-
-{ #category : #accessing }
-ASDHMFormSuperContact >> labelTelefonNr [
-
-	^ labelTelefonNr
-]
-
-{ #category : #accessing }
-ASDHMFormSuperContact >> labelTelefonNr: anObject [
-
-	labelTelefonNr := anObject
 ]
 
 { #category : #accessing }
@@ -167,6 +127,18 @@ ASDHMFormSuperContact >> labelVorname: anObject [
 ]
 
 { #category : #accessing }
+ASDHMFormSuperContact >> labelWaehleEinheit [
+
+	^ labelWaehleEinheit
+]
+
+{ #category : #accessing }
+ASDHMFormSuperContact >> labelWaehleEinheit: anObject [
+
+	labelWaehleEinheit := anObject
+]
+
+{ #category : #accessing }
 ASDHMFormSuperContact >> labeladress [
 
 	^ labeladress
@@ -181,17 +153,19 @@ ASDHMFormSuperContact >> labeladress: anObject [
 { #category : #rendering }
 ASDHMFormSuperContact >> renderAnredeOn: html [
 
-	html mdlTextFieldContainer
-		floatingLabel;
-		with: [ 
-			html mdlTextFieldLabel
-				for: html nextId;
-				with: self labelAnrede.
-			html mdlTextFieldInput
-				id: html lastId;
-				size: 4;
-				value: self model anrede;
-				callback: [ :aString | self model anrede: aString ] ]
+	html render: ((MDLSelectWidget
+			  possibilities: #( 'Stk' 'm' 'mm' 'qm' )
+			  inputLabel: self labelAnrede
+			  labelBlock: #asString
+			  callback: [ :input | self model anrede: input ]
+			  selectedObject: self model anrede
+			  tooltip: self labelWaehleEinheit
+			  sortBlock: [ :a :b | a <= b ])
+			 entryTooltip: [ :number | 
+				 self labelWaehleEinheit , ': ' , number asString ];
+			 yourself)
+
+
 ]
 
 { #category : #rendering }
@@ -211,47 +185,26 @@ ASDHMFormSuperContact >> renderBezOn: html [
 
 { #category : #rendering }
 ASDHMFormSuperContact >> renderContentOn: html [
-self withCard ifTrue:  [  
-	html mdlCard
-		shadow: 0;
-		mdlTypographyTextLeft;
-		style: 'width: 100%; height: 500px;';
-		with: [ html mdlCardTitleContainer
-				with: [ html mdlCardTitleText: 'Shop anlegen' level: 2 ].
-			html mdlCardTextContainer
-				id: html nextId;
-				with: [ super renderContentOn: html ] ]]
+
+	self withPanel
+		ifTrue: [ 
+			html mdlExpansionPanel
+				shadow: 2;
+				expand;
+				"Optional, this is the default."with: [ 
+					html mdlExpansionPanelHeader
+						toggleExpansionOnClick;
+						with: [ 
+							html mdlExpansionPanelHeaderTitle: self labelSelf.
+							html mdlExpansionPanelHeaderIcon ].
+					html mdlExpansionPanelContent: [ super renderContentOn: html ] ] ]
 		ifFalse: [ super renderContentOn: html ]
-]
-
-{ #category : #rendering }
-ASDHMFormSuperContact >> renderEmailOn: html [
-
-	html mdlTextFieldContainer with: [ 
-		html mdlTextFieldLabel
-			for: html nextId;
-			with: self labelEmail.
-		html mdlTextFieldInput
-			id: html lastId;
-			callback: [ :input | self model email: input ] ]
 ]
 
 { #category : #rendering }
 ASDHMFormSuperContact >> renderFormContentOn: html [
 	self renderFieldsOn: html.
 
-]
-
-{ #category : #rendering }
-ASDHMFormSuperContact >> renderMobileFunkNrOn: html [
-
-	html mdlTextFieldContainer with: [ 
-		html mdlTextFieldLabel
-			for: html nextId;
-			with: self labelMobilfunkNr.
-		html mdlTextFieldInput
-			id: html lastId;
-			callback: [ :input | self model mobilFunkNr: input ] ]
 ]
 
 { #category : #rendering }
@@ -267,18 +220,6 @@ ASDHMFormSuperContact >> renderNachnameOn: html [
 				id: html lastId;
 				value: self model nachname;
 				callback: [ :aString | self model nachname: aString ] ]
-]
-
-{ #category : #rendering }
-ASDHMFormSuperContact >> renderTelefonNrOn: html [
-
-	html mdlTextFieldContainer with: [ 
-		html mdlTextFieldLabel
-			for: html nextId;
-			with: self labelTelefonNr.
-		html mdlTextFieldInput
-			id: html lastId;
-			callback: [ :input | self model telefonNummer: input ] ]
 ]
 
 { #category : #rendering }

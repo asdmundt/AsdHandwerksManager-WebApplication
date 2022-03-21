@@ -106,7 +106,8 @@ ASDHMFormFirma >> initialize [
 
 	super initialize.
 	self id: #firmaForm.
-	self title: 'Firma ' , self labelAction
+	self title: 'Firma ' , self labelAction.
+	self labelSelf: 'Firma'
 ]
 
 { #category : #accessing }
@@ -137,16 +138,19 @@ ASDHMFormFirma >> renderBezOn: html [
 
 { #category : #rendering }
 ASDHMFormFirma >> renderContentOn: html [
-self withCard ifTrue:  [  
-	html mdlCard
-		shadow: 0;
-		mdlTypographyTextLeft;
-		style: 'width: 100%; height: 500px;';
-		with: [ html mdlCardTitleContainer
-				with: [ html mdlCardTitleText: 'Shop anlegen' level: 2 ].
-			html mdlCardTextContainer
-				id: html nextId;
-				with: [ super renderContentOn: html ] ]]
+
+	self withPanel
+		ifTrue: [ 
+			html mdlExpansionPanel
+				shadow: 0;
+				expand;
+				"Optional, this is the default."with: [ 
+					html mdlExpansionPanelHeader
+						toggleExpansionOnClick;
+						with: [ 
+							html mdlExpansionPanelHeaderTitle: self labelSelf.
+							html mdlExpansionPanelHeaderIcon ].
+					html mdlExpansionPanelContent: [ super renderContentOn: html ] ] ]
 		ifFalse: [ super renderContentOn: html ]
 ]
 

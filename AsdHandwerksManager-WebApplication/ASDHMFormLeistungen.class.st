@@ -7,6 +7,7 @@ Class {
 		'labelEinheit',
 		'labelPreis',
 		'labelZeitProEinheit',
+		'labelWaehleEinheit',
 		'artikelId',
 		'labelKategorieKuerzel',
 		'kuerzel'
@@ -37,7 +38,9 @@ ASDHMFormLeistungen >> initialize [
 	self labelPreis: 'Preis'.
 	self labelZeitProEinheit: 'Zeit pro Einheit'.
 	self labelKategorieKuerzel: 'Kategorie Kürzel'.
-	self kuerzel: self session kategorieKuerzel.
+	self labelSelf: 'Leistungen'.
+	self labelWaehleEinheit: 'Wähle die Einheit, mit der die Leistung berrechnet wird'.
+	self kuerzel: self session kategorieKuerzel
 ]
 
 { #category : #accessing }
@@ -113,6 +116,18 @@ ASDHMFormLeistungen >> labelPreis: anObject [
 ]
 
 { #category : #accessing }
+ASDHMFormLeistungen >> labelWaehleEinheit [
+
+	^ labelWaehleEinheit
+]
+
+{ #category : #accessing }
+ASDHMFormLeistungen >> labelWaehleEinheit: anObject [
+
+	labelWaehleEinheit := anObject
+]
+
+{ #category : #accessing }
 ASDHMFormLeistungen >> labelZeitProEinheit [
 
 	^ labelZeitProEinheit
@@ -141,37 +156,35 @@ ASDHMFormLeistungen >> renderBezOn: html [
 { #category : #rendering }
 ASDHMFormLeistungen >> renderContentOn: html [
 
-	self withCard
+	self withPanel
 		ifTrue: [ 
-			html mdlCard
-				shadow: 0;
-				mdlTypographyTextLeft;
-				style: 'width: 100%; height: 500px;';
-				with: [ 
-					html mdlCardTitleContainer with: [ 
-							html mdlCardTitleText: self model title level: 2 ].
-					html mdlCardTextContainer
-						id: html nextId;
-						with: [ super renderContentOn: html ] ] ]
+			html mdlExpansionPanel
+				shadow: 2;
+				expand;
+				"Optional, this is the default."with: [ 
+					html mdlExpansionPanelHeader
+						toggleExpansionOnClick;
+						with: [ 
+							html mdlExpansionPanelHeaderTitle: self labelSelf.
+							html mdlExpansionPanelHeaderIcon ].
+					html mdlExpansionPanelContent: [ super renderContentOn: html ] ] ]
 		ifFalse: [ super renderContentOn: html ]
 ]
 
 { #category : #rendering }
 ASDHMFormLeistungen >> renderEinheitOn: html [
-	html
-				render:
-					((MDLSelectWidget
-						possibilities: #('Stk' 'm' 'mm' 'qm')
-						inputLabel: self labelEinheit 
-						labelBlock: #asString
-						callback: [ :input | self model einheit: input ]
-						selectedObject: self model einheit
-						tooltip: 'description'
-						sortBlock: [ :a :b | a <= b ])
-						entryTooltip: [ :number | 'Choose number: ' , number asString ];
-						yourself).
-	
-	
+
+	html render: ((MDLSelectWidget
+			  possibilities: #( 'Stk' 'm' 'mm' 'qm' )
+			  inputLabel: self labelEinheit
+			  labelBlock: #asString
+			  callback: [ :input | self model einheit: input ]
+			  selectedObject: self model einheit
+			  tooltip: self labelWaehleEinheit
+			  sortBlock: [ :a :b | a <= b ])
+			 entryTooltip: [ :number | 
+				 self labelWaehleEinheit , ': ' , number asString ];
+			 yourself)
 ]
 
 { #category : #rendering }
@@ -220,6 +233,7 @@ ASDHMFormLeistungen >> renderPreisOn: html [
 			with: self labelPreis.
 		html mdlTextFieldInput
 			id: html lastId;
+			style: 'width: 150px';
 			value: self model preis;
 			callback: [ :aString | self model preis: aString ] ]
 ]
@@ -233,6 +247,7 @@ ASDHMFormLeistungen >> renderZeitProEinheitOn: html [
 			with: self labelZeitProEinheit.
 		html mdlTextFieldInput
 			id: html lastId;
+			style: 'width: 150px';
 			value: self model zeitProEinheit;
 			callback: [ :aString | self model zeitProEinheit: aString ] ]
 ]

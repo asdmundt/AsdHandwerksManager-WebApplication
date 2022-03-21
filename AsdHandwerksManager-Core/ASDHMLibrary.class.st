@@ -112,7 +112,7 @@ color: #c9d1d9;
     font-family: "Helvetica","Arial",sans-serif;
      margin: 10px;
     padding: 4px 4px;
-    width: 100%;
+    width: 300px !important;
     text-align: left;
 }
 
@@ -277,7 +277,7 @@ border: 1px solid #161b22 !important;
 }
 
 .mdl-layout.is-upgraded .mdl-layout__tab.is-active {
-    color: #7a84fb;
+    color: #2196f3;
 }
 
 .mdl-layout__tab-bar-button {
@@ -335,7 +335,7 @@ margin-left: 0px !important;
 .asd-bar .asd-button{white-space:normal}
 html{box-sizing:border-box}*,*:before,*:after{box-sizing:inherit}
 .asd-container,.asd-panel{padding:0.01em 16px}
-@media screen and (min-width: 1024px) {
+@media screen and (max-width: 1024px) {
 .asdContainer {
     border: 1px solid #30363d;
     background-color: #0d1117;
@@ -511,6 +511,25 @@ vertical-align: top !important;
     font-size: 12px;
     line-height: 32px;
 }
+
+.mdl-tabs__tab {
+    margin: 0 10px 0 10px;
+    border: none;
+	border: 1px solid #30363d;
+    padding: 0 24px;
+    float: left;
+    position: relative;
+    display: block;
+    text-decoration: none;
+    height: 48px;
+    line-height: 48px;
+    text-align: center;
+    font-weight: 500;
+    font-size: 14px;
+    text-transform: uppercase;
+    color: rgba(0,0,0,.54);
+    overflow: hidden;
+}
 '
 ]
 
@@ -522,15 +541,21 @@ ASDHMLibrary >> resizeScriptJs [
 	window.addEventListener("load", jsResize);
 
 	function jsResize() {
-  		var ah = screen.availHeight;
-		var aw = screen.availWidth;
-		var mh = (ah - 300) + ''px'';
-		var th = (ah - 350) + ''px'';
-		var lw = (aw - 880) + ''px'';
-  		//document.getElementById("main").style.height = mh;
+  		var ah 	= screen.availHeight;
+		var aw 	= screen.availWidth;
+		var mh 	= (ah - 300) + ''px'';
+		var th 	= (ah - 250) + ''px'';
+		var lw 	= (aw - 880) + ''px'';
+		var wlw 	= (aw - 200) + ''px'';
+		document.getElementById("content").style.width = lw;
 		document.getElementById("content").style.height = th;
+
+		document.getElementById("contentWithoutside").style.width = wlw;
+		document.getElementById("contentWithoutside").style.height = th;
+
 		document.getElementById("sideBar").style.height = th;
-		//document.getElementById("listLeistungen").style.width = lw;
+			
+
 	} '
 ]
 
@@ -538,5 +563,5 @@ ASDHMLibrary >> resizeScriptJs [
 ASDHMLibrary >> selectorsToInclude [
 
 	^ #( #materialbluegreydeeporangeminCss
-	     #projectCss #resizeScriptJs )
+	     #projectCss  )
 ]

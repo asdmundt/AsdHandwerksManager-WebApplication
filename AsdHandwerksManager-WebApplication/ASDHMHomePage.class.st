@@ -48,7 +48,7 @@ ASDHMHomePage >> renderAufgabenCardOn: html [
 
 	html render: (MDLCardWidget new
 			 shadow: 2;
-			 style: 'width: 70%;margin:20px';
+			 style: 'width: 95%;margin:20px';
 			 class: 'mdl-card__login-widget';
 			 title: titleCardAufgabenLabel level: 2;
 			 addTextContainer: [ :canvas | canvas text: textKeineAufgaben ];
@@ -60,7 +60,7 @@ ASDHMHomePage >> renderAuftragsCardOn: html [
 
 	html render: (MDLCardWidget new
 			 shadow: 2;
-			 style: 'width: 70%;margin:20px';
+			 style: 'width: 95%;margin:20px';
 			 class: 'mdl-card__login-widget';
 			 title: titleCardAuftragsLabel level: 2;
 			 addTextContainer: [ :canvas | 
@@ -78,18 +78,33 @@ self renderAufgabenCardOn: html
 
 { #category : #rendering }
 ASDHMHomePage >> renderContentOn: html [
- html mdlGrid
-						noSpacing;
-						with: [ html mdlCell
-								class: 'rootComponent';
-								size: 12;
-								with: [ html div 
-									class:'container';
-									with:[ html div 
-									class:'center';
-									with:[  self renderCardOn: html] ]] ].
-				
 
+					
+	html div
+		shadow: 2;
+		style: 'display: flex;';
+		with: [ 
+			html div
+				class: 'content';
+				id: 'contentWithoutside';
+				style: 'flex-grow: 1;';
+				with: [ self renderCardOn: html ] ].
+	html html: '<script type="text/javascript">'.
+	html html: '	window.addEventListener("resize", jsResize);
+							window.addEventListener("load", jsResize);'.
+	html html: 'function jsResize() {'.
+	html html: 'var ah 	= screen.availHeight;'.
+	html html: 'var aw 	= screen.availWidth;'.
+	html html: 'var mh 	= (ah - 400) + ''px'';'.
+	html html: 'var th 	= (ah - 350) + ''px'';'.
+	html html: 'var lw 	= (aw - 880) + ''px'';'.
+	html html: 'var wlw 	= (aw - 200) + ''px'';'.
+	html html:
+		'document.getElementById("contentWithoutside").style.width = wlw;'.
+	html html:
+		'document.getElementById("contentWithoutside").style.height = th;
+		}'.
+	html html: '</script>'				
 ]
 
 { #category : #rendering }
@@ -97,7 +112,7 @@ ASDHMHomePage >> renderTasksCardOn: html [
 
 	html render: (MDLCardWidget new
 			 shadow: 2;
-			 style: 'width: 70%;margin:20px';
+			 style: 'width: 95%;margin:20px';
 			 class: 'mdl-card__login-widget';
 			 title: self titleCardTasksLabel level: 2;
 			 addTextContainer: [ :canvas | canvas text: self textKeineTasks ];

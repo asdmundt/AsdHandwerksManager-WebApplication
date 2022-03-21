@@ -63,7 +63,7 @@ ASDHMLeistungsBeschreibungPage >> leistungenList: anObject [
 ASDHMLeistungsBeschreibungPage >> renderBaumOn: html [
 
 	html div
-		style: 'display:block; height: 100%;';
+		style: 'display:block; height: 95%;';
 		id: #baumKategorieLeistungDiv;
 		with: [ html render: self kategorieTreeComponent ]
 ]
@@ -79,12 +79,13 @@ ASDHMLeistungsBeschreibungPage >> renderComponentOn: html [
 
 { #category : #rendering }
 ASDHMLeistungsBeschreibungPage >> renderContentOn: html [
+
 	html div
 		shadow: 2;
 		style: 'display: flex;';
 		with: [ 
 			html leftPanel
-				style: 'height: 100%; width: 300px;';
+				style: 'height: 100%; width: 300px; overflow-y: auto;';
 				class: 'sideBar';
 				id: 'sideBar';
 				with: [ 
@@ -94,6 +95,20 @@ ASDHMLeistungsBeschreibungPage >> renderContentOn: html [
 				class: 'content';
 				id: 'content';
 				style: 'flex-grow: 1;';
-				with: [ self renderComponentOn: html ] ]
-
+				with: [ self renderComponentOn: html ] ].
+	html html: '<script type="text/javascript">'.
+	html html: '	window.addEventListener("resize", jsResize);
+							window.addEventListener("load", jsResize);'.
+	html html: 'function jsResize() {'.
+	html html: 'var ah 	= screen.availHeight;'.
+	html html: 'var aw 	= screen.availWidth;'.
+	html html: 'var mh 	= (ah - 400) + ''px'';'.
+	html html: 'var th 	= (ah - 350) + ''px'';'.
+	html html: 'var lw 	= (aw - 880) + ''px'';'.
+	html html: 'var wlw 	= (aw - 200) + ''px'';'.
+	html html: 'document.getElementById("content").style.width = lw;'.
+	html html: 'document.getElementById("content").style.height = th;'.
+	html html: 'document.getElementById("sideBar").style.height = th;
+	}'.
+	html html: '</script>'
 ]

@@ -60,18 +60,27 @@ ASDHMContactPage >> renderContentOn: html [
 		shadow: 2;
 		style: 'display: flex;';
 		with: [ 
-			html leftPanel
-				style: 'height: 100%; width: 300px;';
-				class: 'sideBar';
-				id: 'sideBar';
-				with: [ 
-					self renderSelectListOn: html.
-					html leftPanelResizer ].
 			html div
 				class: 'content';
-				id: 'content';
+				id: 'contentWithoutside';
 				style: 'flex-grow: 1;';
-				with: [ self renderComponentOn: html ] ]
+				with: [ self renderComponentOn: html ] ].
+	html html: '<script type="text/javascript">'.
+	html html: '	window.addEventListener("resize", jsResize);
+							window.addEventListener("load", jsResize);'.
+	html html: 'function jsResize() {'.
+	html html: 'var ah 	= screen.availHeight;'.
+	html html: 'var aw 	= screen.availWidth;'.
+	html html: 'var mh 	= (ah - 400) + ''px'';'.
+	html html: 'var th 	= (ah - 350) + ''px'';'.
+	html html: 'var lw 	= (aw - 880) + ''px'';'.
+	html html: 'var wlw 	= (aw - 200) + ''px'';'.
+	html html:
+		'document.getElementById("contentWithoutside").style.width = wlw;'.
+	html html:
+		'document.getElementById("contentWithoutside").style.height = th;
+		}'.
+	html html: '</script>'
 ]
 
 { #category : #accessing }

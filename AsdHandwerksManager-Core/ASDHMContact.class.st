@@ -32,12 +32,15 @@ ASDHMContact class >> titleText [
 { #category : #accessing }
 ASDHMContact >> displayString [
 
-	^ String streamContents: [ :s | 
-		  s
-			  nextPutAll: self displayName;
-			  space;
-			  nextPutAll: self telefonNummer;
-			  space ]
+self gewerblich ifTrue: [ 
+			^ String streamContents: [ :s | 
+		  		s
+			  		nextPutAll: self firmenName;
+			  		space;
+			  		nextPutAll: self ansprechPartner;
+			  		space ] ] 
+			ifFalse: [ super displayString ]
+	
 ]
 
 { #category : #accessing }

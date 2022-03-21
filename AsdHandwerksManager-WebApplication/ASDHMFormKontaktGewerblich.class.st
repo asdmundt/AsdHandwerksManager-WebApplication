@@ -1,6 +1,10 @@
 Class {
 	#name : #ASDHMFormKontaktGewerblich,
 	#superclass : #ASDHMFormSuperContact,
+	#instVars : [
+		'labelFirmenName',
+		'labelAnsprechPartner'
+	],
 	#category : #'AsdHandwerksManager-WebApplication-forms'
 }
 
@@ -9,7 +13,10 @@ ASDHMFormKontaktGewerblich >> initialize [
 
 	super initialize.
 	self id: 'contactFormCard'.
-	self title: 'Kontakt ', self labelAction.
+	self title: 'Kontakt ' , self labelAction.
+	self model anrede: 'Firma'.
+	self labelFirmenName: 'Name der Firma'.
+	self labelAnsprechPartner: 'Verantwortlicher'.
 ]
 
 { #category : #rendering }
@@ -29,32 +36,25 @@ ASDHMFormKontaktGewerblich >> renderBezOn: html [
 { #category : #rendering }
 ASDHMFormKontaktGewerblich >> renderContentOn: html [
 
-	self withCard
+	self withPanel
 		ifTrue: [ 
-			html mdlCard
-				shadow: 0;
-				mdlTypographyTextLeft;
-				style: 'width: 100%; height: 500px;';
-				with: [ 
-					html mdlCardTitleContainer with: [ 
-							html mdlCardTitleText: self title level: 2 ].
-					html mdlCardTextContainer
-						id: html nextId;
-						with: [ super renderContentOn: html ] ] ]
+			html mdlExpansionPanel
+				shadow: 2;
+				expand;
+				"Optional, this is the default."with: [ 
+					html mdlExpansionPanelHeader
+						toggleExpansionOnClick;
+						with: [ 
+							html mdlExpansionPanelHeaderTitle: self labelSelf.
+							html mdlExpansionPanelHeaderIcon ].
+					html mdlExpansionPanelContent: [ super renderContentOn: html ] ] ]
 		ifFalse: [ super renderContentOn: html ]
 ]
 
 { #category : #rendering }
 ASDHMFormKontaktGewerblich >> renderFieldsOn: html [
 
-	self renderBezOn: html.
-	self renderAnredeOn: html.
-	self renderTitleOn: html.
-	self renderVornameOn: html.
-	self renderNachnameOn: html.
-	self renderEmailOn: html.
-	self renderTelefonNrOn: html.
-	self renderMobileFunkNrOn: html
+	html span: []
 ]
 
 { #category : #rendering }

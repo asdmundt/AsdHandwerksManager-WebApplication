@@ -169,16 +169,19 @@ ASDHMFormUser >> renderCancelButtonOn: html [
 
 { #category : #rendering }
 ASDHMFormUser >> renderContentOn: html [
-self withCard ifTrue:  [  
-	html mdlCard
-		shadow: 0;
-		mdlTypographyTextLeft;
-		style: 'width: 100%; height: 500px;';
-		with: [ html mdlCardTitleContainer
-				with: [ html mdlCardTitleText: 'Account' level: 2 ].
-			html mdlCardTextContainer
-				id: html nextId;
-				with: [ super renderContentOn: html ] ]]
+
+	self withPanel
+		ifTrue: [ 
+			html mdlExpansionPanel
+				shadow: 2;
+				expand;
+				"Optional, this is the default."with: [ 
+					html mdlExpansionPanelHeader
+						toggleExpansionOnClick;
+						with: [ 
+							html mdlExpansionPanelHeaderTitle: self labelSelf.
+							html mdlExpansionPanelHeaderIcon ].
+					html mdlExpansionPanelContent: [ super renderContentOn: html ] ] ]
 		ifFalse: [ super renderContentOn: html ]
 ]
 

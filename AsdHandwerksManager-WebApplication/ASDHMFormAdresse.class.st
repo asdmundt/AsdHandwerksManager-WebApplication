@@ -22,12 +22,14 @@ ASDHMFormAdresse >> hsnrLabel: anObject [
 
 { #category : #initalize }
 ASDHMFormAdresse >> initialize [
+
 	super initialize.
 	self id: #adressForm.
 	self strLabel: 'Strasse'.
 	self hsnrLabel: 'Haus Nr.'.
 	self plzLabel: 'Plz'.
-	self ortLabel: 'Ort'
+	self ortLabel: 'Ort'.
+	self labelSelf: 'Adress Daten'
 ]
 
 { #category : #accessing }
@@ -69,16 +71,16 @@ ASDHMFormAdresse >> renderContentOn: html [
 
 	self withPanel
 		ifTrue: [ 
-			html mdlCard
-				shadow: 0;
-				mdlTypographyTextLeft;
-				style: 'width: 100%; height: 500px;';
-				with: [ 
-					html mdlCardTitleContainer with: [ 
-							html mdlCardTitleText: 'Shop anlegen' level: 2 ].
-					html mdlCardTextContainer
-						id: html nextId;
-						with: [ super renderContentOn: html ] ] ]
+			html mdlExpansionPanel
+				shadow: 2;
+				expand;
+				"Optional, this is the default."with: [ 
+					html mdlExpansionPanelHeader
+						toggleExpansionOnClick;
+						with: [ 
+							html mdlExpansionPanelHeaderTitle: self labelSelf.
+							html mdlExpansionPanelHeaderIcon ].
+					html mdlExpansionPanelContent: [ super renderContentOn: html ] ] ]
 		ifFalse: [ super renderContentOn: html ]
 ]
 
