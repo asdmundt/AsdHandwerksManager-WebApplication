@@ -16,9 +16,8 @@ Class {
 
 { #category : #'instance creation' }
 ASDHMObjectViewTableBaseComponent class >> withList: aList [
-^ self new list: aList
 
-	
+	^ self new list: aList; yourself 
 ]
 
 { #category : #actions }
@@ -112,12 +111,6 @@ ASDHMObjectViewTableBaseComponent >> remove: anObject [
 ]
 
 { #category : #rendering }
-ASDHMObjectViewTableBaseComponent >> renderAddDialog: html [
-
-	self subclassResponsibility
-]
-
-{ #category : #rendering }
 ASDHMObjectViewTableBaseComponent >> renderBezOn: html [
 
 	html text: self labelBez 
@@ -128,6 +121,7 @@ ASDHMObjectViewTableBaseComponent >> renderContentOn: html [
 
 	html div
 		style: 'display: block; height:100%';
+		id: self id;
 		shadow: 0;
 		with: [ 
 			html div
@@ -158,6 +152,12 @@ ASDHMObjectViewTableBaseComponent >> renderContentOn: html [
 				style:
 					'width: 100%;min-height: 400px;overflow-y: auto; height:100%;';
 				with: [ self renderInnerContentOn: html ] ]
+]
+
+{ #category : #rendering }
+ASDHMObjectViewTableBaseComponent >> renderDialog: html [
+
+	self subclassResponsibility
 ]
 
 { #category : #rendering }

@@ -1,20 +1,20 @@
 Class {
-	#name : #ASDHMRightPanelMsg,
+	#name : #ASDHMRightPanelVorgang,
 	#superclass : #ASDHMBaseComponent,
 	#category : #'AsdHandwerksManager-WebApplication-Components'
 }
 
 { #category : #rendering }
-ASDHMRightPanelMsg >> renderContentOn: html [
+ASDHMRightPanelVorgang >> renderContentOn: html [
 
 	html div
-		id: #msgPanel;
+		id: #vorgangsPanel;
 		with: [ 
-			html render: 'Nachrichten' "self renderTabsOn: html" ]
+			html render: 'This is the first panel' "self renderTabsOn: html" ]
 ]
 
 { #category : #rendering }
-ASDHMRightPanelMsg >> renderTabsOn: html [
+ASDHMRightPanelVorgang >> renderTabsOn: html [
 	html
 		render:
 			(MDLTabWidget new

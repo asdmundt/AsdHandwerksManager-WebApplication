@@ -3,9 +3,9 @@ Class {
 	#superclass : #ASDHMModel,
 	#instVars : [
 		'bankName',
-		'Iban',
-		'Bic',
-		'KontoInhaber',
+		'iban',
+		'bic',
+		'kontoInhaber',
 		'bankObjectId'
 	],
 	#category : #'AsdHandwerksManager-Core-Model'
@@ -53,25 +53,25 @@ ASDHMBank >> bankObjectId: anObject [
 { #category : #accessing }
 ASDHMBank >> bic [
 
-	^ Bic
+	^ bic
 ]
 
 { #category : #accessing }
 ASDHMBank >> bic: anObject [
 
-	Bic := anObject
+	bic := anObject
 ]
 
 { #category : #accessing }
 ASDHMBank >> iban [
 
-	^ Iban
+	^ iban
 ]
 
 { #category : #accessing }
 ASDHMBank >> iban: anObject [
 
-	Iban := anObject
+	iban := anObject
 ]
 
 { #category : #initialization }
@@ -84,11 +84,11 @@ ASDHMBank >> initialize [
 { #category : #accessing }
 ASDHMBank >> kontoInhaber [
 
-	^ KontoInhaber
+	^ kontoInhaber
 ]
 
 { #category : #accessing }
 ASDHMBank >> kontoInhaber: anObject [
 
-	KontoInhaber := anObject
+	kontoInhaber := anObject
 ]

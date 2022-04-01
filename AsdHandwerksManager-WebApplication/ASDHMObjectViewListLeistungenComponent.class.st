@@ -162,15 +162,17 @@ ASDHMObjectViewListLeistungenComponent >> renderInnerContentOn: html [
 		id: self id;
 		with: [ "style: 'width: 300px';"
 			self list doWithIndex: [ :each :index | 
-					html mdlListItem 
-					threeLine;
-					with: [ 
+					html mdlListItem
+						threeLine;
+						with: [ 
 							html mdlListPrimaryContent: [ 
 									html mdlChipContact
-										hexColor: '3f51b5';
+										hexColor: '1a71ec';
 										with: each kategorieKuerzel.
 									html text: each bez.
-									html mdlListItemTextBody style: 'font-size: 12px;'; with: each leistungsBeschreibung ].
+									html mdlListItemTextBody
+										style: 'font-size: 12px;';
+										with: each leistungsBeschreibung ].
 							html mdlListSecondaryContent: [ 
 								html mdlAnchorButton
 									icon;

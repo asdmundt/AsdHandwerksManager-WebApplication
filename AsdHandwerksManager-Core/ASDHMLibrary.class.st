@@ -530,6 +530,14 @@ vertical-align: top !important;
     color: rgba(0,0,0,.54);
     overflow: hidden;
 }
+
+.mdl-expansion-panel .mdl-expansion-panel__header .mdl-expansion-panel__header-icon {
+    color: #ffffffd9 !important;
+}
+
+.asdTableHeading { 
+	position: relativ; top: -10px;
+ }
 '
 ]
 

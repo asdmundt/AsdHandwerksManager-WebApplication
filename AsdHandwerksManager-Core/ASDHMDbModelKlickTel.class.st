@@ -1,5 +1,5 @@
 Class {
-	#name : #ASDHMDbModelBlz,
+	#name : #ASDHMDbModelKlickTel,
 	#superclass : #Object,
 	#instVars : [
 		'artikel'
@@ -8,35 +8,38 @@ Class {
 		'Repos'
 	],
 	#classInstVars : [
-		'uniqueInstanceDbModelBauManagerBlz'
+		'uniqueInstanceDbModelBauManagerklicktel'
 	],
 	#category : #'AsdHandwerksManager-Core-Db'
 }
 
 { #category : #'class initialization' }
-ASDHMDbModelBlz class >> current [
-	^ uniqueInstanceDbModelBauManagerBlz ifNil: [ uniqueInstanceDbModelBauManagerBlz := self new ]
+ASDHMDbModelKlickTel class >> current [
+
+	^ uniqueInstanceDbModelBauManagerklicktel ifNil: [ 
+		  uniqueInstanceDbModelBauManagerklicktel := self new ]
 ]
 
 { #category : #'default values' }
-ASDHMDbModelBlz class >> defaultPwd [
+ASDHMDbModelKlickTel class >> defaultPwd [
 
 	^ 'saino1972'
 ]
 
 { #category : #'default values' }
-ASDHMDbModelBlz class >> defaultRepository [
-	^ 'handwerkBlz'
+ASDHMDbModelKlickTel class >> defaultRepository [
+
+	^ 'klickTel'
 ]
 
 { #category : #'default values' }
-ASDHMDbModelBlz class >> defaultUser [
+ASDHMDbModelKlickTel class >> defaultUser [
 
 	^ 'asdAdmin'
 ]
 
 { #category : #voyage }
-ASDHMDbModelBlz class >> importBlz [
+ASDHMDbModelKlickTel class >> importBlz [
 |dataFile coll|
 
 "dataFile := FileLocator imageDirectory / 'files' / 'streha.csv' asFileReference ."
@@ -60,18 +63,18 @@ upToEnd
 ]
 
 { #category : #'class initialization' }
-ASDHMDbModelBlz class >> initialize [
+ASDHMDbModelKlickTel class >> initialize [
 	self reset
 ]
 
 { #category : #voyage }
-ASDHMDbModelBlz class >> initializeLocalhostMongoDB [
+ASDHMDbModelKlickTel class >> initializeLocalhostMongoDB [
 
 	Repos := VOMongoRepository database: self defaultRepository
 ]
 
 { #category : #voyage }
-ASDHMDbModelBlz class >> initializeStratoHostMongoDB [
+ASDHMDbModelKlickTel class >> initializeStratoHostMongoDB [
 
 	Repos := VOMongoRepository
 		         host: '81.169.136.23'
@@ -81,27 +84,28 @@ ASDHMDbModelBlz class >> initializeStratoHostMongoDB [
 ]
 
 { #category : #voyage }
-ASDHMDbModelBlz class >> isVoyageRoot [
+ASDHMDbModelKlickTel class >> isVoyageRoot [
    "Indicates that instances of this class are top level documents
     in noSQL databases"
    ^ true
 ]
 
 { #category : #'class initialization' }
-ASDHMDbModelBlz class >> reset [
-	uniqueInstanceDbModelBauManagerBlz := nil.
+ASDHMDbModelKlickTel class >> reset [
+
+	uniqueInstanceDbModelBauManagerklicktel := nil.
 	"VORepository current reset."
 	VORepository repositoryContainer: VODynamicContainer new.
 	self initializeLocalhostMongoDB
 ]
 
 { #category : #'default values' }
-ASDHMDbModelBlz class >> version [
+ASDHMDbModelKlickTel class >> version [
 ^'1.0.0'
 ]
 
 { #category : #operations }
-ASDHMDbModelBlz >> categorieCollection [
+ASDHMDbModelKlickTel >> categorieCollection [
 	| categorieColl |
 	categorieColl := OrderedCollection new.
 	self  shopCategories
@@ -109,13 +113,29 @@ ASDHMDbModelBlz >> categorieCollection [
 	^ categorieColl
 ]
 
+{ #category : #operations }
+ASDHMDbModelKlickTel >> contactsKlickTel [
+
+	| collection |
+	collection := Repos selectAll: ASDHMKlickTelKontakte.
+	^ collection yourself
+]
+
 { #category : #initialization }
-ASDHMDbModelBlz >> initialize [
+ASDHMDbModelKlickTel >> initialize [
 	super initialize.
 	artikel  := OrderedCollection new
 ]
 
 { #category : #operations }
-ASDHMDbModelBlz >> storeObject: aObject [
+ASDHMDbModelKlickTel >> listsKlickTel [
+
+	| collection |
+	collection := Repos selectAll: ASDHMKlickTelListe.
+	^ collection yourself
+]
+
+{ #category : #operations }
+ASDHMDbModelKlickTel >> storeObject: aObject [
 	Repos save: aObject
 ]

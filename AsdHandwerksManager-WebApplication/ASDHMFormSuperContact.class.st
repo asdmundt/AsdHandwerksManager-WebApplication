@@ -10,9 +10,12 @@ Class {
 		'labelBez',
 		'adressForm',
 		'bankForm',
+		'kommunikationForm',
 		'labeladress',
 		'labelBank',
-		'labelWaehleEinheit'
+		'labelWaehleEinheit',
+		'labelFirmenName',
+		'labelAnsprechPartner'
 	],
 	#category : #'AsdHandwerksManager-WebApplication-forms'
 }
@@ -51,7 +54,20 @@ ASDHMFormSuperContact >> initialize [
 	self labelTitle: 'Title'.
 	self labelVorname: 'Vorname'.
 	self labelNachname: 'Nachname'.
+	self labelFirmenName: 'Name der Firma'.
+	self labelAnsprechPartner: 'Verantwortlicher'
+]
 
+{ #category : #accessing }
+ASDHMFormSuperContact >> kommunikationForm [
+
+	^ kommunikationForm
+]
+
+{ #category : #accessing }
+ASDHMFormSuperContact >> kommunikationForm: anObject [
+
+	kommunikationForm := anObject
 ]
 
 { #category : #accessing }
@@ -64,6 +80,18 @@ ASDHMFormSuperContact >> labelAnrede [
 ASDHMFormSuperContact >> labelAnrede: anObject [
 
 	labelAnrede := anObject
+]
+
+{ #category : #accessing }
+ASDHMFormSuperContact >> labelAnsprechPartner [
+
+	^ labelAnsprechPartner
+]
+
+{ #category : #accessing }
+ASDHMFormSuperContact >> labelAnsprechPartner: anObject [
+
+	labelAnsprechPartner := anObject
 ]
 
 { #category : #accessing }
@@ -88,6 +116,18 @@ ASDHMFormSuperContact >> labelBez [
 ASDHMFormSuperContact >> labelBez: anObject [
 
 	labelBez := anObject
+]
+
+{ #category : #rendering }
+ASDHMFormSuperContact >> labelFirmenName [
+
+	^ labelFirmenName
+]
+
+{ #category : #accessing }
+ASDHMFormSuperContact >> labelFirmenName: anObject [
+
+	labelFirmenName := anObject
 ]
 
 { #category : #accessing }
@@ -151,21 +191,34 @@ ASDHMFormSuperContact >> labeladress: anObject [
 ]
 
 { #category : #rendering }
+ASDHMFormSuperContact >> renderAdressFormAndKommuFormContentOn: html [
+
+	html render:
+		(ASDHMFormAdresse withModel: self model andPanel: false) yourself.
+	html render: (ASDHMFormKommunikation withModel: self model andPanel: false) yourself
+]
+
+{ #category : #rendering }
 ASDHMFormSuperContact >> renderAnredeOn: html [
 
-	html render: ((MDLSelectWidget
-			  possibilities: #( 'Stk' 'm' 'mm' 'qm' )
-			  inputLabel: self labelAnrede
-			  labelBlock: #asString
-			  callback: [ :input | self model anrede: input ]
-			  selectedObject: self model anrede
-			  tooltip: self labelWaehleEinheit
-			  sortBlock: [ :a :b | a <= b ])
-			 entryTooltip: [ :number | 
-				 self labelWaehleEinheit , ': ' , number asString ];
-			 yourself)
+	"html render: (MDLSelectWidget
+			 possibilities: #( 'Frau' 'Herr' )
+			 inputLabel: self labelAnrede
+			 labelBlock: #asString
+			 callback: [ :input | self model anrede: input ]
+			 selectedObject: self model anrede
+			 tooltip: self labelAnrede
+			 sortBlock: [ :a :b | a <= b ]) yourself"
 
-
+	html mdlTextFieldContainer with: [ 
+		html mdlTextFieldLabel
+			for: html nextId;
+			with: self labelAnrede.
+		html mdlTextFieldInput
+			id: html lastId;
+			style: 'width: 100px';
+			callback: [ :aString | self model anrede: aString ];
+			value: self model anrede ]
 ]
 
 { #category : #rendering }
@@ -211,7 +264,7 @@ ASDHMFormSuperContact >> renderFormContentOn: html [
 ASDHMFormSuperContact >> renderNachnameOn: html [
 
 	html mdlTextFieldContainer
-		floatingLabel;
+		
 		with: [ 
 			html mdlTextFieldLabel
 				for: html nextId;
@@ -226,13 +279,14 @@ ASDHMFormSuperContact >> renderNachnameOn: html [
 ASDHMFormSuperContact >> renderTitleOn: html [
 
 	html mdlTextFieldContainer
-		floatingLabel;
+		
 		with: [ 
 			html mdlTextFieldLabel
 				for: html nextId;
 				with: self labelTitle.
 			html mdlTextFieldInput
 				id: html lastId;
+				style: 'width: 100px';
 				size: 4;
 				value: self model title;
 				callback: [ :aString | self model title: aString ] ]
@@ -242,8 +296,7 @@ ASDHMFormSuperContact >> renderTitleOn: html [
 ASDHMFormSuperContact >> renderVornameOn: html [
 
 	html mdlTextFieldContainer
-		floatingLabel;
-		with: [ 
+				with: [ 
 			html mdlTextFieldLabel
 				for: html nextId;
 				with: self labelVorname.

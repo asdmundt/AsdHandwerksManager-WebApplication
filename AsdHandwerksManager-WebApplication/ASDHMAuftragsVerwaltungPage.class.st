@@ -11,7 +11,8 @@ ASDHMAuftragsVerwaltungPage class >> pageName [
 
 { #category : #accessing }
 ASDHMAuftragsVerwaltungPage class >> priority [
-	^ 5
+
+	^ 6
 ]
 
 { #category : #hooks }

@@ -8,6 +8,7 @@ Class {
 		'model',
 		'modelMalerGewerk',
 		'modelBlz',
+		'modelKlickTel',
 		'loginError',
 		'adminView',
 		'userId',
@@ -79,10 +80,12 @@ ASDHMSession >> firmenId: anObject [
 
 { #category : #initialization }
 ASDHMSession >> initialize [
+
 	super initialize.
 	self model: ASDHMDbModelBase current.
 	self modelBlz: ASDHMDbModelBlz current.
 	self modelMalerGewerk: ASDHMDbModelMalerGewerg current.
+	self modelKlickTel: ASDHMDbModelKlickTel current.
 	self adminView: false
 ]
 
@@ -158,6 +161,18 @@ ASDHMSession >> modelBlz [
 ASDHMSession >> modelBlz: anObject [
 
 	modelBlz := anObject
+]
+
+{ #category : #accessing }
+ASDHMSession >> modelKlickTel [
+
+	^ modelKlickTel
+]
+
+{ #category : #accessing }
+ASDHMSession >> modelKlickTel: anObject [
+
+	modelKlickTel := anObject
 ]
 
 { #category : #accessing }

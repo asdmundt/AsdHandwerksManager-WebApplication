@@ -8,7 +8,8 @@ Class {
 		'angebot',
 		'technischeBeschreibung',
 		'startauftrag',
-		'endeAuftrag'
+		'endeAuftrag',
+		'art'
 	],
 	#category : #'AsdHandwerksManager-Core-Model'
 }

@@ -11,7 +11,8 @@ Class {
 		'indexLoggedUser',
 		'benutzerName',
 		'indexInstall',
-		'indexSize'
+		'indexSize',
+		'role'
 	],
 	#category : #'AsdHandwerksManager-Core-Model'
 }
@@ -31,6 +32,17 @@ ASDHMUser class >> benutzerName: login password: password admin: anAdmin [
 		password: password;
 		admin: anAdmin;
 		yourself
+]
+
+{ #category : #'instance creation' }
+ASDHMUser class >> benutzerName: login password: password admin: anAdmin role: aRole [
+
+	^ self new
+		  benutzerName: login;
+		  password: password;
+		  admin: anAdmin;
+		  role: aRole;
+		  yourself
 ]
 
 { #category : #voyage }
@@ -289,4 +301,16 @@ ASDHMUser >> pwdGmail [
 { #category : #accessing }
 ASDHMUser >> pwdGmail: anObject [
 	pwdGmail := anObject
+]
+
+{ #category : #accessing }
+ASDHMUser >> role [
+
+	^ role
+]
+
+{ #category : #accessing }
+ASDHMUser >> role: anObject [
+
+	role := anObject
 ]

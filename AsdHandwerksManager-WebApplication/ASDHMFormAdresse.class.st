@@ -87,15 +87,13 @@ ASDHMFormAdresse >> renderContentOn: html [
 { #category : #rendering }
 ASDHMFormAdresse >> renderFieldsOn: html [
 
-	self renderBezOn: html.
+	"self renderBezOn: html."
 	html span: [ 
-	self renderStrOn: html.
-	self renderHsnrOn: html.
-	].
-html span: [ 
-	self renderPlzOn: html.
-	self renderOrtOn: html
-	]
+		self renderStrOn: html.
+		self renderHsnrOn: html ].
+	html span: [ 
+		self renderPlzOn: html.
+		self renderOrtOn: html ]
 ]
 
 { #category : #rendering }
@@ -113,8 +111,7 @@ ASDHMFormAdresse >> renderHsnrOn: html [
 			with: self hsnrLabel.
 		html mdlTextFieldInput
 			id: html lastId;
-			style: 'width: 20%;';			
-			size: 4;
+			style: 'width: 50px;';
 			value: self model hsnr;
 			callback: [ :aString | self model hsnr: aString ] ]
 ]
@@ -144,21 +141,21 @@ ASDHMFormAdresse >> renderPlzOn: html [
 				with: self plzLabel.
 			html mdlTextFieldInput
 				id: html lastId;
-				style: 'width: 20%;';
+				style: 'width: 70px;';
 				value: self model plz;
 				callback: [ :aString | self model plz: aString ] ]
 ]
 
 { #category : #rendering }
 ASDHMFormAdresse >> renderStrOn: html [
+
 	html mdlTextFieldContainer
-		floatingLabel;
-		with: [ html mdlTextFieldLabel
+				with: [ 
+			html mdlTextFieldLabel
 				for: html nextId;
-				with: 'Strasse'.
+				with: strLabel.
 			html mdlTextFieldInput
 				id: html lastId;
-
 				value: self model str;
 				callback: [ :aString | self model str: aString ] ]
 ]

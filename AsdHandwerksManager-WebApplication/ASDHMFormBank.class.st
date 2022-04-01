@@ -15,14 +15,14 @@ Class {
 
 { #category : #rendering }
 ASDHMFormBank >> bankNameInputWidget [
+
 	^ MDLTextFieldWidget new
-		beFloatingLabel;
-		
-		type: 'text';
-		label: bankNameLabel;
-		pattern: '^\S+$' errorMessage: 'kein leerstring';
-		callback: [ :aString | self model bankName: aString ];
-		value: self model bankName 
+		  style: 'width: 300px';
+		  type: 'text';
+		  label: bankNameLabel;
+		  pattern: '^\S+$' errorMessage: 'kein leerstring';
+		  callback: [ :aString | self model bankName: aString ];
+		  value: self model bankName
 ]
 
 { #category : #accessing }
@@ -39,14 +39,14 @@ ASDHMFormBank >> bankNameLabel: anObject [
 
 { #category : #rendering }
 ASDHMFormBank >> bicInputWidget [
+
 	^ MDLTextFieldWidget new
-		beFloatingLabel;
-		
-		type: 'text';
-		label: bicLabel;
-		pattern: '^\S+$' errorMessage: 'kein leerstring';
-		callback: [ :aString | self model bic: aString ];
-		value: self model bic 
+		  style: 'width: 200px';
+		  type: 'text';
+		  label: bicLabel;
+		  pattern: '^\S+$' errorMessage: 'kein leerstring';
+		  callback: [ :aString | self model bic: aString ];
+		  value: self model bic
 ]
 
 { #category : #accessing }
@@ -83,14 +83,14 @@ ASDHMFormBank >> cancelLabel: anObject [
 
 { #category : #rendering }
 ASDHMFormBank >> ibanInputWidget [
+
 	^ MDLTextFieldWidget new
-		beFloatingLabel;
-		required: true;
-		type: 'text';
-		label: ibanLabel;
-		pattern: '^\S+$' errorMessage: 'kein leerstring';
-		callback: [ :aString | self model iban: aString ];
-		value: self model iban 
+		  required: true;
+		  type: 'text';
+		  label: ibanLabel;
+		  pattern: '^\S+$' errorMessage: 'kein leerstring';
+		  callback: [ :aString | self model iban: aString ];
+		  value: self model iban
 ]
 
 { #category : #accessing }
@@ -126,6 +126,7 @@ ASDHMFormBank >> kontoInhaberInputWidget [
 		  id: 'kontoInhaber';
 		  type: 'text';
 		  label: kontoInhaberLabel;
+			style: 'width: 350px';
 		  pattern: '^\S+$' errorMessage: 'kein leerstring';
 		  callback: [ :aString | self model kontoInhaber: aString ];
 		  value: self model kontoInhaber

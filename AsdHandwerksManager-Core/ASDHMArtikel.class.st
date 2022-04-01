@@ -27,17 +27,18 @@ Class {
 
 { #category : #'instance creation' }
 ASDHMArtikel class >> artikelNr: anArtikel titel: aTitel name: aName ekPreis: aPreis einheit: aUnit warenGruppe: anArtikelGroup warenGruppeId: anArtikelGroupId lieferant: aSupplier eanNr: aNumber [
+
 	^ self new
-		artikelNr: anArtikel;
-		titel: aTitel;
-		name: aName;
-		ekPreis: aPreis;
-		einheit: aUnit;
-		warenGruppe: anArtikelGroup;
-		warenGruppeId: anArtikelGroupId;
-		lieferant: aSupplier;
-		eanNr: aNumber
-		yourself
+		  artikelNr: anArtikel;
+		  titel: aTitel;
+		  name: aName;
+		  ekPreis: aPreis;
+		  einheit: aUnit;
+		  warenGruppe: anArtikelGroup;
+		  warenGruppeId: anArtikelGroupId;
+		  lieferant: aSupplier;
+		  eanNr: aNumber;
+		 yourself
 ]
 
 { #category : #voyage }

@@ -125,12 +125,10 @@ ASDHMHeader >> renderContentOn: html [
 				callback: [ "Just refresh" ];
 				with: [ 
 					html mdlLayoutTitle: [ 
-							html text: ' Test   asdDelMundt HandwerksManager' ] ].
+							html text: 'asdDelMundt HandwerksManager' ] ].
 			html mdlLayoutSpacer.
 			self rootComponent class development ifTrue: [ 
-			html anchor
-				callback: [ self show: (WAInspector current on: self session) ];
-				with: 'Inspect Session' ].
+				html text: '	Version ' , self rootComponent class version. ].
 			self renderButtonsOn: html
 			"html text: '	Version ' , self rootComponent class version." ].
 		self renderTabBarOn: html ]

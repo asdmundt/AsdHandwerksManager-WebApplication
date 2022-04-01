@@ -29,9 +29,10 @@ ASDHMComponentWithRightPanel >> component: anObject [
 
 { #category : #initialization }
 ASDHMComponentWithRightPanel >> initialize [
+
 	super initialize.
-	self id: #mySidenav
-	
+	self id: #mySidenav.
+	self component: ASDHMRightPanelMsg new
 ]
 
 { #category : #rendering }
@@ -40,15 +41,7 @@ ASDHMComponentWithRightPanel >> renderContentOn: html [
 	html div
 		id: self id;
 		class: 'sidenav';
-		with: [ html text: 'test' ].
-	"html addLoadScript: ((html jQuery class: 'openNav')
-			 on: 'click'
-			 do: ((html jQuery id: 'mySidenav') cssAt: 'width' put: '250px')
-				 , ((html jQuery id: 'main') cssAt: 'marginRight' put: '250px')).
-	html addLoadScript: ((html jQuery class: 'closeNav')
-			 on: 'click'
-			 do: ((html jQuery id: 'mySidenav') cssAt: 'width' put: '0')
-				 , ((html jQuery id: 'main') cssAt: 'marginRight' put: '0')) "
+		with: [ html render: component ]
 ]
 
 { #category : #hooks }
@@ -57,11 +50,11 @@ ASDHMComponentWithRightPanel >> script [
 	^ '$(document).ready(function(){
   $(".openNav").click(function(){
 		if($("#mySidenav").css("width") == "0px"){
-    		$("#mySidenav").css("width", "350px");
-    		$("#main").css("margin-right", "350px");
+    		$("#mySidenav").css("width", "450px");
+    		//$("#main").css("margin-right", "350px");
 		} else{
     		$("#mySidenav").css("width", "0px");
-    		$("#main").css("margin-right", "0px");
+    		//$("#main").css("margin-right", "0px");
 		}
   });
 $(".closeNav").click(function(){
@@ -78,7 +71,7 @@ ASDHMComponentWithRightPanel >> style [
   height: 95%;
   width: 0;
   position: fixed;
-  z-index: 1;
+  z-index: 100;
   top: 0;
   right: 0;
   background-color: #161b22;

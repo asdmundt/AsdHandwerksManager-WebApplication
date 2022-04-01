@@ -5,13 +5,9 @@ Class {
 		'leistungsBeschreibung',
 		'einheit',
 		'preis',
-		'zeitProEinheit',
-		'artikelKurzText',
-		'artikelTitel',
-		'artikelId',
-		'kategorieKuerzel',
-		'artikelBeschreibung',
-		'artikelGroesse'
+		'zeit',
+		'artikel',
+		'kategorieKuerzel'
 	],
 	#category : #'AsdHandwerksManager-Core-Model'
 }
@@ -48,63 +44,15 @@ ASDHMLeistungen class >> titleText [
 ]
 
 { #category : #accessing }
-ASDHMLeistungen >> artikelBeschreibung [
+ASDHMLeistungen >> artikel [
 
-	^ artikelBeschreibung
+	^ artikel
 ]
 
 { #category : #accessing }
-ASDHMLeistungen >> artikelBeschreibung: anObject [
+ASDHMLeistungen >> artikel: anObject [
 
-	artikelBeschreibung := anObject
-]
-
-{ #category : #accessing }
-ASDHMLeistungen >> artikelGroesse [
-
-	^ artikelGroesse
-]
-
-{ #category : #accessing }
-ASDHMLeistungen >> artikelGroesse: anObject [
-
-	artikelGroesse := anObject
-]
-
-{ #category : #accessing }
-ASDHMLeistungen >> artikelId [
-
-	^ artikelId
-]
-
-{ #category : #accessing }
-ASDHMLeistungen >> artikelId: anObject [
-
-	artikelId := anObject
-]
-
-{ #category : #accessing }
-ASDHMLeistungen >> artikelKurzText [
-
-	^ artikelKurzText
-]
-
-{ #category : #accessing }
-ASDHMLeistungen >> artikelKurzText: anObject [
-
-	artikelKurzText := anObject
-]
-
-{ #category : #accessing }
-ASDHMLeistungen >> artikelTitel [
-
-	^ artikelTitel
-]
-
-{ #category : #accessing }
-ASDHMLeistungen >> artikelTitel: anObject [
-
-	artikelTitel := anObject
+	artikel := anObject
 ]
 
 { #category : #accessing }
@@ -163,13 +111,13 @@ ASDHMLeistungen >> preis: anObject [
 ]
 
 { #category : #accessing }
-ASDHMLeistungen >> zeitProEinheit [
+ASDHMLeistungen >> zeit [
 
-	^ zeitProEinheit
+	^ zeit
 ]
 
 { #category : #accessing }
-ASDHMLeistungen >> zeitProEinheit: anObject [
+ASDHMLeistungen >> zeit: anObject [
 
-	zeitProEinheit := anObject
+	zeit := anObject
 ]

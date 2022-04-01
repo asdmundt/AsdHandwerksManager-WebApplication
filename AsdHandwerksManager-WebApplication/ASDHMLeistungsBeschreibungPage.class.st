@@ -15,7 +15,8 @@ ASDHMLeistungsBeschreibungPage class >> pageName [
 
 { #category : #accessing }
 ASDHMLeistungsBeschreibungPage class >> priority [
-	^ 3
+
+	^ 4
 ]
 
 { #category : #hooks }

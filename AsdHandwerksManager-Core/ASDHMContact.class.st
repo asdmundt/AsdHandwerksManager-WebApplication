@@ -32,15 +32,24 @@ ASDHMContact class >> titleText [
 { #category : #accessing }
 ASDHMContact >> displayString [
 
-self gewerblich ifTrue: [ 
+	self gewerblich
+		ifTrue: [ 
 			^ String streamContents: [ :s | 
-		  		s
-			  		nextPutAll: self firmenName;
-			  		space;
-			  		nextPutAll: self ansprechPartner;
-			  		space ] ] 
-			ifFalse: [ super displayString ]
-	
+				  s
+					  nextPutAll: self firmenName;
+					  space;
+					  nextPutAll: self ansprechPartner;
+					  space ] ]
+		ifFalse: [ ^ String streamContents: [ :s | 
+		  s
+			  nextPutAll: self anrede;
+			  space;
+			  nextPutAll: self title;
+			  space;
+			  nextPutAll: self vorname;
+			  space;
+			  nextPutAll: self nachname;
+			  space ] ]
 ]
 
 { #category : #accessing }
@@ -59,7 +68,7 @@ ASDHMContact >> gewerblich: anObject [
 ASDHMContact >> initialize [
 
 	super initialize.
-
+	self gewerblich: false.
 	self type: 'contact'
 ]
 
@@ -73,10 +82,4 @@ ASDHMContact >> type [
 ASDHMContact >> type: anObject [
 
 	type := anObject
-]
-
-{ #category : #accessing }
-ASDHMContact >> types [
-
-	^ types
 ]

@@ -6,5 +6,9 @@ Class {
 
 { #category : #rendering }
 ASDHMRightPanelSettings >> renderContentOn: html [
-	html render: 'This is the first panel'
+
+	html div
+		id: #settingsPanel;
+		with: [ 
+			html render: 'This is the first panel' "self renderTabsOn: html" ]
 ]

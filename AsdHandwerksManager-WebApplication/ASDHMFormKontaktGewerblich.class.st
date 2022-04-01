@@ -1,10 +1,6 @@
 Class {
 	#name : #ASDHMFormKontaktGewerblich,
 	#superclass : #ASDHMFormSuperContact,
-	#instVars : [
-		'labelFirmenName',
-		'labelAnsprechPartner'
-	],
 	#category : #'AsdHandwerksManager-WebApplication-forms'
 }
 
@@ -15,8 +11,7 @@ ASDHMFormKontaktGewerblich >> initialize [
 	self id: 'contactFormCard'.
 	self title: 'Kontakt ' , self labelAction.
 	self model anrede: 'Firma'.
-	self labelFirmenName: 'Name der Firma'.
-	self labelAnsprechPartner: 'Verantwortlicher'.
+	
 ]
 
 { #category : #rendering }

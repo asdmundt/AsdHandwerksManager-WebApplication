@@ -65,8 +65,20 @@ ASDHMDbModelMalerGewerg class >> current [
 ]
 
 { #category : #'default values' }
+ASDHMDbModelMalerGewerg class >> defaultPwd [
+
+	^ 'saino1972'
+]
+
+{ #category : #'default values' }
 ASDHMDbModelMalerGewerg class >> defaultRepository [
 	^ 'handwerkMalerGewerg'
+]
+
+{ #category : #'default values' }
+ASDHMDbModelMalerGewerg class >> defaultUser [
+
+	^ 'asdAdmin'
 ]
 
 { #category : #'data sample' }
@@ -103,7 +115,18 @@ ASDHMDbModelMalerGewerg class >> initialize [
 
 { #category : #voyage }
 ASDHMDbModelMalerGewerg class >> initializeLocalhostMongoDB [
+
 	Repos := VOMongoRepository database: self defaultRepository
+]
+
+{ #category : #voyage }
+ASDHMDbModelMalerGewerg class >> initializeStratoHostMongoDB [
+
+	Repos := VOMongoRepository
+		         host: '81.169.136.23'
+		         database: self defaultRepository
+		         username: self defaultUser
+		         password: self defaultPwd
 ]
 
 { #category : #voyage }

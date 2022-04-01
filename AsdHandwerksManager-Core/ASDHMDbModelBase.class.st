@@ -191,6 +191,36 @@ Repos save: ebeneEinsRegiearbeiten.
 ]
 
 { #category : #voyage }
+ASDHMDbModelBase class >> createEigFirma [
+|model eigFirma|
+model := ASDHMDbModelBase current.
+eigFirma := ASDHMEigeneFirma bez: 'Eigentümer Firma'. 
+
+
+
+eigFirma firmenName: 'Hoxha'.
+eigFirma str: 'Mühlstr.'.
+eigFirma hsnr: '3'.
+eigFirma plz: '65779'.
+eigFirma ort: 'Kelkheim'.
+eigFirma firmenForm: 'GmbH'.
+eigFirma firmenSitz: 'Kelkheim'.
+eigFirma amtsgerichtSitz: 'Königstein'.
+eigFirma hre: '104487'.
+eigFirma steuerNr: '0402366028t'.
+eigFirma umsatzSteuer: ''.
+eigFirma geschaeftsFuehrer: 'Hamit Hoxha'.
+eigFirma bankName: 'Commerzbank'.
+eigFirma iban: 'DE22500400000270867500'.
+eigFirma bic: 'COBADEFFXXX'.
+eigFirma kontoInhaber: ''.
+
+
+model storeObject: eigFirma.
+
+]
+
+{ #category : #voyage }
 ASDHMDbModelBase class >> createUser [
 
 	Repos save:
@@ -203,8 +233,20 @@ ASDHMDbModelBase class >> current [
 ]
 
 { #category : #'default values' }
+ASDHMDbModelBase class >> defaultPwd [
+
+	^ 'saino1972'
+]
+
+{ #category : #'default values' }
 ASDHMDbModelBase class >> defaultRepository [
 	^ 'handwerkBase'
+]
+
+{ #category : #'default values' }
+ASDHMDbModelBase class >> defaultUser [
+
+	^ 'asdAdmin'
 ]
 
 { #category : #accessing }
@@ -237,7 +279,18 @@ ASDHMDbModelBase class >> initialize [
 
 { #category : #voyage }
 ASDHMDbModelBase class >> initializeLocalhostMongoDB [
+
 	Repos := VOMongoRepository database: self defaultRepository
+]
+
+{ #category : #voyage }
+ASDHMDbModelBase class >> initializeStratoHostMongoDB [
+
+	Repos := VOMongoRepository
+		         host: '81.169.136.23'
+		         database: self defaultRepository
+		         username: self defaultUser
+		         password: self defaultPwd
 ]
 
 { #category : #voyage }
@@ -249,6 +302,7 @@ ASDHMDbModelBase class >> isVoyageRoot [
 
 { #category : #'class initialization' }
 ASDHMDbModelBase class >> reset [
+
 	uniqueInstanceDbModelBauManagerBase := nil.
 	"VOMongoRepository current reset."
 	VOMongoRepository repositoryContainer: VODynamicContainer new.

@@ -82,7 +82,7 @@ ASDHMRoot class >> open [
 { #category : #version }
 ASDHMRoot class >> version [
 
-	^ 'v0.1.0-pre-Alpha.2'
+	^ 'v0.1.0-Alpha.3'
 ]
 
 { #category : #hooks }
@@ -145,9 +145,27 @@ ASDHMRoot >> footer: aComponent [
 ]
 
 { #category : #action }
+ASDHMRoot >> goToAuftragsView [
+
+	self displayInstanceOf: ASDHMAuftragsVerwaltungPage 
+]
+
+{ #category : #action }
+ASDHMRoot >> goToContactView [
+
+	self displayInstanceOf: ASDHMContactPage 
+]
+
+{ #category : #action }
 ASDHMRoot >> goToInstallView [
 
 	self displayInstanceOf: ASDHMAutoInstallPage
+]
+
+{ #category : #action }
+ASDHMRoot >> goToLeistungenView [
+
+	self displayInstanceOf: ASDHMLeistungsBeschreibungPage 
 ]
 
 { #category : #action }
@@ -226,15 +244,6 @@ ASDHMRoot >> renderContentOn: html [
 										with: [ html render: self componentToDisplay ].
 									html render: self rightPanel ] ] ] ].
 	self renderEmptyGenericDialogOn: html.
-	html div
-		id: #mainDialog;
-		style:
-			'display: none; position: fixed; z-index: 300; padding-top: 100px; left: 0; top: 0; width: 100%;height: 100%;overflow: auto;background-color: #0d1117;';
-		with: [ 
-			html div
-				id: #modalContent;
-				style:
-					'color: #c9d1d9; position: fixed; z-index: 500; margin: auto; padding: 20px;border: 1px solid #343434; left: 50%; top: 50%; width: 40%;height: 60%;overflow: auto;background-color: #14181f;-ms-transform: translate(-50%, -50%);transform: translate(-50%, -50%);' ].
 
 ]
 

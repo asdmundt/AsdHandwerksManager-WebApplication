@@ -1,10 +1,6 @@
 Class {
 	#name : #ASDHMFormKontakt,
 	#superclass : #ASDHMFormSuperContact,
-	#instVars : [
-		'labelFirmenName',
-		'labelAnsprechPartner'
-	],
 	#category : #'AsdHandwerksManager-WebApplication-forms'
 }
 
@@ -13,31 +9,8 @@ ASDHMFormKontakt >> initialize [
 
 	super initialize.
 	self id: 'contactFormCard'.
-	self title: 'Kontakt ', self labelAction.
-]
+	self title: 'Kontakt '.
 
-{ #category : #accessing }
-ASDHMFormKontakt >> labelAnsprechPartner [
-
-	^ labelAnsprechPartner
-]
-
-{ #category : #accessing }
-ASDHMFormKontakt >> labelAnsprechPartner: anObject [
-
-	labelAnsprechPartner := anObject
-]
-
-{ #category : #accessing }
-ASDHMFormKontakt >> labelFirmenName [
-
-	^ labelFirmenName
-]
-
-{ #category : #accessing }
-ASDHMFormKontakt >> labelFirmenName: anObject [
-
-	labelFirmenName := anObject
 ]
 
 { #category : #rendering }
@@ -89,10 +62,21 @@ ASDHMFormKontakt >> renderContentOn: html [
 ASDHMFormKontakt >> renderFieldsOn: html [
 
 	"self renderBezOn: html."
-	self renderAnredeOn: html.
-	self renderTitleOn: html.
-	self renderVornameOn: html.
-	self renderNachnameOn: html
+
+	self model gewerblich
+		ifTrue: [ 
+			self renderFirmenNameOn: html.
+			self renderAnsprechPartnerOn: html ]
+		ifFalse: [ 
+			html span: [ 
+		
+			self renderAnredeOn: html.
+			self renderTitleOn: html
+			].
+		html span: [ 
+			self renderVornameOn: html.
+			self renderNachnameOn: html ] ].
+	self renderAdressFormAndKommuFormContentOn: html
 ]
 
 { #category : #rendering }
@@ -112,29 +96,4 @@ ASDHMFormKontakt >> renderFirmenNameOn: html [
 ASDHMFormKontakt >> renderFormContentOn: html [
 	self renderFieldsOn: html.
 
-]
-
-{ #category : #rendering }
-ASDHMFormKontakt >> renderTabContentOn: html [
-
-		| famillies |
-	famillies := OrderedDictionary
-		with: 'Starks' 		-> #('Eddard' 'Catelyn' 'Robb' 'Sansa' 'Brandon' 'Rickon' 'Arya')
-		with: 'Lanisters' 	-> #('Tywin' 'Cersei' 'Jamie' 'Tyrion')
-		with: 'Targaryens' 	-> #('Viserys' 'Daenerys').
-	html
-		mdlTabs: [ html mdlTabBar
-				rippleEffect;
-				with: [ famillies
-						keysDo: [ :familly | 
-							html mdlTab
-								isActiveIf: familly = 'Starks';
-								url: '#' , familly;
-								with: familly ] ].
-			famillies
-				keysAndValuesDo: [ :familly :members | 
-					html mdlTabsPanel
-						isActiveIf: familly = 'Starks';
-						id: familly;
-						with: [ html unorderedList: [ members do: [ :member | html listItem: member ] ] ] ] ]
 ]

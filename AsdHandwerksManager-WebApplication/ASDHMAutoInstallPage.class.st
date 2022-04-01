@@ -10,7 +10,8 @@ Class {
 
 { #category : #accessing }
 ASDHMAutoInstallPage class >> pageName [
-	^ 'AutoInstallation'
+
+	^ 'Konfiguration'
 ]
 
 { #category : #accessing }
@@ -62,27 +63,39 @@ ASDHMAutoInstallPage >> initialize [
 
 { #category : #rendering }
 ASDHMAutoInstallPage >> renderContentOn: html [
-	html mdlGrid
-		noSpacing;
+html div
+		shadow: 2;
+		style: 'display: flex;';
 		with: [ 
-			html mdlCell
-				class: 'rootComponent';
-				size: 12;
-				with: [ 
-					html div
-						class: 'container';
-						with: [ 
-							html div
-								class: 'center';
-								with: [ self renderInstallComponentOn: html ] ] ] ]
-	
+			html div
+				class: 'content';
+				id: 'contentWithoutside';
+				style: 'flex-grow: 1;';
+				with: [ self renderInstallComponentOn: html ] ].
+	html html: '<script type="text/javascript">'.
+	html html: '	window.addEventListener("resize", jsResize);
+							window.addEventListener("load", jsResize);'.
+	html html: 'function jsResize() {'.
+	html html: 'var ah 	= screen.availHeight;'.
+	html html: 'var aw 	= screen.availWidth;'.
+	html html: 'var mh 	= (ah - 400) + ''px'';'.
+	html html: 'var th 	= (ah - 350) + ''px'';'.
+	html html: 'var lw 	= (aw - 880) + ''px'';'.
+	html html: 'var wlw 	= (aw - 200) + ''px'';'.
+	html html:
+		'document.getElementById("contentWithoutside").style.width = wlw;'.
+	html html:
+		'document.getElementById("contentWithoutside").style.height = th;
+		}'.
+	html html: '</script>'.
+
 ]
 
 { #category : #rendering }
 ASDHMAutoInstallPage >> renderInstallComponentOn: html [
 
 	html div
-		class: 'asdContainer';
+		style: 'display: block; height:100%';
 		shadow: 0;
 		with: [ 
 			html div
@@ -109,7 +122,7 @@ ASDHMAutoInstallPage >> renderInstallComponentOn: html [
 			html div
 				class: 'background';
 				style:
-					'width: 100%;min-width: 0px;overflow-y: scroll;height: 400px;';
+					'width: 100%;min-height: 400px;overflow-y: auto; height:100%;';
 				with: [ self renderListOn: html ] ]
 ]
 
