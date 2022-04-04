@@ -17,6 +17,13 @@ Class {
 	#category : #'AsdHandwerksManager-Core-Model'
 }
 
+{ #category : #'instance creation' }
+ASDHMModel class >> bez: aString [
+^ self new
+ bez: aString;
+yourself 
+]
+
 { #category : #accessing }
 ASDHMModel class >> states [
 
