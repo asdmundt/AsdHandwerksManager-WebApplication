@@ -124,11 +124,11 @@ ASDHMHeader >> renderContentOn: html [
 			html mdlNavigationLink
 				callback: [ "Just refresh" ];
 				with: [ 
-					html mdlLayoutTitle: [ 
-							html text: 'asdDelMundt HandwerksManager' ] ].
+					html mdlLayoutTitle: [ html text: 'asdDelMundt HandwerksManager' ] ].
+				self rootComponent class development ifTrue: [ 
+				html text: '	Version ' , self rootComponent class version ].
 			html mdlLayoutSpacer.
-			self rootComponent class development ifTrue: [ 
-				html text: '	Version ' , self rootComponent class version. ].
+			
 			self renderButtonsOn: html
 			"html text: '	Version ' , self rootComponent class version." ].
 		self renderTabBarOn: html ]

@@ -54,11 +54,11 @@ ASDHMAutoInstallPage >> importInstaller: anObject [
 ASDHMAutoInstallPage >> initialize [
 
 	super initialize.
+	
 	self baseInstaller: ASDHMInstallConfigView new.
 	self importInstaller: ASDHMInstallDataView new.
-	
-	self session rootComponent header: ASDHMAdminHeader new.
-	
+
+	self session rootComponent header: ASDHMAdminHeader new
 ]
 
 { #category : #rendering }

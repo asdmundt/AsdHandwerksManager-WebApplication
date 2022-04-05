@@ -194,14 +194,12 @@ ASDHMFormLeistungen >> renderFieldsOn: html [
 		html text: self kuerzel.
 		html space.
 		html space.
-		self renderBezOn: html.
-
-		 ].
+		self renderBezOn: html ].
 	self renderLeistungsBeschreibungOn: html.
 	html span: [ 
 		self renderEinheitOn: html.
 		self renderPreisOn: html ].
-	self renderZeitProEinheitOn: html
+	
 ]
 
 { #category : #rendering }
@@ -213,7 +211,9 @@ ASDHMFormLeistungen >> renderFormContentOn: html [
 { #category : #rendering }
 ASDHMFormLeistungen >> renderLeistungsBeschreibungOn: html [
 
-	html mdlTextFieldContainer with: [ 
+	html mdlTextFieldContainer
+		style: 'width: 50px';
+		with: [ 
 		html mdlTextFieldLabel
 			for: html nextId;
 			with: self labelLeistungsBeschreibung.
@@ -227,13 +227,15 @@ ASDHMFormLeistungen >> renderLeistungsBeschreibungOn: html [
 { #category : #rendering }
 ASDHMFormLeistungen >> renderPreisOn: html [
 
-	html mdlTextFieldContainer with: [ 
+	html mdlTextFieldContainer
+		style: 'width: 50px';
+		with: [ 
 		html mdlTextFieldLabel
 			for: html nextId;
 			with: self labelPreis.
 		html mdlTextFieldInput
 			id: html lastId;
-			style: 'width: 150px';
+			style: 'width: 50px';
 			value: self model preis;
 			callback: [ :aString | self model preis: aString ] ]
 ]

@@ -88,6 +88,7 @@ ASDHMFormBank >> ibanInputWidget [
 		  required: true;
 		  type: 'text';
 		  label: ibanLabel;
+		style: 'width: 350px';
 		  pattern: '^\S+$' errorMessage: 'kein leerstring';
 		  callback: [ :aString | self model iban: aString ];
 		  value: self model iban

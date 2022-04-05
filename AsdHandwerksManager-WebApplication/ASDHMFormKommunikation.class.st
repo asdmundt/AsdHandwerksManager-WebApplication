@@ -76,12 +76,13 @@ ASDHMFormKommunikation >> renderContentOn: html [
 { #category : #rendering }
 ASDHMFormKommunikation >> renderEmailOn: html [
 
-	html mdlTextFieldContainer with: [ 
+	html mdlTextFieldContainer
+		style: 'width: 50px';
+		with: [ 
 		html mdlTextFieldLabel
 			for: html nextId;
 			with: self labelEmail.
 		html mdlTextFieldInput
-		style: 'width: 250px';
 			id: html lastId;
 			callback: [ :input | self model email: input ] ]
 ]
@@ -98,12 +99,14 @@ ASDHMFormKommunikation >> renderFieldsOn: html [
 { #category : #rendering }
 ASDHMFormKommunikation >> renderMobileFunkNrOn: html [
 
-	html mdlTextFieldContainer with: [ 
+	html mdlTextFieldContainer
+		style: 'width: 50px';
+		with: [ 
 		html mdlTextFieldLabel
 			for: html nextId;
 			with: self labelMobilfunkNr.
 		html mdlTextFieldInput
-		style: 'width: 180px';
+			style: 'width: 50px';
 			id: html lastId;
 			callback: [ :input | self model mobilFunkNr: input ] ]
 ]
@@ -111,7 +114,9 @@ ASDHMFormKommunikation >> renderMobileFunkNrOn: html [
 { #category : #rendering }
 ASDHMFormKommunikation >> renderTelefonNrOn: html [
 
-	html mdlTextFieldContainer with: [ 
+	html mdlTextFieldContainer
+		style: 'width: 50px';
+		with: [ 
 		html mdlTextFieldLabel
 			for: html nextId;
 			with: self labelTelefonNr.

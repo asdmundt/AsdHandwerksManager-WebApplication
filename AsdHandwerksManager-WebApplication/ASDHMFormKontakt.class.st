@@ -16,7 +16,9 @@ ASDHMFormKontakt >> initialize [
 { #category : #rendering }
 ASDHMFormKontakt >> renderAnsprechPartnerOn: html [
 
-	html mdlTextFieldContainer with: [ 
+	html mdlTextFieldContainer
+		style: 'width: 50px';
+		with: [
 		html mdlTextFieldLabel
 			for: 'ansprechPartner';
 			with: self labelAnsprechPartner.
@@ -82,7 +84,9 @@ ASDHMFormKontakt >> renderFieldsOn: html [
 { #category : #rendering }
 ASDHMFormKontakt >> renderFirmenNameOn: html [
 
-	html mdlTextFieldContainer with: [ 
+	html mdlTextFieldContainer
+		style: 'width: 50px';
+		with: [
 		html mdlTextFieldLabel
 			for: 'firmenName';
 			with: self labelFirmenName.

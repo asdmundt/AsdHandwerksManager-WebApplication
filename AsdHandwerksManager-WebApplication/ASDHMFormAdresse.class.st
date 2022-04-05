@@ -105,7 +105,9 @@ ASDHMFormAdresse >> renderFormContentOn: html [
 { #category : #rendering }
 ASDHMFormAdresse >> renderHsnrOn: html [
 
-	html mdlTextFieldContainer with: [ 
+	html mdlTextFieldContainer
+		style: 'width: 50px';
+		with: [
 		html mdlTextFieldLabel
 			for: html nextId;
 			with: self hsnrLabel.
@@ -119,13 +121,14 @@ ASDHMFormAdresse >> renderHsnrOn: html [
 { #category : #rendering }
 ASDHMFormAdresse >> renderOrtOn: html [
 
-	html mdlTextFieldContainer with: [ 
+	html mdlTextFieldContainer
+		style: 'width: 50px';
+		with: [
 		html mdlTextFieldLabel
 			for: html nextId;
 			with: self ortLabel.
 		html mdlTextFieldInput
 			id: html lastId;
-			
 			value: self model ort;
 			callback: [ :aString | self model ort: aString ] ]
 ]
@@ -134,8 +137,8 @@ ASDHMFormAdresse >> renderOrtOn: html [
 ASDHMFormAdresse >> renderPlzOn: html [
 
 	html mdlTextFieldContainer
-		floatingLabel;
-		with: [ 
+		style: 'width: 50px';
+		with: [
 			html mdlTextFieldLabel
 				for: html nextId;
 				with: self plzLabel.
@@ -150,14 +153,15 @@ ASDHMFormAdresse >> renderPlzOn: html [
 ASDHMFormAdresse >> renderStrOn: html [
 
 	html mdlTextFieldContainer
-				with: [ 
-			html mdlTextFieldLabel
-				for: html nextId;
-				with: strLabel.
-			html mdlTextFieldInput
-				id: html lastId;
-				value: self model str;
-				callback: [ :aString | self model str: aString ] ]
+		style: 'width: 50px';
+		with: [
+		html mdlTextFieldLabel
+			for: html nextId;
+			with: strLabel.
+		html mdlTextFieldInput
+			id: html lastId;
+			value: self model str;
+			callback: [ :aString | self model str: aString ] ]
 ]
 
 { #category : #accessing }

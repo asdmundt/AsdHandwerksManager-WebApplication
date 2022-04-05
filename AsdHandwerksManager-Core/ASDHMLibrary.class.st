@@ -106,14 +106,13 @@ color: #c9d1d9;
     -webkit-box-shadow: none;
     box-shadow: none;
     height: 30px;
-    color: #c9d1d9 !important;
+	 color: #c9d1d9 !important;
       display: block;
     font-size: 12px !important;
     font-family: "Helvetica","Arial",sans-serif;
      margin: 10px;
     padding: 4px 4px;
-    width: 300px !important;
-    text-align: left;
+        text-align: left;
 }
 
 .mdl-textfield__input:focus {
@@ -127,7 +126,6 @@ color: #c9d1d9;
     font-size: 12px;
     display: inline-block;
     box-sizing: border-box;
-    /*width: 300px;*/
     max-width: 100%;
     margin: 10px;
     padding: 0px 10px !important;

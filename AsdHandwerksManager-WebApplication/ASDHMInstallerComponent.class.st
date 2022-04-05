@@ -6,7 +6,8 @@ Class {
 		'ready',
 		'idTitle',
 		'idContent',
-		'idProgress'
+		'idProgress',
+		'progression'
 	],
 	#category : #'AsdHandwerksManager-WebApplication-Components'
 }
@@ -52,6 +53,18 @@ ASDHMInstallerComponent >> initialize [
 
 super initialize.
  
+]
+
+{ #category : #accessing }
+ASDHMInstallerComponent >> progression [
+
+	^ progression
+]
+
+{ #category : #accessing }
+ASDHMInstallerComponent >> progression: anObject [
+
+	progression := anObject
 ]
 
 { #category : #accessing }
@@ -109,7 +122,9 @@ ASDHMInstallerComponent >> renderProgressContentOn: html [
 		with: [ 
 			html div
 				id: self idProgress;
-				with: [  ] ]
+				with: [ 
+					html render: (MDLProgressBarWidget progression: [ self progression ] every: 0.2 seconds).
+					 ] ]
 ]
 
 { #category : #hooks }
