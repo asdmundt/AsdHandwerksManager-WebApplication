@@ -54,7 +54,7 @@ ASDHMAkquisePage >> initialize [
 
 	| contacts |
 	super initialize.
-	contacts := ASDHMKlickTelListe new.
+	contacts := OrderedCollection new.
 	self contactTable:
 		(ASDHMObjectViewTableKlickTelContactComponent withList: contacts).
 

@@ -37,26 +37,26 @@ ASDHMDbModelBlz class >> defaultUser [
 
 { #category : #voyage }
 ASDHMDbModelBlz class >> importBlz [
-|dataFile coll|
 
-"dataFile := FileLocator imageDirectory / 'files' / 'streha.csv' asFileReference ."
-
-coll := OrderedCollection withAll: ( 'blz.csv' asFileReference readStreamDo: [ :input |
-(NeoCSVReader on: (ZnBufferedReadStream on: input))
-skipHeader;
-recordClass: ASDHMBankLeitzahlen ;
-addField: #blz:;
-addField: #bankName:;
-addField: #plz:;
-addField: #ort:;
-addField: #bankNameKurz:;
-addField: #bic:;
-addField: #pruefZiffer:;
-upToEnd 
- ]) .
-^ coll
-"coll do: [ :each | Transcript show: each ]"
-
+	| dataFile coll |
+	
+	dataFile := FileSystem disk workingDirectory / 'files' / 'blz.csv'.
+	           
+	coll := OrderedCollection withAll:
+		        ('blz.csv' asFileReference readStreamDo: [ :input | 
+			         (NeoCSVReader on: (ZnBufferedReadStream on: input))
+				         skipHeader;
+				         recordClass: ASDHMBankLeitzahlen;
+				         addField: #blz:;
+				         addField: #bankName:;
+				         addField: #plz:;
+				         addField: #ort:;
+				         addField: #bankNameKurz:;
+				         addField: #bic:;
+				         addField: #pruefZiffer:;
+				         upToEnd ]).
+	^ coll
+	"coll do: [ :each | Transcript show: each ]"
 ]
 
 { #category : #'class initialization' }
