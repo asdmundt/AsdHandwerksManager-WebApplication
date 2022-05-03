@@ -10,27 +10,15 @@ Class {
 		'modelBlz',
 		'modelKlickTel',
 		'loginError',
-		'adminView',
 		'userId',
 		'firma',
 		'firmenId',
 		'currentObject',
-		'loggedUsers',
 		'leistungen',
 		'kategorieKuerzel'
 	],
 	#category : #'AsdHandwerksManager-Core-Utils'
 }
-
-{ #category : #accessing }
-ASDHMSession >> adminView [
-	^ adminView
-]
-
-{ #category : #accessing }
-ASDHMSession >> adminView: anObject [
-	adminView := anObject
-]
 
 { #category : #accessing }
 ASDHMSession >> currentObject [
@@ -86,7 +74,7 @@ ASDHMSession >> initialize [
 	self modelBlz: ASDHMDbModelBlz current.
 	self modelMalerGewerk: ASDHMDbModelMalerGewerg current.
 	self modelKlickTel: ASDHMDbModelKlickTel current.
-	self adminView: false
+	
 ]
 
 { #category : #testing }
@@ -116,19 +104,6 @@ ASDHMSession >> leistungen [
 ASDHMSession >> leistungen: anObject [
 
 	leistungen := anObject
-]
-
-{ #category : #accessing }
-ASDHMSession >> loggedUsers [
-
-	^ loggedUsers ifNil: [ loggedUsers := OrderedCollection new ]
-
-]
-
-{ #category : #accessing }
-ASDHMSession >> loggedUsers: anObject [
-
-	loggedUsers := anObject
 ]
 
 { #category : #accessing }

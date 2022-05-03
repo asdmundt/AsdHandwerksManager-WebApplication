@@ -82,7 +82,7 @@ ASDHMRoot class >> open [
 { #category : #version }
 ASDHMRoot class >> version [
 
-	^ 'v0.1.0-Alpha.3'
+	^ 'v0.1.1'
 ]
 
 { #category : #hooks }
@@ -222,8 +222,32 @@ ASDHMRoot >> initialize [
 ]
 
 { #category : #rendering }
+ASDHMRoot >> renderBottomModalOn: html [
+
+	html div
+		class: 'modal';
+		id: 'myModal';
+		with: [ 
+			html div
+				class: 'modal-content';
+				with: [ 
+					html div
+						class: 'modal-header';
+						with: [ 
+							html span
+								class: 'close';
+								with: [ html html: '&times;' ].
+							html div
+								class: 'mdl-typography--headline';
+								with: 'Titel' ].
+							
+							 ] ]
+]
+
+{ #category : #rendering }
 ASDHMRoot >> renderContentOn: html [
 
+	
 	html mdlLayout
 		fixedHeader;
 		with: [ 
@@ -243,8 +267,7 @@ ASDHMRoot >> renderContentOn: html [
 										id: #main;
 										with: [ html render: self componentToDisplay ].
 									html render: self rightPanel ] ] ] ].
-	self renderEmptyGenericDialogOn: html.
-
+	self renderEmptyGenericDialogOn: html
 ]
 
 { #category : #accessing }

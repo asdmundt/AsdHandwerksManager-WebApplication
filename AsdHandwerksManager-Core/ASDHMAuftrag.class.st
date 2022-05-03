@@ -37,7 +37,7 @@ ASDHMAuftrag >> angebot: anObject [
 { #category : #accessing }
 ASDHMAuftrag >> arbeiten [
 
-	^ arbeiten
+	^ arbeiten ifNil: [ OrderedCollection new  ]
 ]
 
 { #category : #accessing }

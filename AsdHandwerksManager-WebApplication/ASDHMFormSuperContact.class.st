@@ -211,23 +211,22 @@ ASDHMFormSuperContact >> renderAnredeOn: html [
 			 sortBlock: [ :a :b | a <= b ]) yourself"
 
 	html mdlTextFieldContainer
-		style: 'width: 50px';
-		with: [
-		html mdlTextFieldLabel
-			for: html nextId;
-			with: self labelAnrede.
-		html mdlTextFieldInput
-			id: html lastId;
-			style: 'width: 100px';
-			callback: [ :aString | self model anrede: aString ];
-			value: self model anrede ]
+		style: 'width: 80px';
+		with: [ 
+			html mdlTextFieldLabel
+				for: html nextId;
+				with: self labelAnrede.
+			html mdlTextFieldInput
+				id: html lastId;
+				style: 'width: 80px';
+				callback: [ :aString | self model anrede: aString ];
+				value: self model anrede ]
 ]
 
 { #category : #rendering }
 ASDHMFormSuperContact >> renderBezOn: html [
 
 	html mdlTextFieldContainer
-		floatingLabel;
 		with: [ 
 			html mdlTextFieldLabel
 				for: html nextId;
@@ -266,48 +265,48 @@ ASDHMFormSuperContact >> renderFormContentOn: html [
 ASDHMFormSuperContact >> renderNachnameOn: html [
 
 	html mdlTextFieldContainer
-	style: 'width: 100px';
-	 with: [ 
-		html mdlTextFieldLabel
-			for: html nextId;
-			with: self labelNachname.
-		html mdlTextFieldInput
-			id: html lastId;
-			style: 'width: 100px';
-			value: self model nachname;
-			callback: [ :aString | self model nachname: aString ] ]
+		style: 'width: 150px';
+		with: [ 
+			html mdlTextFieldLabel
+				for: html nextId;
+				with: self labelNachname.
+			html mdlTextFieldInput
+				id: html lastId;
+				style: 'width: 150px';
+				value: self model nachname;
+				callback: [ :aString | self model nachname: aString ] ]
 ]
 
 { #category : #rendering }
 ASDHMFormSuperContact >> renderTitleOn: html [
 
 	html mdlTextFieldContainer
-	style: 'width: 50px';
-	 with: [ 
-		html mdlTextFieldLabel
-			for: html nextId;
-			with: self labelTitle.
-		html mdlTextFieldInput
-			id: html lastId;
-			style: 'width: 50px';
-			size: 4;
-			value: self model title;
-			callback: [ :aString | self model title: aString ] ]
+		style: 'width:50px';
+		with: [ 
+			html mdlTextFieldLabel
+				for: html nextId;
+				with: self labelTitle.
+			html mdlTextFieldInput
+				id: html lastId;
+				style: 'width: 50px';
+				value: self model title;
+				callback: [ :aString | self model title: aString ] ]
 ]
 
 { #category : #rendering }
 ASDHMFormSuperContact >> renderVornameOn: html [
 
 	html mdlTextFieldContainer
-		style: 'width: 50px';
-		with: [
-		html mdlTextFieldLabel
-			for: html nextId;
-			with: self labelVorname.
-		html mdlTextFieldInput
-			id: html lastId;
-			value: self model vorname;
-			callback: [ :aString | self model vorname: aString ] ]
+		style: 'width: 120px';
+		with: [ 
+			html mdlTextFieldLabel
+				for: html nextId;
+				with: self labelVorname.
+			html mdlTextFieldInput
+				style: 'width: 120px';
+				id: html lastId;
+				value: self model vorname;
+				callback: [ :aString | self model vorname: aString ] ]
 ]
 
 { #category : #accessing }

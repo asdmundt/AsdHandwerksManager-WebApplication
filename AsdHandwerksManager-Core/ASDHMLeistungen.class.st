@@ -6,7 +6,7 @@ Class {
 		'einheit',
 		'preis',
 		'zeit',
-		'artikel',
+		'artikelListe',
 		'kategorieKuerzel'
 	],
 	#category : #'AsdHandwerksManager-Core-Model'
@@ -44,15 +44,15 @@ ASDHMLeistungen class >> titleText [
 ]
 
 { #category : #accessing }
-ASDHMLeistungen >> artikel [
+ASDHMLeistungen >> artikelListe [
 
-	^ artikel
+	^ artikelListe
 ]
 
 { #category : #accessing }
-ASDHMLeistungen >> artikel: anObject [
+ASDHMLeistungen >> artikelListe: anObject [
 
-	artikel := anObject
+	artikelListe := anObject
 ]
 
 { #category : #accessing }

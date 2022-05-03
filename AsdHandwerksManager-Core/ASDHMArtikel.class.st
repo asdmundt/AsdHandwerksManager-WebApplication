@@ -20,7 +20,8 @@ Class {
 		'einheit',
 		'EanNr',
 		'warenGruppe',
-		'warenGruppeId'
+		'warenGruppeId',
+		'verbrauch'
 	],
 	#category : #'AsdHandwerksManager-Core-Model'
 }
@@ -47,13 +48,6 @@ ASDHMArtikel class >> isVoyageRoot [
     in noSQL databases"
 
 	^ true
-]
-
-{ #category : #'instance creation' }
-ASDHMArtikel class >> shopId: anInt [
-	^ self new
-		shopId: anInt;
-		yourself
 ]
 
 { #category : #actions }
@@ -234,6 +228,18 @@ ASDHMArtikel >> titel [
 { #category : #accessing }
 ASDHMArtikel >> titel: anObject [
 	titel := anObject
+]
+
+{ #category : #accessing }
+ASDHMArtikel >> verbrauch [
+
+	^ verbrauch
+]
+
+{ #category : #accessing }
+ASDHMArtikel >> verbrauch: anObject [
+
+	verbrauch := anObject
 ]
 
 { #category : #accessing }

@@ -190,48 +190,46 @@ ASDHMObjectViewTableLeistungenComponent >> renderInnerContentOn: html [
 						with: [ 
 							html mdlTableHeading
 								nonNumerical;
-								style:
-									'background-color: #161b22; position: relativ; top: 0px; width: 200px;';
+								class: 'asdTableHeading';
 								with: self labelLeistungsBeschreibung.
 							html mdlTableHeading
 								nonNumerical;
-								style:
-									'background-color: #161b22; position: relativ; top: 0px;';
+								class: 'asdTableHeading';
 								with: self labelEinheit.
 							html mdlTableHeading
 								nonNumerical;
-								style:
-									'background-color: #161b22; position: relativ; top: 0px;';
+								class: 'asdTableHeading';
 								with: self labelPreis.
-								html mdlTableHeading
+							html mdlTableHeading
 								nonNumerical;
-								style:
-									'background-color: #161b22; position: relativ; top: 0px; width: 30px;';
-								with: self labelEdit.
-								 ] ].
+								class: 'asdTableHeading';
+								with: self labelEdit ] ].
 			html tableBody with: [ "style: 'overflow: scroll;height: 400px;';"
 				self list doWithIndex: [ :each :index | 
 					html tableRow: [ 
 						html mdlTableCell
 							nonNumerical;
-							style: 'background-color: #0d1117; max-width: 50%; height: 100px;';
-							with: [html div style: 'background-color: #0d1117; width: 300px; height: 100px;'; with: [ html text: each leistungsBeschreibung ] ].
+							style:
+								'background-color: #0d1117; max-width: 50%; height: 100px;';
+							with: [ 
+								html div
+									style:
+										'background-color: #0d1117; width: 300px; height: 100px;';
+									with: [ html text: each leistungsBeschreibung ] ].
 						html mdlTableCell
 							nonNumerical;
 							style: 'background-color: #0d1117; max-width: 20px;';
 							with: each einheit.
-					 html mdlTableCell
+						html mdlTableCell
 							nonNumerical;
 							style: 'background-color: #0d1117; max-width: 20px;';
 							with: each preis.
 						html mdlTableCell
 							nonNumerical;
 							style: 'background-color: #0d1117;';
-							with: [ html mdlAnchorButton
-								icon;
-								id: html nextId;
-								
-								with: [ html mdlIcon: 'edit' ]].
-												
-							 ] ] ] ]
+							with: [ 
+								html mdlAnchorButton
+									icon;
+									id: html nextId;
+									with: [ html mdlIcon: 'edit' ] ] ] ] ] ]
 ]

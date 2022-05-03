@@ -2,7 +2,7 @@ Class {
 	#name : #ASDHMComponentWithRightPanel,
 	#superclass : #MDLWidget,
 	#instVars : [
-		'component'
+		'c'
 	],
 	#category : #'AsdHandwerksManager-WebApplication-Components'
 }
@@ -10,21 +10,8 @@ Class {
 { #category : #'instance creation' }
 ASDHMComponentWithRightPanel class >> withComponent: aComponent [
 
-^ self new component: aComponent
-
-	
-]
-
-{ #category : #'as yet unclassified' }
-ASDHMComponentWithRightPanel >> component [
-
-	^ component
-]
-
-{ #category : #'as yet unclassified' }
-ASDHMComponentWithRightPanel >> component: anObject [
-
-	component := anObject
+	^ self new component: aComponent;
+		  yourself
 ]
 
 { #category : #initialization }
@@ -32,7 +19,7 @@ ASDHMComponentWithRightPanel >> initialize [
 
 	super initialize.
 	self id: #mySidenav.
-	self component: ASDHMRightPanelMsg new
+	
 ]
 
 { #category : #rendering }
@@ -41,7 +28,7 @@ ASDHMComponentWithRightPanel >> renderContentOn: html [
 	html div
 		id: self id;
 		class: 'sidenav';
-		with: [ html render: component ]
+		with: []
 ]
 
 { #category : #hooks }

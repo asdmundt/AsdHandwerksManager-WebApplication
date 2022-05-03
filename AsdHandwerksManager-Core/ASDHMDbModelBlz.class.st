@@ -32,18 +32,17 @@ ASDHMDbModelBlz class >> defaultRepository [
 { #category : #'default values' }
 ASDHMDbModelBlz class >> defaultUser [
 
-	^ 'asdAdmin'
+	^ 'blz'
 ]
 
 { #category : #voyage }
 ASDHMDbModelBlz class >> importBlz [
 
 	| dataFile coll |
-	
 	dataFile := FileSystem disk workingDirectory / 'files' / 'blz.csv'.
-	           
+
 	coll := OrderedCollection withAll:
-		        ('blz.csv' asFileReference readStreamDo: [ :input | 
+		        (dataFile asFileReference readStreamDo: [ :input | 
 			         (NeoCSVReader on: (ZnBufferedReadStream on: input))
 				         skipHeader;
 				         recordClass: ASDHMBankLeitzahlen;
@@ -89,10 +88,11 @@ ASDHMDbModelBlz class >> isVoyageRoot [
 
 { #category : #'class initialization' }
 ASDHMDbModelBlz class >> reset [
+
 	uniqueInstanceDbModelBauManagerBlz := nil.
 	"VORepository current reset."
 	VORepository repositoryContainer: VODynamicContainer new.
-	self initializeLocalhostMongoDB
+	self initializeStratoHostMongoDB
 ]
 
 { #category : #'default values' }

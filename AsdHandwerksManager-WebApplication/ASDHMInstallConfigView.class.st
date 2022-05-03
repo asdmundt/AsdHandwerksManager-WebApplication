@@ -21,6 +21,7 @@ ASDHMInstallConfigView >> initialize [
 	self labelCompanyLoading: 'Firmen Objekte werden installiert...'.
 	self labelUserLoading: 'Benutzer Objekte werden installiert...'.
 	self progression: 0.
+	self progressionStep: 1 / 4
 ]
 
 { #category : #accessing }
@@ -339,54 +340,20 @@ ASDHMInstallConfigView >> loadBaseLeistungenKategoriebaum [
 { #category : #actions }
 ASDHMInstallConfigView >> loadBaseUser [
 
-	| data user |
-	data := ASDHMDbModelBase current.
-	user := ASDHMUser benutzerName: 'admin' password: 'pwd' admin: true.
-	data storeObject: user.
-	^ user
+	ASDHMDbModelBase createAdmin. 
+	ASDHMDbModelBase createUserOffice.
+	ASDHMDbModelBase createUserProjekt.
+	
 ]
 
 { #category : #actions }
 ASDHMInstallConfigView >> loadOwnCompany [
 
 	| data adresse bank eigFirma |
-	data := ASDHMDbModelBase current.
-	eigFirma := ASDHMEigeneFirma bez: 'Eigentümer Firma'.
+	data := ASDHMDbModelBase createEigFirma.
+
 	self progression: self progression + 0.2.
 
-	bank := ASDHMBank new.
-	bank bankName: 'Commerzbank'.
-	bank iban: 'DE22500400000270867500'.
-	bank bic: 'COBADEFFXXX'.
-	bank kontoInhaber: ''.
-	bank bankObjectId: eigFirma id asString.
-	data storeObject: bank.
-	self progression: self progression + 0.2.
-	adresse := ASDHMAdresse bez: 'Firmen Adresse'.
-	adresse str: 'Mühlstr.'.
-	adresse hsnr: '3'.
-	adresse plz: '65779'.
-	adresse ort: 'Kelkheim'.
-	adresse land: ''.
-	adresse bemerkung: ''.
-	adresse adresseObjectId: eigFirma id asString.
-	data storeObject: adresse.
-	self progression: self progression + 0.2.
-	eigFirma firmenName: 'Hoxha'.
-	eigFirma firmenForm: 'GmbH'.
-	eigFirma firmenSitz: 'Kelkheim'.
-	eigFirma amtsgerichtSitz: 'Königstein'.
-	eigFirma hre: '104487'.
-	eigFirma steuerNr: '0402366028t'.
-	eigFirma umsatzSteuer: ''.
-	eigFirma geschaeftsFuehrer: 'Hamit Hoxha'.
-	eigFirma addBankVerbindungen: bank.
-	eigFirma addAdresse: adresse.
-	
-
-	data storeObject: eigFirma.
-	self progression: self progression + 0.4.
-	^ eigFirma
 ]
 
 { #category : #rendering }
@@ -399,15 +366,19 @@ ASDHMInstallConfigView >> renderActionContentOn: html [
 			(html jQuery ajax script: [ :s | "s << ((s jQuery id: self id) text: '...')."
 					 company := self loadOwnCompany.
 					 s << (s jQuery: '#firmen' , self id) show setTimeout: 10000.
-					 self progression: 0.
+					 self progression: self progression + self progressionStep.
 					 user := self loadBaseUser.
 					 " company addAccounts: user."
 					 s << (s jQuery: '#admin' , self id) show setTimeout: 10000.
-					 self progression: 1.
+					self progression: self progression + self progressionStep.
+					 
 					 blzData := self loadBaseBlz.
 					 s << (s jQuery: '#blz' , self id) show setTimeout: 10000.
+					self progression: self progression + self progressionStep.
 					 katModel := self loadBaseLeistungenKategoriebaum.
-					 s << (s jQuery: '#katBaum' , self id) show setTimeout: 10000 ]);
+					 s << (s jQuery: '#katBaum' , self id) show setTimeout: 10000.
+					self progression: self progression + self progressionStep.
+					 ]);
 		with: [ 'Get Started' ]
 ]
 
@@ -435,7 +406,7 @@ ASDHMInstallConfigView >> renderInnerContentOn: html [
 						style: 'display: none;';
 						with: [ 
 							html mdlListPrimaryContent: [ 
-									html text: 'Admin Benutzer installiert' ] ].
+									html text: 'Benutzer installiert' ] ].
 					html mdlListItem
 						id: 'blz' , self id;
 						style: 'display: none;';
@@ -447,6 +418,5 @@ ASDHMInstallConfigView >> renderInnerContentOn: html [
 						style: 'display: none;';
 						with: [ 
 							html mdlListPrimaryContent: [ 
-									html text: 'Leistungskategorien installiert' ] ].							
-							 ] ]
+									html text: 'Leistungskategorien installiert' ] ] ] ]
 ]

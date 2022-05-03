@@ -77,51 +77,51 @@ ASDHMFormKommunikation >> renderContentOn: html [
 ASDHMFormKommunikation >> renderEmailOn: html [
 
 	html mdlTextFieldContainer
-		style: 'width: 50px';
+		style: 'width: 1800px';
 		with: [ 
-		html mdlTextFieldLabel
-			for: html nextId;
-			with: self labelEmail.
-		html mdlTextFieldInput
-			id: html lastId;
-			callback: [ :input | self model email: input ] ]
+			html mdlTextFieldLabel
+				for: html nextId;
+				with: self labelEmail.
+			html mdlTextFieldInput
+				style: 'width: 180px';
+				callback: [ :input | self model email: input ] ]
 ]
 
 { #category : #rendering }
 ASDHMFormKommunikation >> renderFieldsOn: html [
-
-	
+ html span: [  
 	self renderTelefonNrOn: html.
-	self renderMobileFunkNrOn: html.
-	self renderEmailOn: html.
+	self renderMobileFunkNrOn: html
+	].
+	self renderEmailOn: html
 ]
 
 { #category : #rendering }
 ASDHMFormKommunikation >> renderMobileFunkNrOn: html [
 
 	html mdlTextFieldContainer
-		style: 'width: 50px';
+		style: 'width: 120px';
 		with: [ 
-		html mdlTextFieldLabel
-			for: html nextId;
-			with: self labelMobilfunkNr.
-		html mdlTextFieldInput
-			style: 'width: 50px';
-			id: html lastId;
-			callback: [ :input | self model mobilFunkNr: input ] ]
+			html mdlTextFieldLabel
+				for: html nextId;
+				with: self labelMobilfunkNr.
+			html mdlTextFieldInput
+				style: 'width: 120px';
+				id: html lastId;
+				callback: [ :input | self model mobilFunkNr: input ] ]
 ]
 
 { #category : #rendering }
 ASDHMFormKommunikation >> renderTelefonNrOn: html [
 
 	html mdlTextFieldContainer
-		style: 'width: 50px';
+		style: 'width: 120px';
 		with: [ 
-		html mdlTextFieldLabel
-			for: html nextId;
-			with: self labelTelefonNr.
-		html mdlTextFieldInput
-			style: 'width: 180px';
-			id: html lastId;
-			callback: [ :input | self model telefonNummer: input ] ]
+			html mdlTextFieldLabel
+				for: html nextId;
+				with: self labelTelefonNr.
+			html mdlTextFieldInput
+				style: 'width: 120px';
+				id: html lastId;
+				callback: [ :input | self model telefonNummer: input ] ]
 ]

@@ -1,6 +1,6 @@
 Class {
-	#name : #ASDHMAutoInstallPage,
-	#superclass : #ASDHMPageInstall,
+	#name : #ASDHMCofigPage,
+	#superclass : #ASDHMPageAdmin,
 	#instVars : [
 		'baseInstaller',
 		'importInstaller'
@@ -9,60 +9,59 @@ Class {
 }
 
 { #category : #accessing }
-ASDHMAutoInstallPage class >> pageName [
+ASDHMCofigPage class >> pageName [
 
-	^ 'Installation'
+	^ 'Konfiguration'
 ]
 
 { #category : #accessing }
-ASDHMAutoInstallPage class >> priority [
+ASDHMCofigPage class >> priority [
 	^ 1
 ]
 
 { #category : #accessing }
-ASDHMAutoInstallPage >> baseInstaller [
+ASDHMCofigPage >> baseInstaller [
 
 	^ baseInstaller
 ]
 
 { #category : #accessing }
-ASDHMAutoInstallPage >> baseInstaller: anObject [
+ASDHMCofigPage >> baseInstaller: anObject [
 
 	baseInstaller := anObject
 ]
 
 { #category : #hooks }
-ASDHMAutoInstallPage >> children [
+ASDHMCofigPage >> children [
 
-	
-		^ Array with: baseInstaller with: importInstaller
+	^ Array with: importInstaller
 ]
 
 { #category : #accessing }
-ASDHMAutoInstallPage >> importInstaller [
+ASDHMCofigPage >> importInstaller [
 
 	^ importInstaller
 ]
 
 { #category : #accessing }
-ASDHMAutoInstallPage >> importInstaller: anObject [
+ASDHMCofigPage >> importInstaller: anObject [
 
 	importInstaller := anObject
 ]
 
 { #category : #initialization }
-ASDHMAutoInstallPage >> initialize [
+ASDHMCofigPage >> initialize [
 
 	super initialize.
-	
-	self baseInstaller: ASDHMInstallConfigView new.
+
+	"self baseInstaller: ASDHMInstallConfigView new."
 	self importInstaller: ASDHMInstallDataView new.
 
 	self session rootComponent header: ASDHMAdminHeader new
 ]
 
 { #category : #rendering }
-ASDHMAutoInstallPage >> renderContentOn: html [
+ASDHMCofigPage >> renderContentOn: html [
 html div
 		shadow: 2;
 		style: 'display: flex;';
@@ -92,14 +91,14 @@ html div
 ]
 
 { #category : #rendering }
-ASDHMAutoInstallPage >> renderInstallComponentOn: html [
+ASDHMCofigPage >> renderInstallComponentOn: html [
 
 	html div
 		style: 'display: block; height:100%';
 		shadow: 0;
 		with: [ 
 			html div
-				class: 'bar';
+				class: 'titleBar';
 				with: [ 
 					html div
 						class: 'wrapper';
@@ -127,17 +126,14 @@ ASDHMAutoInstallPage >> renderInstallComponentOn: html [
 ]
 
 { #category : #rendering }
-ASDHMAutoInstallPage >> renderListOn: html [
+ASDHMCofigPage >> renderListOn: html [
 
 	| componentInstance components |
 	html mdlList
 		style: 'width: 100%';
 		id: #installerList;
 		with: [ 
-								html mdlListItem: [ 
-							html mdlListPrimaryContent: [ 
-									html render: self baseInstaller ] ].
-					html mdlListItem: [ 
-							html mdlListPrimaryContent: [ 
-									html render: self importInstaller ] ] ]
+			
+			html mdlListItem: [ 
+					html mdlListPrimaryContent: [ html render: self importInstaller ] ] ]
 ]

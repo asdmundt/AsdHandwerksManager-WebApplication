@@ -117,14 +117,13 @@ ASDHMFormUser >> isDialog: anObject [
 
 { #category : #rendering }
 ASDHMFormUser >> nachnameInputWidget [
-	^ MDLTextFieldWidget new
-		beFloatingLabel;
 
-		type: 'text';
-		label: nachnameLabel;
-		pattern: '^\S+$' errorMessage: 'kein leerstring';
-		callback: [ :aString | self model nachname: aString ];
-		value: self model nachname
+	^ MDLTextFieldWidget new
+		  type: 'text';
+		  label: nachnameLabel;
+		  pattern: '^\S+$' errorMessage: 'kein leerstring';
+		  callback: [ :aString | self model nachname: aString ];
+		  value: self model nachname
 ]
 
 { #category : #accessing }
@@ -139,14 +138,13 @@ ASDHMFormUser >> nachnameLabel: anObject [
 
 { #category : #rendering }
 ASDHMFormUser >> passwordInputWidget [
-	^ MDLTextFieldWidget new
-		beFloatingLabel;
 
-		type: 'password';
-		label: passwordLabel;
-		pattern: '^\S+$' errorMessage: 'kein leerstring';
-		callback: [ :aString | self model password: aString ];
-		value: self model password
+	^ MDLTextFieldWidget new
+		  type: 'password';
+		  label: passwordLabel;
+		  pattern: '^\S+$' errorMessage: 'kein leerstring';
+		  callback: [ :aString | self model password: aString ];
+		  value: self model password
 ]
 
 { #category : #accessing }
@@ -222,14 +220,14 @@ ASDHMFormUser >> titleLabel: anObject [
 
 { #category : #rendering }
 ASDHMFormUser >> vornameInputWidget [
-	^ MDLTextFieldWidget new
-		beFloatingLabel;
 
-		type: 'text';
-		label: vornameLabel;
-		pattern: '^\S+$' errorMessage: 'kein leerstring';
-		callback: [ :aString | self model vorname: aString ];
-		value: self model vorname
+	^ MDLTextFieldWidget new
+		  
+		  type: 'text';
+		  label: vornameLabel;
+		  pattern: '^\S+$' errorMessage: 'kein leerstring';
+		  callback: [ :aString | self model vorname: aString ];
+		  value: self model vorname
 ]
 
 { #category : #accessing }

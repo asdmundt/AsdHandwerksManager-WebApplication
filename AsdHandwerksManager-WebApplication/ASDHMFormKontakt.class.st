@@ -71,13 +71,10 @@ ASDHMFormKontakt >> renderFieldsOn: html [
 			self renderAnsprechPartnerOn: html ]
 		ifFalse: [ 
 			html span: [ 
-		
-			self renderAnredeOn: html.
-			self renderTitleOn: html
-			].
-		html span: [ 
-			self renderVornameOn: html.
-			self renderNachnameOn: html ] ].
+				self renderAnredeOn: html.
+				self renderTitleOn: html. 
+				self renderVornameOn: html.
+				self renderNachnameOn: html ] ].
 	self renderAdressFormAndKommuFormContentOn: html
 ]
 

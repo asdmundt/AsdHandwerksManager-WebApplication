@@ -7,7 +7,9 @@ Class {
 		'idTitle',
 		'idContent',
 		'idProgress',
-		'progression'
+		'progression',
+		'labelTitle',
+		'progressionStep'
 	],
 	#category : #'AsdHandwerksManager-WebApplication-Components'
 }
@@ -51,8 +53,21 @@ ASDHMInstallerComponent >> idTitle: anObject [
 { #category : #initialization }
 ASDHMInstallerComponent >> initialize [
 
-super initialize.
- 
+	super initialize.
+	self progression: 0.
+	self labelTitle: 'Basis Installation'
+]
+
+{ #category : #accessing }
+ASDHMInstallerComponent >> labelTitle [
+
+	^ labelTitle
+]
+
+{ #category : #accessing }
+ASDHMInstallerComponent >> labelTitle: anObject [
+
+	labelTitle := anObject
 ]
 
 { #category : #accessing }
@@ -65,6 +80,18 @@ ASDHMInstallerComponent >> progression [
 ASDHMInstallerComponent >> progression: anObject [
 
 	progression := anObject
+]
+
+{ #category : #accessing }
+ASDHMInstallerComponent >> progressionStep [
+
+	^ progressionStep
+]
+
+{ #category : #accessing }
+ASDHMInstallerComponent >> progressionStep: anObject [
+
+	progressionStep := anObject
 ]
 
 { #category : #accessing }
@@ -96,7 +123,7 @@ ASDHMInstallerComponent >> renderContentOn: html [
 			html mdlCardTitleContainer
 				style: 'height: 40px;';
 				id: self idTitle;
-				with: [ html mdlCardTitleText: 'Welcome' ].
+				with: [ html mdlCardTitleText: self labelTitle ].
 
 			html mdlCardTextContainer
 				id: self idContent;
@@ -123,8 +150,8 @@ ASDHMInstallerComponent >> renderProgressContentOn: html [
 			html div
 				id: self idProgress;
 				with: [ 
-					html render: (MDLProgressBarWidget progression: [ self progression ] every: 0.2 seconds).
-					 ] ]
+					html render:
+							(MDLProgressBarWidget progression: [ self progression ] every: 0.2 seconds) ] ]
 ]
 
 { #category : #hooks }

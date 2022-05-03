@@ -221,10 +221,43 @@ model storeObject: eigFirma.
 ]
 
 { #category : #voyage }
-ASDHMDbModelBase class >> createUser [
+ASDHMDbModelBase class >> createUserOffice [
 
-	Repos save:
-		(ASDHMUser benutzerName: 'sonja' password: 'saino' admin: true)
+	Repos save: (ASDHMUser
+			 benutzerName: 'sonja'
+			 password: 'saino1972'
+			 admin: true
+			 role: 'office').
+	Repos save: (ASDHMUser
+			 benutzerName: 'soehnke'
+			 password: 'saino1972'
+			 admin: true
+			 role: 'office').
+	Repos save: (ASDHMUser
+			 benutzerName: 'janina'
+			 password: 'janinaOffice'
+			 admin: true
+			 role: 'office')
+]
+
+{ #category : #voyage }
+ASDHMDbModelBase class >> createUserProjekt [
+
+	Repos save: (ASDHMUser
+			 benutzerName: 'tobias'
+			 password: 'tobiasProjekt'
+			 admin: true
+			 role: 'projekt').
+	Repos save: (ASDHMUser
+			 benutzerName: 'avni'
+			 password: 'avniProjekt'
+			 admin: true
+			 role: 'projekt').
+	Repos save: (ASDHMUser
+			 benutzerName: 'agon'
+			 password: 'agonProjekt'
+			 admin: true
+			 role: 'projekt')
 ]
 
 { #category : #'class initialization' }
@@ -246,7 +279,7 @@ ASDHMDbModelBase class >> defaultRepository [
 { #category : #'default values' }
 ASDHMDbModelBase class >> defaultUser [
 
-	^ 'asdAdmin'
+	^ 'hoxha'
 ]
 
 { #category : #accessing }
@@ -306,7 +339,7 @@ ASDHMDbModelBase class >> reset [
 	uniqueInstanceDbModelBauManagerBase := nil.
 	"VOMongoRepository current reset."
 	VOMongoRepository repositoryContainer: VODynamicContainer new.
-	self initializeLocalhostMongoDB
+	self initializeStratoHostMongoDB
 ]
 
 { #category : #'default values' }

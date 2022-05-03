@@ -9,7 +9,8 @@ Class {
 		'labelEdit',
 		'labelDelete',
 		'labelSelect',
-		'list'
+		'list',
+		'labelAktionen'
 	],
 	#category : #'AsdHandwerksManager-WebApplication-Components'
 }
@@ -36,12 +37,22 @@ ASDHMObjectViewTableBaseComponent >> edit: anObject [
 ASDHMObjectViewTableBaseComponent >> initialize [
 
 	super initialize.
-		self labelSelect: 'Auswählen'.
+	self labelSelect: 'Auswählen'.
 	self labelEdit: 'Bearbeiten'.
 	self labelDelete: 'Entfernen'.
-	
+	self labelAktionen: 'Aktionen'
+]
 
+{ #category : #accessing }
+ASDHMObjectViewTableBaseComponent >> labelAktionen [
 
+	^ labelAktionen
+]
+
+{ #category : #accessing }
+ASDHMObjectViewTableBaseComponent >> labelAktionen: anObject [
+
+	labelAktionen := anObject
 ]
 
 { #category : #accessing }
@@ -125,7 +136,7 @@ ASDHMObjectViewTableBaseComponent >> renderContentOn: html [
 		shadow: 0;
 		with: [ 
 			html div
-				class: 'bar';
+				class: 'titleBar';
 				with: [ 
 					html div
 						class: 'wrapper';
@@ -135,18 +146,7 @@ ASDHMObjectViewTableBaseComponent >> renderContentOn: html [
 							html mdlButton icon
 								id: #bottomRightButton;
 								with: [ html mdlIcon: #more_vert ].
-							html mdlMenu
-								bottomRight;
-								for: #bottomRightButton;
-								with: [ 
-									html mdlMenuItem: 'Some Action'.
-									html mdlMenuItem
-										fullBleedDivider;
-										with: 'Another Action'.
-									html mdlMenuItem
-										disabled;
-										with: 'Disabled Action'.
-									html mdlMenuItem: 'Yet Another Action' ] ] ].
+							self renderHeadMenu: html ] ].
 			html div
 				class: 'background';
 				style:
@@ -164,6 +164,12 @@ ASDHMObjectViewTableBaseComponent >> renderDialog: html [
 ASDHMObjectViewTableBaseComponent >> renderDialogMenu: html [
 
 	self subclassResponsibility
+]
+
+{ #category : #rendering }
+ASDHMObjectViewTableBaseComponent >> renderHeadMenu: html [
+
+	"self subclassResponsibility"
 ]
 
 { #category : #rendering }

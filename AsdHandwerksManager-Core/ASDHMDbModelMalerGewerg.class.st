@@ -78,34 +78,32 @@ ASDHMDbModelMalerGewerg class >> defaultRepository [
 { #category : #'default values' }
 ASDHMDbModelMalerGewerg class >> defaultUser [
 
-	^ 'asdAdmin'
+	^ 'maler'
 ]
 
 { #category : #'data sample' }
 ASDHMDbModelMalerGewerg class >> importArtikel [
-|dataFile coll|
 
-"dataFile := FileLocator imageDirectory / 'files' / 'streha.csv' asFileReference ."
-
-coll := OrderedCollection withAll: ( 'artikel.csv' asFileReference readStreamDo: [ :input |
-(NeoCSVReader on: (ZnBufferedReadStream on: input))
-skipHeader;
-recordClass: ASDHMArtikel ;
-addField: #artikelNr:;
-addField: #titel:;
-addField: #name:;
-addField: #ekPreis:;
-addField: #einheit:;
-addField: #warenGruppeId:;
-addField: #warenGruppe:;
-addField: #lieferant:;
-addField: #eanNr:;
-
-upToEnd 
- ]) .
-coll inspect.
-^coll
-
+	| dataFile coll |
+	"dataFile := FileLocator imageDirectory / 'files' / 'streha.csv' asFileReference ."
+	dataFile := FileSystem disk workingDirectory / 'files' / 'artikel.csv'.
+	coll := OrderedCollection withAll:
+		        (dataFile asFileReference readStreamDo: [ :input | 
+			         (NeoCSVReader on: (ZnBufferedReadStream on: input))
+				         skipHeader;
+				         recordClass: ASDHMArtikel;
+				         addField: #artikelNr:;
+				         addField: #titel:;
+				         addField: #name:;
+				         addField: #ekPreis:;
+				         addField: #einheit:;
+				         addField: #warenGruppeId:;
+				         addField: #warenGruppe:;
+				         addField: #lieferant:;
+				         addField: #eanNr:;
+				         upToEnd ]).
+	coll inspect.
+	^ coll
 ]
 
 { #category : #'class initialization' }
@@ -138,15 +136,24 @@ ASDHMDbModelMalerGewerg class >> isVoyageRoot [
 
 { #category : #'class initialization' }
 ASDHMDbModelMalerGewerg class >> reset [
+
 	uniqueInstanceDbModelBauManagerDataNorm := nil.
 	"VORepository current reset."
 	VORepository repositoryContainer: VODynamicContainer new.
-	self initializeLocalhostMongoDB
+	self initializeStratoHostMongoDB
 ]
 
 { #category : #'default values' }
 ASDHMDbModelMalerGewerg class >> version [
 ^'1.0.0'
+]
+
+{ #category : #operations }
+ASDHMDbModelMalerGewerg >> alleArtikel [
+
+	| collection |
+	collection := Repos selectAll: ASDHMArtikel.
+	^ collection yourself
 ]
 
 { #category : #operations }
@@ -156,24 +163,10 @@ ASDHMDbModelMalerGewerg >> artikelsFromWarengruppe: aGroup [
 		where: [ :each | each warenGruppe = aGroup  ]
 ]
 
-{ #category : #operations }
-ASDHMDbModelMalerGewerg >> categorieCollection [
-	| categorieColl |
-	categorieColl := OrderedCollection new.
-	self  shopCategories
-		do: [ :aCat | categorieColl add: aCat name ].
-	^ categorieColl
-]
-
 { #category : #initialization }
 ASDHMDbModelMalerGewerg >> initialize [
 	super initialize.
 	artikel  := OrderedCollection new
-]
-
-{ #category : #accessing }
-ASDHMDbModelMalerGewerg >> loggedUsers [
-	^Repos selectMany: ASDEUser where: [ :each | each logged = true ]
 ]
 
 { #category : #operations }

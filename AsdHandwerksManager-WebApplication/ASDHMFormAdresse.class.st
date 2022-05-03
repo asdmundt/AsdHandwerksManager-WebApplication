@@ -88,10 +88,10 @@ ASDHMFormAdresse >> renderContentOn: html [
 ASDHMFormAdresse >> renderFieldsOn: html [
 
 	"self renderBezOn: html."
+
 	html span: [ 
 		self renderStrOn: html.
-		self renderHsnrOn: html ].
-	html span: [ 
+		self renderHsnrOn: html. 
 		self renderPlzOn: html.
 		self renderOrtOn: html ]
 ]
@@ -122,29 +122,30 @@ ASDHMFormAdresse >> renderHsnrOn: html [
 ASDHMFormAdresse >> renderOrtOn: html [
 
 	html mdlTextFieldContainer
-		style: 'width: 50px';
-		with: [
-		html mdlTextFieldLabel
-			for: html nextId;
-			with: self ortLabel.
-		html mdlTextFieldInput
-			id: html lastId;
-			value: self model ort;
-			callback: [ :aString | self model ort: aString ] ]
+		style: 'width: 100px';
+		with: [ 
+			html mdlTextFieldLabel
+				for: html nextId;
+				with: self ortLabel.
+			html mdlTextFieldInput
+				style: 'width: 110px';
+				id: html lastId;
+				value: self model ort;
+				callback: [ :aString | self model ort: aString ] ]
 ]
 
 { #category : #rendering }
 ASDHMFormAdresse >> renderPlzOn: html [
 
 	html mdlTextFieldContainer
-		style: 'width: 50px';
-		with: [
+		style: 'width: 100px';
+		with: [ 
 			html mdlTextFieldLabel
 				for: html nextId;
 				with: self plzLabel.
 			html mdlTextFieldInput
 				id: html lastId;
-				style: 'width: 70px;';
+				style: 'width: 80px;';
 				value: self model plz;
 				callback: [ :aString | self model plz: aString ] ]
 ]
@@ -153,15 +154,16 @@ ASDHMFormAdresse >> renderPlzOn: html [
 ASDHMFormAdresse >> renderStrOn: html [
 
 	html mdlTextFieldContainer
-		style: 'width: 50px';
-		with: [
-		html mdlTextFieldLabel
-			for: html nextId;
-			with: strLabel.
-		html mdlTextFieldInput
-			id: html lastId;
-			value: self model str;
-			callback: [ :aString | self model str: aString ] ]
+		style: 'width: 200px';
+		with: [ 
+			html mdlTextFieldLabel
+				for: html nextId;
+				with: strLabel.
+			html mdlTextFieldInput
+				style: 'width: 200px';
+				id: html lastId;
+				value: self model str;
+				callback: [ :aString | self model str: aString ] ]
 ]
 
 { #category : #accessing }

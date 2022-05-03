@@ -143,14 +143,16 @@ ASDHMFormLeistungen >> labelZeitProEinheit: anObject [
 ASDHMFormLeistungen >> renderBezOn: html [
 
 	html mdlTextFieldContainer
-		with: [ 
-			html mdlTextFieldLabel
-				for: html nextId;
-				with: self labelBez.
-			html mdlTextFieldInput
-				id: html lastId;
-				value: self model bez;
-				callback: [ :aString | self model bez: aString ] ]
+	style: 'width: 150px';
+	 with: [ 
+		html mdlTextFieldLabel
+			for: html nextId;
+			with: self labelBez.
+		html mdlTextFieldInput
+		style: 'width: 150px';
+			id: html lastId;
+			value: self model bez;
+			callback: [ :aString | self model bez: aString ] ]
 ]
 
 { #category : #rendering }
@@ -193,13 +195,13 @@ ASDHMFormLeistungen >> renderFieldsOn: html [
 	html span: [ 
 		html text: self kuerzel.
 		html space.
-		html space.
 		self renderBezOn: html ].
+	html div: [  
 	self renderLeistungsBeschreibungOn: html.
+	].
 	html span: [ 
 		self renderEinheitOn: html.
-		self renderPreisOn: html ].
-	
+		self renderPreisOn: html ]
 ]
 
 { #category : #rendering }
@@ -212,16 +214,17 @@ ASDHMFormLeistungen >> renderFormContentOn: html [
 ASDHMFormLeistungen >> renderLeistungsBeschreibungOn: html [
 
 	html mdlTextFieldContainer
-		style: 'width: 50px';
+		style: 'width: 250px';
 		with: [ 
-		html mdlTextFieldLabel
-			for: html nextId;
-			with: self labelLeistungsBeschreibung.
-		html mdlTextArea
-			id: html lastId;
-			rows: 6;
-			value: self model leistungsBeschreibung;
-			callback: [ :aString | self model leistungsBeschreibung: aString ] ]
+			html mdlTextFieldLabel
+				for: html nextId;
+				with: self labelLeistungsBeschreibung.
+			html mdlTextArea
+				id: html lastId;
+				style: 'width: 250px';
+				rows: 6;
+				value: self model leistungsBeschreibung;
+				callback: [ :aString | self model leistungsBeschreibung: aString ] ]
 ]
 
 { #category : #rendering }

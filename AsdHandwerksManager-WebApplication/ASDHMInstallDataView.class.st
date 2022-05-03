@@ -4,43 +4,43 @@ Class {
 	#category : #'AsdHandwerksManager-WebApplication-Components'
 }
 
+{ #category : #initialization }
+ASDHMInstallDataView >> initialize [
+
+	super initialize.
+	self model: ASDHMInstallConfig new.
+
+	self idProgress: 'dataProgress'.
+
+	self progression: 0.
+	self progressionStep: 0
+]
+
+{ #category : #actions }
+ASDHMInstallDataView >> loadBaseArtikel [
+
+	| tmpModel data dSize tmpProgressionStep |
+	self progression: 0.
+	tmpModel := ASDHMDbModelMalerGewerg current.
+	data := ASDHMDbModelMalerGewerg importArtikel.
+	dSize := data size.
+	tmpProgressionStep := 1 / dSize.
+	data do: [ :each | 
+		tmpModel storeObject: each.
+		self progression: self progression + tmpProgressionStep ]
+]
+
 { #category : #rendering }
 ASDHMInstallDataView >> renderActionContentOn: html [
 
-	
+	| artikel |
 	html mdlButton
 		mdlTypographyFontBold;
-		"onClick: (html jQuery ajax script: [ :s | 
-					 s << ((s jQuery id: self id) text: '...').
-					 s << ((s jQuery id: 'modalContent') html: [ html text: '...' ]).
-					 s << (s jQuery id: 'mainDialog') cssAt: 'display' put: 'block'.
-					 company := self loadOwnCompany.
-					 s << (s jQuery id: 'firmen' , self id)
-						 cssAt: 'display'
-						 put: 'block'.
-					 user := self loadBaseUser.
-					 "" company addAccounts: user.""
-					 s << (s jQuery id: 'admin' , self id)
-						 cssAt: 'display'
-						 put: 'block'.
-					 s << ((s jQuery id: 'modalContent')
-							  html: [ html mdlSpinner active ];
-							  setTimeout: 2000).
-					 s << (s jQuery id: 'mainDialog') cssAt: 'display' put: 'block'.
-					 s << ((s jQuery id: 'modalContent')
-						  html: [ :h | h render: 'Bankdaten laden' ];
-						  setTimeout: 2000).
-					 blzData := ASDHMDbModelBlz importBlz.
-					 s << ((s jQuery id: 'modalContent')
-						  html: [ :h | h render: blzData size , 'Objekte geladen' ];
-						  setTimeout: 2000).
-					 blzData doWithIndex: [ :each :index | 
-						 blzModel storeObject: each.
-						 progression := progression + 1.
-						 s << ((s jQuery id: 'modalContent') html: [ :h | 
-							  h render: 'Objekt ' , index asString , ' geladen' ]).
-						 (Delay forMilliseconds: 1) wait ].
-					 s << (s jQuery id: 'mainDialog') cssAt: 'display' put: 'none' ]);"
+		onClick:
+			(html jQuery ajax script: [ :s | "s << ((s jQuery id: self id) text: '...')."
+					 artikel := self loadBaseArtikel.
+					 s << (s jQuery: '#artikel' , self id) show setTimeout: 10000.
+					 self progression: self progression + self progressionStep ]);
 		with: [ 'Get Started' ]
 ]
 
@@ -55,24 +55,12 @@ ASDHMInstallDataView >> renderInnerContentOn: html [
 			self renderProgressContentOn: html.
 			html mdlList
 				style: 'width: 100%';
-				id: 'doList' , self id;
+				id: 'dataList' , self id;
 				with: [ 
 					html mdlListItem
-						id: 'firmen' , self id;
+						id: 'artikel' , self id;
 						style: 'display: none;';
 						with: [ 
 							html mdlListPrimaryContent: [ 
-									html text: 'Firmen Daten installiert' ] ].
-					html mdlListItem
-						id: 'admin' , self id;
-						style: 'display: none;';
-						with: [ 
-							html mdlListPrimaryContent: [ 
-									html text: 'Admin Benutzer installiert' ] ].
-					html mdlListItem
-						id: 'blz' , self id;
-						style: 'display: none;';
-						with: [ 
-							html mdlListPrimaryContent: [ 
-									html text: 'Bankleitzahlen installiert' ] ] ] ]
+									html text: 'Artikel Daten installiert' ] ] ] ]
 ]

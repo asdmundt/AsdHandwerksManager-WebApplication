@@ -3,7 +3,10 @@ Class {
 	#superclass : #ASDHMObjectViewTableBaseContactComponent,
 	#instVars : [
 		'labelGewerblich',
-		'tooltipSelectGewerblich'
+		'tooltipSelectGewerblich',
+		'tooltipMenu',
+		'labelNewAuftrag',
+		'labelDetails'
 	],
 	#category : #'AsdHandwerksManager-WebApplication-Components'
 }
@@ -20,6 +23,18 @@ ASDHMObjectViewTableContactComponent >> initialize [
 ]
 
 { #category : #accessing }
+ASDHMObjectViewTableContactComponent >> labelDetails [
+
+	^ labelDetails
+]
+
+{ #category : #accessing }
+ASDHMObjectViewTableContactComponent >> labelDetails: anObject [
+
+	labelDetails := anObject
+]
+
+{ #category : #accessing }
 ASDHMObjectViewTableContactComponent >> labelGewerblich [
 
 	^ labelGewerblich
@@ -29,6 +44,18 @@ ASDHMObjectViewTableContactComponent >> labelGewerblich [
 ASDHMObjectViewTableContactComponent >> labelGewerblich: anObject [
 
 	labelGewerblich := anObject
+]
+
+{ #category : #accessing }
+ASDHMObjectViewTableContactComponent >> labelNewAuftrag [
+
+	^ labelNewAuftrag
+]
+
+{ #category : #accessing }
+ASDHMObjectViewTableContactComponent >> labelNewAuftrag: anObject [
+
+	labelNewAuftrag := anObject
 ]
 
 { #category : #rendering }
@@ -258,6 +285,22 @@ ASDHMObjectViewTableContactComponent >> renderDialogSelectbox: html [
 ]
 
 { #category : #rendering }
+ASDHMObjectViewTableContactComponent >> renderHeadMenu: html [
+html mdlMenu
+								bottomRight;
+								for: #bottomRightButton;
+								with: [ 
+									html mdlMenuItem: 'Some Action'.
+									html mdlMenuItem
+										fullBleedDivider;
+										with: 'Another Action'.
+									html mdlMenuItem
+										disabled;
+										with: 'Disabled Action'.
+									html mdlMenuItem: 'Yet Another Action']
+]
+
+{ #category : #rendering }
 ASDHMObjectViewTableContactComponent >> renderInnerContentOn: html [
 
 	html mdlTable
@@ -269,33 +312,33 @@ ASDHMObjectViewTableContactComponent >> renderInnerContentOn: html [
 						with: [ 
 							html mdlTableHeading
 								nonNumerical;
-								style:
-									'background-color: #161b22; position: relativ; top: 0px;';
+								class: 'asdTableHeading';
 								with: self labelDisplayString.
 
 							html mdlTableHeading
 								nonNumerical;
-								style:
-									'background-color: #161b22; position: relativ; top: 0px;';
+								class: 'asdTableHeading';
 								with: self labelDisplayStringAdress.
-						"		
+							"		
 							html mdlTableHeading
 								nonNumerical;
 								style:
 									'background-color: #161b22; position: relativ; top: 0px;';
 								with: self labelDisplayStringBank."
-								
+
 							html mdlTableHeading
 								nonNumerical;
-								style:
-									'background-color: #161b22; position: relativ; top: 0px;';
+								class: 'asdTableHeading';
 								with: self labelDisplayStringKommunikation.
 
 							html mdlTableHeading
 								nonNumerical;
-								style:
-									'background-color: #161b22; position: relativ; top: 0px;';
-								with: self labelEdit ] ].
+								class: 'asdTableHeading';
+								with: self labelEdit.
+							html mdlTableHeading
+								nonNumerical;
+								class: 'asdTableHeading';
+								with: self labelAktionen ] ].
 			html tableBody with: [ "style: 'overflow: scroll;height: 400px;';"
 				list doWithIndex: [ :each :index | 
 					html tableRow: [ 
@@ -308,13 +351,7 @@ ASDHMObjectViewTableContactComponent >> renderInnerContentOn: html [
 							style: 'background-color: #0d1117;';
 							with:
 								each str , ' ' , each hsnr , ' ' , each plz , ' ' , each ort.
-	"							
-						html mdlTableCell
-							nonNumerical;
-							style: 'background-color: #0d1117;';
-							with: each iban , ' ' , each bic , ' ' , each bankName , ' '
-								, each kontoInhaber.
-								"
+
 						html mdlTableCell
 							nonNumerical;
 							style: 'background-color: #0d1117;';
@@ -331,7 +368,30 @@ ASDHMObjectViewTableContactComponent >> renderInnerContentOn: html [
 									openDialogWithId: self rootDialogOpenId;
 									onClickUpdateRootDialogWith: [ :r | 
 										self renderDialog: r withModel: each ];
+									with: [ html mdlIcon: 'edit' ] ].
+						html mdlTableCell
+							nonNumerical;
+							style: 'background-color: #0d1117;';
+							with: [ 
+								html mdlAnchorButton
+									icon;
+									id: html nextId;
+									openDialogWithId: self rootDialogOpenId;
+									onClickUpdateRootDialogWith: [ :r | 
+										self renderDialog: r withModel: each ];
 									with: [ html mdlIcon: 'edit' ] ] ] ] ] ]
+]
+
+{ #category : #accessing }
+ASDHMObjectViewTableContactComponent >> tooltipMenu [
+
+	^ tooltipMenu
+]
+
+{ #category : #accessing }
+ASDHMObjectViewTableContactComponent >> tooltipMenu: anObject [
+
+	tooltipMenu := anObject
 ]
 
 { #category : #accessing }

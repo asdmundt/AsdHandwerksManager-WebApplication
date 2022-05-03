@@ -56,7 +56,7 @@ ASDHMAkquisePage >> initialize [
 	super initialize.
 	contacts := OrderedCollection new.
 	self contactTable:
-		(ASDHMObjectViewTableKlickTelContactComponent withList: contacts).
+		(ASDHMObjectViewTableKlickTelContactComponent withList: self session modelKlickTel contactsKlickTel).
 
 	self session rootComponent header: ASDHMHeader new
 ]
