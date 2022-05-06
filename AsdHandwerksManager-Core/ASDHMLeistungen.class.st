@@ -4,10 +4,11 @@ Class {
 	#instVars : [
 		'leistungsBeschreibung',
 		'einheit',
-		'preis',
+		'preisNetto',
 		'zeit',
 		'artikelListe',
-		'kategorieKuerzel'
+		'kategorieKuerzel',
+		'aufmass'
 	],
 	#category : #'AsdHandwerksManager-Core-Model'
 }
@@ -44,15 +45,33 @@ ASDHMLeistungen class >> titleText [
 ]
 
 { #category : #accessing }
+ASDHMLeistungen >> addArtikel: anItem [
+
+	 artikelListe add: anItem
+]
+
+{ #category : #accessing }
 ASDHMLeistungen >> artikelListe [
 
-	^ artikelListe
+	^ artikelListe ifNil: [ artikelListe := OrderedCollection new ]
 ]
 
 { #category : #accessing }
 ASDHMLeistungen >> artikelListe: anObject [
 
 	artikelListe := anObject
+]
+
+{ #category : #accessing }
+ASDHMLeistungen >> aufmass [
+
+	^ aufmass
+]
+
+{ #category : #accessing }
+ASDHMLeistungen >> aufmass: anObject [
+
+	aufmass := anObject
 ]
 
 { #category : #accessing }
@@ -99,15 +118,15 @@ ASDHMLeistungen >> leistungsBeschreibung: anObject [
 ]
 
 { #category : #accessing }
-ASDHMLeistungen >> preis [
+ASDHMLeistungen >> preisNetto [
 
-	^ preis
+	^ preisNetto
 ]
 
 { #category : #accessing }
-ASDHMLeistungen >> preis: anObject [
+ASDHMLeistungen >> preisNetto: anObject [
 
-	preis := anObject
+	preisNetto := anObject
 ]
 
 { #category : #accessing }

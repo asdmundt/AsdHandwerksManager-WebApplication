@@ -125,6 +125,12 @@ ASDHMObjectViewListBaseComponent >> remove: anObject [
 ]
 
 { #category : #rendering }
+ASDHMObjectViewListBaseComponent >> renderAddMenu: html [
+
+	self subclassResponsibility
+]
+
+{ #category : #rendering }
 ASDHMObjectViewListBaseComponent >> renderBezOn: html [
 
 	html text: self labelBez 
@@ -147,7 +153,7 @@ ASDHMObjectViewListBaseComponent >> renderContentOn: html [
 					html div
 						class: 'wrapper';
 						with: [ 
-							self renderDialogMenu: html.
+							self renderAddMenu: html.
 
 							html mdlButton icon
 								id: #bottomRightButton;

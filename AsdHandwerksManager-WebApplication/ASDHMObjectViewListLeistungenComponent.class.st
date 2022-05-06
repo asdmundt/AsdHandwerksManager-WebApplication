@@ -13,6 +13,18 @@ Class {
 	#category : #'AsdHandwerksManager-WebApplication-Components'
 }
 
+{ #category : #actions }
+ASDHMObjectViewListLeistungenComponent >> add [
+  | newLeistung katKuerzel editor |
+	katKuerzel := self session kategorieKuerzel asString.
+	newLeistung := ASDHMLeistungen kategorieKuerzel: katKuerzel.
+    editor := ASDHMLeistungenComponent withModel: newLeistung.
+    
+    self show: editor onAnswer: [ :answer |
+        self inform: 'Thanks for editing  ' , answer bez ]
+	
+]
+
 { #category : #accessing }
 ASDHMObjectViewListLeistungenComponent >> artikelId [
 
@@ -104,14 +116,42 @@ ASDHMObjectViewListLeistungenComponent >> labelZeitProEinheit: anObject [
 	labelZeitProEinheit := anObject
 ]
 
-{ #category : #actions }
+{ #category : #rendering }
+ASDHMObjectViewListLeistungenComponent >> renderAddMenu: html [
+
+	| newLeistung katKuerzel |
+	katKuerzel := self session kategorieKuerzel asString.
+	self session kategorieKuerzel ifNotNil: [
+		html mdlAnchorButton
+			icon;
+			id: #add;
+			callback: [ self add ]; 
+			with: [ html mdlIcon: 'add' ].
+		html mdlTooltip
+			for: #add;
+			with: katKuerzel
+		 "html mdlAnchorButton
+			icon;
+			id: #add;
+			openDialogWithId: self rootDialogOpenId;
+			onClickUpdateRootDialogWith: [ :r | 
+				newLeistung := ASDHMLeistungen kategorieKuerzel: katKuerzel.
+				self renderDialog: r withModel: newLeistung ];
+			with: [ html mdlIcon: 'add' ].
+		html mdlTooltip
+			for: #add;
+			with: katKuerzel"
+		 ]
+]
+
+{ #category : #rendering }
 ASDHMObjectViewListLeistungenComponent >> renderDialog: html withModel: aModel [
 
-	| listView formWiev |
-	formWiev := ASDHMFormLeistungen withModel: aModel.
+	| listView formView |
+	formView := ASDHMFormLeistungen withModel: aModel.
 	html form: [ 
 		html mdlDialogTitle: 'Leistungen'.
-		html mdlDialogContent: [ html render: formWiev ].
+		html mdlDialogContent: [ html render: formView ].
 		html mdlDialogActions: [ 
 			html mdlButton
 				id: self rootDialogCloseId;
@@ -123,8 +163,7 @@ ASDHMObjectViewListLeistungenComponent >> renderDialog: html withModel: aModel [
 							 listView := ASDHMObjectViewListLeistungenComponent withList:
 									             (self session model leistungenWithKuerzel:
 											              self session kategorieKuerzel).
-											self session kategorieKuerzel: nil.
-											 ];
+							 self session kategorieKuerzel: nil ];
 						 onComplete: ((html jQuery id: #tableLeistungDiv) load
 								  html: [ :ajaxHtml | ajaxHtml render: listView ];
 								  onComplete: 'componentHandler.upgradeDom();' js));
@@ -135,20 +174,19 @@ ASDHMObjectViewListLeistungenComponent >> renderDialog: html withModel: aModel [
 				with: 'Cancel' ] ]
 ]
 
-{ #category : #actions }
+{ #category : #rendering }
 ASDHMObjectViewListLeistungenComponent >> renderDialogMenu: html [
 
-	| newContact katKuerzel |
+	| newLeistung katKuerzel |
 	katKuerzel := self session kategorieKuerzel asString.
 	self session kategorieKuerzel ifNotNil: [ 
-		
 		html mdlAnchorButton
 			icon;
 			id: #add;
 			openDialogWithId: self rootDialogOpenId;
 			onClickUpdateRootDialogWith: [ :r | 
-				newContact := ASDHMLeistungen kategorieKuerzel: katKuerzel.
-				self renderDialog: r withModel: newContact ];
+				newLeistung := ASDHMLeistungen kategorieKuerzel: katKuerzel.
+				self renderDialog: r withModel: newLeistung ];
 			with: [ html mdlIcon: 'add' ].
 		html mdlTooltip
 			for: #add;
@@ -177,8 +215,13 @@ ASDHMObjectViewListLeistungenComponent >> renderInnerContentOn: html [
 								html mdlAnchorButton
 									icon;
 									id: html nextId;
+									callback: [ self edit: each ];
+									with: [ "html mdlAnchorButton
+									icon;
+									id: html nextId;
 									openDialogWithId: self rootDialogOpenId;
 									onClickUpdateRootDialogWith: [ :r | 
 										self renderDialog: r withModel: each ];
-									with: [ html mdlIcon: 'edit' ] ] ] ] ]
+									with: [ html mdlIcon: 'edit' ] " 
+										html mdlIcon: 'edit' ] ] ] ] ]
 ]

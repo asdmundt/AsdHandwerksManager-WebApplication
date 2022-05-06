@@ -91,9 +91,11 @@ ASDHMFormAdresse >> renderFieldsOn: html [
 
 	html span: [ 
 		self renderStrOn: html.
-		self renderHsnrOn: html. 
+		self renderHsnrOn: html.
+	].
+	
 		self renderPlzOn: html.
-		self renderOrtOn: html ]
+		self renderOrtOn: html 
 ]
 
 { #category : #rendering }

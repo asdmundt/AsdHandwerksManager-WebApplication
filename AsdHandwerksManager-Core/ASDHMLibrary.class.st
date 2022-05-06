@@ -648,6 +648,14 @@ vertical-align: top !important;
 	position: relativ; top: -10px;
  }
 
+.background {
+width: 100%;
+min-height: 400px;
+overflow-y: auto; 
+height:100%;
+background-color: #0d1117;
+}
+
 '
 ]
 

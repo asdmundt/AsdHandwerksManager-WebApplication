@@ -10,7 +10,8 @@ Class {
 		'labelWaehleEinheit',
 		'artikelId',
 		'labelKategorieKuerzel',
-		'kuerzel'
+		'kuerzel',
+		'labelAufmass'
 	],
 	#category : #'AsdHandwerksManager-WebApplication-forms'
 }
@@ -36,10 +37,12 @@ ASDHMFormLeistungen >> initialize [
 	self labelLeistungsBeschreibung: 'Leistung Beschreibung'.
 	self labelEinheit: 'Einheit'.
 	self labelPreis: 'Preis'.
+	self labelAufmass: 'Fläche'.
 	self labelZeitProEinheit: 'Zeit pro Einheit'.
 	self labelKategorieKuerzel: 'Kategorie Kürzel'.
 	self labelSelf: 'Leistungen'.
-	self labelWaehleEinheit: 'Wähle die Einheit, mit der die Leistung berrechnet wird'.
+	self labelWaehleEinheit:
+		'Wähle die Einheit, mit der die Leistung berrechnet wird'.
 	self kuerzel: self session kategorieKuerzel
 ]
 
@@ -53,6 +56,18 @@ ASDHMFormLeistungen >> kuerzel [
 ASDHMFormLeistungen >> kuerzel: anObject [
 
 	kuerzel := anObject
+]
+
+{ #category : #accessing }
+ASDHMFormLeistungen >> labelAufmass [
+
+	^ labelAufmass
+]
+
+{ #category : #accessing }
+ASDHMFormLeistungen >> labelAufmass: anObject [
+
+	labelAufmass := anObject
 ]
 
 { #category : #accessing }
@@ -140,6 +155,22 @@ ASDHMFormLeistungen >> labelZeitProEinheit: anObject [
 ]
 
 { #category : #rendering }
+ASDHMFormLeistungen >> renderAufmassOn: html [
+
+	html mdlTextFieldContainer
+		style: 'width: 50px';
+		with: [ 
+			html mdlTextFieldLabel
+				for: html nextId;
+				with: self labelPreis.
+			html mdlTextFieldInput
+				id: html lastId;
+				style: 'width: 50px';
+				value: self model aufmass;
+				callback: [ :aString | self model aufmass: aString ] ]
+]
+
+{ #category : #rendering }
 ASDHMFormLeistungen >> renderBezOn: html [
 
 	html mdlTextFieldContainer
@@ -177,7 +208,7 @@ ASDHMFormLeistungen >> renderContentOn: html [
 ASDHMFormLeistungen >> renderEinheitOn: html [
 
 	html render: ((MDLSelectWidget
-			  possibilities: #( 'Stk' 'm' 'mm' 'qm' )
+			  possibilities: #( 'qm' 'm' 'cm' 'mm' )
 			  inputLabel: self labelEinheit
 			  labelBlock: #asString
 			  callback: [ :input | self model einheit: input ]
@@ -192,16 +223,12 @@ ASDHMFormLeistungen >> renderEinheitOn: html [
 { #category : #rendering }
 ASDHMFormLeistungen >> renderFieldsOn: html [
 
-	html span: [ 
-		html text: self kuerzel.
-		html space.
-		self renderBezOn: html ].
-	html div: [  
+	html text: self kuerzel.
+	self renderBezOn: html.
 	self renderLeistungsBeschreibungOn: html.
-	].
-	html span: [ 
-		self renderEinheitOn: html.
-		self renderPreisOn: html ]
+	self renderEinheitOn: html.
+	self renderAufmassOn: html.
+	"self renderPreisOn: html"
 ]
 
 { #category : #rendering }
@@ -253,6 +280,6 @@ ASDHMFormLeistungen >> renderZeitProEinheitOn: html [
 		html mdlTextFieldInput
 			id: html lastId;
 			style: 'width: 150px';
-			value: self model zeitProEinheit;
-			callback: [ :aString | self model zeitProEinheit: aString ] ]
+			value: self model zeit;
+			callback: [ :aString | self model zeit: aString ] ]
 ]

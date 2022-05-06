@@ -1,6 +1,11 @@
 Class {
 	#name : #ASDHMObjectViewComponent,
 	#superclass : #ASDHMBaseComponent,
+	#traits : 'TWithRootDialogComponent',
+	#classTraits : 'TWithRootDialogComponent classTrait',
+	#instVars : [
+		'labelHeaderTitle'
+	],
 	#category : #'AsdHandwerksManager-WebApplication-Components'
 }
 
@@ -8,6 +13,18 @@ Class {
 ASDHMObjectViewComponent >> initialize [
 	super initialize.
 	
+]
+
+{ #category : #accessing }
+ASDHMObjectViewComponent >> labelHeaderTitle [
+
+	^ labelHeaderTitle
+]
+
+{ #category : #accessing }
+ASDHMObjectViewComponent >> labelHeaderTitle: anObject [
+
+	labelHeaderTitle := anObject
 ]
 
 { #category : #rendering }
