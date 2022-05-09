@@ -77,16 +77,15 @@ ASDHMHeader >> renderAdminSwitchOn: html [
 ASDHMHeader >> renderButtonMenu: html [
 
 	self session isLogged ifFalse: [ ^ self ].
-	"
-html mdlAnchorButton
-						icon;
-						id: html nextId;
-						openDialogWithId: self rootDialogOpenId;
-						onClickUpdateRootDialogWith: [ :r | self renderDialogAccount: r ];
-						with: [ html mdlIcon: 'account_circle' ].
-					html mdlTooltip
-						for: html lastId;
-						with: 'Add Playable'."
+	html mdlNavigation: [ 
+		html mdlButton icon
+			id: #bottomLeftButton;
+			with: [ html mdlIcon: #account_circle ].
+		html mdlMenu
+		style: 'width: 200px; height 400px;';
+			bottomRight;
+			for: #bottomLeftButton;
+			with: [] ]
 	html mdlAnchorButton
 		icon;
 		id: html nextId;

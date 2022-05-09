@@ -650,10 +650,15 @@ vertical-align: top !important;
 
 .background {
 width: 100%;
-min-height: 400px;
-overflow-y: auto; 
-height:100%;
-background-color: #0d1117;
+    min-height: 400px;
+    overflow-y: auto;
+    height: 100%;
+    background-color: #0d1117;
+    display: flex;
+    flex-direction: row;
+    padding: 15px;
+    align-items: baseline;
+    flex-wrap: wrap;
 }
 
 '

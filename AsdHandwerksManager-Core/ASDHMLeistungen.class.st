@@ -7,8 +7,7 @@ Class {
 		'preisNetto',
 		'zeit',
 		'artikelListe',
-		'kategorieKuerzel',
-		'aufmass'
+		'kategorieKuerzel'
 	],
 	#category : #'AsdHandwerksManager-Core-Model'
 }
@@ -60,18 +59,6 @@ ASDHMLeistungen >> artikelListe [
 ASDHMLeistungen >> artikelListe: anObject [
 
 	artikelListe := anObject
-]
-
-{ #category : #accessing }
-ASDHMLeistungen >> aufmass [
-
-	^ aufmass
-]
-
-{ #category : #accessing }
-ASDHMLeistungen >> aufmass: anObject [
-
-	aufmass := anObject
 ]
 
 { #category : #accessing }

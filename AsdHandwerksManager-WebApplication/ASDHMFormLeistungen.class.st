@@ -227,7 +227,7 @@ ASDHMFormLeistungen >> renderFieldsOn: html [
 	self renderBezOn: html.
 	self renderLeistungsBeschreibungOn: html.
 	self renderEinheitOn: html.
-	self renderAufmassOn: html.
+	self renderZeitProEinheitOn: html
 	"self renderPreisOn: html"
 ]
 
@@ -241,14 +241,14 @@ ASDHMFormLeistungen >> renderFormContentOn: html [
 ASDHMFormLeistungen >> renderLeistungsBeschreibungOn: html [
 
 	html mdlTextFieldContainer
-		style: 'width: 250px';
+		style: 'width: 450px';
 		with: [ 
 			html mdlTextFieldLabel
 				for: html nextId;
 				with: self labelLeistungsBeschreibung.
 			html mdlTextArea
 				id: html lastId;
-				style: 'width: 250px';
+				style: 'width: 450px';
 				rows: 6;
 				value: self model leistungsBeschreibung;
 				callback: [ :aString | self model leistungsBeschreibung: aString ] ]

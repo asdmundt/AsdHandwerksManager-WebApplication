@@ -157,6 +157,17 @@ ASDHMDbModelMalerGewerg >> alleArtikel [
 ]
 
 { #category : #operations }
+ASDHMDbModelMalerGewerg >> artikelLikeName: aString [
+
+	| collection patt |
+	patt := '/^' , aString , '$/i'.
+	collection := Repos
+		              selectMany: ASDHMArtikel
+		              where: [ :each | each kategorieKuerzel = aString ].
+	^ collection yourself
+]
+
+{ #category : #operations }
 ASDHMDbModelMalerGewerg >> artikelsFromWarengruppe: aGroup [
 	^ Repos 
 		selectMany: ASDHMArtikel

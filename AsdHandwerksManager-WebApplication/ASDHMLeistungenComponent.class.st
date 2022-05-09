@@ -58,6 +58,20 @@ ASDHMLeistungenComponent >> renderAddArtikelDialog: html withModel: aModel [
 ]
 
 { #category : #rendering }
+ASDHMLeistungenComponent >> renderAddedArtikelOn: html [
+
+	html div
+	id: #divAddedArtikelListe;
+		style: 'overflow-y: auto;';
+		with: [ 
+			html mdlList
+				style: 'width: 100%;';
+				with: [ 
+					self model artikelListe do: [ :name | 
+							html mdlListItem: [ html mdlListPrimaryContent: name ] ] ] ]
+]
+
+{ #category : #rendering }
 ASDHMLeistungenComponent >> renderDialog: html withModel: aModel [
 
 	| listView formView |
@@ -88,13 +102,82 @@ ASDHMLeistungenComponent >> renderDialog: html withModel: aModel [
 ]
 
 { #category : #rendering }
+ASDHMLeistungenComponent >> renderDragAndDropArtikelOn: html [
+
+	html div
+		id: #divDragAndDropArtikelListe;
+		style: 'overflow-y: auto;';
+		with: [ 
+			html mdlGrid
+				shadow: 2;
+				with: [ 
+					html mdlCell
+						class: 'grid-cell-demo';
+						desktopSize: 3;
+						tabletSize: 2;
+						phoneSize: 1;
+						desktopOrder: 4;
+						tabletOrder: 3;
+						phoneOrder: 2;
+						with: [ 
+							html div
+								class: 'mdl-typography--title';
+								with: [ 'Liste' ].
+							html mdlList
+								style: 'width: 100%;';
+								with: [ 
+									self model artikelListe do: [ :name | 
+											html mdlListItem: [ html mdlListPrimaryContent: name ] ] ] ].
+					html mdlCell
+						class: 'grid-cell-demo';
+						desktopSize: 3;
+						tabletSize: 2;
+						phoneSize: 1;
+						desktopOrder: 3;
+						tabletOrder: 2;
+						phoneOrder: 4;
+						with: [ 
+							html mdlList
+								style: 'width: 100%;';
+								with: [ 
+									(self session modelMalerGewerk artikelLikeName: 'aString') do: [ 
+											:name | 
+											html mdlListItem: [ html mdlListPrimaryContent: name ] ] ] ] ] ]
+]
+
+{ #category : #rendering }
+ASDHMLeistungenComponent >> renderInnerContentOn: html [
+
+	html render: (ASDHMFormLeistungen withModel: self model).
+
+	html div
+		style: 'width:100%; height:100%;';
+		id: #divLeistungenartikelListe;
+		with: [ 
+			self renderOpenDraggingArtikelOn: html.
+self renderAddedArtikelOn: html.
+	 ]
+]
+
+{ #category : #rendering }
 ASDHMLeistungenComponent >> renderOpenAddedArtikelOn: html [
 
 	html mdlAnchorButton
-		icon;
+		class: 'mdl-button mdl-js-button mdl-button--raised';
 		id: html nextId;
-		openDialogWithId: self rootDialogOpenId;
-		onClickUpdateRootDialogWith: [ :r | 
-			self renderDialog: r withModel: self model ];
-		with: [ html mdlIcon: 'open' ]
+		onClick: ((html jQuery id: #divLeistungenartikelListe) load
+				 html: [ :ajaxHtml | self renderAddedArtikelOn: ajaxHtml ];
+				 onComplete: 'componentHandler.upgradeElements(this);' js);
+		with: [ 'ok' ]
+]
+
+{ #category : #rendering }
+ASDHMLeistungenComponent >> renderOpenDraggingArtikelOn: html [
+
+	html mdlAnchorButton class: 'mdl-button mdl-js-button mdl-button--raised';
+		id: html nextId;
+		onClick: ((html jQuery id: #divLeistungenartikelListe) load
+				 html: [ :ajaxHtml | self renderDragAndDropArtikelOn: ajaxHtml ];
+				 onComplete: 'componentHandler.upgradeElements(this);' js);
+		with: [ 'öffen' ]
 ]
