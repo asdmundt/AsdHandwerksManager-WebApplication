@@ -85,7 +85,7 @@ ASDHMHeader >> renderButtonMenu: html [
 		style: 'width: 200px; height 400px;';
 			bottomRight;
 			for: #bottomLeftButton;
-			with: [] ]
+			with: []. 
 	html mdlAnchorButton
 		icon;
 		id: html nextId;
@@ -93,7 +93,7 @@ ASDHMHeader >> renderButtonMenu: html [
 		with: [ html mdlIcon: 'more_vert' ].
 	html mdlTooltip
 		for: html lastId;
-		with: self tooltipLabelopenRightPanel
+		with: self tooltipLabelopenRightPanel]
 	"	html mdlAnchorButton
 		icon;
 		id: html nextId;

@@ -75,9 +75,9 @@ ASDHMLeistungen >> einheit: anObject [
 
 { #category : #initialization }
 ASDHMLeistungen >> initialize [
+
 	super initialize.
-	
-	
+	artikelListe := OrderedCollection new.
 ]
 
 { #category : #accessing }

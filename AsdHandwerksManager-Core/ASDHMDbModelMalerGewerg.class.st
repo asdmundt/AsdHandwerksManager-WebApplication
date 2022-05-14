@@ -86,7 +86,8 @@ ASDHMDbModelMalerGewerg class >> importArtikel [
 
 	| dataFile coll |
 	"dataFile := FileLocator imageDirectory / 'files' / 'streha.csv' asFileReference ."
-	dataFile := FileSystem disk workingDirectory / 'files' / 'artikel.csv'.
+	dataFile := FileSystem disk workingDirectory / 'files'
+	            / 'artikel.csv'.
 	coll := OrderedCollection withAll:
 		        (dataFile asFileReference readStreamDo: [ :input | 
 			         (NeoCSVReader on: (ZnBufferedReadStream on: input))
@@ -102,7 +103,7 @@ ASDHMDbModelMalerGewerg class >> importArtikel [
 				         addField: #lieferant:;
 				         addField: #eanNr:;
 				         upToEnd ]).
-	coll inspect.
+	
 	^ coll
 ]
 
@@ -156,6 +157,18 @@ ASDHMDbModelMalerGewerg >> alleArtikel [
 	^ collection yourself
 ]
 
+{ #category : #accessing }
+ASDHMDbModelMalerGewerg >> artikel [
+
+	^  self class importArtikel 
+]
+
+{ #category : #accessing }
+ASDHMDbModelMalerGewerg >> artikel: anObject [
+
+	artikel := anObject
+]
+
 { #category : #operations }
 ASDHMDbModelMalerGewerg >> artikelLikeName: aString [
 
@@ -168,10 +181,43 @@ ASDHMDbModelMalerGewerg >> artikelLikeName: aString [
 ]
 
 { #category : #operations }
+ASDHMDbModelMalerGewerg >> artikelName: aString [
+
+	| collection |
+	collection := Repos selectAll: ASDHMArtikel.
+	^ collection select: [ :each | aString match: each name ]
+]
+
+{ #category : #operations }
+ASDHMDbModelMalerGewerg >> artikelWarengruppe: aString [
+
+	| allCollection collection |
+	collection := OrderedCollection new.
+	allCollection := self artikel.
+	collection := allCollection select: [ :each | 
+		              aString match: each warenGruppe ].
+	^ collection yourself
+]
+
+{ #category : #operations }
+ASDHMDbModelMalerGewerg >> artikelWarengruppeGroup [
+
+	| model data collWarengruppe |
+	collWarengruppe := OrderedCollection.
+	model := self artikel.
+	data := model groupedBy: [ :each | each warenGruppe ].
+	data keysDo: [ :each | collWarengruppe add: each ].
+	^ collWarengruppe
+]
+
+{ #category : #operations }
 ASDHMDbModelMalerGewerg >> artikelsFromWarengruppe: aGroup [
-	^ Repos 
-		selectMany: ASDHMArtikel
-		where: [ :each | each warenGruppe = aGroup  ]
+
+	| collection |
+	collection := Repos
+		              selectMany: ASDHMArtikel
+		              where: [ :each | each warenGruppe = aGroup ].
+	^ collection yourself
 ]
 
 { #category : #initialization }

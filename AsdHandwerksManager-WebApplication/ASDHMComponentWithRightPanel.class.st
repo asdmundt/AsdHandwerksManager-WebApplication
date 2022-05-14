@@ -2,7 +2,7 @@ Class {
 	#name : #ASDHMComponentWithRightPanel,
 	#superclass : #MDLWidget,
 	#instVars : [
-		'c'
+		'component'
 	],
 	#category : #'AsdHandwerksManager-WebApplication-Components'
 }
@@ -12,6 +12,18 @@ ASDHMComponentWithRightPanel class >> withComponent: aComponent [
 
 	^ self new component: aComponent;
 		  yourself
+]
+
+{ #category : #accessing }
+ASDHMComponentWithRightPanel >> component [
+
+	^ component
+]
+
+{ #category : #accessing }
+ASDHMComponentWithRightPanel >> component: anObject [
+
+	component := anObject
 ]
 
 { #category : #initialization }
@@ -28,7 +40,7 @@ ASDHMComponentWithRightPanel >> renderContentOn: html [
 	html div
 		id: self id;
 		class: 'sidenav';
-		with: []
+		with: [ html render: component  ]
 ]
 
 { #category : #hooks }

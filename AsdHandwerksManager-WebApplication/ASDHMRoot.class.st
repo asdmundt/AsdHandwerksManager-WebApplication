@@ -43,14 +43,19 @@ ASDHMRoot class >> development [
 
 { #category : #initialization }
 ASDHMRoot class >> initialize [
-		self environment at: #WADevelopmentConfiguration ifPresent: [ :class | WAAdmin applicationDefaults addParent: class instance ]. "Remove development tools."
+
+	self environment
+		at: #WADevelopmentConfiguration
+		ifPresent: [ :class | 
+		WAAdmin applicationDefaults addParent: class instance ]. "Remove development tools."
 	^ (WAAdmin register: self asApplicationAt: 'HandwerksManager')
-		preferenceAt: #sessionClass put: ASDHMSession;
-		addLibrary: JQDeploymentLibrary;
-		addLibrary: JQUiDevelopmentLibrary;
-		addLibrary: MDLLibrary;
-		addLibrary: ASDHMLibrary;
-		yourself
+		  preferenceAt: #sessionClass put: ASDHMSession;
+
+		  addLibrary: JQDeploymentLibrary;
+		  addLibrary: JQUiDevelopmentLibrary;
+		  addLibrary: MDLLibrary;
+		  addLibrary: ASDHMLibrary;
+		  yourself
 ]
 
 { #category : #'world menu' }
