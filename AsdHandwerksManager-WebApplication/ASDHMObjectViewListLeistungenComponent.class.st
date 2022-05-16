@@ -15,14 +15,15 @@ Class {
 
 { #category : #actions }
 ASDHMObjectViewListLeistungenComponent >> add [
-  | newLeistung katKuerzel editor |
+
+	| newLeistung katKuerzel editor |
 	katKuerzel := self session kategorieKuerzel asString.
 	newLeistung := ASDHMLeistungen kategorieKuerzel: katKuerzel.
-    editor := ASDHMLeistungenComponent withModel: newLeistung.
-    
-    self show: editor onAnswer: [ :answer |
-        self inform: 'Thanks for editing  ' , answer bez ]
-	
+	editor := ASDHMLeistungenComponent withModel: newLeistung.
+
+	self show: editor onAnswer: [ :answer | 
+		self session model storeObject: answer.
+		self inform: 'Thanks for editing  ' , answer bez ]
 ]
 
 { #category : #accessing }

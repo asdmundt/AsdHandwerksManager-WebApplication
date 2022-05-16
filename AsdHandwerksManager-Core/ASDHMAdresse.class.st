@@ -130,19 +130,6 @@ ASDHMAdresse >> descriptionStr [
 		yourself
 ]
 
-{ #category : #'magritte-accessing' }
-ASDHMAdresse >> descriptionTel [
-	<magritteDescription>
-	^ MAStringDescription new
-		label: 'Telefon Nummer';
-		accessor: #tel;
-		priority: 5;
-		required: true;
-		requiredErrorMessage: 'Bitte die Telefon Nummer eingeben';
-		componentClass: MDLMATextInputComponent;
-		yourself
-]
-
 { #category : #accessing }
 ASDHMAdresse >> hsnr [
 	^ hsnr

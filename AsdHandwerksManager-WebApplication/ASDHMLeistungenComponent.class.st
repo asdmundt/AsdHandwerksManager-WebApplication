@@ -2,7 +2,9 @@ Class {
 	#name : #ASDHMLeistungenComponent,
 	#superclass : #ASDHMObjectViewComponent,
 	#instVars : [
-		'labelArtikelDialogTitle'
+		'labelArtikelDialogTitle',
+		'labelLeistungsform',
+		'labelArtikelliste'
 	],
 	#category : #'AsdHandwerksManager-WebApplication-Components'
 }
@@ -12,7 +14,9 @@ ASDHMLeistungenComponent >> initialize [
 
 	super initialize.
 	self labelHeaderTitle: 'Leistungsbeschreibung'.
-	self labelArtikelDialogTitle: 'ArtikelListe'
+	self labelArtikelDialogTitle: 'ArtikelListe'.
+	self labelLeistungsform: 'Leistungsbeschreibungs Formular'.
+	self labelArtikelliste: 'Materialliste'
 ]
 
 { #category : #accessing }
@@ -25,6 +29,30 @@ ASDHMLeistungenComponent >> labelArtikelDialogTitle [
 ASDHMLeistungenComponent >> labelArtikelDialogTitle: anObject [
 
 	labelArtikelDialogTitle := anObject
+]
+
+{ #category : #accessing }
+ASDHMLeistungenComponent >> labelArtikelliste [
+
+	^ labelArtikelliste
+]
+
+{ #category : #accessing }
+ASDHMLeistungenComponent >> labelArtikelliste: anObject [
+
+	labelArtikelliste := anObject
+]
+
+{ #category : #accessing }
+ASDHMLeistungenComponent >> labelLeistungsform [
+
+	^ labelLeistungsform
+]
+
+{ #category : #accessing }
+ASDHMLeistungenComponent >> labelLeistungsform: anObject [
+
+	labelLeistungsform := anObject
 ]
 
 { #category : #rendering }
@@ -109,62 +137,69 @@ ASDHMLeistungenComponent >> renderDragAndDropArtikelOn: html [
 
 { #category : #rendering }
 ASDHMLeistungenComponent >> renderInnerContentOn: html [
-|artCollection|
-artCollection := self session modelMalerGewerk artikel.
-self model addArtikel: artCollection first.
-	html form: [ 
-		html render: (ASDHMFormLeistungen withModel: self model).
 
+	"| artCollection |
+	artCollection := self session modelMalerGewerk artikel.
+	self model addArtikel: artCollection first."
+
+	html form: [ 
 		html mdlCard
 			shadow: 2;
 			mdlTypographyTextLeft;
 			style: 'width: 100%';
 			with: [ 
-				html mdlCardTitleContainer
-					style: 'height: 40px;padding: 5px;';
-					with: [ html mdlCardTitleText: 'Material Liste' ].
-
 				html mdlCardTextContainer: [ 
-					html div
-						id: #divDragAndDropArtikelListe;
-						style: '';
-						with: [ 
-							html mdlGrid
-								shadow: 2;
-								with: [ 
-									html mdlCell
-										class: 'grid-cell-demo';
-										desktopSize: 4;
-										phoneSize: 1;
-										with: [ 
-											html div
-												class: 'mdl-typography--title';
-												with: [ 'Liste' ].
-											html mdlList
-												style:
-													'width: 100%; height: 400px; background-color: #0d1117;overflow-y: auto;';
-												script:
-													(html jQuery new droppable onDrop:
-															 (html jQuery this load
-																  callbackDroppable: [ :event | 
-																	  self model addArtikel: (event at: #draggable) ];
-																  html: [ :r | self renderSelectedItemsOn: r ]));
-												with: [ self renderSelectedItemsOn: html ] ].
-									html mdlCell
-										class: 'grid-cell-demo';
-										desktopSize: 8;
-										desktopOrder: 2;
-										with: [ 
-											html mdlList
-												style:
-													'width: 100%; height: 400px; background-color: #0d1117;overflow-y: auto;';
-												with: [ 
-													(self session modelMalerGewerk artikelWarengruppe:
-															 'Wand Klebe') do: [ :each | 
-															html mdlListItem
-																passenger: each;
-																script: (html jQuery new draggable revert: true);
-																with: [ html text: each name ] ] ] ] ] ] ].
+						html fieldSet
+							legend: self labelLeistungsform;
+							with: [ 
+								html render: (ASDHMFormLeistungen withModel: self model) ].
+						html div
+							
+							style: '';
+							with: [ 
+								html fieldSet
+							legend: self labelArtikelliste;
+							with:[
+								html mdlGrid
+									shadow: 0;
+									with: [ 
+										html mdlCell
+											class: 'grid-cell-demo';
+											desktopSize: 6;
+											phoneSize: 3;
+											with: [ 
+												html div
+													class: 'mdl-typography--title';
+													with: [ 'Liste' ].
+												html mdlList
+													style:
+														'width: 100%; height: 400px; background-color: #0d1117;overflow-y: auto;';
+													script:
+														(html jQuery new droppable onDrop:
+																 (html jQuery this load
+																	  callbackDroppable: [ :event | 
+																		  self model addArtikel: (event at: #draggable) ];
+																	  html: [ :r | self renderSelectedItemsOn: r ]));
+													with: [ self renderSelectedItemsOn: html ] ].
+										html mdlCell
+											class: 'grid-cell-demo';
+											desktopSize: 6;
+											desktopOrder: 2;
+											phoneSize: 3;
+											with: [ 
+												html mdlList
+													style:
+														'width: 100%; height: 400px; background-color: #0d1117;overflow-y: auto;';
+													with: [ 
+														(self session modelMalerGewerk artikelWarengruppe:
+																 'Werkzeug') do: [ :each | 
+																html mdlListItem
+																	style: 'color: #94969a;';
+																	passenger: each;
+																	script: (html jQuery new draggable revert: true);
+																	with: [ html text: each name ] ] ] ] 
+														
+														]] ] ].
 
 				html mdlCardActions
 					border;
@@ -175,7 +210,7 @@ self model addArtikel: artCollection first.
 							callback: [ self answer: self model ];
 							rippleEffect;
 							mdlTypographyFontBold;
-							with: 'Get Started' ].
+							with: 'ok' ].
 
 				html mdlCardMenu
 					style: 'color: #fff';
@@ -203,6 +238,7 @@ ASDHMLeistungenComponent >> renderSelectedItemsOn: html [
 
 	self model artikelListe do: [ :each | 
 		html mdlListItem
+			style: 'color: #94969a;';
 			passenger: each;
 			script:
 				(html jQuery new draggable onStop: (html jQuery this effect
@@ -210,5 +246,6 @@ ASDHMLeistungenComponent >> renderSelectedItemsOn: html [
 							  puff;
 							  onComplete: (html jQuery this parent load html: [ :r | 
 										   self model artikelListe remove: each ifAbsent: [  ].
-										   self renderSelectedItemsOn: r ]))) ]
+										   self renderSelectedItemsOn: r ])));
+			with: [ html text: each name ] ]
 ]

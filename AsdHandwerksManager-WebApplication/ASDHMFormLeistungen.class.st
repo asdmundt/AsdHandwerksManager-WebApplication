@@ -174,16 +174,16 @@ ASDHMFormLeistungen >> renderAufmassOn: html [
 ASDHMFormLeistungen >> renderBezOn: html [
 
 	html mdlTextFieldContainer
-	style: 'width: 150px';
-	 with: [ 
-		html mdlTextFieldLabel
-			for: html nextId;
-			with: self labelBez.
-		html mdlTextFieldInput
-		style: 'width: 150px';
-			id: html lastId;
-			value: self model bez;
-			callback: [ :aString | self model bez: aString ] ]
+		style: 'width: 400px';
+		with: [ 
+			html mdlTextFieldLabel
+				for: html nextId;
+				with: self labelBez.
+			html mdlTextFieldInput
+				style: 'width: 400px';
+				id: html lastId;
+				value: self model bez;
+				callback: [ :aString | self model bez: aString ] ]
 ]
 
 { #category : #rendering }
@@ -223,12 +223,26 @@ ASDHMFormLeistungen >> renderEinheitOn: html [
 { #category : #rendering }
 ASDHMFormLeistungen >> renderFieldsOn: html [
 
-	html text: self kuerzel.
-	self renderBezOn: html.
-	self renderLeistungsBeschreibungOn: html.
-	self renderEinheitOn: html.
-	self renderZeitProEinheitOn: html
-	"self renderPreisOn: html"
+	html mdlGrid
+		shadow: 0;
+		with: [ 
+			html mdlCell
+				class: 'grid-cell-demo';
+				desktopSize: 4;
+				phoneSize: 3;
+				with: [ 
+					
+					self renderBezOn: html.
+					self renderEinheitOn: html.
+					self renderZeitProEinheitOn: html	.				
+					 ].
+			html mdlCell
+				class: 'grid-cell-demo';
+				desktopSize: 8;
+				phoneSize: 3;
+				with: [ 
+self renderLeistungsBeschreibungOn: html
+					"self renderPreisOn: html" ] ]
 ]
 
 { #category : #rendering }

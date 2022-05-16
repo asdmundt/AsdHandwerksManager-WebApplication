@@ -59,6 +59,23 @@ ASDHMObjectViewTableContactComponent >> labelNewAuftrag: anObject [
 ]
 
 { #category : #rendering }
+ASDHMObjectViewTableContactComponent >> renderActionMenuWith: aModel on: html [
+html mdlButton icon
+								id: #actionContact;
+								with: [ html mdlIcon: #more_vert ].
+							html mdlMenu
+		bottomRight;
+		for: #actionContact;
+		with: [ 
+			
+			html mdlMenuItem
+			  class: 'openNav';
+				onClick: '';
+				with: 'Disabled Action'.
+			html mdlMenuItem: 'Yet Another Action' ]
+]
+
+{ #category : #rendering }
 ASDHMObjectViewTableContactComponent >> renderDialog: html [
 
 	| newContact |

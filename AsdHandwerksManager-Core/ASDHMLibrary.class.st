@@ -654,7 +654,7 @@ width: 100%;
     overflow-y: auto;
     height: 100%;
     background-color: #0d1117;
-    display: flex;
+    /*display: flex;*/
     flex-direction: row;
     padding: 15px;
     align-items: baseline;

@@ -12,7 +12,8 @@ Class {
 		'benutzerName',
 		'indexInstall',
 		'indexSize',
-		'role'
+		'role',
+		'aufgaben'
 	],
 	#category : #'AsdHandwerksManager-Core-Model'
 }
@@ -81,6 +82,18 @@ ASDHMUser >> asCostumer [
 { #category : #accessing }
 ASDHMUser >> asEmployee [
 	self type: #employee
+]
+
+{ #category : #accessing }
+ASDHMUser >> aufgaben [
+
+	^ aufgaben
+]
+
+{ #category : #accessing }
+ASDHMUser >> aufgaben: anObject [
+
+	aufgaben := anObject
 ]
 
 { #category : #accessing }
