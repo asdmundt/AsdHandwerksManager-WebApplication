@@ -361,6 +361,14 @@ ASDHMDbModelBase >> artikelCategories [
 ]
 
 { #category : #accessing }
+ASDHMDbModelBase >> auftraege [
+
+	| collection |
+	collection := Repos selectAll: ASDHMAuftrag.
+	^ collection yourself
+]
+
+{ #category : #accessing }
 ASDHMDbModelBase >> contacts [
 
 	| collection |

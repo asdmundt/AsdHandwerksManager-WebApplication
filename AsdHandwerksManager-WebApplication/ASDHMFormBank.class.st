@@ -13,6 +13,12 @@ Class {
 	#category : #'AsdHandwerksManager-WebApplication-forms'
 }
 
+{ #category : #accessing }
+ASDHMFormBank class >> componentTitle [
+
+	^ 'Bank'
+]
+
 { #category : #rendering }
 ASDHMFormBank >> bankNameInputWidget [
 

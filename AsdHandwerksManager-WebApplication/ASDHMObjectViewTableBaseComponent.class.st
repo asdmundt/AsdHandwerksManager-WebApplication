@@ -10,7 +10,8 @@ Class {
 		'labelDelete',
 		'labelSelect',
 		'list',
-		'labelAktionen'
+		'labelAktionen',
+		'labelAdd'
 	],
 	#category : #'AsdHandwerksManager-WebApplication-Components'
 }
@@ -40,7 +41,20 @@ ASDHMObjectViewTableBaseComponent >> initialize [
 	self labelSelect: 'Auswählen'.
 	self labelEdit: 'Bearbeiten'.
 	self labelDelete: 'Entfernen'.
-	self labelAktionen: 'Aktionen'
+	self labelAktionen: 'Aktionen'.
+	self labelAdd: 'Hinzufügen'
+]
+
+{ #category : #accessing }
+ASDHMObjectViewTableBaseComponent >> labelAdd [
+
+	^ labelAdd
+]
+
+{ #category : #accessing }
+ASDHMObjectViewTableBaseComponent >> labelAdd: anObject [
+
+	labelAdd := anObject
 ]
 
 { #category : #accessing }

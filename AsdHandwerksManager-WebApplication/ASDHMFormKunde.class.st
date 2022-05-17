@@ -14,6 +14,12 @@ Class {
 }
 
 { #category : #accessing }
+ASDHMFormKunde class >> componentTitle [
+
+	^ 'Kunde'
+]
+
+{ #category : #accessing }
 ASDHMFormKunde >> dictGewerblich [
 
 	^ dictGewerblich

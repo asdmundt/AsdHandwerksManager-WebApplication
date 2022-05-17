@@ -10,6 +10,12 @@ Class {
 	#category : #'AsdHandwerksManager-WebApplication-forms'
 }
 
+{ #category : #'as yet unclassified' }
+ASDHMFormAdresse class >> componentTitle [
+
+	^ 'Adresse'
+]
+
 { #category : #accessing }
 ASDHMFormAdresse >> hsnrLabel [
 	^ hsnrLabel

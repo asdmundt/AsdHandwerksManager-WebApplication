@@ -17,6 +17,12 @@ Class {
 }
 
 { #category : #accessing }
+ASDHMFormLeistungen class >> componentTitle [
+
+	^ 'Leistungen'
+]
+
+{ #category : #accessing }
 ASDHMFormLeistungen >> artikelId [
 
 	^ artikelId

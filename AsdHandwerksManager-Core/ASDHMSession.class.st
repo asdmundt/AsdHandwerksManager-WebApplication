@@ -15,10 +15,23 @@ Class {
 		'firmenId',
 		'currentObject',
 		'leistungen',
-		'kategorieKuerzel'
+		'kategorieKuerzel',
+		'currentIndexAuftrag'
 	],
 	#category : #'AsdHandwerksManager-Core-Utils'
 }
+
+{ #category : #accessing }
+ASDHMSession >> currentIndexAuftrag [
+
+	^ currentIndexAuftrag
+]
+
+{ #category : #accessing }
+ASDHMSession >> currentIndexAuftrag: anObject [
+
+	currentIndexAuftrag := anObject
+]
 
 { #category : #accessing }
 ASDHMSession >> currentObject [

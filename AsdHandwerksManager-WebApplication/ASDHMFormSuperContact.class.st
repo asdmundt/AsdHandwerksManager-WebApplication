@@ -21,6 +21,12 @@ Class {
 }
 
 { #category : #accessing }
+ASDHMFormSuperContact class >> componentTitle [
+
+	^ 'Kontakte'
+]
+
+{ #category : #accessing }
 ASDHMFormSuperContact >> adressForm [
 
 	^ adressForm

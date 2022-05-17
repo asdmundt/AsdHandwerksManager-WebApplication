@@ -50,10 +50,10 @@ ASDHMRoot class >> initialize [
 		WAAdmin applicationDefaults addParent: class instance ]. "Remove development tools."
 	^ (WAAdmin register: self asApplicationAt: 'HandwerksManager')
 		  preferenceAt: #sessionClass put: ASDHMSession;
-
 		  addLibrary: JQDeploymentLibrary;
 		  addLibrary: JQUiDevelopmentLibrary;
 		  addLibrary: MDLLibrary;
+		addLibrary: MDCLibrary;
 		  addLibrary: ASDHMLibrary;
 		  yourself
 ]

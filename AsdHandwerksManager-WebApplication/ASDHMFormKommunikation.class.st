@@ -9,6 +9,12 @@ Class {
 	#category : #'AsdHandwerksManager-WebApplication-forms'
 }
 
+{ #category : #accessing }
+ASDHMFormKommunikation class >> componentTitle [
+
+	^ 'Kommunikation'
+]
+
 { #category : #initialization }
 ASDHMFormKommunikation >> initialize [
 

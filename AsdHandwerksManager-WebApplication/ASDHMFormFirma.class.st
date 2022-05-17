@@ -18,6 +18,12 @@ Class {
 }
 
 { #category : #accessing }
+ASDHMFormFirma class >> componentTitle [
+
+	^ 'Firma'
+]
+
+{ #category : #accessing }
 ASDHMFormFirma >> adressForm [
 
 	^ adressForm

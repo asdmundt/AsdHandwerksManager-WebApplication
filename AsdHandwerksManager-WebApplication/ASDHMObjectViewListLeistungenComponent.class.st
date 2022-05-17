@@ -23,7 +23,8 @@ ASDHMObjectViewListLeistungenComponent >> add [
 
 	self show: editor onAnswer: [ :answer | 
 		self session model storeObject: answer.
-		self inform: 'Thanks for editing  ' , answer bez ]
+		self session rootComponent goToOverviewView.
+		"self inform: 'Thanks for editing  ' , answer bez" ]
 ]
 
 { #category : #accessing }
@@ -122,27 +123,16 @@ ASDHMObjectViewListLeistungenComponent >> renderAddMenu: html [
 
 	| newLeistung katKuerzel |
 	katKuerzel := self session kategorieKuerzel asString.
-	self session kategorieKuerzel ifNotNil: [
+	self session kategorieKuerzel ifNotNil: [ 
 		html mdlAnchorButton
 			icon;
 			id: #add;
-			callback: [ self add ]; 
+			callback: [ self add ];
 			with: [ html mdlIcon: 'add' ].
 		html mdlTooltip
 			for: #add;
 			with: katKuerzel
-		 "html mdlAnchorButton
-			icon;
-			id: #add;
-			openDialogWithId: self rootDialogOpenId;
-			onClickUpdateRootDialogWith: [ :r | 
-				newLeistung := ASDHMLeistungen kategorieKuerzel: katKuerzel.
-				self renderDialog: r withModel: newLeistung ];
-			with: [ html mdlIcon: 'add' ].
-		html mdlTooltip
-			for: #add;
-			with: katKuerzel"
-		 ]
+	 ]
 ]
 
 { #category : #rendering }
