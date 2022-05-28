@@ -12,7 +12,9 @@ Class {
 		'displayString',
 		'type',
 		'types',
-		'pathString'
+		'pathString',
+		'stepIndex',
+		'currentStepIndex'
 	],
 	#category : #'AsdHandwerksManager-Core-Model'
 }
@@ -39,6 +41,18 @@ ASDHMModel >> bez [
 { #category : #accessing }
 ASDHMModel >> bez: anObject [
 	bez := anObject
+]
+
+{ #category : #accessing }
+ASDHMModel >> currentStepIndex [
+
+	^ currentStepIndex
+]
+
+{ #category : #accessing }
+ASDHMModel >> currentStepIndex: anObject [
+
+	currentStepIndex := anObject
 ]
 
 { #category : #accessing }
@@ -83,7 +97,8 @@ ASDHMModel >> initialize [
 	super initialize.
 	self task: OrderedCollection new.
 	self id: UUID new.
-	
+	self  stepIndex: 0.
+	self currentStepIndex: 0.
 	self status: 'new'
 ]
 
@@ -96,6 +111,12 @@ ASDHMModel >> pathString [
 			  nextPutAll: self bez;
 			  space ]
 	
+]
+
+{ #category : #accessing }
+ASDHMModel >> pathString: anObject [
+
+	pathString := anObject
 ]
 
 { #category : #accessing }
@@ -117,6 +138,18 @@ ASDHMModel >> status: anObject [
 ]
 
 { #category : #accessing }
+ASDHMModel >> stepIndex [
+
+	^ stepIndex
+]
+
+{ #category : #accessing }
+ASDHMModel >> stepIndex: anObject [
+
+	stepIndex := anObject
+]
+
+{ #category : #accessing }
 ASDHMModel >> task [
 
 	^ task
@@ -126,4 +159,28 @@ ASDHMModel >> task [
 ASDHMModel >> task: anObject [
 
 	task := anObject
+]
+
+{ #category : #accessing }
+ASDHMModel >> types [
+
+	^ types
+]
+
+{ #category : #accessing }
+ASDHMModel >> types: anObject [
+
+	types := anObject
+]
+
+{ #category : #accessing }
+ASDHMModel >> userId [
+
+	^ userId
+]
+
+{ #category : #accessing }
+ASDHMModel >> userId: anObject [
+
+	userId := anObject
 ]

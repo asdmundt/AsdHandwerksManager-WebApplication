@@ -16,10 +16,23 @@ Class {
 		'currentObject',
 		'leistungen',
 		'kategorieKuerzel',
-		'currentIndexAuftrag'
+		'currentIndexAuftrag',
+		'auftragKunde'
 	],
 	#category : #'AsdHandwerksManager-Core-Utils'
 }
+
+{ #category : #accessing }
+ASDHMSession >> auftragKunde [
+
+	^ auftragKunde
+]
+
+{ #category : #accessing }
+ASDHMSession >> auftragKunde: anObject [
+
+	auftragKunde := anObject
+]
 
 { #category : #accessing }
 ASDHMSession >> currentIndexAuftrag [
@@ -87,7 +100,7 @@ ASDHMSession >> initialize [
 	self modelBlz: ASDHMDbModelBlz current.
 	self modelMalerGewerk: ASDHMDbModelMalerGewerg current.
 	self modelKlickTel: ASDHMDbModelKlickTel current.
-	
+	self currentIndexAuftrag: 0
 ]
 
 { #category : #testing }

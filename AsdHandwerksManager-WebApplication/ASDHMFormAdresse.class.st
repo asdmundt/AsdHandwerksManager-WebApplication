@@ -93,15 +93,27 @@ ASDHMFormAdresse >> renderContentOn: html [
 { #category : #rendering }
 ASDHMFormAdresse >> renderFieldsOn: html [
 
-	"self renderBezOn: html."
 
-	html span: [ 
-		self renderStrOn: html.
-		self renderHsnrOn: html.
-	].
-	
-		self renderPlzOn: html.
-		self renderOrtOn: html 
+	html mdlGrid
+		shadow: 0;
+		with: [ 
+			html mdlCell
+				class: 'grid-cell-demo';
+				desktopSize: 12;
+				phoneSize: 6;
+				with: [ 
+					self renderStrOn: html.
+					self renderHsnrOn: html ] ].
+	html mdlGrid
+		shadow: 0;
+		with: [ 
+			html mdlCell
+				class: 'grid-cell-demo';
+				desktopSize: 12;
+				phoneSize: 6;
+				with: [ 
+					self renderPlzOn: html.
+					self renderOrtOn: html ] ]
 ]
 
 { #category : #rendering }

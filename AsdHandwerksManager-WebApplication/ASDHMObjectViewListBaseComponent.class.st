@@ -11,7 +11,8 @@ Class {
 		'labelDelete',
 		'list',
 		'labelEdit',
-		'labelBez'
+		'labelBez',
+		'rahmen'
 	],
 	#category : #'AsdHandwerksManager-WebApplication-Components'
 }

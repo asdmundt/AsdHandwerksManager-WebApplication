@@ -4,7 +4,8 @@ Class {
 	#instVars : [
 		'labelHeaderTitle',
 		'steps',
-		'stepsSize'
+		'stepsSize',
+		'currentStep'
 	],
 	#category : #'AsdHandwerksManager-WebApplication-Components'
 }
@@ -24,11 +25,25 @@ ASDHMStepFormComponent >> children [
 	^ Array with: self steps
 ]
 
+{ #category : #accessing }
+ASDHMStepFormComponent >> currentStep [
+
+	^ currentStep
+]
+
+{ #category : #accessing }
+ASDHMStepFormComponent >> currentStep: anObject [
+
+	currentStep := anObject
+]
+
 { #category : #initialization }
 ASDHMStepFormComponent >> initialize [
 
 	super initialize.
-	self id: 'step-' , (self model) asString 
+	
+	self stepsSize: self steps size.
+	self id: 'step-' , self stepsSize asString.
 ]
 
 { #category : #accessing }
@@ -46,49 +61,65 @@ ASDHMStepFormComponent >> labelHeaderTitle: anObject [
 { #category : #rendering }
 ASDHMStepFormComponent >> renderContentOn: html [
 
+	| tabPanelId tmpComponent startComponent |
+	startComponent := steps at: 1.
+	tabPanelId := html nextId.
 	html div
+		id: self id;
 		style:
 			'  display: block; height: 100%; margin: 0px 0px 0px 0px; padding-left: 5px;position:absolute; z-index:10; left:10px; top:10px; width:100%';
 		shadow: 0;
-		with: [ 
+		with: [ "This example do not use any syntactic sugar to show the vanilla way of creating tabs. Other examples will introduce simpler way to create tabs."
 			html div
-				class: 'titleBar';
+				mdcElevation: 4;
 				with: [ 
-					html text: self labelHeaderTitle.
-
+					html mdcTabBar: [ 
+							html mdcTabScroller: [ 
+									html mdcTabScrollerArea: [ 
+											html mdcTabScrollerContent: [ 
+													1 to: self currentStep do: [ :i | 
+															tmpComponent := steps at: i.
+															html mdcTab
+																beActiveIf: i = self currentStep;
+																onClick:
+																	((html jQuery id: tabPanelId) load html: [ :canvas | 
+																			 canvas render: tmpComponent ]);
+																with: [ 
+																	html mdcTabContent: [ 
+																			html mdcTabLabel: tmpComponent labelSelf ].
+																	html mdcTabIndicator
+																		beActiveIf: i = self currentStep;
+																		with: [ html mdcTabUnderlinedIndicatorContent ] ] ] ] ] ] ].
 					html div
-						class: 'wrapper';
-						with: [ 
-							html mdlButton icon
-								id: #bottomRightButton;
-								with: [ html mdlIcon: #more_vert ].
-							html mdlMenu
-								bottomRight;
-								for: #bottomRightButton;
-								with: [ 
-									html mdlMenuItem: 'Some Action'.
-									html mdlMenuItem
-										fullBleedDivider;
-										with: 'Another Action'.
-									html mdlMenuItem
-										disabled;
-										with: 'Disabled Action'.
-									html mdlMenuItem: 'Yet Another Action' ] ] ].
-			html div
-				class: 'background';
-				style:
-					'width: 100%;min-height: 400px;overflow-y: auto; height:100%;';
-				with: [ self renderInnerContentOn: html ] ]
+						id: tabPanelId;
+						with: [ html render: startComponent ] ] ]
+]
+
+{ #category : #rendering }
+ASDHMStepFormComponent >> renderReadyContentOn: html [
+
 ]
 
 { #category : #accessing }
 ASDHMStepFormComponent >> steps [
 
-	^ steps
+	^ steps ifNil: [ OrderedCollection new ]
 ]
 
 { #category : #accessing }
 ASDHMStepFormComponent >> steps: anObject [
 
 	steps := anObject
+]
+
+{ #category : #accessing }
+ASDHMStepFormComponent >> stepsSize [
+
+	^ stepsSize
+]
+
+{ #category : #accessing }
+ASDHMStepFormComponent >> stepsSize: anObject [
+
+	stepsSize := anObject
 ]

@@ -70,10 +70,10 @@ ASDHMHomePage >> renderAuftragsCardOn: html [
 
 { #category : #rendering }
 ASDHMHomePage >> renderCardOn: html [
-self renderAuftragsCardOn: html.
-self renderTasksCardOn: html.
-self renderAufgabenCardOn: html
 
+	"self renderAuftragsCardOn: html."
+	self renderTasksCardOn: html.
+	self renderAufgabenCardOn: html
 ]
 
 { #category : #rendering }

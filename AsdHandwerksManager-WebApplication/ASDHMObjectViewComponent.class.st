@@ -4,15 +4,17 @@ Class {
 	#traits : 'TWithRootDialogComponent',
 	#classTraits : 'TWithRootDialogComponent classTrait',
 	#instVars : [
-		'labelHeaderTitle'
+		'labelHeaderTitle',
+		'rahmen'
 	],
 	#category : #'AsdHandwerksManager-WebApplication-Components'
 }
 
 { #category : #initialization }
 ASDHMObjectViewComponent >> initialize [
+
 	super initialize.
-	
+	self rahmen: true
 ]
 
 { #category : #accessing }
@@ -27,10 +29,21 @@ ASDHMObjectViewComponent >> labelHeaderTitle: anObject [
 	labelHeaderTitle := anObject
 ]
 
+{ #category : #accessing }
+ASDHMObjectViewComponent >> rahmen [
+
+	^ rahmen
+]
+
+{ #category : #accessing }
+ASDHMObjectViewComponent >> rahmen: anObject [
+
+	rahmen := anObject
+]
+
 { #category : #rendering }
 ASDHMObjectViewComponent >> renderContentOn: html [
-
-	html div
+self rahmen ifTrue: [ 	html div
 		style:
 			'  display: block; height: 100%; margin: 0px 0px 0px 0px; padding-left: 5px;position:absolute; z-index:10; left:10px; top:10px; width:100%';
 		shadow: 0;
@@ -62,7 +75,13 @@ ASDHMObjectViewComponent >> renderContentOn: html [
 				class: 'background';
 				style:
 					'width: 100%;min-height: 400px;overflow-y: auto; height:100%;';
+				with: [ self renderInnerContentOn: html ] ] ] 
+ifFalse: [ html div
+				class: 'background';
+				style:
+					'width: 100%;min-height: 400px;overflow-y: auto; height:100%;';
 				with: [ self renderInnerContentOn: html ] ]
+
 ]
 
 { #category : #rendering }
