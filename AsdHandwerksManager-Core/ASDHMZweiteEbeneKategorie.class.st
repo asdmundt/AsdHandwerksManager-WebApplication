@@ -17,6 +17,6 @@ ASDHMZweiteEbeneKategorie >> initialize [
 
 	super initialize.
 	self index: 2.
-	"pathString := super pathString , ' / ' , self pathString."
+	pathString := super pathString , ' / ' , self pathString.
 	collectionClassName := 'ASDHMKategorie'
 ]

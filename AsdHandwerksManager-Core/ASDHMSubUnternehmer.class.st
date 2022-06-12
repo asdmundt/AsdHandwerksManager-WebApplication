@@ -7,6 +7,15 @@ Class {
 	#category : #'AsdHandwerksManager-Core-Model'
 }
 
+{ #category : #voyage }
+ASDHMSubUnternehmer class >> isVoyageRoot [
+
+	"Indicates that instances of this class are top level documents
+    in noSQL databases"
+
+	^ true
+]
+
 { #category : #accessing }
 ASDHMSubUnternehmer class >> titleText [
 ^'Subunternehmer'

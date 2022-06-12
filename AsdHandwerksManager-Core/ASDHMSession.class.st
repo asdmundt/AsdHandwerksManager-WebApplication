@@ -13,14 +13,26 @@ Class {
 		'userId',
 		'firma',
 		'firmenId',
-		'currentObject',
 		'leistungen',
+		'leistungsTitel',
 		'kategorieKuerzel',
-		'currentIndexAuftrag',
+		'auftrag',
 		'auftragKunde'
 	],
 	#category : #'AsdHandwerksManager-Core-Utils'
 }
+
+{ #category : #accessing }
+ASDHMSession >> auftrag [
+
+	^ auftrag
+]
+
+{ #category : #accessing }
+ASDHMSession >> auftrag: anObject [
+
+	auftrag := anObject
+]
 
 { #category : #accessing }
 ASDHMSession >> auftragKunde [
@@ -32,30 +44,6 @@ ASDHMSession >> auftragKunde [
 ASDHMSession >> auftragKunde: anObject [
 
 	auftragKunde := anObject
-]
-
-{ #category : #accessing }
-ASDHMSession >> currentIndexAuftrag [
-
-	^ currentIndexAuftrag
-]
-
-{ #category : #accessing }
-ASDHMSession >> currentIndexAuftrag: anObject [
-
-	currentIndexAuftrag := anObject
-]
-
-{ #category : #accessing }
-ASDHMSession >> currentObject [
-
-	^ currentObject
-]
-
-{ #category : #accessing }
-ASDHMSession >> currentObject: anObject [
-
-	currentObject := anObject
 ]
 
 { #category : #accessing }
@@ -100,7 +88,7 @@ ASDHMSession >> initialize [
 	self modelBlz: ASDHMDbModelBlz current.
 	self modelMalerGewerk: ASDHMDbModelMalerGewerg current.
 	self modelKlickTel: ASDHMDbModelKlickTel current.
-	self currentIndexAuftrag: 0
+	
 ]
 
 { #category : #testing }

@@ -119,7 +119,7 @@ ASDHMIKategorieBaumComponent >> renderContentOn: html [
 
 	html div
 		class: 'deepPanel';
-		style: 'margin: 10px;';
+		style: 'margin: 5px;';
 		shadow: 0;
 		with: [ self renderCardOn: html ]
 ]

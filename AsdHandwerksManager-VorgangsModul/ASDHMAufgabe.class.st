@@ -9,8 +9,23 @@ Class {
 		'completed',
 		'deadline'
 	],
-	#category : #'AsdHandwerksManager-Core-Model'
+	#category : #'AsdHandwerksManager-VorgangsModul-Model'
 }
+
+{ #category : #voyage }
+ASDHMAufgabe class >> isVoyageRoot [
+
+	"Indicates that instances of this class are top level documents
+    in noSQL databases"
+
+	^ true
+]
+
+{ #category : #accessing }
+ASDHMAufgabe class >> titleText [
+
+	^ 'Aufgabe'
+]
 
 { #category : #accessing }
 ASDHMAufgabe >> completed [

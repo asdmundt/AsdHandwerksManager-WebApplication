@@ -7,8 +7,23 @@ Class {
 		'title',
 		'descr'
 	],
-	#category : #'AsdHandwerksManager-Core-Model'
+	#category : #'AsdHandwerksManager-VorgangsModul-Model'
 }
+
+{ #category : #voyage }
+ASDHMVorgang class >> isVoyageRoot [
+
+	"Indicates that instances of this class are top level documents
+    in noSQL databases"
+
+	^ true
+]
+
+{ #category : #accessing }
+ASDHMVorgang class >> titleText [
+
+	^ 'Vorgang'
+]
 
 { #category : #accessing }
 ASDHMVorgang >> aufgaben [
