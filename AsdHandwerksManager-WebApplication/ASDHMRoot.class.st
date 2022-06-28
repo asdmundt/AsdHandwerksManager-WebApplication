@@ -136,7 +136,32 @@ ASDHMRoot >> defaultHeader [
 
 { #category : #updating }
 ASDHMRoot >> displayInstanceOf: aComponentClass [
-	self componentToDisplay: (self componentInstances at: aComponentClass ifAbsentPut: [ aComponentClass new ])
+self session resetStates.
+	self componentToDisplay: (self componentInstances
+			 at: aComponentClass
+			 ifAbsentPut: [ aComponentClass new ])
+]
+
+{ #category : #updating }
+ASDHMRoot >> displayInstanceOfWithSessionState: aComponentClass [
+
+	"self componentToDisplay: (self componentInstances at: aComponentClass ifAbsentPut: [ aComponentClass new ])"
+
+	self componentToDisplay: (self componentInstances
+			 at: aComponentClass
+			 ifAbsentPut: [ aComponentClass new ])
+]
+
+{ #category : #updating }
+ASDHMRoot >> displayInstanceOfWithSessionStateAndAdd: aComponentClass [
+	"self componentToDisplay: (self componentInstances at: aComponentClass ifAbsentPut: [ aComponentClass new ])"
+
+	self
+		componentToDisplay:
+			(self componentInstances
+				at: aComponentClass
+				ifPresent: [ aComponentClass new addSelf ]
+				ifAbsentPut: [ aComponentClass new addSelf ])
 ]
 
 { #category : #accessing }

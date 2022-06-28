@@ -62,7 +62,7 @@ ASDHMContactPage >> renderContentOn: html [
 		with: [ 
 			html div
 				class: 'content';
-				id: 'contentWithoutside';
+				id: 'contactContentWithoutside';
 				style: 'flex-grow: 1;';
 				with: [ self renderComponentOn: html ] ].
 	html html: '<script type="text/javascript">'.
@@ -76,9 +76,9 @@ ASDHMContactPage >> renderContentOn: html [
 	html html: 'var lw 	= (aw - 880) + ''px'';'.
 	html html: 'var wlw 	= (aw - 200) + ''px'';'.
 	html html:
-		'document.getElementById("contentWithoutside").style.width = wlw;'.
+		'document.getElementById("contactContentWithoutside").style.width = wlw;'.
 	html html:
-		'document.getElementById("contentWithoutside").style.height = th;
+		'document.getElementById("contactContentWithoutside").style.height = th;
 		}'.
 	html html: '</script>'
 ]

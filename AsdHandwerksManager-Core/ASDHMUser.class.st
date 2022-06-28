@@ -129,6 +129,19 @@ ASDHMUser >> descriptionContainer [
 ]
 
 { #category : #'magritte descriptions' }
+ASDHMUser >> descriptionGmail [
+
+	<magritteDescription>
+	^ MAStringDescription new
+		  priority: 10;
+		  label: 'Gmail Adr.';
+		  accessor: #gmail;
+		  comment: 'bitte Ihre Email Adresse eingeben';
+		  componentClass: MDLMATextInputComponent;
+		  yourself
+]
+
+{ #category : #'magritte descriptions' }
 ASDHMUser >> descriptionNachname [
 	<magritteDescription>
 	^ MAStringDescription new
@@ -192,18 +205,6 @@ ASDHMUser >> gmail [
 { #category : #accessing }
 ASDHMUser >> gmail: anObject [
 	gmail := anObject
-]
-
-{ #category : #'magritte descriptions' }
-ASDHMUser >> gmailDescription [
-	<magritteDescription>
-	^ MAStringDescription new
-		priority: 10;
-		label: 'Gmail Adr.';
-		accessor: #gmail;
-		comment: 'bitte Ihre Email Adresse eingeben';
-		componentClass: MDLMATextInputComponent;
-		yourself
 ]
 
 { #category : #accessing }

@@ -62,13 +62,14 @@ ASDHMCofigPage >> initialize [
 
 { #category : #rendering }
 ASDHMCofigPage >> renderContentOn: html [
-html div
+
+	html div
 		shadow: 2;
 		style: 'display: flex;';
 		with: [ 
 			html div
 				class: 'content';
-				id: 'contentWithoutside';
+				id: 'configContentWithoutside';
 				style: 'flex-grow: 1;';
 				with: [ self renderInstallComponentOn: html ] ].
 	html html: '<script type="text/javascript">'.
@@ -82,12 +83,11 @@ html div
 	html html: 'var lw 	= (aw - 880) + ''px'';'.
 	html html: 'var wlw 	= (aw - 200) + ''px'';'.
 	html html:
-		'document.getElementById("contentWithoutside").style.width = wlw;'.
+		'document.getElementById("configContentWithoutside").style.width = wlw;'.
 	html html:
-		'document.getElementById("contentWithoutside").style.height = th;
+		'document.getElementById("configContentWithoutside").style.height = th;
 		}'.
-	html html: '</script>'.
-
+	html html: '</script>'
 ]
 
 { #category : #rendering }

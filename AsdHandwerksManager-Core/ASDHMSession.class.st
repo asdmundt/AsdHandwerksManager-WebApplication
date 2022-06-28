@@ -185,7 +185,11 @@ ASDHMSession >> reset [
 
 { #category : #actions }
 ASDHMSession >> resetStates [
-	task := nil
+
+	task := nil.
+	auftrag := nil.
+	auftragKunde := nil.
+	kategorieKuerzel := nil
 ]
 
 { #category : #accessing }

@@ -66,12 +66,11 @@ ASDHMAkquisePage >> renderContentOn: html [
 
 	html div
 		shadow: 2;
-		
 		style: 'display: flex;';
 		with: [ 
 			html div
 				class: 'content';
-				id: 'contentWithoutside';
+				id: 'akquiseContentWithoutside';
 				style: 'flex-grow: 1;';
 				with: [ html render: contactTable ] ].
 	html html: '<script type="text/javascript">'.
@@ -85,9 +84,9 @@ ASDHMAkquisePage >> renderContentOn: html [
 	html html: 'var lw 	= (aw - 880) + ''px'';'.
 	html html: 'var wlw 	= (aw - 200) + ''px'';'.
 	html html:
-		'document.getElementById("contentWithoutside").style.width = wlw;'.
+		'document.getElementById("akquiseContentWithoutside").style.width = wlw;'.
 	html html:
-		'document.getElementById("contentWithoutside").style.height = th;
+		'document.getElementById("akquiseContentWithoutside").style.height = th;
 		}'.
 	html html: '</script>'
 ]
